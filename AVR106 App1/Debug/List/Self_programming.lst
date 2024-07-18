@@ -1,0 +1,2849 @@
+
+AVRASM ver. 2.1.30  D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm Fri Mar 20 16:50:55 2020
+
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1100): warning: Register r4 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1101): warning: Register r5 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1102): warning: Register r6 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1103): warning: Register r7 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1104): warning: Register r8 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1105): warning: Register r9 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1106): warning: Register r10 already defined by the .DEF directive
+D:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128\AVR106 App1\Debug\List\Self_programming.asm(1107): warning: Register r11 already defined by the .DEF directive
+                 
+                 
+                 ;CodeVisionAVR C Compiler V3.12 Advanced
+                 ;(C) Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+                 ;http://www.hpinfotech.com
+                 
+                 ;Build configuration    : Debug
+                 ;Chip type              : ATmega128
+                 ;Program type           : Application
+                 ;Clock frequency        : 8.000000 MHz
+                 ;Memory model           : Medium
+                 ;Optimize for           : Size
+                 ;(s)printf features     : int, width
+                 ;(s)scanf features      : int, width
+                 ;External RAM size      : 0
+                 ;Data Stack size        : 1124 byte(s)
+                 ;Heap size              : 0 byte(s)
+                 ;Promote 'char' to 'int': Yes
+                 ;'char' is unsigned     : Yes
+                 ;8 bit enums            : Yes
+                 ;Global 'const' stored in FLASH: Yes
+                 ;Enhanced function parameter passing: Yes
+                 ;Enhanced core instructions: On
+                 ;Automatic register allocation for global variables: On
+                 ;Smart register allocation: On
+                 
+                 	#define _MODEL_MEDIUM_
+                 
+                 	#pragma AVRPART ADMIN PART_NAME ATmega128
+                 	#pragma AVRPART MEMORY PROG_FLASH 131072
+                 	#pragma AVRPART MEMORY EEPROM 4096
+                 	#pragma AVRPART MEMORY INT_SRAM SIZE 4096
+                 	#pragma AVRPART MEMORY INT_SRAM START_ADDR 0x100
+                 
+                 	#define CALL_SUPPORTED 1
+                 
+                 	.LISTMAC
+                 	.EQU UDRE=0x5
+                 	.EQU RXC=0x7
+                 	.EQU USR=0xB
+                 	.EQU UDR=0xC
+                 	.EQU SPSR=0xE
+                 	.EQU SPDR=0xF
+                 	.EQU EERE=0x0
+                 	.EQU EEWE=0x1
+                 	.EQU EEMWE=0x2
+                 	.EQU EECR=0x1C
+                 	.EQU EEDR=0x1D
+                 	.EQU EEARL=0x1E
+                 	.EQU EEARH=0x1F
+                 	.EQU WDTCR=0x21
+                 	.EQU MCUCR=0x35
+                 	.EQU RAMPZ=0x3B
+                 	.EQU SPL=0x3D
+                 	.EQU SPH=0x3E
+                 	.EQU SREG=0x3F
+                 	.EQU XMCRA=0x6D
+                 	.EQU XMCRB=0x6C
+                 
+                 	.DEF R0X0=R0
+                 	.DEF R0X1=R1
+                 	.DEF R0X2=R2
+                 	.DEF R0X3=R3
+                 	.DEF R0X4=R4
+                 	.DEF R0X5=R5
+                 	.DEF R0X6=R6
+                 	.DEF R0X7=R7
+                 	.DEF R0X8=R8
+                 	.DEF R0X9=R9
+                 	.DEF R0XA=R10
+                 	.DEF R0XB=R11
+                 	.DEF R0XC=R12
+                 	.DEF R0XD=R13
+                 	.DEF R0XE=R14
+                 	.DEF R0XF=R15
+                 	.DEF R0X10=R16
+                 	.DEF R0X11=R17
+                 	.DEF R0X12=R18
+                 	.DEF R0X13=R19
+                 	.DEF R0X14=R20
+                 	.DEF R0X15=R21
+                 	.DEF R0X16=R22
+                 	.DEF R0X17=R23
+                 	.DEF R0X18=R24
+                 	.DEF R0X19=R25
+                 	.DEF R0X1A=R26
+                 	.DEF R0X1B=R27
+                 	.DEF R0X1C=R28
+                 	.DEF R0X1D=R29
+                 	.DEF R0X1E=R30
+                 	.DEF R0X1F=R31
+                 
+                 	.EQU __SRAM_START=0x0100
+                 	.EQU __SRAM_END=0x10FF
+                 	.EQU __DSTACK_SIZE=0x0464
+                 	.EQU __HEAP_SIZE=0x0000
+                 	.EQU __CLEAR_SRAM_SIZE=__SRAM_END-__SRAM_START+1
+                 
+                 	.MACRO __CPD1N
+                 	CPI  R30,LOW(@0)
+                 	LDI  R26,HIGH(@0)
+                 	CPC  R31,R26
+                 	LDI  R26,BYTE3(@0)
+                 	CPC  R22,R26
+                 	LDI  R26,BYTE4(@0)
+                 	CPC  R23,R26
+                 	.ENDM
+                 
+                 	.MACRO __CPD2N
+                 	CPI  R26,LOW(@0)
+                 	LDI  R30,HIGH(@0)
+                 	CPC  R27,R30
+                 	LDI  R30,BYTE3(@0)
+                 	CPC  R24,R30
+                 	LDI  R30,BYTE4(@0)
+                 	CPC  R25,R30
+                 	.ENDM
+                 
+                 	.MACRO __CPWRR
+                 	CP   R@0,R@2
+                 	CPC  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __CPWRN
+                 	CPI  R@0,LOW(@2)
+                 	LDI  R30,HIGH(@2)
+                 	CPC  R@1,R30
+                 	.ENDM
+                 
+                 	.MACRO __ADDB1MN
+                 	SUBI R30,LOW(-@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDB2MN
+                 	SUBI R26,LOW(-@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDW1MN
+                 	SUBI R30,LOW(-@0-(@1))
+                 	SBCI R31,HIGH(-@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDW2MN
+                 	SUBI R26,LOW(-@0-(@1))
+                 	SBCI R27,HIGH(-@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDW1FN
+                 	SUBI R30,LOW(-2*@0-(@1))
+                 	SBCI R31,HIGH(-2*@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDD1FN
+                 	SUBI R30,LOW(-2*@0-(@1))
+                 	SBCI R31,HIGH(-2*@0-(@1))
+                 	SBCI R22,BYTE3(-2*@0-(@1))
+                 	.ENDM
+                 
+                 	.MACRO __ADDD1N
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	SBCI R22,BYTE3(-@0)
+                 	SBCI R23,BYTE4(-@0)
+                 	.ENDM
+                 
+                 	.MACRO __ADDD2N
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	SBCI R24,BYTE3(-@0)
+                 	SBCI R25,BYTE4(-@0)
+                 	.ENDM
+                 
+                 	.MACRO __SUBD1N
+                 	SUBI R30,LOW(@0)
+                 	SBCI R31,HIGH(@0)
+                 	SBCI R22,BYTE3(@0)
+                 	SBCI R23,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __SUBD2N
+                 	SUBI R26,LOW(@0)
+                 	SBCI R27,HIGH(@0)
+                 	SBCI R24,BYTE3(@0)
+                 	SBCI R25,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __ANDBMNN
+                 	LDS  R30,@0+(@1)
+                 	ANDI R30,LOW(@2)
+                 	STS  @0+(@1),R30
+                 	.ENDM
+                 
+                 	.MACRO __ANDWMNN
+                 	LDS  R30,@0+(@1)
+                 	ANDI R30,LOW(@2)
+                 	STS  @0+(@1),R30
+                 	LDS  R30,@0+(@1)+1
+                 	ANDI R30,HIGH(@2)
+                 	STS  @0+(@1)+1,R30
+                 	.ENDM
+                 
+                 	.MACRO __ANDD1N
+                 	ANDI R30,LOW(@0)
+                 	ANDI R31,HIGH(@0)
+                 	ANDI R22,BYTE3(@0)
+                 	ANDI R23,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __ANDD2N
+                 	ANDI R26,LOW(@0)
+                 	ANDI R27,HIGH(@0)
+                 	ANDI R24,BYTE3(@0)
+                 	ANDI R25,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __ORBMNN
+                 	LDS  R30,@0+(@1)
+                 	ORI  R30,LOW(@2)
+                 	STS  @0+(@1),R30
+                 	.ENDM
+                 
+                 	.MACRO __ORWMNN
+                 	LDS  R30,@0+(@1)
+                 	ORI  R30,LOW(@2)
+                 	STS  @0+(@1),R30
+                 	LDS  R30,@0+(@1)+1
+                 	ORI  R30,HIGH(@2)
+                 	STS  @0+(@1)+1,R30
+                 	.ENDM
+                 
+                 	.MACRO __ORD1N
+                 	ORI  R30,LOW(@0)
+                 	ORI  R31,HIGH(@0)
+                 	ORI  R22,BYTE3(@0)
+                 	ORI  R23,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __ORD2N
+                 	ORI  R26,LOW(@0)
+                 	ORI  R27,HIGH(@0)
+                 	ORI  R24,BYTE3(@0)
+                 	ORI  R25,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __DELAY_USB
+                 	LDI  R24,LOW(@0)
+                 __DELAY_USB_LOOP:
+                 	DEC  R24
+                 	BRNE __DELAY_USB_LOOP
+                 	.ENDM
+                 
+                 	.MACRO __DELAY_USW
+                 	LDI  R24,LOW(@0)
+                 	LDI  R25,HIGH(@0)
+                 __DELAY_USW_LOOP:
+                 	SBIW R24,1
+                 	BRNE __DELAY_USW_LOOP
+                 	.ENDM
+                 
+                 	.MACRO __GETD1S
+                 	LDD  R30,Y+@0
+                 	LDD  R31,Y+@0+1
+                 	LDD  R22,Y+@0+2
+                 	LDD  R23,Y+@0+3
+                 	.ENDM
+                 
+                 	.MACRO __GETD2S
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	LDD  R24,Y+@0+2
+                 	LDD  R25,Y+@0+3
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1S
+                 	STD  Y+@0,R30
+                 	STD  Y+@0+1,R31
+                 	STD  Y+@0+2,R22
+                 	STD  Y+@0+3,R23
+                 	.ENDM
+                 
+                 	.MACRO __PUTD2S
+                 	STD  Y+@0,R26
+                 	STD  Y+@0+1,R27
+                 	STD  Y+@0+2,R24
+                 	STD  Y+@0+3,R25
+                 	.ENDM
+                 
+                 	.MACRO __PUTDZ2
+                 	STD  Z+@0,R26
+                 	STD  Z+@0+1,R27
+                 	STD  Z+@0+2,R24
+                 	STD  Z+@0+3,R25
+                 	.ENDM
+                 
+                 	.MACRO __CLRD1S
+                 	STD  Y+@0,R30
+                 	STD  Y+@0+1,R30
+                 	STD  Y+@0+2,R30
+                 	STD  Y+@0+3,R30
+                 	.ENDM
+                 
+                 	.MACRO __POINTB1MN
+                 	LDI  R30,LOW(@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTW1MN
+                 	LDI  R30,LOW(@0+(@1))
+                 	LDI  R31,HIGH(@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTD1M
+                 	LDI  R30,LOW(@0)
+                 	LDI  R31,HIGH(@0)
+                 	LDI  R22,BYTE3(@0)
+                 	LDI  R23,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __POINTW1FN
+                 	LDI  R30,LOW(2*@0+(@1))
+                 	LDI  R31,HIGH(2*@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTD1FN
+                 	LDI  R30,LOW(2*@0+(@1))
+                 	LDI  R31,HIGH(2*@0+(@1))
+                 	LDI  R22,BYTE3(2*@0+(@1))
+                 	LDI  R23,BYTE4(2*@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTB2MN
+                 	LDI  R26,LOW(@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTW2MN
+                 	LDI  R26,LOW(@0+(@1))
+                 	LDI  R27,HIGH(@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTW2FN
+                 	LDI  R26,LOW(2*@0+(@1))
+                 	LDI  R27,HIGH(2*@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTD2FN
+                 	LDI  R26,LOW(2*@0+(@1))
+                 	LDI  R27,HIGH(2*@0+(@1))
+                 	LDI  R24,BYTE3(2*@0+(@1))
+                 	LDI  R25,BYTE4(2*@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTBRM
+                 	LDI  R@0,LOW(@1)
+                 	.ENDM
+                 
+                 	.MACRO __POINTWRM
+                 	LDI  R@0,LOW(@2)
+                 	LDI  R@1,HIGH(@2)
+                 	.ENDM
+                 
+                 	.MACRO __POINTBRMN
+                 	LDI  R@0,LOW(@1+(@2))
+                 	.ENDM
+                 
+                 	.MACRO __POINTWRMN
+                 	LDI  R@0,LOW(@2+(@3))
+                 	LDI  R@1,HIGH(@2+(@3))
+                 	.ENDM
+                 
+                 	.MACRO __POINTWRFN
+                 	LDI  R@0,LOW(@2*2+(@3))
+                 	LDI  R@1,HIGH(@2*2+(@3))
+                 	.ENDM
+                 
+                 	.MACRO __GETD1N
+                 	LDI  R30,LOW(@0)
+                 	LDI  R31,HIGH(@0)
+                 	LDI  R22,BYTE3(@0)
+                 	LDI  R23,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __GETD2N
+                 	LDI  R26,LOW(@0)
+                 	LDI  R27,HIGH(@0)
+                 	LDI  R24,BYTE3(@0)
+                 	LDI  R25,BYTE4(@0)
+                 	.ENDM
+                 
+                 	.MACRO __GETB1MN
+                 	LDS  R30,@0+(@1)
+                 	.ENDM
+                 
+                 	.MACRO __GETB1HMN
+                 	LDS  R31,@0+(@1)
+                 	.ENDM
+                 
+                 	.MACRO __GETW1MN
+                 	LDS  R30,@0+(@1)
+                 	LDS  R31,@0+(@1)+1
+                 	.ENDM
+                 
+                 	.MACRO __GETD1MN
+                 	LDS  R30,@0+(@1)
+                 	LDS  R31,@0+(@1)+1
+                 	LDS  R22,@0+(@1)+2
+                 	LDS  R23,@0+(@1)+3
+                 	.ENDM
+                 
+                 	.MACRO __GETBRMN
+                 	LDS  R@0,@1+(@2)
+                 	.ENDM
+                 
+                 	.MACRO __GETWRMN
+                 	LDS  R@0,@2+(@3)
+                 	LDS  R@1,@2+(@3)+1
+                 	.ENDM
+                 
+                 	.MACRO __GETWRZ
+                 	LDD  R@0,Z+@2
+                 	LDD  R@1,Z+@2+1
+                 	.ENDM
+                 
+                 	.MACRO __GETD2Z
+                 	LDD  R26,Z+@0
+                 	LDD  R27,Z+@0+1
+                 	LDD  R24,Z+@0+2
+                 	LDD  R25,Z+@0+3
+                 	.ENDM
+                 
+                 	.MACRO __GETB2MN
+                 	LDS  R26,@0+(@1)
+                 	.ENDM
+                 
+                 	.MACRO __GETW2MN
+                 	LDS  R26,@0+(@1)
+                 	LDS  R27,@0+(@1)+1
+                 	.ENDM
+                 
+                 	.MACRO __GETD2MN
+                 	LDS  R26,@0+(@1)
+                 	LDS  R27,@0+(@1)+1
+                 	LDS  R24,@0+(@1)+2
+                 	LDS  R25,@0+(@1)+3
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1MN
+                 	STS  @0+(@1),R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1MN
+                 	STS  @0+(@1),R30
+                 	STS  @0+(@1)+1,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1MN
+                 	STS  @0+(@1),R30
+                 	STS  @0+(@1)+1,R31
+                 	STS  @0+(@1)+2,R22
+                 	STS  @0+(@1)+3,R23
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1EN
+                 	LDI  R26,LOW(@0+(@1))
+                 	LDI  R27,HIGH(@0+(@1))
+                 	CALL __EEPROMWRB
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1EN
+                 	LDI  R26,LOW(@0+(@1))
+                 	LDI  R27,HIGH(@0+(@1))
+                 	CALL __EEPROMWRW
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1EN
+                 	LDI  R26,LOW(@0+(@1))
+                 	LDI  R27,HIGH(@0+(@1))
+                 	CALL __EEPROMWRD
+                 	.ENDM
+                 
+                 	.MACRO __PUTBR0MN
+                 	STS  @0+(@1),R0
+                 	.ENDM
+                 
+                 	.MACRO __PUTBMRN
+                 	STS  @0+(@1),R@2
+                 	.ENDM
+                 
+                 	.MACRO __PUTWMRN
+                 	STS  @0+(@1),R@2
+                 	STS  @0+(@1)+1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __PUTBZR
+                 	STD  Z+@1,R@0
+                 	.ENDM
+                 
+                 	.MACRO __PUTWZR
+                 	STD  Z+@2,R@0
+                 	STD  Z+@2+1,R@1
+                 	.ENDM
+                 
+                 	.MACRO __GETW1R
+                 	MOV  R30,R@0
+                 	MOV  R31,R@1
+                 	.ENDM
+                 
+                 	.MACRO __GETW2R
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	.ENDM
+                 
+                 	.MACRO __GETWRN
+                 	LDI  R@0,LOW(@2)
+                 	LDI  R@1,HIGH(@2)
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1R
+                 	MOV  R@0,R30
+                 	MOV  R@1,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTW2R
+                 	MOV  R@0,R26
+                 	MOV  R@1,R27
+                 	.ENDM
+                 
+                 	.MACRO __ADDWRN
+                 	SUBI R@0,LOW(-@2)
+                 	SBCI R@1,HIGH(-@2)
+                 	.ENDM
+                 
+                 	.MACRO __ADDWRR
+                 	ADD  R@0,R@2
+                 	ADC  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __SUBWRN
+                 	SUBI R@0,LOW(@2)
+                 	SBCI R@1,HIGH(@2)
+                 	.ENDM
+                 
+                 	.MACRO __SUBWRR
+                 	SUB  R@0,R@2
+                 	SBC  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __ANDWRN
+                 	ANDI R@0,LOW(@2)
+                 	ANDI R@1,HIGH(@2)
+                 	.ENDM
+                 
+                 	.MACRO __ANDWRR
+                 	AND  R@0,R@2
+                 	AND  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __ORWRN
+                 	ORI  R@0,LOW(@2)
+                 	ORI  R@1,HIGH(@2)
+                 	.ENDM
+                 
+                 	.MACRO __ORWRR
+                 	OR   R@0,R@2
+                 	OR   R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __EORWRR
+                 	EOR  R@0,R@2
+                 	EOR  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __GETWRS
+                 	LDD  R@0,Y+@2
+                 	LDD  R@1,Y+@2+1
+                 	.ENDM
+                 
+                 	.MACRO __PUTBSR
+                 	STD  Y+@1,R@0
+                 	.ENDM
+                 
+                 	.MACRO __PUTWSR
+                 	STD  Y+@2,R@0
+                 	STD  Y+@2+1,R@1
+                 	.ENDM
+                 
+                 	.MACRO __MOVEWRR
+                 	MOV  R@0,R@2
+                 	MOV  R@1,R@3
+                 	.ENDM
+                 
+                 	.MACRO __INWR
+                 	IN   R@0,@2
+                 	IN   R@1,@2+1
+                 	.ENDM
+                 
+                 	.MACRO __OUTWR
+                 	OUT  @2+1,R@1
+                 	OUT  @2,R@0
+                 	.ENDM
+                 
+                 	.MACRO __GETBRPF
+                 	OUT  RAMPZ,R22
+                 	ELPM R@0,Z
+                 	.ENDM
+                 
+                 	.MACRO __GETBRPF_INC
+                 	OUT  RAMPZ,R22
+                 	ELPM R@0,Z+
+                 	.ENDM
+                 
+                 	.MACRO __CALL1MN
+                 	LDS  R30,@0+(@1)
+                 	LDS  R31,@0+(@1)+1
+                 	ICALL
+                 	.ENDM
+                 
+                 	.MACRO __CALL1FN
+                 	LDI  R30,LOW(2*@0+(@1))
+                 	LDI  R31,HIGH(2*@0+(@1))
+                 	CALL __GETW1PF
+                 	ICALL
+                 	.ENDM
+                 
+                 	.MACRO __CALL2EN
+                 	PUSH R26
+                 	PUSH R27
+                 	LDI  R26,LOW(@0+(@1))
+                 	LDI  R27,HIGH(@0+(@1))
+                 	CALL __EEPROMRDW
+                 	POP  R27
+                 	POP  R26
+                 	ICALL
+                 	.ENDM
+                 
+                 	.MACRO __CALL2EX
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	CALL __EEPROMRDD
+                 	ICALL
+                 	.ENDM
+                 
+                 	.MACRO __GETW1STACK
+                 	IN   R30,SPL
+                 	IN   R31,SPH
+                 	ADIW R30,@0+1
+                 	LD   R0,Z+
+                 	LD   R31,Z
+                 	MOV  R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __GETD1STACK
+                 	IN   R30,SPL
+                 	IN   R31,SPH
+                 	ADIW R30,@0+1
+                 	LD   R0,Z+
+                 	LD   R1,Z+
+                 	LD   R22,Z
+                 	MOVW R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __NBST
+                 	BST  R@0,@1
+                 	IN   R30,SREG
+                 	LDI  R31,0x40
+                 	EOR  R30,R31
+                 	OUT  SREG,R30
+                 	.ENDM
+                 
+                 
+                 	.MACRO __PUTB1SN
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1SN
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1SN
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1SNS
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	ADIW R26,@1
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1SNS
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	ADIW R26,@1
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1SNS
+                 	LDD  R26,Y+@0
+                 	LDD  R27,Y+@0+1
+                 	ADIW R26,@1
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1PMN
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1PMN
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1PMN
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1PMNS
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	ADIW R26,@1
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1PMNS
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	ADIW R26,@1
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1PMNS
+                 	LDS  R26,@0
+                 	LDS  R27,@0+1
+                 	ADIW R26,@1
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1RN
+                 	MOVW R26,R@0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1RN
+                 	MOVW R26,R@0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1RN
+                 	MOVW R26,R@0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1RNS
+                 	MOVW R26,R@0
+                 	ADIW R26,@1
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1RNS
+                 	MOVW R26,R@0
+                 	ADIW R26,@1
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1RNS
+                 	MOVW R26,R@0
+                 	ADIW R26,@1
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1RON
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	SUBI R26,LOW(-@2)
+                 	SBCI R27,HIGH(-@2)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1RON
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	SUBI R26,LOW(-@2)
+                 	SBCI R27,HIGH(-@2)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1RON
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	SUBI R26,LOW(-@2)
+                 	SBCI R27,HIGH(-@2)
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1RONS
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	ADIW R26,@2
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1RONS
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	ADIW R26,@2
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1RONS
+                 	MOV  R26,R@0
+                 	MOV  R27,R@1
+                 	ADIW R26,@2
+                 	CALL __PUTDP1
+                 	.ENDM
+                 
+                 
+                 	.MACRO __GETB1SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	LD   R30,Z
+                 	.ENDM
+                 
+                 	.MACRO __GETB1HSX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	LD   R31,Z
+                 	.ENDM
+                 
+                 	.MACRO __GETW1SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	LD   R0,Z+
+                 	LD   R31,Z
+                 	MOV  R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __GETD1SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	LD   R0,Z+
+                 	LD   R1,Z+
+                 	LD   R22,Z+
+                 	LD   R23,Z
+                 	MOVW R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __GETB2SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R26,X
+                 	.ENDM
+                 
+                 	.MACRO __GETW2SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R0,X+
+                 	LD   R27,X
+                 	MOV  R26,R0
+                 	.ENDM
+                 
+                 	.MACRO __GETD2SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R0,X+
+                 	LD   R1,X+
+                 	LD   R24,X+
+                 	LD   R25,X
+                 	MOVW R26,R0
+                 	.ENDM
+                 
+                 	.MACRO __GETBRSX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@1)
+                 	SBCI R31,HIGH(-@1)
+                 	LD   R@0,Z
+                 	.ENDM
+                 
+                 	.MACRO __GETWRSX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@2)
+                 	SBCI R31,HIGH(-@2)
+                 	LD   R@0,Z+
+                 	LD   R@1,Z
+                 	.ENDM
+                 
+                 	.MACRO __GETBRSX2
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	LD   R@0,X
+                 	.ENDM
+                 
+                 	.MACRO __GETWRSX2
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@2)
+                 	SBCI R27,HIGH(-@2)
+                 	LD   R@0,X+
+                 	LD   R@1,X
+                 	.ENDM
+                 
+                 	.MACRO __LSLW8SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	LD   R31,Z
+                 	CLR  R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	ST   X+,R30
+                 	ST   X+,R31
+                 	ST   X+,R22
+                 	ST   X,R23
+                 	.ENDM
+                 
+                 	.MACRO __CLRW1SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	ST   X+,R30
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __CLRD1SX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	ST   X+,R30
+                 	ST   X+,R30
+                 	ST   X+,R30
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTB2SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	ST   Z,R26
+                 	.ENDM
+                 
+                 	.MACRO __PUTW2SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	ST   Z+,R26
+                 	ST   Z,R27
+                 	.ENDM
+                 
+                 	.MACRO __PUTD2SX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@0)
+                 	SBCI R31,HIGH(-@0)
+                 	ST   Z+,R26
+                 	ST   Z+,R27
+                 	ST   Z+,R24
+                 	ST   Z,R25
+                 	.ENDM
+                 
+                 	.MACRO __PUTBSRX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@1)
+                 	SBCI R31,HIGH(-@1)
+                 	ST   Z,R@0
+                 	.ENDM
+                 
+                 	.MACRO __PUTWSRX
+                 	MOVW R30,R28
+                 	SUBI R30,LOW(-@2)
+                 	SBCI R31,HIGH(-@2)
+                 	ST   Z+,R@0
+                 	ST   Z,R@1
+                 	.ENDM
+                 
+                 	.MACRO __PUTB1SNX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R0,X+
+                 	LD   R27,X
+                 	MOV  R26,R0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X,R30
+                 	.ENDM
+                 
+                 	.MACRO __PUTW1SNX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R0,X+
+                 	LD   R27,X
+                 	MOV  R26,R0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X+,R30
+                 	ST   X,R31
+                 	.ENDM
+                 
+                 	.MACRO __PUTD1SNX
+                 	MOVW R26,R28
+                 	SUBI R26,LOW(-@0)
+                 	SBCI R27,HIGH(-@0)
+                 	LD   R0,X+
+                 	LD   R27,X
+                 	MOV  R26,R0
+                 	SUBI R26,LOW(-@1)
+                 	SBCI R27,HIGH(-@1)
+                 	ST   X+,R30
+                 	ST   X+,R31
+                 	ST   X+,R22
+                 	ST   X,R23
+                 	.ENDM
+                 
+                 	.MACRO __MULBRR
+                 	MULS R@0,R@1
+                 	MOVW R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __MULBRRU
+                 	MUL  R@0,R@1
+                 	MOVW R30,R0
+                 	.ENDM
+                 
+                 	.MACRO __MULBRR0
+                 	MULS R@0,R@1
+                 	.ENDM
+                 
+                 	.MACRO __MULBRRU0
+                 	MUL  R@0,R@1
+                 	.ENDM
+                 
+                 	.MACRO __MULBNWRU
+                 	LDI  R26,@2
+                 	MUL  R26,R@0
+                 	MOVW R30,R0
+                 	MUL  R26,R@1
+                 	ADD  R31,R0
+                 	.ENDM
+                 
+                 ;NAME DEFINITIONS FOR GLOBAL VARIABLES ALLOCATED TO REGISTERS
+                 	.DEF ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F=R4
+                 	.DEF ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F_msb=R5
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_W=R6
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_W_msb=R7
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_E=R8
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_E_msb=R9
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_EW=R10
+                 	.DEF ___AddrToZ24ByteToSPMCR_SPM_EW_msb=R11
+                 
+                 	.CSEG
+                 	.ORG 0x00
+                 
+                 ;START OF CODE MARKER
+                 __START_OF_CODE:
+                 
+                 ;INTERRUPT VECTORS
+000000 940c 004f 	JMP  __RESET
+000002 940c 0000 	JMP  0x00
+000004 940c 0000 	JMP  0x00
+000006 940c 0000 	JMP  0x00
+000008 940c 0000 	JMP  0x00
+00000a 940c 0000 	JMP  0x00
+00000c 940c 0000 	JMP  0x00
+00000e 940c 0000 	JMP  0x00
+000010 940c 0000 	JMP  0x00
+000012 940c 0000 	JMP  0x00
+000014 940c 0000 	JMP  0x00
+000016 940c 0000 	JMP  0x00
+000018 940c 0000 	JMP  0x00
+00001a 940c 0000 	JMP  0x00
+00001c 940c 0000 	JMP  0x00
+00001e 940c 0000 	JMP  0x00
+000020 940c 0000 	JMP  0x00
+000022 940c 0000 	JMP  0x00
+000024 940c 0000 	JMP  0x00
+000026 940c 0000 	JMP  0x00
+000028 940c 0000 	JMP  0x00
+00002a 940c 0000 	JMP  0x00
+00002c 940c 0000 	JMP  0x00
+00002e 940c 0000 	JMP  0x00
+000030 940c 0000 	JMP  0x00
+000032 940c 0000 	JMP  0x00
+000034 940c 0000 	JMP  0x00
+000036 940c 0000 	JMP  0x00
+000038 940c 0000 	JMP  0x00
+00003a 940c 0000 	JMP  0x00
+00003c 940c 0000 	JMP  0x00
+00003e 940c 0000 	JMP  0x00
+000040 940c 0000 	JMP  0x00
+000042 940c 0000 	JMP  0x00
+000044 940c 0000 	JMP  0x00
+                 
+                 ;GLOBAL REGISTER VARIABLES INITIALIZATION
+                 __REG_VARS:
+000046 f9db
+000047 f9eb      	.DB  0xDB,0xF9,0xEB,0xF9
+000048 fa0b
+000049 fa2b      	.DB  0xB,0xFA,0x2B,0xFA
+                 
+                 
+                 __GLOBAL_INI_TBL:
+00004a 0008      	.DW  0x08
+00004b 0004      	.DW  0x04
+00004c 008c 0000 	.DD  __REG_VARS*2
+                 
+                 _0xFFFFFFFF:
+00004e 0000      	.DW  0
+                 
+                 #define __GLOBAL_INI_TBL_PRESENT 1
+                 
+                 __RESET:
+00004f 94f8      	CLI
+000050 27ee      	CLR  R30
+000051 bbec      	OUT  EECR,R30
+                 
+                 ;INTERRUPT VECTORS ARE PLACED
+                 ;AT THE START OF FLASH
+000052 e0f1      	LDI  R31,1
+000053 bff5      	OUT  MCUCR,R31
+000054 bfe5      	OUT  MCUCR,R30
+000055 93e0 006c 	STS  XMCRB,R30
+                 
+                 ;CLEAR R2-R14
+000057 e08d      	LDI  R24,(14-2)+1
+000058 e0a2      	LDI  R26,2
+000059 27bb      	CLR  R27
+                 __CLEAR_REG:
+00005a 93ed      	ST   X+,R30
+00005b 958a      	DEC  R24
+00005c f7e9      	BRNE __CLEAR_REG
+                 
+                 ;CLEAR SRAM
+00005d e080      	LDI  R24,LOW(__CLEAR_SRAM_SIZE)
+00005e e190      	LDI  R25,HIGH(__CLEAR_SRAM_SIZE)
+00005f e0a0      	LDI  R26,LOW(__SRAM_START)
+000060 e0b1      	LDI  R27,HIGH(__SRAM_START)
+                 __CLEAR_SRAM:
+000061 93ed      	ST   X+,R30
+000062 9701      	SBIW R24,1
+000063 f7e9      	BRNE __CLEAR_SRAM
+                 
+                 ;GLOBAL VARIABLES INITIALIZATION
+000064 e9e4      	LDI  R30,LOW(__GLOBAL_INI_TBL*2)
+000065 e0f0      	LDI  R31,HIGH(__GLOBAL_INI_TBL*2)
+000066 e0d0      	LDI  R29,BYTE3(__GLOBAL_INI_TBL*2)
+                 __GLOBAL_INI_NEXT:
+000067 bfdb      	OUT  RAMPZ,R29
+000068 9187      	ELPM R24,Z+
+000069 9197      	ELPM R25,Z+
+00006a 9700      	SBIW R24,0
+00006b f081      	BREQ __GLOBAL_INI_END
+00006c 91a7      	ELPM R26,Z+
+00006d 91b7      	ELPM R27,Z+
+00006e 9007      	ELPM R0,Z+
+00006f 9017      	ELPM R1,Z+
+000070 91c7      	ELPM R28,Z+
+000071 91d7      	ELPM R29,Z+
+000072 01bf      	MOVW R22,R30
+000073 b7db      	IN   R29,RAMPZ
+000074 01f0      	MOVW R30,R0
+000075 bfcb      	OUT  RAMPZ,R28
+                 __GLOBAL_INI_LOOP:
+000076 9007      	ELPM R0,Z+
+000077 920d      	ST   X+,R0
+000078 9701      	SBIW R24,1
+000079 f7e1      	BRNE __GLOBAL_INI_LOOP
+00007a 01fb      	MOVW R30,R22
+00007b cfeb      	RJMP __GLOBAL_INI_NEXT
+                 __GLOBAL_INI_END:
+                 
+                 ;HARDWARE STACK POINTER INITIALIZATION
+00007c efef      	LDI  R30,LOW(__SRAM_END-__HEAP_SIZE)
+00007d bfed      	OUT  SPL,R30
+00007e e1e0      	LDI  R30,HIGH(__SRAM_END-__HEAP_SIZE)
+00007f bfee      	OUT  SPH,R30
+                 
+                 ;DATA STACK POINTER INITIALIZATION
+000080 e6c4      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
+000081 e0d5      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
+                 
+000082 940c 0084 	JMP  _main
+                 
+                 	.ESEG
+                 	.ORG 0
+                 
+                 	.DSEG
+                 	.ORG 0x564
+                 
+                 	.CSEG
+                 ;// This file has been prepared for Doxygen automatic documentation generation.
+                 ;/*! \file ********************************************************************
+                 ;*
+                 ;* Atmel Corporation
+                 ;*
+                 ;* - File              : Self_programming_main.c
+                 ;* - Compiler          : IAR EWAVR 2.28a / 3.10c and newer
+                 ;*
+                 ;* - Support mail      : avr@atmel.com
+                 ;*
+                 ;* - Supported devices : This example is written for ATmega128.
+                 ;*
+                 ;* - AppNote           : AVR106 - C functions for reading and writing
+                 ;*                       to flash memory.
+                 ;*
+                 ;* - Description       : The file contains an example program using the Flash R/W
+                 ;*                       functions provided with the files Self_programming.h /
+                 ;*                       Self_programming.c . The program should be compiled using
+                 ;*                       a linker file (*.xcl) that is configured to place the
+                 ;*                       entire program code into the Boot section of the Flash memory.
+                 ;*                       Please refer to the application note document for more
+                 ;*                       information.
+                 ;*
+                 ;* $Revision: 2.0 $
+                 ;* $Date: Wednesday, January 18, 2006 15:18:52 UTC $
+                 ;*
+                 ;*****************************************************************************/
+                 ;#include <io.h>
+                 	#ifndef __SLEEP_DEFINED__
+                 	#define __SLEEP_DEFINED__
+                 	.EQU __se_bit=0x20
+                 	.EQU __sm_mask=0x1C
+                 	.EQU __sm_powerdown=0x10
+                 	.EQU __sm_powersave=0x18
+                 	.EQU __sm_standby=0x14
+                 	.EQU __sm_ext_standby=0x1C
+                 	.EQU __sm_adc_noise_red=0x08
+                 	.SET power_ctrl_reg=mcucr
+                 	#endif
+                 ;#include <delay.h>
+                 ;#include "Self_programming.h"
+                 ;
+                 ;void main( void ){
+                 ; 0000 0020 void main( void ){
+                 
+                 	.CSEG
+                 _main:
+                 ; .FSTART _main
+                 ; 0000 0021   unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
+                 ; 0000 0022   //unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
+                 ; 0000 0023                                             // code stack
+                 ; 0000 0024   static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
+                 ; 0000 0025   int index;
+                 ; 0000 0026   DDRC=0xFF;
+000084 50d1      	SUBI R29,1
+                 ;	testBuffer1 -> Y+0
+                 ;	index -> R16,R17
+000085 efef      	LDI  R30,LOW(255)
+000086 bbe4      	OUT  0x14,R30
+                 ; 0000 0027   PORTC=0xFF;
+000087 bbe5      	OUT  0x15,R30
+                 ; 0000 0028 
+                 ; 0000 0029   for(index=0; index<PAGESIZE; index++){
+                +
+000088 e000     +LDI R16 , LOW ( 0 )
+000089 e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+                 _0x4:
+                +
+00008a 3000     +CPI R16 , LOW ( 256 )
+00008b e0e1     +LDI R30 , HIGH ( 256 )
+00008c 071e     +CPC R17 , R30
+                 	__CPWRN 16,17,256
+00008d f444      	BRGE _0x5
+                 ; 0000 002A     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF
+00008e 01f8      	MOVW R30,R16
+00008f 01de      	MOVW R26,R28
+000090 0fea      	ADD  R30,R26
+000091 1ffb      	ADC  R31,R27
+000092 8300      	ST   Z,R16
+                 ; 0000 002B   }
+                +
+000093 5f0f     +SUBI R16 , LOW ( - 1 )
+000094 4f1f     +SBCI R17 , HIGH ( - 1 )
+                 	__ADDWRN 16,17,1
+000095 cff4      	RJMP _0x4
+                 _0x5:
+                 ; 0000 002C   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
+000096 d208      	RCALL SUBOPT_0x0
+000097 01fe      	MOVW R30,R28
+000098 9634      	ADIW R30,4
+000099 93fa      	ST   -Y,R31
+00009a 93ea      	ST   -Y,R30
+00009b e0a0      	LDI  R26,LOW(256)
+00009c e0b1      	LDI  R27,HIGH(256)
+00009d d0ad      	RCALL _WriteFlashBytes
+00009e 30e0      	CPI  R30,0
+00009f f009      	BREQ _0x6
+                 ; 0000 002D     PORTC.2=0;
+0000a0 98aa      	CBI  0x15,2
+                 ; 0000 002E   }                                            // Same as byte 4 on page 2
+                 ; 0000 002F   //MCUCR &= ~(1<<IVSEL);
+                 ; 0000 0030   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
+                 _0x6:
+0000a1 d1fd      	RCALL SUBOPT_0x0
+0000a2 d203      	RCALL SUBOPT_0x1
+                 ; 0000 0031   if(testChar==0x00)
+0000a3 91e0 0564 	LDS  R30,_testChar_S0000000000
+0000a5 30e0      	CPI  R30,0
+0000a6 f501      	BRNE _0x9
+                 ; 0000 0032   {
+                 ; 0000 0033       ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
+                +
+0000a7 e0e3     +LDI R30 , LOW ( 0x3 )
+0000a8 e0f0     +LDI R31 , HIGH ( 0x3 )
+0000a9 e060     +LDI R22 , BYTE3 ( 0x3 )
+0000aa e070     +LDI R23 , BYTE4 ( 0x3 )
+                 	__GETD1N 0x3
+0000ab d201      	RCALL SUBOPT_0x2
+                 ; 0000 0034       if(testChar==0x01)
+0000ac 91a0 0564 	LDS  R26,_testChar_S0000000000
+0000ae 30a1      	CPI  R26,LOW(0x1)
+0000af f429      	BRNE _0xA
+                 ; 0000 0035         ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
+                +
+0000b0 e0e0     +LDI R30 , LOW ( 0x100 )
+0000b1 e0f1     +LDI R31 , HIGH ( 0x100 )
+0000b2 e060     +LDI R22 , BYTE3 ( 0x100 )
+0000b3 e070     +LDI R23 , BYTE4 ( 0x100 )
+                 	__GETD1N 0x100
+0000b4 d1f8      	RCALL SUBOPT_0x2
+                 ; 0000 0036         if(testChar==0xFE)
+                 _0xA:
+0000b5 91a0 0564 	LDS  R26,_testChar_S0000000000
+0000b7 3fae      	CPI  R26,LOW(0xFE)
+0000b8 f429      	BRNE _0xB
+                 ; 0000 0037             ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
+                +
+0000b9 e0e1     +LDI R30 , LOW ( 0x101 )
+0000ba e0f1     +LDI R31 , HIGH ( 0x101 )
+0000bb e060     +LDI R22 , BYTE3 ( 0x101 )
+0000bc e070     +LDI R23 , BYTE4 ( 0x101 )
+                 	__GETD1N 0x101
+0000bd d1ef      	RCALL SUBOPT_0x2
+                 ; 0000 0038             if(testChar==0xFF)
+                 _0xB:
+0000be 91a0 0564 	LDS  R26,_testChar_S0000000000
+0000c0 3faf      	CPI  R26,LOW(0xFF)
+0000c1 f429      	BRNE _0xC
+                 ; 0000 0039               while(1)
+                 _0xD:
+                 ; 0000 003A               {
+                 ; 0000 003B                   PORTC.0=0;
+0000c2 98a8      	CBI  0x15,0
+                 ; 0000 003C                   delay_ms(500);
+0000c3 d1ec      	RCALL SUBOPT_0x3
+                 ; 0000 003D                   PORTC.0=1;
+0000c4 9aa8      	SBI  0x15,0
+                 ; 0000 003E                   delay_ms(500);
+0000c5 d1ea      	RCALL SUBOPT_0x3
+                 ; 0000 003F               }
+0000c6 cffb      	RJMP _0xD
+                 ; 0000 0040   }
+                 _0xC:
+                 ; 0000 0041 
+                 ; 0000 0042   while(1)
+                 _0x9:
+                 _0x14:
+                 ; 0000 0043   {
+                 ; 0000 0044       PORTC.1=0;
+0000c7 98a9      	CBI  0x15,1
+                 ; 0000 0045       delay_ms(500);
+0000c8 d1e7      	RCALL SUBOPT_0x3
+                 ; 0000 0046       PORTC.1=1;
+0000c9 9aa9      	SBI  0x15,1
+                 ; 0000 0047       delay_ms(500);
+0000ca d1e5      	RCALL SUBOPT_0x3
+                 ; 0000 0048   }
+0000cb cffb      	RJMP _0x14
+                 ; 0000 0049   //}
+                 ; 0000 004A }
+                 _0x1B:
+0000cc cfff      	RJMP _0x1B
+                 ; .FEND
+                 ;// This file has been prepared for Doxygen automatic documentation generation.
+                 ;/*! \file ********************************************************************
+                 ;*
+                 ;* Atmel Corporation
+                 ;*
+                 ;* - File              : Self_programming.c
+                 ;* - Compiler          : IAR EWAVR 2.28a / 3.10c and newer
+                 ;*
+                 ;* - Support mail      : avr@atmel.com
+                 ;*
+                 ;* - Supported devices : All devices with bootloaders support.
+                 ;*
+                 ;* - AppNote           : AVR106 - C functions for reading and writing
+                 ;*                       to flash memory.
+                 ;*
+                 ;* - Description       : The file contains functions for easy reading and writing
+                 ;*                       of Flash memory on parts having the "Self-programming"
+                 ;*                       feature. The user functions are as follows:
+                 ;*
+                 ;*                       ReadFlashByte()
+                 ;*                       ReadFlashPage()
+                 ;*                       WriteFlashByte()
+                 ;*                       WriteFlashPage()
+                 ;*                       RecoverFlash()
+                 ;*
+                 ;*                       The remaining functions contained in this file are used
+                 ;*                       by the functions listet above.
+                 ;*
+                 ;* $Revision: 2.0 $
+                 ;* $Date: Wednesday, January 18, 2006 15:18:52 UTC $
+                 ;*
+                 ;****************************************************************************/
+                 ;#include <io.h>
+                 	#ifndef __SLEEP_DEFINED__
+                 	#endif
+                 ;//#include <inavr.h>
+                 ;#include "Self_programming.h"
+                 ;//#include "flash.h"
+                 ;
+                 ;void (*__AddrToZ24WordToR1R0ByteToSPMCR_SPM_F)(void flash * addr, unsigned int data)= (void(*)(void flash *, unsigned in ...
+                 ;void (*__AddrToZ24ByteToSPMCR_SPM_W)(void flash * addr)= (void(*)(void flash *)) 0x0F9EB;
+                 ;void (*__AddrToZ24ByteToSPMCR_SPM_E)(void flash * addr)= (void(*)(void flash *)) 0x0FA0B;
+                 ;void (*__AddrToZ24ByteToSPMCR_SPM_EW)(void flash * addr)= (void(*)(void flash *)) 0x0FA2B;
+                 ;
+                 ;/*!
+                 ;* Declare global struct variable in EEPROM if Flash recovery enabled.
+                 ;* FlashBackup pageNumber holds Flash pageaddress (/PAGESIZE) the data in Flash
+                 ;* recovery buffer should be written to if data need to be recovered.
+                 ;* FlashBackup.status tells if data need to be recovered.
+                 ;**/
+                 ;#ifdef __FLASH_RECOVER
+                 ;__eeprom struct {
+                 ;  unsigned int  pageNumber;
+                 ;  unsigned char status;
+                 ;}FlashBackup = {0};
+                 ;#endif
+                 ;
+                 ;__eeprom struct {
+                 ;  unsigned long  flashStartAdr;
+                 ;  unsigned int length;
+                 ;  unsigned char status;//0=already moved to flash, 1=not moved to flash yet
+                 ;  unsigned char data[PAGESIZE];
+                 ;}_EepromBackup @10;
+                 ;
+                 ;/*!
+                 ;* The function Returns one byte located on Flash address given by ucFlashStartAdr.
+                 ;**/
+                 ;unsigned char ReadFlashByte(MyAddressType flashStartAdr){
+                 ; 0001 0042 unsigned char ReadFlashByte(MyAddressType flashStartAdr){
+                 
+                 	.CSEG
+                 _ReadFlashByte:
+                 ; .FSTART _ReadFlashByte
+                 ; 0001 0043 //#pragma diag_suppress=Pe1053 // Suppress warning for conversion from long-type address to flash ptr.
+                 ; 0001 0044   flashStartAdr;//+=ADR_LIMIT_LOW;
+0000cd 940e 032d 	CALL __PUTPARD2
+                 ;	flashStartAdr -> Y+0
+0000cf d1e4      	RCALL SUBOPT_0x4
+                 ; 0001 0045   return (unsigned char)*((MyFlashCharPointer)flashStartAdr);
+0000d0 d1e3      	RCALL SUBOPT_0x4
+                +
+0000d1 bf6b     +OUT RAMPZ , R22
+0000d2 91e6     +ELPM R30 , Z
+                 	__GETBRPF 30
+0000d3 c1c9      	RJMP _0x2000001
+                 ; 0001 0046 //#pragma diag_default=Pe1053 // Back to default.
+                 ; 0001 0047 } // Returns data from Flash
+                 ; .FEND
+                 ;
+                 ;/*!
+                 ;* The function reads one Flash page from address flashStartAdr and stores data
+                 ;* in array dataPage[]. The number of bytes stored is depending upon the
+                 ;* Flash page size. The function returns FALSE if input address is not a Flash
+                 ;* page address, else TRUE.
+                 ;**/
+                 ;unsigned char ReadFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage){
+                 ; 0001 004F unsigned char ReadFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage){
+                 _ReadFlashPage:
+                 ; .FSTART _ReadFlashPage
+                 ; 0001 0050   unsigned int index;
+                 ; 0001 0051   flashStartAdr;//+=ADR_LIMIT_LOW;
+0000d4 d1e2      	RCALL SUBOPT_0x5
+                 ;	flashStartAdr -> Y+4
+                 ;	*dataPage -> Y+2
+                 ;	index -> R16,R17
+0000d5 d1e6      	RCALL SUBOPT_0x6
+                 ; 0001 0052   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
+0000d6 d1e5      	RCALL SUBOPT_0x6
+0000d7 30e0      	CPI  R30,0
+0000d8 f4c1      	BRNE _0x20003
+                 ; 0001 0053     for(index = 0; index < PAGESIZE; index++){
+                +
+0000d9 e000     +LDI R16 , LOW ( 0 )
+0000da e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+                 _0x20005:
+                +
+0000db 3000     +CPI R16 , LOW ( 256 )
+0000dc e0e1     +LDI R30 , HIGH ( 256 )
+0000dd 071e     +CPC R17 , R30
+                 	__CPWRN 16,17,256
+0000de f470      	BRSH _0x20006
+                 ; 0001 0054       dataPage[index] = ReadFlashByte(flashStartAdr + index);
+0000df 01f8      	MOVW R30,R16
+0000e0 81aa      	LDD  R26,Y+2
+0000e1 81bb      	LDD  R27,Y+2+1
+0000e2 0fea      	ADD  R30,R26
+0000e3 1ffb      	ADC  R31,R27
+0000e4 93ff      	PUSH R31
+0000e5 93ef      	PUSH R30
+0000e6 d1da      	RCALL SUBOPT_0x7
+0000e7 91af      	POP  R26
+0000e8 91bf      	POP  R27
+0000e9 93ec      	ST   X,R30
+                 ; 0001 0055     }
+                +
+0000ea 5f0f     +SUBI R16 , LOW ( - 1 )
+0000eb 4f1f     +SBCI R17 , HIGH ( - 1 )
+                 	__ADDWRN 16,17,1
+0000ec cfee      	RJMP _0x20005
+                 _0x20006:
+                 ; 0001 0056     return TRUE;                            // Return TRUE if valid page address
+0000ed e0e1      	LDI  R30,LOW(1)
+0000ee 8119      	LDD  R17,Y+1
+0000ef 8108      	LDD  R16,Y+0
+0000f0 c18f      	RJMP _0x2000002
+                 ; 0001 0057   }
+                 ; 0001 0058   else{
+                 _0x20003:
+                 ; 0001 0059     return FALSE;                           // Return FALSE if not valid page address
+0000f1 e0e0      	LDI  R30,LOW(0)
+0000f2 8119      	LDD  R17,Y+1
+0000f3 8108      	LDD  R16,Y+0
+0000f4 c18b      	RJMP _0x2000002
+                 ; 0001 005A   }
+                 ; 0001 005B }
+                 ; .FEND
+                 ;unsigned char ReadFlashBytes(MyAddressType flashStartAdr, unsigned char *dataPage, unsigned int length){
+                 ; 0001 005C unsigned char ReadFlashBytes(MyAddressType flashStartAdr, unsigned char *dataPage, unsigned int length){
+                 _ReadFlashBytes:
+                 ; .FSTART _ReadFlashBytes
+                 ; 0001 005D   	unsigned int index;
+                 ; 0001 005E   	flashStartAdr+=ADR_LIMIT_LOW;
+0000f5 d1c1      	RCALL SUBOPT_0x5
+                 ;	flashStartAdr -> Y+6
+                 ;	*dataPage -> Y+4
+                 ;	length -> Y+2
+                 ;	index -> R16,R17
+                +
+0000f6 81ee     +LDD R30 , Y + 6
+0000f7 81ff     +LDD R31 , Y + 6 + 1
+0000f8 8568     +LDD R22 , Y + 6 + 2
+0000f9 8579     +LDD R23 , Y + 6 + 3
+                 	__GETD1S 6
+                +
+0000fa 50e0     +SUBI R30 , LOW ( - 57344 )
+0000fb 42f0     +SBCI R31 , HIGH ( - 57344 )
+0000fc 4f6f     +SBCI R22 , BYTE3 ( - 57344 )
+0000fd 4f7f     +SBCI R23 , BYTE4 ( - 57344 )
+                 	__ADDD1N 57344
+                +
+0000fe 83ee     +STD Y + 6 , R30
+0000ff 83ff     +STD Y + 6 + 1 , R31
+000100 8768     +STD Y + 6 + 2 , R22
+000101 8779     +STD Y + 6 + 3 , R23
+                 	__PUTD1S 6
+                 ; 0001 005F     for(index = 0; index < length; index++){
+                +
+000102 e000     +LDI R16 , LOW ( 0 )
+000103 e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+                 _0x20009:
+000104 81ea      	LDD  R30,Y+2
+000105 81fb      	LDD  R31,Y+2+1
+000106 170e      	CP   R16,R30
+000107 071f      	CPC  R17,R31
+000108 f4b8      	BRSH _0x2000A
+                 ; 0001 0060       dataPage[index] = ReadFlashByte(flashStartAdr + index);
+000109 01f8      	MOVW R30,R16
+00010a 81ac      	LDD  R26,Y+4
+00010b 81bd      	LDD  R27,Y+4+1
+00010c 0fea      	ADD  R30,R26
+00010d 1ffb      	ADC  R31,R27
+00010e 93ff      	PUSH R31
+00010f 93ef      	PUSH R30
+000110 01f8      	MOVW R30,R16
+                +
+000111 81ae     +LDD R26 , Y + 6
+000112 81bf     +LDD R27 , Y + 6 + 1
+000113 8588     +LDD R24 , Y + 6 + 2
+000114 8599     +LDD R25 , Y + 6 + 3
+                 	__GETD2S 6
+000115 2766      	CLR  R22
+000116 2777      	CLR  R23
+000117 940e 030f 	CALL __ADDD21
+000119 dfb3      	RCALL _ReadFlashByte
+00011a 91af      	POP  R26
+00011b 91bf      	POP  R27
+00011c 93ec      	ST   X,R30
+                 ; 0001 0061     }
+                +
+00011d 5f0f     +SUBI R16 , LOW ( - 1 )
+00011e 4f1f     +SBCI R17 , HIGH ( - 1 )
+                 	__ADDWRN 16,17,1
+00011f cfe4      	RJMP _0x20009
+                 _0x2000A:
+                 ; 0001 0062     return TRUE;                            // Return TRUE if valid page address
+000120 e0e1      	LDI  R30,LOW(1)
+000121 8119      	LDD  R17,Y+1
+000122 8108      	LDD  R16,Y+0
+000123 962a      	ADIW R28,10
+000124 9508      	RET
+                 ; 0001 0063 }
+                 ; .FEND
+                 ;unsigned char VerifyFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage){
+                 ; 0001 0064 unsigned char VerifyFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage){
+                 _VerifyFlashPage:
+                 ; .FSTART _VerifyFlashPage
+                 ; 0001 0065   unsigned int index;
+                 ; 0001 0066   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
+000125 d191      	RCALL SUBOPT_0x5
+                 ;	flashStartAdr -> Y+4
+                 ;	*dataPage -> Y+2
+                 ;	index -> R16,R17
+000126 d195      	RCALL SUBOPT_0x6
+000127 30e0      	CPI  R30,0
+000128 f4e9      	BRNE _0x2000B
+                 ; 0001 0067     for(index = 0; index < PAGESIZE; index++){
+                +
+000129 e000     +LDI R16 , LOW ( 0 )
+00012a e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+                 _0x2000D:
+                +
+00012b 3000     +CPI R16 , LOW ( 256 )
+00012c e0e1     +LDI R30 , HIGH ( 256 )
+00012d 071e     +CPC R17 , R30
+                 	__CPWRN 16,17,256
+00012e f498      	BRSH _0x2000E
+                 ; 0001 0068       if(dataPage[index] != ReadFlashByte(flashStartAdr + index))
+00012f 01f8      	MOVW R30,R16
+000130 81aa      	LDD  R26,Y+2
+000131 81bb      	LDD  R27,Y+2+1
+000132 0fae      	ADD  R26,R30
+000133 1fbf      	ADC  R27,R31
+000134 91ec      	LD   R30,X
+000135 93ef      	PUSH R30
+000136 d18a      	RCALL SUBOPT_0x7
+000137 91af      	POP  R26
+000138 17ea      	CP   R30,R26
+000139 f029      	BREQ _0x2000F
+                 ; 0001 0069       {
+                 ; 0001 006A         PORTC.6=0;
+00013a 98ae      	CBI  0x15,6
+                 ; 0001 006B         return FALSE;
+00013b e0e0      	LDI  R30,LOW(0)
+00013c 8119      	LDD  R17,Y+1
+00013d 8108      	LDD  R16,Y+0
+00013e c141      	RJMP _0x2000002
+                 ; 0001 006C       }
+                 ; 0001 006D     }
+                 _0x2000F:
+                +
+00013f 5f0f     +SUBI R16 , LOW ( - 1 )
+000140 4f1f     +SBCI R17 , HIGH ( - 1 )
+                 	__ADDWRN 16,17,1
+000141 cfe9      	RJMP _0x2000D
+                 _0x2000E:
+                 ; 0001 006E     return TRUE;                            // Return TRUE if valid page address
+000142 e0e1      	LDI  R30,LOW(1)
+000143 8119      	LDD  R17,Y+1
+000144 8108      	LDD  R16,Y+0
+000145 c13a      	RJMP _0x2000002
+                 ; 0001 006F   }
+                 ; 0001 0070   else{
+                 _0x2000B:
+                 ; 0001 0071     PORTC.7=0;
+000146 98af      	CBI  0x15,7
+                 ; 0001 0072     return FALSE;                           // Return FALSE if not valid page address
+000147 e0e0      	LDI  R30,LOW(0)
+000148 8119      	LDD  R17,Y+1
+000149 8108      	LDD  R16,Y+0
+00014a c135      	RJMP _0x2000002
+                 ; 0001 0073   }
+                 ; 0001 0074 }
+                 ; .FEND
+                 ;unsigned char WriteFlashBytes(MyAddressType flashAdr, unsigned char *data, unsigned int length)
+                 ; 0001 0076 {
+                 _WriteFlashBytes:
+                 ; .FSTART _WriteFlashBytes
+                 ; 0001 0077     unsigned char tempBuffer[PAGESIZE];
+                 ; 0001 0078     MyAddressType flashAdrStart,flashAdrNext;
+                 ; 0001 0079     unsigned int lengthStart,lengthIndex;                //length=0x20
+                 ; 0001 007A     while(length)
+00014b 93ba      	ST   -Y,R27
+00014c 93aa      	ST   -Y,R26
+00014d 9728      	SBIW R28,8
+00014e 50d1      	SUBI R29,1
+00014f 940e 0368 	CALL __SAVELOCR4
+                 ;	flashAdr -> Y+272
+                 ;	*data -> Y+270
+                 ;	length -> Y+268
+                 ;	tempBuffer -> Y+12
+                 ;	flashAdrStart -> Y+8
+                 ;	flashAdrNext -> Y+4
+                 ;	lengthStart -> R16,R17
+                 ;	lengthIndex -> R18,R19
+                 _0x20015:
+000151 d179      	RCALL SUBOPT_0x8
+000152 9730      	SBIW R30,0
+000153 f409      	BRNE PC+2
+000154 c08a      	RJMP _0x20017
+                 ; 0001 007B     {
+                 ; 0001 007C         flashAdrStart= flashAdr-(flashAdr%PAGESIZE);//0x1F0-(0x1F0%0x100)=0x0100                        //
+000155 d17c      	RCALL SUBOPT_0x9
+000156 d188      	RCALL SUBOPT_0xA
+000157 940e 0319 	CALL __SUBD21
+                +
+000159 87a8     +STD Y + 8 , R26
+00015a 87b9     +STD Y + 8 + 1 , R27
+00015b 878a     +STD Y + 8 + 2 , R24
+00015c 879b     +STD Y + 8 + 3 , R25
+                 	__PUTD2S 8
+                 ; 0001 007D         flashAdrNext = flashAdrStart+PAGESIZE;          //0x0100+0x100=0x200
+00015d d18a      	RCALL SUBOPT_0xB
+                +
+00015e 50e0     +SUBI R30 , LOW ( - 256 )
+00015f 4fff     +SBCI R31 , HIGH ( - 256 )
+000160 4f6f     +SBCI R22 , BYTE3 ( - 256 )
+000161 4f7f     +SBCI R23 , BYTE4 ( - 256 )
+                 	__ADDD1N 256
+                +
+000162 83ec     +STD Y + 4 , R30
+000163 83fd     +STD Y + 4 + 1 , R31
+000164 836e     +STD Y + 4 + 2 , R22
+000165 837f     +STD Y + 4 + 3 , R23
+                 	__PUTD1S 4
+                 ; 0001 007E         if((flashAdrNext - flashAdr) >= length)    //enough space case
+000166 d178      	RCALL SUBOPT_0xA
+000167 d154      	RCALL SUBOPT_0x6
+000168 940e 0314 	CALL __SUBD12
+00016a 01df      	MOVW R26,R30
+00016b 01cb      	MOVW R24,R22
+00016c d15e      	RCALL SUBOPT_0x8
+00016d 2766      	CLR  R22
+00016e 2777      	CLR  R23
+00016f 940e 0363 	CALL __CPD21
+000171 f060      	BRLO _0x20018
+                 ; 0001 007F         {
+                 ; 0001 0080            lengthStart=length;
+                +
+000172 01fe     +MOVW R30 , R28
+000173 5fe4     +SUBI R30 , LOW ( - 268 )
+000174 4ffe     +SBCI R31 , HIGH ( - 268 )
+000175 9101     +LD R16 , Z +
+000176 8110     +LD R17 , Z
+                 	__GETWRSX 16,17,268
+                 ; 0001 0081            length=0;
+000177 e0e0      	LDI  R30,LOW(0)
+                +
+000178 01de     +MOVW R26 , R28
+000179 5fa4     +SUBI R26 , LOW ( - 268 )
+00017a 4fbe     +SBCI R27 , HIGH ( - 268 )
+00017b 93ed     +ST X + , R30
+00017c 93ec     +ST X , R30
+                 	__CLRW1SX 268
+                 ; 0001 0082         }
+                 ; 0001 0083         else                                   //(0x200-0x1F0)<0x20
+00017d c013      	RJMP _0x20019
+                 _0x20018:
+                 ; 0001 0084         {
+                 ; 0001 0085            lengthStart=(flashAdrNext - flashAdr);        //len1=0x200-0x1F0=0x10
+                +
+00017e 01de     +MOVW R26 , R28
+00017f 5fa0     +SUBI R26 , LOW ( - 272 )
+000180 4fbe     +SBCI R27 , HIGH ( - 272 )
+000181 900d     +LD R0 , X +
+000182 91bc     +LD R27 , X
+000183 2da0     +MOV R26 , R0
+                 	__GETW2SX 272
+000184 81ec      	LDD  R30,Y+4
+000185 81fd      	LDD  R31,Y+4+1
+000186 1bea      	SUB  R30,R26
+000187 0bfb      	SBC  R31,R27
+000188 018f      	MOVW R16,R30
+                 ; 0001 0086            length-=lengthStart;                         //len2=0x20-0x10=0x10
+000189 d141      	RCALL SUBOPT_0x8
+00018a 1be0      	SUB  R30,R16
+00018b 0bf1      	SBC  R31,R17
+                +
+00018c 01de     +MOVW R26 , R28
+00018d 5fa4     +SUBI R26 , LOW ( - 268 )
+00018e 4fbe     +SBCI R27 , HIGH ( - 268 )
+00018f 93ed     +ST X + , R30
+000190 93fc     +ST X , R31
+                 	__PUTW1SX 268
+                 ; 0001 0087         }
+                 _0x20019:
+                 ; 0001 0088         if(ReadFlashPage(flashAdrStart,tempBuffer)==FALSE) //read flash page to tempBuffer
+000191 d156      	RCALL SUBOPT_0xB
+000192 940e 0328 	CALL __PUTPARD1
+000194 01de      	MOVW R26,R28
+000195 9650      	ADIW R26,16
+000196 df3d      	RCALL _ReadFlashPage
+000197 30e0      	CPI  R30,0
+000198 f419      	BRNE _0x2001A
+                 ; 0001 0089         {
+                 ; 0001 008A             PORTC.3=0;
+000199 98ab      	CBI  0x15,3
+                 ; 0001 008B             return FALSE;
+00019a e0e0      	LDI  R30,LOW(0)
+00019b c044      	RJMP _0x2000004
+                 ; 0001 008C         }
+                 ; 0001 008D         for(lengthIndex=(flashAdr%PAGESIZE);lengthIndex<((flashAdr%PAGESIZE)+lengthStart);lengthIndex++)
+                 _0x2001A:
+                +
+00019c 01fe     +MOVW R30 , R28
+00019d 5fe0     +SUBI R30 , LOW ( - 272 )
+00019e 4ffe     +SBCI R31 , HIGH ( - 272 )
+00019f 9001     +LD R0 , Z +
+0001a0 81f0     +LD R31 , Z
+0001a1 2de0     +MOV R30 , R0
+                 	__GETW1SX 272
+0001a2 70f0      	ANDI R31,HIGH(0xFF)
+0001a3 019f      	MOVW R18,R30
+                 _0x2001E:
+0001a4 d12d      	RCALL SUBOPT_0x9
+0001a5 01df      	MOVW R26,R30
+0001a6 01cb      	MOVW R24,R22
+0001a7 01f8      	MOVW R30,R16
+0001a8 2766      	CLR  R22
+0001a9 2777      	CLR  R23
+0001aa 940e 030a 	CALL __ADDD12
+0001ac 01d9      	MOVW R26,R18
+0001ad 2788      	CLR  R24
+0001ae 2799      	CLR  R25
+0001af 940e 0363 	CALL __CPD21
+0001b1 f4a8      	BRSH _0x2001F
+                 ; 0001 008E         {
+                 ; 0001 008F             tempBuffer[lengthIndex]=*data++;
+0001b2 01f9      	MOVW R30,R18
+0001b3 01de      	MOVW R26,R28
+0001b4 961c      	ADIW R26,12
+0001b5 0fea      	ADD  R30,R26
+0001b6 1ffb      	ADC  R31,R27
+0001b7 010f      	MOVW R0,R30
+0001b8 01de      	MOVW R26,R28
+0001b9 5fa2      	SUBI R26,LOW(-(270))
+0001ba 4fbe      	SBCI R27,HIGH(-(270))
+0001bb 91ed      	LD   R30,X+
+0001bc 91fd      	LD   R31,X+
+0001bd 9631      	ADIW R30,1
+0001be 93fe      	ST   -X,R31
+0001bf 93ee      	ST   -X,R30
+0001c0 9731      	SBIW R30,1
+0001c1 81e0      	LD   R30,Z
+0001c2 01d0      	MOVW R26,R0
+0001c3 93ec      	ST   X,R30
+                 ; 0001 0090         }
+                +
+0001c4 5f2f     +SUBI R18 , LOW ( - 1 )
+0001c5 4f3f     +SBCI R19 , HIGH ( - 1 )
+                 	__ADDWRN 18,19,1
+0001c6 cfdd      	RJMP _0x2001E
+                 _0x2001F:
+                 ; 0001 0091         flashAdr=flashAdrNext;
+0001c7 d0f4      	RCALL SUBOPT_0x6
+                +
+0001c8 01de     +MOVW R26 , R28
+0001c9 5fa0     +SUBI R26 , LOW ( - 272 )
+0001ca 4fbe     +SBCI R27 , HIGH ( - 272 )
+0001cb 93ed     +ST X + , R30
+0001cc 93fd     +ST X + , R31
+0001cd 936d     +ST X + , R22
+0001ce 937c     +ST X , R23
+                 	__PUTD1SX 272
+                 ; 0001 0092         if(WriteFlashPage(flashAdrStart+ADR_LIMIT_LOW,tempBuffer)==FALSE) //write tempBuffer to flash page
+0001cf d118      	RCALL SUBOPT_0xB
+                +
+0001d0 50e0     +SUBI R30 , LOW ( - 57344 )
+0001d1 42f0     +SBCI R31 , HIGH ( - 57344 )
+0001d2 4f6f     +SBCI R22 , BYTE3 ( - 57344 )
+0001d3 4f7f     +SBCI R23 , BYTE4 ( - 57344 )
+                 	__ADDD1N 57344
+0001d4 940e 0328 	CALL __PUTPARD1
+0001d6 01de      	MOVW R26,R28
+0001d7 9650      	ADIW R26,16
+0001d8 d00c      	RCALL _WriteFlashPage
+0001d9 30e0      	CPI  R30,0
+0001da f419      	BRNE _0x20020
+                 ; 0001 0093         {
+                 ; 0001 0094             PORTC.4=0;
+0001db 98ac      	CBI  0x15,4
+                 ; 0001 0095             return FALSE;
+0001dc e0e0      	LDI  R30,LOW(0)
+0001dd c002      	RJMP _0x2000004
+                 ; 0001 0096         }
+                 ; 0001 0097     }
+                 _0x20020:
+0001de cf72      	RJMP _0x20015
+                 _0x20017:
+                 ; 0001 0098     return TRUE;
+0001df e0e1      	LDI  R30,LOW(1)
+                 _0x2000004:
+0001e0 940e 036d 	CALL __LOADLOCR4
+0001e2 9664      	ADIW R28,20
+0001e3 5fdf      	SUBI R29,-1
+0001e4 9508      	RET
+                 ; 0001 0099 }
+                 ; .FEND
+                 ;
+                 ;/*!
+                 ;* The function writes byte data to Flash address flashAddr. Returns FALSE if
+                 ;* input address is not valid Flash byte address for writing, else TRUE.
+                 ;**/
+                 ;unsigned char WriteFlashByte(MyAddressType flashAddr, unsigned char data){
+                 ; 0001 009F unsigned char WriteFlashByte(MyAddressType flashAddr, unsigned char data){
+                 ; 0001 00A0   MyAddressType  pageAdr;
+                 ; 0001 00A1   unsigned char eepromInterruptSettings,saveSREG;
+                 ; 0001 00A2   flashAddr+=ADR_LIMIT_LOW;
+                 ;	flashAddr -> Y+7
+                 ;	data -> Y+6
+                 ;	pageAdr -> Y+2
+                 ;	eepromInterruptSettings -> R17
+                 ;	saveSREG -> R16
+                 ; 0001 00A3   if( AddressCheck( flashAddr & ~(PAGESIZE-1) )){
+                 ; 0001 00A4 
+                 ; 0001 00A5     if(ReadFlashByte(flashAddr)==data)
+                 ; 0001 00A6     {
+                 ; 0001 00A7         PORTC.4=0;
+                 ; 0001 00A8         return TRUE;
+                 ; 0001 00A9     }
+                 ; 0001 00AA     eepromInterruptSettings= EECR & (1<<EERIE); // Stores EEPROM interrupt mask
+                 ; 0001 00AB     EECR &= ~(1<<EERIE);                    // Disable EEPROM interrupt
+                 ; 0001 00AC     while(EECR & (1<<EEWE));                // Wait if ongoing EEPROM write
+                 ; 0001 00AD     saveSREG=SREG;
+                 ; 0001 00AE     #asm("cli")
+                 ; 0001 00AF     pageAdr=flashAddr & ~(PAGESIZE-1);      // Gets Flash page address from byte address
+                 ; 0001 00B0 
+                 ; 0001 00B1     #ifdef __FLASH_RECOVER
+                 ; 0001 00B2     FlashBackup.status=0;                   // Inicate that Flash buffer does
+                 ; 0001 00B3                                             // not contain data for writing
+                 ; 0001 00B4     while(EECR & (1<<EEWE));
+                 ; 0001 00B5     LpmReplaceSpm(flashAddr, data);         // Fills Flash write buffer
+                 ; 0001 00B6     WriteBufToFlash(ADR_FLASH_BUFFER);      // Writes to Flash recovery buffer
+                 ; 0001 00B7     FlashBackup.pageNumber = (unsigned int) (pageAdr/PAGESIZE); // Stores page address
+                 ; 0001 00B8                                                        // data should be written to
+                 ; 0001 00B9     FlashBackup.status = FLASH_BUFFER_FULL_ID; // Indicates that Flash recovery buffer
+                 ; 0001 00BA                                                // contains unwritten data
+                 ; 0001 00BB     while(EECR & (1<<EEWE));
+                 ; 0001 00BC     #endif
+                 ; 0001 00BD 
+                 ; 0001 00BE     if(LpmReplaceSpm(flashAddr, data)!=0)         // Fills Flash write buffer
+                 ; 0001 00BF     {
+                 ; 0001 00C0         _PAGE_WRITE(pageAdr);
+                 ; 0001 00C1         PORTC.1=0;
+                 ; 0001 00C2     }
+                 ; 0001 00C3     else
+                 ; 0001 00C4     {
+                 ; 0001 00C5         _PAGE_EW(pageAdr);
+                 ; 0001 00C6         PORTC.2=0;
+                 ; 0001 00C7     }
+                 ; 0001 00C8 
+                 ; 0001 00C9     #ifdef __FLASH_RECOVER
+                 ; 0001 00CA     FlashBackup.status = 0;                 // Indicates that Flash recovery buffer
+                 ; 0001 00CB                                             // does not contain unwritten data
+                 ; 0001 00CC     while(EECR & (1<<EEWE));
+                 ; 0001 00CD     #endif
+                 ; 0001 00CE 
+                 ; 0001 00CF     EECR |= eepromInterruptSettings;        // Restore EEPROM interrupt mask
+                 ; 0001 00D0     SREG=saveSREG;
+                 ; 0001 00D1     return TRUE;                            // Return TRUE if address
+                 ; 0001 00D2                                             // valid for writing
+                 ; 0001 00D3   }
+                 ; 0001 00D4   else
+                 ; 0001 00D5     return FALSE;                           // Return FALSE if address not
+                 ; 0001 00D6                                             // valid for writing
+                 ; 0001 00D7 }
+                 ;
+                 ;/*!
+                 ;* The function writes data from array dataPage[] to Flash page address
+                 ;* flashStartAdr. The Number of bytes written is depending upon the Flash page
+                 ;* size. Returns FALSE if input argument ucFlashStartAdr is not a valid Flash
+                 ;* page address for writing, else TRUE.
+                 ;**/
+                 ;unsigned char WriteFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage)
+                 ; 0001 00E0 {
+                 _WriteFlashPage:
+                 ; .FSTART _WriteFlashPage
+                 ; 0001 00E1   unsigned int index;
+                 ; 0001 00E2   unsigned char eepromInterruptSettings,saveSREG;
+                 ; 0001 00E3   MyAddressType  pageAdr;
+                 ; 0001 00E4   flashStartAdr;//+=ADR_LIMIT_LOW;
+0001e5 93ba      	ST   -Y,R27
+0001e6 93aa      	ST   -Y,R26
+0001e7 9724      	SBIW R28,4
+0001e8 940e 0368 	CALL __SAVELOCR4
+                 ;	flashStartAdr -> Y+10
+                 ;	*dataPage -> Y+8
+                 ;	index -> R16,R17
+                 ;	eepromInterruptSettings -> R19
+                 ;	saveSREG -> R18
+                 ;	pageAdr -> Y+4
+0001ea d102      	RCALL SUBOPT_0xC
+                 ; 0001 00E5   if( AddressCheck(flashStartAdr) ){
+0001eb d106      	RCALL SUBOPT_0xD
+0001ec d095      	RCALL _AddressCheck
+0001ed 30e0      	CPI  R30,0
+0001ee f409      	BRNE PC+2
+0001ef c053      	RJMP _0x20031
+                 ; 0001 00E6     if(eepromBackup(flashStartAdr,PAGESIZE,dataPage)==0)
+0001f0 d0fc      	RCALL SUBOPT_0xC
+0001f1 940e 0328 	CALL __PUTPARD1
+0001f3 e0e0      	LDI  R30,LOW(256)
+0001f4 e0f1      	LDI  R31,HIGH(256)
+0001f5 93fa      	ST   -Y,R31
+0001f6 93ea      	ST   -Y,R30
+0001f7 85ae      	LDD  R26,Y+14
+0001f8 85bf      	LDD  R27,Y+14+1
+0001f9 d04e      	RCALL _eepromBackup
+0001fa 30e0      	CPI  R30,0
+0001fb f411      	BRNE _0x20032
+                 ; 0001 00E7     {
+                 ; 0001 00E8         return FALSE;
+0001fc e0e0      	LDI  R30,LOW(0)
+0001fd c046      	RJMP _0x2000003
+                 ; 0001 00E9     }
+                 ; 0001 00EA     eepromInterruptSettings = EECR & (1<<EERIE); // Stoes EEPROM interrupt mask
+                 _0x20032:
+0001fe b3ec      	IN   R30,0x1C
+0001ff 70e8      	ANDI R30,LOW(0x8)
+000200 2f3e      	MOV  R19,R30
+                 ; 0001 00EB     EECR &= ~(1<<EERIE);                    // Disable EEPROM interrupt
+000201 98e3      	CBI  0x1C,3
+                 ; 0001 00EC     while(EECR & (1<<EEWE));                // Wait if ongoing EEPROM write
+                 _0x20033:
+000202 99e1      	SBIC 0x1C,1
+000203 cffe      	RJMP _0x20033
+                 ; 0001 00ED     saveSREG=SREG;                          // Save SREG
+000204 b72f      	IN   R18,63
+                 ; 0001 00EE     #asm("cli")
+000205 94f8      	cli
+                 ; 0001 00EF 
+                 ; 0001 00F0     #ifdef __FLASH_RECOVER
+                 ; 0001 00F1     FlashBackup.status=0;                   // Inicate that Flash buffer does
+                 ; 0001 00F2                                             // not contain data for writing
+                 ; 0001 00F3     while(EECR & (1<<EEWE));
+                 ; 0001 00F4 
+                 ; 0001 00F5     for(index = 0; index < PAGESIZE; index+=2){ // Fills Flash write buffer
+                 ; 0001 00F6       _WAIT_FOR_SPM();
+                 ; 0001 00F7       _FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
+                 ; 0001 00F8     }
+                 ; 0001 00F9 
+                 ; 0001 00FA     WriteBufToFlash(ADR_FLASH_BUFFER);      // Writes to Flash recovery buffer
+                 ; 0001 00FB     FlashBackup.pageNumber=(unsigned int)(flashStartAdr/PAGESIZE);
+                 ; 0001 00FC     FlashBackup.status = FLASH_BUFFER_FULL_ID; // Indicates that Flash recovery buffer
+                 ; 0001 00FD                                            // contains unwritten data
+                 ; 0001 00FE     while(EECR & (1<<EEWE));
+                 ; 0001 00FF     #endif
+                 ; 0001 0100 
+                 ; 0001 0101     //debug
+                 ; 0001 0102     _PAGE_ERASE(flashStartAdr);
+000206 d0eb      	RCALL SUBOPT_0xD
+000207 01f4      	MOVW R30,R8
+000208 9509      	ICALL
+                 ; 0001 0103 
+                 ; 0001 0104     for(index = 0; index < PAGESIZE; index+=2){ // Fills Flash write buffer
+                +
+000209 e000     +LDI R16 , LOW ( 0 )
+00020a e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+                 _0x20037:
+                +
+00020b 3000     +CPI R16 , LOW ( 256 )
+00020c e0e1     +LDI R30 , HIGH ( 256 )
+00020d 071e     +CPC R17 , R30
+                 	__CPWRN 16,17,256
+00020e f4e0      	BRSH _0x20038
+                 ; 0001 0105       _FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
+00020f 01f8      	MOVW R30,R16
+000210 2766      	CLR  R22
+000211 2777      	CLR  R23
+000212 940e 0328 	CALL __PUTPARD1
+000214 01f8      	MOVW R30,R16
+000215 85ac      	LDD  R26,Y+12
+000216 85bd      	LDD  R27,Y+12+1
+000217 0fae      	ADD  R26,R30
+000218 1fbf      	ADC  R27,R31
+000219 900c      	LD   R0,X
+00021a 2411      	CLR  R1
+00021b 9631      	ADIW R30,1
+00021c 85ac      	LDD  R26,Y+12
+00021d 85bd      	LDD  R27,Y+12+1
+00021e 0fae      	ADD  R26,R30
+00021f 1fbf      	ADC  R27,R31
+000220 91ec      	LD   R30,X
+000221 2ffe      	MOV  R31,R30
+000222 e0e0      	LDI  R30,0
+000223 01d0      	MOVW R26,R0
+000224 0fae      	ADD  R26,R30
+000225 1fbf      	ADC  R27,R31
+000226 01f2      	MOVW R30,R4
+000227 9509      	ICALL
+                 ; 0001 0106     }
+                +
+000228 5f0e     +SUBI R16 , LOW ( - 2 )
+000229 4f1f     +SBCI R17 , HIGH ( - 2 )
+                 	__ADDWRN 16,17,2
+00022a cfe0      	RJMP _0x20037
+                 _0x20038:
+                 ; 0001 0107     _PAGE_WRITE(flashStartAdr);
+00022b d0c6      	RCALL SUBOPT_0xD
+00022c 01f3      	MOVW R30,R6
+00022d 9509      	ICALL
+                 ; 0001 0108     if(VerifyFlashPage(flashStartAdr,dataPage)==FALSE)
+00022e d0be      	RCALL SUBOPT_0xC
+00022f 940e 0328 	CALL __PUTPARD1
+000231 85ac      	LDD  R26,Y+12
+000232 85bd      	LDD  R27,Y+12+1
+000233 def1      	RCALL _VerifyFlashPage
+000234 30e0      	CPI  R30,0
+000235 f411      	BRNE _0x20039
+                 ; 0001 0109     {
+                 ; 0001 010A       //PORTC.6=0;
+                 ; 0001 010B       return FALSE;
+000236 e0e0      	LDI  R30,LOW(0)
+000237 c00c      	RJMP _0x2000003
+                 ; 0001 010C     }
+                 ; 0001 010D     #ifdef __FLASH_RECOVER
+                 ; 0001 010E       FlashBackup.status=0;                 // Inicate that Flash buffer does
+                 ; 0001 010F                                             // not contain data for writing
+                 ; 0001 0110       while(EECR & (1<<EEWE));
+                 ; 0001 0111     #endif
+                 ; 0001 0112 
+                 ; 0001 0113     EECR |= eepromInterruptSettings;        // Restore EEPROM interrupt mask
+                 _0x20039:
+000238 b3ec      	IN   R30,0x1C
+000239 2be3      	OR   R30,R19
+00023a bbec      	OUT  0x1C,R30
+                 ; 0001 0114     SREG=saveSREG;                          // Restore interrupts to SREG
+00023b bf2f      	OUT  0x3F,R18
+                 ; 0001 0115     _EepromBackup.status=0;
+                +
+00023c e1a0     +LDI R26 , LOW ( __EepromBackup + ( 6 ) )
+00023d e0b0     +LDI R27 , HIGH ( __EepromBackup + ( 6 ) )
+                 	__POINTW2MN __EepromBackup,6
+00023e e0e0      	LDI  R30,LOW(0)
+00023f 940e 034e 	CALL __EEPROMWRB
+                 ; 0001 0116     return TRUE;                            // Return TRUE if address                                            // vali ...
+000241 e0e1      	LDI  R30,LOW(1)
+000242 c001      	RJMP _0x2000003
+                 ; 0001 0117   }
+                 ; 0001 0118   else
+                 _0x20031:
+                 ; 0001 0119     return FALSE;                           // Return FALSE if not address not
+000243 e0e0      	LDI  R30,LOW(0)
+                 ; 0001 011A                                             // valid for writing
+                 ; 0001 011B }
+                 _0x2000003:
+000244 940e 036d 	CALL __LOADLOCR4
+000246 962e      	ADIW R28,14
+000247 9508      	RET
+                 ; .FEND
+                 ;
+                 ;unsigned char eepromBackup(unsigned long flashStartAdr, unsigned int length, unsigned char *data)
+                 ; 0001 011E {
+                 _eepromBackup:
+                 ; .FSTART _eepromBackup
+                 ; 0001 011F     _EepromBackup.flashStartAdr=flashStartAdr;
+000248 93ba      	ST   -Y,R27
+000249 93aa      	ST   -Y,R26
+                 ;	flashStartAdr -> Y+4
+                 ;	length -> Y+2
+                 ;	*data -> Y+0
+00024a d071      	RCALL SUBOPT_0x6
+00024b e0aa      	LDI  R26,LOW(__EepromBackup)
+00024c e0b0      	LDI  R27,HIGH(__EepromBackup)
+00024d 940e 033e 	CALL __EEPROMWRD
+                 ; 0001 0120     _EepromBackup.length=length;
+                +
+00024f e0ae     +LDI R26 , LOW ( __EepromBackup + ( 4 ) )
+000250 e0b0     +LDI R27 , HIGH ( __EepromBackup + ( 4 ) )
+                 	__POINTW2MN __EepromBackup,4
+000251 81ea      	LDD  R30,Y+2
+000252 81fb      	LDD  R31,Y+2+1
+000253 940e 0346 	CALL __EEPROMWRW
+                 ; 0001 0121     for(;length>0;length--)
+                 _0x2003C:
+000255 81aa      	LDD  R26,Y+2
+000256 81bb      	LDD  R27,Y+2+1
+000257 940e 035f 	CALL __CPW02
+000259 f508      	BRSH _0x2003D
+                 ; 0001 0122     {
+                 ; 0001 0123          _EepromBackup.data[length-1]=data[length-1];
+                +
+00025a e1a1     +LDI R26 , LOW ( __EepromBackup + ( 7 ) )
+00025b e0b0     +LDI R27 , HIGH ( __EepromBackup + ( 7 ) )
+                 	__POINTW2MN __EepromBackup,7
+00025c 81ea      	LDD  R30,Y+2
+00025d 81fb      	LDD  R31,Y+2+1
+00025e 9731      	SBIW R30,1
+00025f 0fea      	ADD  R30,R26
+000260 1ffb      	ADC  R31,R27
+000261 010f      	MOVW R0,R30
+000262 d094      	RCALL SUBOPT_0xE
+000263 01d0      	MOVW R26,R0
+000264 940e 034e 	CALL __EEPROMWRB
+                 ; 0001 0124          if(_EepromBackup.data[length-1]!=data[length-1])
+                +
+000266 e1a1     +LDI R26 , LOW ( __EepromBackup + ( 7 ) )
+000267 e0b0     +LDI R27 , HIGH ( __EepromBackup + ( 7 ) )
+                 	__POINTW2MN __EepromBackup,7
+000268 81ea      	LDD  R30,Y+2
+000269 81fb      	LDD  R31,Y+2+1
+00026a 9731      	SBIW R30,1
+00026b 0fae      	ADD  R26,R30
+00026c 1fbf      	ADC  R27,R31
+00026d 940e 0332 	CALL __EEPROMRDB
+00026f 2e0e      	MOV  R0,R30
+000270 d086      	RCALL SUBOPT_0xE
+000271 15e0      	CP   R30,R0
+000272 f011      	BREQ _0x2003E
+                 ; 0001 0125          {
+                 ; 0001 0126             return FALSE;//error during backup on eeprom
+000273 e0e0      	LDI  R30,LOW(0)
+000274 c00b      	RJMP _0x2000002
+                 ; 0001 0127          }
+                 ; 0001 0128     }
+                 _0x2003E:
+000275 81ea      	LDD  R30,Y+2
+000276 81fb      	LDD  R31,Y+2+1
+000277 9731      	SBIW R30,1
+000278 83ea      	STD  Y+2,R30
+000279 83fb      	STD  Y+2+1,R31
+00027a cfda      	RJMP _0x2003C
+                 _0x2003D:
+                 ; 0001 0129     _EepromBackup.status=1;//1=ready to move to flash
+                +
+00027b e1a0     +LDI R26 , LOW ( __EepromBackup + ( 6 ) )
+00027c e0b0     +LDI R27 , HIGH ( __EepromBackup + ( 6 ) )
+                 	__POINTW2MN __EepromBackup,6
+00027d e0e1      	LDI  R30,LOW(1)
+00027e 940e 034e 	CALL __EEPROMWRB
+                 ; 0001 012A     return TRUE;
+                 _0x2000002:
+000280 9628      	ADIW R28,8
+000281 9508      	RET
+                 ; 0001 012B }
+                 ; .FEND
+                 ;
+                 ;/*!
+                 ;* The function checks if global variable FlashBackup.status indicates that Flash recovery
+                 ;* buffer contains data that needs to be written to Flash. Writes data from
+                 ;* Flash recovery buffer to Flash page address given by FLASH_recovery.pageAdr.
+                 ;* This function should be called at program startup if FLASH recovery option
+                 ;* is enabeled.
+                 ;**/
+                 ;unsigned char RecoverFlash(){
+                 ; 0001 0134 unsigned char RecoverFlash(){
+                 ; 0001 0135 #ifdef __FLASH_RECOVER
+                 ; 0001 0136   unsigned int index;
+                 ; 0001 0137   unsigned long flashStartAdr = (MyAddressType)FlashBackup.pageNumber * PAGESIZE;
+                 ; 0001 0138   if(FlashBackup.status == FLASH_BUFFER_FULL_ID){ // Checks if Flash recovery
+                 ; 0001 0139                                                   //  buffer contains data
+                 ; 0001 013A 
+                 ; 0001 013B     for(index=0; index < PAGESIZE; index+=2){     // Writes to Flash write buffer
+                 ; 0001 013C         _WAIT_FOR_SPM();
+                 ; 0001 013D         _FILL_TEMP_WORD( index, *((MyFlashIntPointer)(ADR_FLASH_BUFFER+index)) );
+                 ; 0001 013E     }
+                 ; 0001 013F 
+                 ; 0001 0140 
+                 ; 0001 0141     //WriteBufToFlash((MyAddressType)FlashBackup.pageNumber * PAGESIZE);
+                 ; 0001 0142     _WAIT_FOR_SPM();
+                 ; 0001 0143     _PAGE_ERASE( flashStartAdr );
+                 ; 0001 0144     _WAIT_FOR_SPM();
+                 ; 0001 0145     _PAGE_WRITE( flashStartAdr );
+                 ; 0001 0146     _WAIT_FOR_SPM();
+                 ; 0001 0147     _ENABLE_RWW_SECTION();
+                 ; 0001 0148     FlashBackup.status=0;                   // Inicate that Flash buffer does
+                 ; 0001 0149                                             // not contain data for writing
+                 ; 0001 014A     while(EECR & (1<<EEWE));
+                 ; 0001 014B     return TRUE;                            // Returns TRUE if recovery has
+                 ; 0001 014C                                             // taken place
+                 ; 0001 014D   }
+                 ; 0001 014E #endif
+                 ; 0001 014F   return FALSE;
+                 ; 0001 0150 }
+                 ;
+                 ;
+                 ;/*!
+                 ;* The function checks if input argument is a valid Flash page address for
+                 ;* writing. Returns TRUE only if:
+                 ;* - Address points to the beginning of a Flash page
+                 ;* - Address is within the limits defined in Self_programming.h
+                 ;* - Address is not equal to page address used for buffring by the Flash recovery
+                 ;*   functions (if enabled).
+                 ;* Returns FALSE else.
+                 ;**/
+                 ;unsigned char AddressCheck(MyAddressType flashAdr){
+                 ; 0001 015C unsigned char AddressCheck(MyAddressType flashAdr){
+                 _AddressCheck:
+                 ; .FSTART _AddressCheck
+                 ; 0001 015D   #ifdef __FLASH_RECOVER
+                 ; 0001 015E   // The next line gives a warning 'pointless comparison with zero' if ADR_LIMIT_LOW is 0. Ignore it.
+                 ; 0001 015F   if( (flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) &&
+                 ; 0001 0160       (flashAdr != ADR_FLASH_BUFFER) && !(flashAdr & (PAGESIZE-1)) )
+                 ; 0001 0161     return TRUE;                            // Address is a valid page address
+                 ; 0001 0162   else
+                 ; 0001 0163     return FALSE;                           // Address is not a valid page address
+                 ; 0001 0164   #else
+                 ; 0001 0165   if((flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) && !(flashAdr & (PAGESIZE-1) ) )
+000282 940e 032d 	CALL __PUTPARD2
+                 ;	flashAdr -> Y+0
+000284 940e 0323 	CALL __GETD2S0
+                +
+000286 30a0     +CPI R26 , LOW ( 0xE000 )
+000287 eee0     +LDI R30 , HIGH ( 0xE000 )
+000288 07be     +CPC R27 , R30
+000289 e0e0     +LDI R30 , BYTE3 ( 0xE000 )
+00028a 078e     +CPC R24 , R30
+00028b e0e0     +LDI R30 , BYTE4 ( 0xE000 )
+00028c 079e     +CPC R25 , R30
+                 	__CPD2N 0xE000
+00028d f058      	BRLO _0x20040
+                +
+00028e 30a0     +CPI R26 , LOW ( 0x1E000 )
+00028f eee0     +LDI R30 , HIGH ( 0x1E000 )
+000290 07be     +CPC R27 , R30
+000291 e0e1     +LDI R30 , BYTE3 ( 0x1E000 )
+000292 078e     +CPC R24 , R30
+000293 e0e0     +LDI R30 , BYTE4 ( 0x1E000 )
+000294 079e     +CPC R25 , R30
+                 	__CPD2N 0x1E000
+000295 f418      	BRSH _0x20040
+000296 d01d      	RCALL SUBOPT_0x4
+000297 30e0      	CPI  R30,0
+000298 f009      	BREQ _0x20041
+                 _0x20040:
+000299 c002      	RJMP _0x2003F
+                 _0x20041:
+                 ; 0001 0166     return TRUE;                            // Address is a valid page address
+00029a e0e1      	LDI  R30,LOW(1)
+00029b c001      	RJMP _0x2000001
+                 ; 0001 0167   else
+                 _0x2003F:
+                 ; 0001 0168     return FALSE;                           // Address is not a valid page address
+00029c e0e0      	LDI  R30,LOW(0)
+                 ; 0001 0169   #endif
+                 ; 0001 016A }
+                 _0x2000001:
+00029d 9624      	ADIW R28,4
+00029e 9508      	RET
+                 ; .FEND
+                 ;
+                 ;
+                 ;/*!
+                 ;* The function reads Flash page given by flashAddr, replaces one byte given by
+                 ;* flashAddr with data, and stores entire page in Flash temporary buffer.
+                 ;**/
+                 ;unsigned char LpmReplaceSpm(MyAddressType flashAddr, unsigned char data){
+                 ; 0001 0171 unsigned char LpmReplaceSpm(MyAddressType flashAddr, unsigned char data){
+                 ; 0001 0172 //#pragma diag_suppress=Pe1053 // Suppress warning for conversion from long-type address to flash ptr.
+                 ; 0001 0173     unsigned int index, oddByte, pcWord;
+                 ; 0001 0174     unsigned char onlyWrite=1;
+                 ; 0001 0175     MyAddressType  pageAdr;
+                 ; 0001 0176     oddByte=(unsigned char)flashAddr & 1;
+                 ;	flashAddr -> Y+12
+                 ;	data -> Y+11
+                 ;	index -> R16,R17
+                 ;	oddByte -> R18,R19
+                 ;	pcWord -> R20,R21
+                 ;	onlyWrite -> Y+10
+                 ;	pageAdr -> Y+6
+                 ; 0001 0177     pcWord=(unsigned int)flashAddr & (PAGESIZE-2); // Used when writing FLASH temp buffer
+                 ; 0001 0178     pageAdr=flashAddr & ~(PAGESIZE-1);        // Get FLASH page address from byte address
+                 ; 0001 0179     //_FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
+                 ; 0001 017A     for(index=0; index < PAGESIZE; index+=2){
+                 ; 0001 017B         if(index==pcWord){
+                 ; 0001 017C           if(oddByte){
+                 ; 0001 017D             _FILL_TEMP_WORD( index, (*(MyFlashCharPointer)(flashAddr & ~1) | ((unsigned int)data<<8)) );
+                 ; 0001 017E           }                                     // Write odd byte in temporary buffer
+                 ; 0001 017F           else{
+                 ; 0001 0180             _FILL_TEMP_WORD( index, ( (*( (MyFlashCharPointer)flashAddr+1)<<8)  | data ) );
+                 ; 0001 0181           }                                     // Write even byte in temporary buffer
+                 ; 0001 0182           if(((*((MyFlashCharPointer)flashAddr))&0xFF)!=0xFF)
+                 ; 0001 0183                 onlyWrite=0;
+                 ; 0001 0184         }
+                 ; 0001 0185         else{
+                 ; 0001 0186           _FILL_TEMP_WORD(index, *( (MyFlashIntPointer)(pageAdr+index) ) );
+                 ; 0001 0187           //if(*((MyFlashIntPointer)(pageAdr+index)) != 0xFFFF)
+                 ; 0001 0188                 //onlyWrite=0;
+                 ; 0001 0189         }                                       // Write Flash word directly to temporary buffer
+                 ; 0001 018A     }
+                 ; 0001 018B     return onlyWrite;
+                 ; 0001 018C //#pragma diag_default=Pe1053 // Back to default.
+                 ; 0001 018D }
+                 
+                 	.DSEG
+                 _testChar_S0000000000:
+000564           	.BYTE 0x1
+                 
+                 	.ESEG
+                 
+                 	.ORG 0xA
+                 __EepromBackup:
+00000a           	.BYTE 0x107
+                 
+                 	.ORG 0x0
+                 
+                 	.CSEG
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x0:
+                +
+00029f e0e2     +LDI R30 , LOW ( 0x2 )
+0002a0 e0f0     +LDI R31 , HIGH ( 0x2 )
+0002a1 e060     +LDI R22 , BYTE3 ( 0x2 )
+0002a2 e070     +LDI R23 , BYTE4 ( 0x2 )
+                 	__GETD1N 0x2
+0002a3 940e 0328 	CALL __PUTPARD1
+0002a5 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
+                 SUBOPT_0x1:
+0002a6 e6e4      	LDI  R30,LOW(_testChar_S0000000000)
+0002a7 e0f5      	LDI  R31,HIGH(_testChar_S0000000000)
+0002a8 93fa      	ST   -Y,R31
+0002a9 93ea      	ST   -Y,R30
+0002aa e0a1      	LDI  R26,LOW(1)
+0002ab e0b0      	LDI  R27,0
+0002ac ce48      	RJMP _ReadFlashBytes
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x2:
+0002ad 940e 0328 	CALL __PUTPARD1
+0002af cff6      	RJMP SUBOPT_0x1
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 SUBOPT_0x3:
+0002b0 efa4      	LDI  R26,LOW(500)
+0002b1 e0b1      	LDI  R27,HIGH(500)
+0002b2 940c 0300 	JMP  _delay_ms
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x4:
+0002b4 940e 031e 	CALL __GETD1S0
+0002b6 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x5:
+0002b7 93ba      	ST   -Y,R27
+0002b8 93aa      	ST   -Y,R26
+0002b9 931a      	ST   -Y,R17
+0002ba 930a      	ST   -Y,R16
+0002bb 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:7 WORDS
+                 SUBOPT_0x6:
+                +
+0002bc 81ec     +LDD R30 , Y + 4
+0002bd 81fd     +LDD R31 , Y + 4 + 1
+0002be 816e     +LDD R22 , Y + 4 + 2
+0002bf 817f     +LDD R23 , Y + 4 + 3
+                 	__GETD1S 4
+0002c0 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:6 WORDS
+                 SUBOPT_0x7:
+0002c1 01f8      	MOVW R30,R16
+                +
+0002c2 81ac     +LDD R26 , Y + 4
+0002c3 81bd     +LDD R27 , Y + 4 + 1
+0002c4 818e     +LDD R24 , Y + 4 + 2
+0002c5 819f     +LDD R25 , Y + 4 + 3
+                 	__GETD2S 4
+0002c6 2766      	CLR  R22
+0002c7 2777      	CLR  R23
+0002c8 940e 030f 	CALL __ADDD21
+0002ca ce02      	RJMP _ReadFlashByte
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:5 WORDS
+                 SUBOPT_0x8:
+                +
+0002cb 01fe     +MOVW R30 , R28
+0002cc 5fe4     +SUBI R30 , LOW ( - 268 )
+0002cd 4ffe     +SBCI R31 , HIGH ( - 268 )
+0002ce 9001     +LD R0 , Z +
+0002cf 81f0     +LD R31 , Z
+0002d0 2de0     +MOV R30 , R0
+                 	__GETW1SX 268
+0002d1 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:7 WORDS
+                 SUBOPT_0x9:
+                +
+0002d2 01fe     +MOVW R30 , R28
+0002d3 5fe0     +SUBI R30 , LOW ( - 272 )
+0002d4 4ffe     +SBCI R31 , HIGH ( - 272 )
+0002d5 9001     +LD R0 , Z +
+0002d6 9011     +LD R1 , Z +
+0002d7 9161     +LD R22 , Z +
+0002d8 8170     +LD R23 , Z
+0002d9 01f0     +MOVW R30 , R0
+                 	__GETD1SX 272
+                +
+0002da 7fef     +ANDI R30 , LOW ( 0xFF )
+0002db 70f0     +ANDI R31 , HIGH ( 0xFF )
+0002dc 7060     +ANDI R22 , BYTE3 ( 0xFF )
+0002dd 7070     +ANDI R23 , BYTE4 ( 0xFF )
+                 	__ANDD1N 0xFF
+0002de 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 SUBOPT_0xA:
+                +
+0002df 01de     +MOVW R26 , R28
+0002e0 5fa0     +SUBI R26 , LOW ( - 272 )
+0002e1 4fbe     +SBCI R27 , HIGH ( - 272 )
+0002e2 900d     +LD R0 , X +
+0002e3 901d     +LD R1 , X +
+0002e4 918d     +LD R24 , X +
+0002e5 919c     +LD R25 , X
+0002e6 01d0     +MOVW R26 , R0
+                 	__GETD2SX 272
+0002e7 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0xB:
+                +
+0002e8 85e8     +LDD R30 , Y + 8
+0002e9 85f9     +LDD R31 , Y + 8 + 1
+0002ea 856a     +LDD R22 , Y + 8 + 2
+0002eb 857b     +LDD R23 , Y + 8 + 3
+                 	__GETD1S 8
+0002ec 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0xC:
+                +
+0002ed 85ea     +LDD R30 , Y + 10
+0002ee 85fb     +LDD R31 , Y + 10 + 1
+0002ef 856c     +LDD R22 , Y + 10 + 2
+0002f0 857d     +LDD R23 , Y + 10 + 3
+                 	__GETD1S 10
+0002f1 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0xD:
+                +
+0002f2 85aa     +LDD R26 , Y + 10
+0002f3 85bb     +LDD R27 , Y + 10 + 1
+0002f4 858c     +LDD R24 , Y + 10 + 2
+0002f5 859d     +LDD R25 , Y + 10 + 3
+                 	__GETD2S 10
+0002f6 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 SUBOPT_0xE:
+0002f7 81ea      	LDD  R30,Y+2
+0002f8 81fb      	LDD  R31,Y+2+1
+0002f9 9731      	SBIW R30,1
+0002fa 81a8      	LD   R26,Y
+0002fb 81b9      	LDD  R27,Y+1
+0002fc 0fae      	ADD  R26,R30
+0002fd 1fbf      	ADC  R27,R31
+0002fe 91ec      	LD   R30,X
+0002ff 9508      	RET
+                 
+                 
+                 	.CSEG
+                 _delay_ms:
+000300 9610      	adiw r26,0
+000301 f039      	breq __delay_ms1
+                 __delay_ms0:
+                +
+000302 ed80     +LDI R24 , LOW ( 0x7D0 )
+000303 e097     +LDI R25 , HIGH ( 0x7D0 )
+                +__DELAY_USW_LOOP :
+000304 9701     +SBIW R24 , 1
+000305 f7f1     +BRNE __DELAY_USW_LOOP
+                 	__DELAY_USW 0x7D0
+000306 95a8      	wdr
+000307 9711      	sbiw r26,1
+000308 f7c9      	brne __delay_ms0
+                 __delay_ms1:
+000309 9508      	ret
+                 
+                 __ADDD12:
+00030a 0fea      	ADD  R30,R26
+00030b 1ffb      	ADC  R31,R27
+00030c 1f68      	ADC  R22,R24
+00030d 1f79      	ADC  R23,R25
+00030e 9508      	RET
+                 
+                 __ADDD21:
+00030f 0fae      	ADD  R26,R30
+000310 1fbf      	ADC  R27,R31
+000311 1f86      	ADC  R24,R22
+000312 1f97      	ADC  R25,R23
+000313 9508      	RET
+                 
+                 __SUBD12:
+000314 1bea      	SUB  R30,R26
+000315 0bfb      	SBC  R31,R27
+000316 0b68      	SBC  R22,R24
+000317 0b79      	SBC  R23,R25
+000318 9508      	RET
+                 
+                 __SUBD21:
+000319 1bae      	SUB  R26,R30
+00031a 0bbf      	SBC  R27,R31
+00031b 0b86      	SBC  R24,R22
+00031c 0b97      	SBC  R25,R23
+00031d 9508      	RET
+                 
+                 __GETD1S0:
+00031e 81e8      	LD   R30,Y
+00031f 81f9      	LDD  R31,Y+1
+000320 816a      	LDD  R22,Y+2
+000321 817b      	LDD  R23,Y+3
+000322 9508      	RET
+                 
+                 __GETD2S0:
+000323 81a8      	LD   R26,Y
+000324 81b9      	LDD  R27,Y+1
+000325 818a      	LDD  R24,Y+2
+000326 819b      	LDD  R25,Y+3
+000327 9508      	RET
+                 
+                 __PUTPARD1:
+000328 937a      	ST   -Y,R23
+000329 936a      	ST   -Y,R22
+00032a 93fa      	ST   -Y,R31
+00032b 93ea      	ST   -Y,R30
+00032c 9508      	RET
+                 
+                 __PUTPARD2:
+00032d 939a      	ST   -Y,R25
+00032e 938a      	ST   -Y,R24
+00032f 93ba      	ST   -Y,R27
+000330 93aa      	ST   -Y,R26
+000331 9508      	RET
+                 
+                 __EEPROMRDB:
+000332 99e1      	SBIC EECR,EEWE
+000333 cffe      	RJMP __EEPROMRDB
+000334 93ff      	PUSH R31
+000335 b7ff      	IN   R31,SREG
+000336 94f8      	CLI
+000337 bbae      	OUT  EEARL,R26
+000338 bbbf      	OUT  EEARH,R27
+000339 9ae0      	SBI  EECR,EERE
+00033a b3ed      	IN   R30,EEDR
+00033b bfff      	OUT  SREG,R31
+00033c 91ff      	POP  R31
+00033d 9508      	RET
+                 
+                 __EEPROMWRD:
+00033e d007      	RCALL __EEPROMWRW
+00033f 9612      	ADIW R26,2
+000340 010f      	MOVW R0,R30
+000341 01fb      	MOVW R30,R22
+000342 d003      	RCALL __EEPROMWRW
+000343 01f0      	MOVW R30,R0
+000344 9712      	SBIW R26,2
+000345 9508      	RET
+                 
+                 __EEPROMWRW:
+000346 d007      	RCALL __EEPROMWRB
+000347 9611      	ADIW R26,1
+000348 93ef      	PUSH R30
+000349 2fef      	MOV  R30,R31
+00034a d003      	RCALL __EEPROMWRB
+00034b 91ef      	POP  R30
+00034c 9711      	SBIW R26,1
+00034d 9508      	RET
+                 
+                 __EEPROMWRB:
+00034e 9be1      	SBIS EECR,EEWE
+00034f c002      	RJMP __EEPROMWRB1
+000350 95a8      	WDR
+000351 cffc      	RJMP __EEPROMWRB
+                 __EEPROMWRB1:
+000352 b79f      	IN   R25,SREG
+000353 94f8      	CLI
+000354 bbae      	OUT  EEARL,R26
+000355 bbbf      	OUT  EEARH,R27
+000356 9ae0      	SBI  EECR,EERE
+000357 b38d      	IN   R24,EEDR
+000358 17e8      	CP   R30,R24
+000359 f019      	BREQ __EEPROMWRB0
+00035a bbed      	OUT  EEDR,R30
+00035b 9ae2      	SBI  EECR,EEMWE
+00035c 9ae1      	SBI  EECR,EEWE
+                 __EEPROMWRB0:
+00035d bf9f      	OUT  SREG,R25
+00035e 9508      	RET
+                 
+                 __CPW02:
+00035f 2400      	CLR  R0
+000360 160a      	CP   R0,R26
+000361 060b      	CPC  R0,R27
+000362 9508      	RET
+                 
+                 __CPD21:
+000363 17ae      	CP   R26,R30
+000364 07bf      	CPC  R27,R31
+000365 0786      	CPC  R24,R22
+000366 0797      	CPC  R25,R23
+000367 9508      	RET
+                 
+                 __SAVELOCR4:
+000368 933a      	ST   -Y,R19
+                 __SAVELOCR3:
+000369 932a      	ST   -Y,R18
+                 __SAVELOCR2:
+00036a 931a      	ST   -Y,R17
+00036b 930a      	ST   -Y,R16
+00036c 9508      	RET
+                 
+                 __LOADLOCR4:
+00036d 813b      	LDD  R19,Y+3
+                 __LOADLOCR3:
+00036e 812a      	LDD  R18,Y+2
+                 __LOADLOCR2:
+00036f 8119      	LDD  R17,Y+1
+000370 8108      	LD   R16,Y
+000371 9508      	RET
+                 
+                 ;END OF CODE MARKER
+                 __END_OF_CODE:
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+ATmega128 register use summary:
+r0 :  27 r1 :   4 r2 :   0 r3 :   0 r4 :   1 r5 :   0 r6 :   1 r7 :   0 
+r8 :   1 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
+r16:  37 r17:  26 r18:   8 r19:   5 r20:   0 r21:   0 r22:  34 r23:  28 
+r24:  28 r25:  20 r26:  96 r27:  62 r28:  25 r29:   8 r30: 192 r31:  70 
+x  :  28 y  : 126 z  :  22 
+Registers used: 22 out of 35 (62.9%)
+
+ATmega128 instruction use summary:
+.lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :  17 add   :  13 
+adiw  :  14 and   :   0 andi  :   6 asr   :   0 bclr  :   0 bld   :   0 
+brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :   7 
+brge  :   1 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   2 
+brlt  :   0 brmi  :   0 brne  :  17 brpl  :   0 brsh  :   7 brtc  :   0 
+brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 call  :  29 
+cbi   :   8 cbr   :   0 clc   :   0 clh   :   0 cli   :   4 cln   :   0 
+clr   :  16 cls   :   0 clt   :   0 clv   :   0 clz   :   0 com   :   0 
+cp    :   6 cpc   :  15 cpi   :  19 cpse  :   0 dec   :   1 des   :   0 
+elpm  :  10 eor   :   0 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   3 
+ijmp  :   0 in    :   8 inc   :   0 jmp   :  37 ld    :  27 ldd   :  80 
+ldi   :  95 lds   :   4 lpm   :   0 lsl   :   0 lsr   :   0 mov   :   7 
+movw  :  48 mul   :   0 muls  :   0 mulsu :   0 neg   :   0 nop   :   0 
+or    :   1 ori   :   0 out   :  19 pop   :   7 push  :   7 rcall :  53 
+ret   :  33 reti  :   0 rjmp  :  36 rol   :   0 ror   :   0 sbc   :   8 
+sbci  :  25 sbi   :   6 sbic  :   2 sbis  :   1 sbiw  :  15 sbr   :   0 
+sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 sei   :   0 sen   :   0 
+ser   :   0 ses   :   0 set   :   0 sev   :   0 sez   :   0 sleep :   0 
+spm   :   0 st    :  45 std   :  14 sts   :   1 sub   :   4 subi  :  22 
+swap  :   0 tst   :   0 wdr   :   2 
+Instructions used: 46 out of 117 (39.3%)
+
+ATmega128 memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x0006e4   1746     18   1764  131072   1.3%
+[.dseg] 0x000100 0x000565      0      1      1    4096   0.0%
+[.eseg] 0x000000 0x000111      0    263    263    4096   6.4%
+
+Assembly complete, 0 errors, 8 warnings

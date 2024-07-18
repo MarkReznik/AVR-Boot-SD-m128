@@ -1,0 +1,27 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+testChar                                                                          0x0564       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+_EepromBackup                                                                     0x000A     263
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+__AddrToZ24WordToR1R0ByteToSPMCR_SPM_F                                            R4,R5        2
+__AddrToZ24ByteToSPMCR_SPM_W                                                      R6,R7        2
+__AddrToZ24ByteToSPMCR_SPM_E                                                      R8,R9        2
+__AddrToZ24ByteToSPMCR_SPM_EW                                                     R10,R11      2
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+main                                                                              0x00084     73
+ReadFlashBytes                                                                    0x000F5     48
+WriteFlashBytes                                                                   0x0014B    154
+WriteFlashPage                                                                    0x001E5     99
+eepromBackup                                                                      0x00248     58
+AddressCheck                                                                      0x00282     29

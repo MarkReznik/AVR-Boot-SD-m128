@@ -1,0 +1,5 @@
+main DSTACK_USAGE:256 DSTACK_LEVEL:256 FILE:"Self_programming_main.c" LINE:32
+WriteFlashBytes DSTACK_USAGE:276 DSTACK_LEVEL:532 FILE:"Self_programming.c" LINE:117
+WriteFlashPage DSTACK_USAGE:14 DSTACK_LEVEL:546 FILE:"Self_programming.c" LINE:223
+VerifyFlashPage DSTACK_USAGE:8 DSTACK_LEVEL:554 FILE:"Self_programming.c" LINE:100
+ReadFlashByte DSTACK_USAGE:4 DSTACK_LEVEL:558 FILE:"Self_programming.c" LINE:66

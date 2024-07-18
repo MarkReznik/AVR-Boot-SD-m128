@@ -1,0 +1,9 @@
+VERSION:3 SOURCE_TIMESTAMP:50593E72
+NODE:I LEVEL:0 LINE:18 "C:\Firmware\cvavr312\EXAMPLES\AVR106 App1\flash.h"
+NODE:V LEVEL:0 LINE:20 "*dospm -> R4,R5"
+NODE:V LEVEL:0 LINE:21 "*dospmew -> R6,R7"
+NODE:F LEVEL:0 LINE:25 "__AddrToZByteToSPMCR_LPM(flash void * addr,unsigned char ctrl)"
+NODE:F LEVEL:0 LINE:37 "__DataToR0ByteToSPMCR_SPM(unsigned char data,unsigned char ctrl)"
+NODE:F LEVEL:0 LINE:76 "__AddrToZWordToR1R0ByteToSPMCR_SPM_F(flash void * addr,unsigned int data)"
+NODE:F LEVEL:0 LINE:94 "__AddrToZ24WordToR1R0ByteToSPMCR_SPM(flash void * addr,unsigned int data,unsigned char ctrl)"
+NODE:F LEVEL:0 LINE:112 "__AddrToZ24ByteToSPMCR_SPM(flash void * addr,unsigned char ctrl)"

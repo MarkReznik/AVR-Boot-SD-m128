@@ -1,0 +1,120 @@
+// This file has been prepared for Doxygen automatic documentation generation.
+/*! \file ********************************************************************
+*
+* Atmel Corporation
+*
+* - File              : Self_programming_main.c
+* - Compiler          : IAR EWAVR 2.28a / 3.10c and newer
+*
+* - Support mail      : avr@atmel.com
+*
+* - Supported devices : This example is written for ATmega128.
+*
+* - AppNote           : AVR106 - C functions for reading and writing
+*                       to flash memory.
+*
+* - Description       : The file contains an example program using the Flash R/W
+*                       functions provided with the files Self_programming.h /
+*                       Self_programming.c . The program should be compiled using
+*                       a linker file (*.xcl) that is configured to place the
+*                       entire program code into the Boot section of the Flash memory.
+*                       Please refer to the application note document for more
+*                       information.
+*
+* $Revision: 2.0 $
+* $Date: Wednesday, January 18, 2006 15:18:52 UTC $
+*
+*****************************************************************************/
+#include <io.h>
+#include <delay.h>
+#include "flash.h"
+
+#include "Self_programming.h"
+void testWrite();
+
+
+void main( void ){
+  
+  //static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
+  //#asm("cli")
+  if(PORTA==0x55)
+    testWrite();                                          // Returns TRUE
+  //__AddrToZ24WordToR1R0ByteToSPMCR_SPM_F(0,0);
+  //__AddrToZ24ByteToSPMCR_SPM_W((void flash *)0);
+  /*
+  unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
+  unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
+                                            // code stack
+  int index;
+
+  DDRC=0xFF;
+  PORTC=0xFF;
+  //DDRC=0x00;
+  //PORTC=0x00;
+  //MCUCR |= (1<<IVSEL);
+                        // Move interrupt vectors to boot
+  //RecoverFlash();
+  
+  dospm();
+  
+  for(index=0; index<PAGESIZE; index++){
+    testBuffer1[index]=(unsigned char)index; // Fills testBuffer1 with values 0,1,2..255
+  }
+  PORTC.4=0;
+  //for(;;){
+  if(  WriteFlashPage(0x1000, testBuffer1))//;     // Writes testbuffer1 to Flash page 2
+    PORTC.5=0;                                          // Function returns TRUE
+  if(  ReadFlashPage(0x1000, testBuffer2))//;      // Reads back Flash page 2 to TestBuffer2
+    PORTC.6=0;                                          // Function returns TRUE
+  if(  WriteFlashByte(0x1004, 0x38))//;            // Writes 0x38 to byte address 0x204
+    PORTC.5=0;                                          // Same as byte 4 on page 2
+  */
+  
+  //}
+}
+
+
+void testWrite()
+{
+  unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
+  unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
+                                            // code stack
+  
+  
+  static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
+  int index;
+
+  //DDRC=0xFF;
+  //PORTC=0xFF;
+  //DDRC=0x00;
+  //PORTC=0x00;
+  //MCUCR |= (1<<IVSEL);
+                        // Move interrupt vectors to boot
+  //RecoverFlash();
+  
+  //dospm();
+  
+  for(index=0; index<PAGESIZE; index++){
+    testBuffer1[index]=(unsigned char)index; // Fills testBuffer1 with values 0,1,2..255
+  }
+  //PORTC.4=0;
+  //for(;;){
+  if(  WriteFlashPage(0x1EF00, testBuffer1))//;     // Writes testbuffer1 to Flash page 2
+    PORTC.5=0;                                          // Function returns TRUE
+  if(  ReadFlashPage(0x1EF00, testBuffer2))//;      // Reads back Flash page 2 to TestBuffer2
+    PORTC.6=0;                                          // Function returns TRUE
+  if(  WriteFlashByte(0x1EF04, 0x38))//;            // Writes 0x38 to byte address 0x204
+    PORTC.5=1;                                          // Same as byte 4 on page 2
+  testChar = ReadFlashByte(0x1EF04);        // Reads back value from address 0x204
+  
+  if(testChar==0x38)
+  {
+    while(1)
+    {
+      PORTC.6=0;
+      delay_ms(500);
+      PORTC.6=1;
+      delay_ms(500);;
+    }
+  }  
+}

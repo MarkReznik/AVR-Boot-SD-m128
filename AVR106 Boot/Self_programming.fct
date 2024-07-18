@@ -1,0 +1,4 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"Self_programming_main.c" LINE:36
+testWrite DSTACK_USAGE:514 DSTACK_LEVEL:514 FILE:"Self_programming_main.c" LINE:77
+WriteFlashByte DSTACK_USAGE:10 DSTACK_LEVEL:524 FILE:"Self_programming.c" LINE:101
+LpmReplaceSpm DSTACK_USAGE:15 DSTACK_LEVEL:539 FILE:"Self_programming.c" LINE:322
