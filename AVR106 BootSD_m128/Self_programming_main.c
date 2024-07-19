@@ -29,6 +29,10 @@
 #include <delay.h>
 #include "flash.h"
 #include "Self_programming.h"
+//#include <ff.h>
+/* printf */
+#include <stdio.h>
+#include <string.h>
 
 #include "spi_sdcard.h"
 
@@ -44,7 +48,7 @@ unsigned int appPages,bytesChecksum,checksumCnt;
 //(unsigned char)sectors_per_cluster = BPB_SecPerClus;
 //(unsigned long)root_dir_first_cluster = BPB_RootClus;
 void testWrite();
-void errorSD();
+void errorSD(unsigned char err);
 unsigned long buf2num(unsigned char *buf,unsigned char len);
 unsigned char compbuf(const unsigned char *src,unsigned char *dest);
 void (*app_pointer)(void) = (void(*)(void))0x0000;
@@ -52,7 +56,10 @@ void (*app_pointer)(void) = (void(*)(void))0x0000;
 void main( void ){
 
   unsigned int i,j;
-  
+
+/* globally enable interrupts */
+#asm("sei")
+
   DDRC=0xFF;
   PORTC=0xFF;
   /*
@@ -66,17 +73,18 @@ void main( void ){
   */
   //init SD
   if((result[0]=SD_init())!=SD_SUCCESS)
-    errorSD();
+    errorSD(0);
   
   // read MBR get FAT start sector
   if((result[0]=SD_readSingleBlock(0, sdBuf, &token))!=SD_SUCCESS)
-    errorSD();  
+    errorSD(1);  
     
   adr=buf2num(&sdBuf[445+9],4);//FAT start sector. 1 sector = 512 bytes  
   
   //load and read FAT ID (1st) sector. Get FAT info. Secors per Cluster and etc..
-  if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS)
-    errorSD();  
+  if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
+    errorSD(2);
+  }  
 
   SectorsPerCluster=sdBuf[0x0D];// 8 sectors per cluster
   SectorsPerFat=buf2num(&sdBuf[0x24],4); // 0xF10 for test sdcard
@@ -95,7 +103,7 @@ void main( void ){
   for(i=0;i<SectorsPerCluster;i++)
   {
       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS)
-        errorSD();  
+        errorSD(3);  
       for(j=0;j<(16);j++)
       {
            if((result[1]=compbuf("0          ",&sdBuf[j*32]))!=0)
@@ -116,7 +124,7 @@ void main( void ){
   for(i=0;i<SectorsPerCluster;i++)
   {
       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS)
-        errorSD();  
+        errorSD(4);  
       for(j=0;j<(16);j++)
       {
            if((result[1]=compbuf("FLASH   ",&sdBuf[j*32]))!=0)
@@ -142,7 +150,7 @@ void main( void ){
   {
     //read where next cluster from FAT, check that not EOF
     if((result[0]=SD_readSingleBlock(fat_begin_lba, sdBuf, &token))!=SD_SUCCESS)
-        errorSD();
+        errorSD(5);
     fat_file_next_adr=buf2num(&sdBuf[fat_file_adr*4],4);
     
     adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
@@ -150,7 +158,7 @@ void main( void ){
     {             
         //read data from next sector of file cluster
         if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS)
-            errorSD();
+            errorSD(6);
         //address 2000 = start adr flash app 3 bytes, flash pages 2 bytes, checksum 2 bytes
         //app bytes starts from 2048, roll 0x88
         for(j=0;j<512;j++)
@@ -273,9 +281,28 @@ unsigned char compbuf(const unsigned char *src,unsigned char *dest)
     return 1;
 }
 
-void errorSD()
+void errorSD(unsigned char err)
 {
-    PORTC.1=0;
+    /*
+    insigned int dly=0;
+    if(err==1){
+        dly=200;
+    }
+    else if(err==2){
+        dly=500;
+    }
+    else if(err==3){
+        dly=500;
+    }
+    */
+    do{
+       PORTC &= ~(1<<err);
+       delay_ms(500);
+       PORTC = 0xFF; 
+       delay_ms(500);
+    }
+    
+    //PORTC.1=0;
     while(1);
 }
 

@@ -19,9 +19,9 @@ __AddrToZ24ByteToSPMCR_SPM_EW                                                   
 FLASH Allocation [words]
 Function                                                                          Address   Size
 ------------------------------------------------------------------------------------------------
-main                                                                              0x00084     73
-ReadFlashBytes                                                                    0x000F5     48
-WriteFlashBytes                                                                   0x0014B    154
-WriteFlashPage                                                                    0x001E5     99
-eepromBackup                                                                      0x00248     58
-AddressCheck                                                                      0x00282     29
+main                                                                              0x00084     82
+ReadFlashBytes                                                                    0x000FE     48
+WriteFlashBytes                                                                   0x00154    154
+WriteFlashPage                                                                    0x001EE     99
+eepromBackup                                                                      0x00251     58
+AddressCheck                                                                      0x0028B     29

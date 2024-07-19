@@ -29,11 +29,9 @@
 #include <delay.h>
 #include "Self_programming.h"
 
-//void (*test)(void)=(void(*)(void))0x0FB0F;
-
 void main( void ){
   unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
-  unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
+  //unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
                                             // code stack
   static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
   int index;       
@@ -43,41 +41,9 @@ void main( void ){
   for(index=0; index<PAGESIZE; index++){
     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF 
   }
-  /*
-  if(WriteFlashBytes(0x1010, testBuffer1,10)){     // Writes testbuffer1 to Flash page 2
-    PORTC.1=0;
-  }
-  if(ReadFlashPage(0x1000, testBuffer2))      // Reads back Flash page 2 to TestBuffer2
-    PORTC.2=0;
-  if(ReadFlashPage(0x1100, testBuffer2))      // Reads back Flash page 2 to TestBuffer2
-    PORTC.3=0;
-  */
   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
     PORTC.2=0;
-  }
-  /*
-  if(ReadFlashPage(0x1000, testBuffer2))      // Reads back Flash page 2 to TestBuffer2
-    PORTC.2=0;
-  if(ReadFlashPage(0x1100, testBuffer2))      // Reads back Flash page 2 to TestBuffer2
-    PORTC.3=0;    
-  */
-  /*
-  for(index=0; index<PAGESIZE; index++){
-    testBuffer1[index]=(unsigned char)index; // Fills testBuffer1 with values 0,1,2..255
-  }
-  PORTC.3=0;
-  if(WriteFlashPage(0x00, testBuffer1))     // Writes testbuffer1 to Flash page 2
-    PORTC.4=0;                                          // Function returns TRUE
-  if(ReadFlashPage(0x00, testBuffer2))      // Reads back Flash page 2 to TestBuffer2
-    PORTC.5=0;                                          // Function returns TRUE
-  */
-  /*
-  (WriteFlashByte(0x1004, 0x38))?(PORTC.3=0):(PORTC.3=1);            // Writes 0x38 to byte address 0x204
-  (WriteFlashByte(0x1004, 0x38))?(PORTC.3=0):(PORTC.3=1);
-  (WriteFlashByte(0x1014, 0x39))?(PORTC.3=0):(PORTC.3=1);
-  (WriteFlashByte(0x1024, 0x40))?(PORTC.3=0):(PORTC.3=1);
-  (WriteFlashByte(0x1001, 0x41))?(PORTC.3=0):(PORTC.3=1);
-  */                                            // Same as byte 4 on page 2
+  }                                            // Same as byte 4 on page 2
   //MCUCR &= ~(1<<IVSEL);
   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
   if(testChar==0x00)

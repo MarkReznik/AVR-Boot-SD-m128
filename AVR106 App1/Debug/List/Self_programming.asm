@@ -6,7 +6,7 @@
 ;Build configuration    : Debug
 ;Chip type              : ATmega128
 ;Program type           : Application
-;Clock frequency        : 8.000000 MHz
+;Clock frequency        : 4.000000 MHz
 ;Memory model           : Medium
 ;Optimize for           : Size
 ;(s)printf features     : int, width
@@ -1305,23 +1305,38 @@ _main:
 	OUT  0x14,R30
 ; 0000 0027   PORTC=0xFF;
 	OUT  0x15,R30
-; 0000 0028 
-; 0000 0029   for(index=0; index<PAGESIZE; index++){
-	__GETWRN 16,17,0
-_0x4:
+; 0000 0028   while(1)
+_0x3:
+; 0000 0029   {
+; 0000 002A       PORTC.0=0;
+	CBI  0x15,0
+; 0000 002B       delay_ms(250);
+	LDI  R26,LOW(250)
+	LDI  R27,0
+	CALL _delay_ms
+; 0000 002C       PORTC.0=1;
+	SBI  0x15,0
+; 0000 002D       delay_ms(250);
+	LDI  R26,LOW(250)
+	LDI  R27,0
+	CALL _delay_ms
+; 0000 002E   }
+	RJMP _0x3
+; 0000 002F   for(index=0; index<PAGESIZE; index++){
+_0xB:
 	__CPWRN 16,17,256
-	BRGE _0x5
-; 0000 002A     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF
+	BRGE _0xC
+; 0000 0030     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF
 	MOVW R30,R16
 	MOVW R26,R28
 	ADD  R30,R26
 	ADC  R31,R27
 	ST   Z,R16
-; 0000 002B   }
+; 0000 0031   }
 	__ADDWRN 16,17,1
-	RJMP _0x4
-_0x5:
-; 0000 002C   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
+	RJMP _0xB
+_0xC:
+; 0000 0032   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
 	RCALL SUBOPT_0x0
 	MOVW R30,R28
 	ADIW R30,4
@@ -1331,77 +1346,77 @@ _0x5:
 	LDI  R27,HIGH(256)
 	RCALL _WriteFlashBytes
 	CPI  R30,0
-	BREQ _0x6
-; 0000 002D     PORTC.2=0;
+	BREQ _0xD
+; 0000 0033     PORTC.2=0;
 	CBI  0x15,2
-; 0000 002E   }                                            // Same as byte 4 on page 2
-; 0000 002F   //MCUCR &= ~(1<<IVSEL);
-; 0000 0030   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
-_0x6:
+; 0000 0034   }                                            // Same as byte 4 on page 2
+; 0000 0035   //MCUCR &= ~(1<<IVSEL);
+; 0000 0036   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
+_0xD:
 	RCALL SUBOPT_0x0
 	RCALL SUBOPT_0x1
-; 0000 0031   if(testChar==0x00)
+; 0000 0037   if(testChar==0x00)
 	LDS  R30,_testChar_S0000000000
 	CPI  R30,0
-	BRNE _0x9
-; 0000 0032   {
-; 0000 0033       ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x10
+; 0000 0038   {
+; 0000 0039       ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x3
 	RCALL SUBOPT_0x2
-; 0000 0034       if(testChar==0x01)
+; 0000 003A       if(testChar==0x01)
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0x1)
-	BRNE _0xA
-; 0000 0035         ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x11
+; 0000 003B         ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x100
 	RCALL SUBOPT_0x2
-; 0000 0036         if(testChar==0xFE)
-_0xA:
+; 0000 003C         if(testChar==0xFE)
+_0x11:
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0xFE)
-	BRNE _0xB
-; 0000 0037             ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x12
+; 0000 003D             ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x101
 	RCALL SUBOPT_0x2
-; 0000 0038             if(testChar==0xFF)
-_0xB:
+; 0000 003E             if(testChar==0xFF)
+_0x12:
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0xFF)
-	BRNE _0xC
-; 0000 0039               while(1)
-_0xD:
-; 0000 003A               {
-; 0000 003B                   PORTC.0=0;
-	CBI  0x15,0
-; 0000 003C                   delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 003D                   PORTC.0=1;
-	SBI  0x15,0
-; 0000 003E                   delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 003F               }
-	RJMP _0xD
-; 0000 0040   }
-_0xC:
-; 0000 0041 
-; 0000 0042   while(1)
-_0x9:
+	BRNE _0x13
+; 0000 003F               while(1)
 _0x14:
-; 0000 0043   {
-; 0000 0044       PORTC.1=0;
-	CBI  0x15,1
-; 0000 0045       delay_ms(500);
+; 0000 0040               {
+; 0000 0041                   PORTC.0=0;
+	CBI  0x15,0
+; 0000 0042                   delay_ms(500);
 	RCALL SUBOPT_0x3
-; 0000 0046       PORTC.1=1;
-	SBI  0x15,1
-; 0000 0047       delay_ms(500);
+; 0000 0043                   PORTC.0=1;
+	SBI  0x15,0
+; 0000 0044                   delay_ms(500);
 	RCALL SUBOPT_0x3
-; 0000 0048   }
+; 0000 0045               }
 	RJMP _0x14
-; 0000 0049   //}
-; 0000 004A }
+; 0000 0046   }
+_0x13:
+; 0000 0047 
+; 0000 0048   while(1)
+_0x10:
 _0x1B:
+; 0000 0049   {
+; 0000 004A       PORTC.1=0;
+	CBI  0x15,1
+; 0000 004B       delay_ms(500);
+	RCALL SUBOPT_0x3
+; 0000 004C       PORTC.1=1;
+	SBI  0x15,1
+; 0000 004D       delay_ms(500);
+	RCALL SUBOPT_0x3
+; 0000 004E   }
 	RJMP _0x1B
+; 0000 004F   //}
+; 0000 0050 }
+_0x22:
+	RJMP _0x22
 ; .FEND
 ;// This file has been prepared for Doxygen automatic documentation generation.
 ;/*! \file ********************************************************************
@@ -2392,7 +2407,7 @@ _delay_ms:
 	adiw r26,0
 	breq __delay_ms1
 __delay_ms0:
-	__DELAY_USW 0x7D0
+	__DELAY_USW 0x3E8
 	wdr
 	sbiw r26,1
 	brne __delay_ms0
