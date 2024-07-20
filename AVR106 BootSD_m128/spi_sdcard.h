@@ -51,6 +51,6 @@ unsigned char SD_sendApp();
 unsigned char SD_sendOpCond();
 unsigned char SD_init();
 unsigned char SD_readSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token);
-
+unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token);
 
 #endif

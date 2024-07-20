@@ -18,7 +18,7 @@ OutputListFilesDirectory=Release\List
 OutputObjectFilesDirectory=Release
 OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Exe
-AllowDisplayFunctionCallTree=0
+AllowDisplayFunctionCallTree=1
 CleanUp=2
 EditorPanelMode=0
 ActiveEditorPanel=0
@@ -36,12 +36,12 @@ PageIndex2=2
 OF3=Self_programming_main.c
 Active3=1
 EditorPanel3=0
-TimeStamp3=1349815900
+TimeStamp3=1492400693
 PageIndex3=3
 OF4=Debug\List\Self_programming.asm
 Active4=0
 EditorPanel4=0
-TimeStamp4=1349815900
+TimeStamp4=1492364843
 PageIndex4=4
 TimeStamp0=1345602999
 OF5=flash.c
@@ -169,8 +169,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1492364843
-Build=152
+COFFileTimeStamp=1492400694
+Build=154
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -272,7 +272,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=152
+Build=154
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -521,8 +521,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 152
-L18=3815 line(s) compiled
+L17=Build: 153
+L18=3819 line(s) compiled
 L19=No errors
 L20=7 warning(s)
 L21=
@@ -542,8 +542,8 @@ L34=Heap size: 0 byte(s)
 Lines=38
 L35=
 L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L37=Program size: 891 words (1782 bytes), 1.4% of FLASH
-L38=56 words (112 bytes), 5.9% reduced by Code Compression
+L37=Program size: 892 words (1784 bytes), 1.4% of FLASH
+L38=57 words (114 bytes), 6.0% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=10
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
@@ -552,7 +552,7 @@ L3=
 L4=ATmega128 memory use summary [bytes]:
 L5=Segment   Begin    End      Code   Data   Used    Size   Use%
 L6=---------------------------------------------------------------
-L7=[.cseg] 0x000000 0x0006f6   1764     18   1782  131072   1.4%
+L7=[.cseg] 0x000000 0x0006f8   1766     18   1784  131072   1.4%
 L8=[.dseg] 0x000100 0x000565      0      1      1    4096   0.0%
 L9=[.eseg] 0x000000 0x000111      0    263    263    4096   6.4%
 L10=
@@ -596,7 +596,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1492340149
+TimeStamp=1492400869
 [Bookmarks2]
 TimeStamp=1349762251
 Row=116
@@ -684,7 +684,7 @@ BK9=-1
 [FoldedCode1]
 Blocks=0
 [Bookmarks7]
-TimeStamp=1349815900
+TimeStamp=1492400694
 Row=0
 Column=0
 ScrollPosX=0
@@ -700,11 +700,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1349815900
-Row=43
-Column=24
+TimeStamp=1492400693
+Row=47
+Column=16
 ScrollPosX=0
-ScrollPosY=24
+ScrollPosY=18
 BK0=-1
 BK1=-1
 BK2=-1
@@ -825,14 +825,6 @@ BK8=-1
 BK9=-1
 [FoldedCode14]
 Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode2]
-Blocks=0
-[FoldedCode7]
-Blocks=0
-[FoldedCode3]
-Blocks=0
 [HeadersList]
 Files=2
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming_main.c
@@ -850,3 +842,11 @@ F1=C:\cvavr\inc\io.h
 F2=C:\cvavr\inc\mega128.h
 F3=C:\cvavr\inc\mega128_bits.h
 F4=Self_programming.h
+[FoldedCode8]
+Blocks=0
+[FoldedCode2]
+Blocks=0
+[FoldedCode7]
+Blocks=0
+[FoldedCode3]
+Blocks=0

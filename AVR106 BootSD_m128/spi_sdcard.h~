@@ -39,7 +39,7 @@
 void SPI_init();
 unsigned char SPI_transfer(unsigned char data);
 void SD_powerUpSeq();
-void SD_command(unsigned char cmd, unsigned long arg, unsigned char crc);
+unsigned char SD_command(unsigned char cmd, unsigned long arg, unsigned char crc);
 
 unsigned char SD_readRes1();
 unsigned char SD_goIdleState();
@@ -51,6 +51,6 @@ unsigned char SD_sendApp();
 unsigned char SD_sendOpCond();
 unsigned char SD_init();
 unsigned char SD_readSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token);
-
+unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token)
 
 #endif

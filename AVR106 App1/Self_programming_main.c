@@ -37,13 +37,17 @@ void main( void ){
   int index;       
   DDRC=0xFF;
   PORTC=0xFF;
-  while(1)
-  {
+  do
+    {
       PORTC.0=0;
-      delay_ms(250);
+      PORTC.1=0;
+      delay_ms(500);
+      PORTC.1=1;
       PORTC.0=1;
-      delay_ms(250);
-  } 
+      delay_ms(500);
+      PORTC=0xFC;
+    }
+  while(1); 
   for(index=0; index<PAGESIZE; index++){
     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF 
   }

@@ -315,10 +315,10 @@ unsigned char SD_readSingleBlock(unsigned long addr, unsigned char *buf, unsigne
     //SPI_transfer(0xFF);
 
     // send CMD17
-    SD_command(CMD17, addr, CMD17_CRC);
+    res1 = SD_command(CMD17, addr, CMD17_CRC);
 
     // read R1
-    res1 = SD_readRes1();
+    //res1 = SD_readRes1();
 
     // if response received from card
     if(res1 != 0xFF)
@@ -351,4 +351,75 @@ unsigned char SD_readSingleBlock(unsigned long addr, unsigned char *buf, unsigne
         return res1;
     else
         return SD_ERROR;
+}
+
+#define SD_BLOCK_LEN            512
+#define SD_START_TOKEN          0xFE
+#define CMD24_CRC           0x00
+#define CMD24                   24
+#define CMD24_ARG               0x00
+#define SD_MAX_WRITE_ATTEMPTS   3907
+/*******************************************************************************
+ Write single 512 byte block
+ token = 0x00 - busy timeout
+ token = 0x05 - data accepted
+ token = 0xFF - response timeout
+*******************************************************************************/
+
+unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token)
+{
+    unsigned char res1, read;
+    unsigned int i, readAttempts;
+    addr*=512UL;
+    // set token to none
+    *token = 0xFF;
+
+    // assert chip select
+    SPI_transfer(0xFF);
+    CS_ENABLE();
+    SPI_transfer(0xFF);
+
+    // send CMD24
+    SD_command(CMD24, addr, CMD24_CRC);
+
+    // read response
+    res1 = SD_readRes1();
+
+    // if no error
+    if(res1 == SD_READY)
+    {
+        // send start token
+        SPI_transfer(SD_START_TOKEN);
+
+        // write buffer to card
+        for(i = 0; i < SD_BLOCK_LEN; i++) SPI_transfer(buf[i]);
+
+        // wait for a response (timeout = 250ms)
+        readAttempts = 0;
+        while(++readAttempts != SD_MAX_WRITE_ATTEMPTS)
+            if((read = SPI_transfer(0xFF)) != 0xFF) { *token = 0xFF; break; }
+
+        // if data accepted
+        if((read & 0x1F) == 0x05)
+        {
+            // set token to data accepted
+            *token = 0x05;
+
+            // wait for write to finish (timeout = 250ms)
+            readAttempts = 0;
+            while(SPI_transfer(0xFF) == 0x00){
+                if(++readAttempts == SD_MAX_WRITE_ATTEMPTS){ 
+                    *token = 0x00; 
+                    break; 
+                } 
+            }
+        }
+    }
+
+    // deassert chip select
+    SPI_transfer(0xFF);
+    CS_DISABLE();
+    SPI_transfer(0xFF);
+
+    return res1;
 }

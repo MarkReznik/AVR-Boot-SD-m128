@@ -1305,39 +1305,41 @@ _main:
 	OUT  0x14,R30
 ; 0000 0027   PORTC=0xFF;
 	OUT  0x15,R30
-; 0000 0028   while(1)
-_0x3:
-; 0000 0029   {
+; 0000 0028   do
+_0x4:
+; 0000 0029     {
 ; 0000 002A       PORTC.0=0;
 	CBI  0x15,0
-; 0000 002B       delay_ms(250);
-	LDI  R26,LOW(250)
-	LDI  R27,0
-	CALL _delay_ms
-; 0000 002C       PORTC.0=1;
+; 0000 002B       PORTC.1=0;
+	RCALL SUBOPT_0x0
+; 0000 002C       delay_ms(500);
+; 0000 002D       PORTC.1=1;
+; 0000 002E       PORTC.0=1;
 	SBI  0x15,0
-; 0000 002D       delay_ms(250);
-	LDI  R26,LOW(250)
-	LDI  R27,0
-	CALL _delay_ms
-; 0000 002E   }
-	RJMP _0x3
-; 0000 002F   for(index=0; index<PAGESIZE; index++){
-_0xB:
+; 0000 002F       delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0030       PORTC=0xFC;
+	LDI  R30,LOW(252)
+	OUT  0x15,R30
+; 0000 0031     }
+; 0000 0032   while(1);
+	RJMP _0x4
+; 0000 0033   for(index=0; index<PAGESIZE; index++){
+_0xF:
 	__CPWRN 16,17,256
-	BRGE _0xC
-; 0000 0030     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF
+	BRGE _0x10
+; 0000 0034     testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF
 	MOVW R30,R16
 	MOVW R26,R28
 	ADD  R30,R26
 	ADC  R31,R27
 	ST   Z,R16
-; 0000 0031   }
+; 0000 0035   }
 	__ADDWRN 16,17,1
-	RJMP _0xB
-_0xC:
-; 0000 0032   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
-	RCALL SUBOPT_0x0
+	RJMP _0xF
+_0x10:
+; 0000 0036   if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
+	RCALL SUBOPT_0x2
 	MOVW R30,R28
 	ADIW R30,4
 	ST   -Y,R31
@@ -1346,77 +1348,75 @@ _0xC:
 	LDI  R27,HIGH(256)
 	RCALL _WriteFlashBytes
 	CPI  R30,0
-	BREQ _0xD
-; 0000 0033     PORTC.2=0;
+	BREQ _0x11
+; 0000 0037     PORTC.2=0;
 	CBI  0x15,2
-; 0000 0034   }                                            // Same as byte 4 on page 2
-; 0000 0035   //MCUCR &= ~(1<<IVSEL);
-; 0000 0036   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
-_0xD:
-	RCALL SUBOPT_0x0
-	RCALL SUBOPT_0x1
-; 0000 0037   if(testChar==0x00)
+; 0000 0038   }                                            // Same as byte 4 on page 2
+; 0000 0039   //MCUCR &= ~(1<<IVSEL);
+; 0000 003A   ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
+_0x11:
+	RCALL SUBOPT_0x2
+	RCALL SUBOPT_0x3
+; 0000 003B   if(testChar==0x00)
 	LDS  R30,_testChar_S0000000000
 	CPI  R30,0
-	BRNE _0x10
-; 0000 0038   {
-; 0000 0039       ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x14
+; 0000 003C   {
+; 0000 003D       ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x3
-	RCALL SUBOPT_0x2
-; 0000 003A       if(testChar==0x01)
+	RCALL SUBOPT_0x4
+; 0000 003E       if(testChar==0x01)
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0x1)
-	BRNE _0x11
-; 0000 003B         ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x15
+; 0000 003F         ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x100
-	RCALL SUBOPT_0x2
-; 0000 003C         if(testChar==0xFE)
-_0x11:
+	RCALL SUBOPT_0x4
+; 0000 0040         if(testChar==0xFE)
+_0x15:
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0xFE)
-	BRNE _0x12
-; 0000 003D             ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
+	BRNE _0x16
+; 0000 0041             ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
 	__GETD1N 0x101
-	RCALL SUBOPT_0x2
-; 0000 003E             if(testChar==0xFF)
-_0x12:
+	RCALL SUBOPT_0x4
+; 0000 0042             if(testChar==0xFF)
+_0x16:
 	LDS  R26,_testChar_S0000000000
 	CPI  R26,LOW(0xFF)
-	BRNE _0x13
-; 0000 003F               while(1)
-_0x14:
-; 0000 0040               {
-; 0000 0041                   PORTC.0=0;
+	BRNE _0x17
+; 0000 0043               while(1)
+_0x18:
+; 0000 0044               {
+; 0000 0045                   PORTC.0=0;
 	CBI  0x15,0
-; 0000 0042                   delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 0043                   PORTC.0=1;
+; 0000 0046                   delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0047                   PORTC.0=1;
 	SBI  0x15,0
-; 0000 0044                   delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 0045               }
-	RJMP _0x14
-; 0000 0046   }
-_0x13:
-; 0000 0047 
-; 0000 0048   while(1)
-_0x10:
-_0x1B:
-; 0000 0049   {
-; 0000 004A       PORTC.1=0;
-	CBI  0x15,1
-; 0000 004B       delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 004C       PORTC.1=1;
-	SBI  0x15,1
-; 0000 004D       delay_ms(500);
-	RCALL SUBOPT_0x3
-; 0000 004E   }
-	RJMP _0x1B
-; 0000 004F   //}
-; 0000 0050 }
-_0x22:
-	RJMP _0x22
+; 0000 0048                   delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0049               }
+	RJMP _0x18
+; 0000 004A   }
+_0x17:
+; 0000 004B 
+; 0000 004C   while(1)
+_0x14:
+_0x1F:
+; 0000 004D   {
+; 0000 004E       PORTC.1=0;
+	RCALL SUBOPT_0x0
+; 0000 004F       delay_ms(500);
+; 0000 0050       PORTC.1=1;
+; 0000 0051       delay_ms(500);
+	RCALL SUBOPT_0x1
+; 0000 0052   }
+	RJMP _0x1F
+; 0000 0053   //}
+; 0000 0054 }
+_0x26:
+	RJMP _0x26
 ; .FEND
 ;// This file has been prepared for Doxygen automatic documentation generation.
 ;/*! \file ********************************************************************
@@ -1504,9 +1504,9 @@ _ReadFlashByte:
 ; 0001 0044   flashStartAdr;//+=ADR_LIMIT_LOW;
 	CALL __PUTPARD2
 ;	flashStartAdr -> Y+0
-	RCALL SUBOPT_0x4
+	RCALL SUBOPT_0x5
 ; 0001 0045   return (unsigned char)*((MyFlashCharPointer)flashStartAdr);
-	RCALL SUBOPT_0x4
+	RCALL SUBOPT_0x5
 	__GETBRPF 30
 	RJMP _0x2000001
 ; 0001 0046 //#pragma diag_default=Pe1053 // Back to default.
@@ -1525,13 +1525,13 @@ _ReadFlashPage:
 ; .FSTART _ReadFlashPage
 ; 0001 0050   unsigned int index;
 ; 0001 0051   flashStartAdr;//+=ADR_LIMIT_LOW;
-	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 ;	flashStartAdr -> Y+4
 ;	*dataPage -> Y+2
 ;	index -> R16,R17
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 ; 0001 0052   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 	CPI  R30,0
 	BRNE _0x20003
 ; 0001 0053     for(index = 0; index < PAGESIZE; index++){
@@ -1547,7 +1547,7 @@ _0x20005:
 	ADC  R31,R27
 	PUSH R31
 	PUSH R30
-	RCALL SUBOPT_0x7
+	RCALL SUBOPT_0x8
 	POP  R26
 	POP  R27
 	ST   X,R30
@@ -1577,7 +1577,7 @@ _ReadFlashBytes:
 ; .FSTART _ReadFlashBytes
 ; 0001 005D   	unsigned int index;
 ; 0001 005E   	flashStartAdr+=ADR_LIMIT_LOW;
-	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 ;	flashStartAdr -> Y+6
 ;	*dataPage -> Y+4
 ;	length -> Y+2
@@ -1628,11 +1628,11 @@ _VerifyFlashPage:
 ; .FSTART _VerifyFlashPage
 ; 0001 0065   unsigned int index;
 ; 0001 0066   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
-	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 ;	flashStartAdr -> Y+4
 ;	*dataPage -> Y+2
 ;	index -> R16,R17
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 	CPI  R30,0
 	BRNE _0x2000B
 ; 0001 0067     for(index = 0; index < PAGESIZE; index++){
@@ -1648,7 +1648,7 @@ _0x2000D:
 	ADC  R27,R31
 	LD   R30,X
 	PUSH R30
-	RCALL SUBOPT_0x7
+	RCALL SUBOPT_0x8
 	POP  R26
 	CP   R30,R26
 	BREQ _0x2000F
@@ -1706,27 +1706,27 @@ _WriteFlashBytes:
 ;	lengthStart -> R16,R17
 ;	lengthIndex -> R18,R19
 _0x20015:
-	RCALL SUBOPT_0x8
+	RCALL SUBOPT_0x9
 	SBIW R30,0
 	BRNE PC+2
 	RJMP _0x20017
 ; 0001 007B     {
 ; 0001 007C         flashAdrStart= flashAdr-(flashAdr%PAGESIZE);//0x1F0-(0x1F0%0x100)=0x0100                        //
-	RCALL SUBOPT_0x9
 	RCALL SUBOPT_0xA
+	RCALL SUBOPT_0xB
 	CALL __SUBD21
 	__PUTD2S 8
 ; 0001 007D         flashAdrNext = flashAdrStart+PAGESIZE;          //0x0100+0x100=0x200
-	RCALL SUBOPT_0xB
+	RCALL SUBOPT_0xC
 	__ADDD1N 256
 	__PUTD1S 4
 ; 0001 007E         if((flashAdrNext - flashAdr) >= length)    //enough space case
-	RCALL SUBOPT_0xA
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0xB
+	RCALL SUBOPT_0x7
 	CALL __SUBD12
 	MOVW R26,R30
 	MOVW R24,R22
-	RCALL SUBOPT_0x8
+	RCALL SUBOPT_0x9
 	CLR  R22
 	CLR  R23
 	CALL __CPD21
@@ -1750,14 +1750,14 @@ _0x20018:
 	SBC  R31,R27
 	MOVW R16,R30
 ; 0001 0086            length-=lengthStart;                         //len2=0x20-0x10=0x10
-	RCALL SUBOPT_0x8
+	RCALL SUBOPT_0x9
 	SUB  R30,R16
 	SBC  R31,R17
 	__PUTW1SX 268
 ; 0001 0087         }
 _0x20019:
 ; 0001 0088         if(ReadFlashPage(flashAdrStart,tempBuffer)==FALSE) //read flash page to tempBuffer
-	RCALL SUBOPT_0xB
+	RCALL SUBOPT_0xC
 	CALL __PUTPARD1
 	MOVW R26,R28
 	ADIW R26,16
@@ -1777,7 +1777,7 @@ _0x2001A:
 	ANDI R31,HIGH(0xFF)
 	MOVW R18,R30
 _0x2001E:
-	RCALL SUBOPT_0x9
+	RCALL SUBOPT_0xA
 	MOVW R26,R30
 	MOVW R24,R22
 	MOVW R30,R16
@@ -1814,10 +1814,10 @@ _0x2001E:
 	RJMP _0x2001E
 _0x2001F:
 ; 0001 0091         flashAdr=flashAdrNext;
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 	__PUTD1SX 272
 ; 0001 0092         if(WriteFlashPage(flashAdrStart+ADR_LIMIT_LOW,tempBuffer)==FALSE) //write tempBuffer to flash page
-	RCALL SUBOPT_0xB
+	RCALL SUBOPT_0xC
 	__ADDD1N 57344
 	CALL __PUTPARD1
 	MOVW R26,R28
@@ -1938,15 +1938,15 @@ _WriteFlashPage:
 ;	eepromInterruptSettings -> R19
 ;	saveSREG -> R18
 ;	pageAdr -> Y+4
-	RCALL SUBOPT_0xC
-; 0001 00E5   if( AddressCheck(flashStartAdr) ){
 	RCALL SUBOPT_0xD
+; 0001 00E5   if( AddressCheck(flashStartAdr) ){
+	RCALL SUBOPT_0xE
 	RCALL _AddressCheck
 	CPI  R30,0
 	BRNE PC+2
 	RJMP _0x20031
 ; 0001 00E6     if(eepromBackup(flashStartAdr,PAGESIZE,dataPage)==0)
-	RCALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	CALL __PUTPARD1
 	LDI  R30,LOW(256)
 	LDI  R31,HIGH(256)
@@ -1997,7 +1997,7 @@ _0x20033:
 ; 0001 0100 
 ; 0001 0101     //debug
 ; 0001 0102     _PAGE_ERASE(flashStartAdr);
-	RCALL SUBOPT_0xD
+	RCALL SUBOPT_0xE
 	MOVW R30,R8
 	ICALL
 ; 0001 0103 
@@ -2036,11 +2036,11 @@ _0x20037:
 	RJMP _0x20037
 _0x20038:
 ; 0001 0107     _PAGE_WRITE(flashStartAdr);
-	RCALL SUBOPT_0xD
+	RCALL SUBOPT_0xE
 	MOVW R30,R6
 	ICALL
 ; 0001 0108     if(VerifyFlashPage(flashStartAdr,dataPage)==FALSE)
-	RCALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	CALL __PUTPARD1
 	LDD  R26,Y+12
 	LDD  R27,Y+12+1
@@ -2096,7 +2096,7 @@ _eepromBackup:
 ;	flashStartAdr -> Y+4
 ;	length -> Y+2
 ;	*data -> Y+0
-	RCALL SUBOPT_0x6
+	RCALL SUBOPT_0x7
 	LDI  R26,LOW(__EepromBackup)
 	LDI  R27,HIGH(__EepromBackup)
 	CALL __EEPROMWRD
@@ -2120,7 +2120,7 @@ _0x2003C:
 	ADD  R30,R26
 	ADC  R31,R27
 	MOVW R0,R30
-	RCALL SUBOPT_0xE
+	RCALL SUBOPT_0xF
 	MOVW R26,R0
 	CALL __EEPROMWRB
 ; 0001 0124          if(_EepromBackup.data[length-1]!=data[length-1])
@@ -2132,7 +2132,7 @@ _0x2003C:
 	ADC  R27,R31
 	CALL __EEPROMRDB
 	MOV  R0,R30
-	RCALL SUBOPT_0xE
+	RCALL SUBOPT_0xF
 	CP   R30,R0
 	BREQ _0x2003E
 ; 0001 0125          {
@@ -2228,7 +2228,7 @@ _AddressCheck:
 	BRLO _0x20040
 	__CPD2N 0x1E000
 	BRSH _0x20040
-	RCALL SUBOPT_0x4
+	RCALL SUBOPT_0x5
 	CPI  R30,0
 	BREQ _0x20041
 _0x20040:
@@ -2306,12 +2306,27 @@ __EepromBackup:
 	.CSEG
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
 SUBOPT_0x0:
+	CBI  0x15,1
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	CALL _delay_ms
+	SBI  0x15,1
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0x1:
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	JMP  _delay_ms
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+SUBOPT_0x2:
 	__GETD1N 0x2
 	CALL __PUTPARD1
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
-SUBOPT_0x1:
+SUBOPT_0x3:
 	LDI  R30,LOW(_testChar_S0000000000)
 	LDI  R31,HIGH(_testChar_S0000000000)
 	ST   -Y,R31
@@ -2321,23 +2336,17 @@ SUBOPT_0x1:
 	RJMP _ReadFlashBytes
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x2:
+SUBOPT_0x4:
 	CALL __PUTPARD1
-	RJMP SUBOPT_0x1
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0x3:
-	LDI  R26,LOW(500)
-	LDI  R27,HIGH(500)
-	JMP  _delay_ms
+	RJMP SUBOPT_0x3
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x4:
+SUBOPT_0x5:
 	CALL __GETD1S0
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x5:
+SUBOPT_0x6:
 	ST   -Y,R27
 	ST   -Y,R26
 	ST   -Y,R17
@@ -2345,12 +2354,12 @@ SUBOPT_0x5:
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:7 WORDS
-SUBOPT_0x6:
+SUBOPT_0x7:
 	__GETD1S 4
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:6 WORDS
-SUBOPT_0x7:
+SUBOPT_0x8:
 	MOVW R30,R16
 	__GETD2S 4
 	CLR  R22
@@ -2359,38 +2368,38 @@ SUBOPT_0x7:
 	RJMP _ReadFlashByte
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:5 WORDS
-SUBOPT_0x8:
+SUBOPT_0x9:
 	__GETW1SX 268
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:7 WORDS
-SUBOPT_0x9:
+SUBOPT_0xA:
 	__GETD1SX 272
 	__ANDD1N 0xFF
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0xA:
+SUBOPT_0xB:
 	__GETD2SX 272
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0xB:
+SUBOPT_0xC:
 	__GETD1S 8
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0xC:
+SUBOPT_0xD:
 	__GETD1S 10
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0xD:
+SUBOPT_0xE:
 	__GETD2S 10
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0xE:
+SUBOPT_0xF:
 	LDD  R30,Y+2
 	LDD  R31,Y+2+1
 	SBIW R30,1
