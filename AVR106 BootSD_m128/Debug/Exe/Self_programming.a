@@ -274,12 +274,10 @@
 ;PCODE: $00000085 VOL: 0
 ; 0000 006F     #asm("cli");
 ;PCODE: $00000086 VOL: 0
-	cli
-;PCODE: $00000087 VOL: 0
 ; 0000 0070     pageAdr=flashAddr & ~(PAGESIZE-1);      // Gets Flash page address from byte address
+;PCODE: $00000087 VOL: 0
 ;PCODE: $00000088 VOL: 0
 ;PCODE: $00000089 VOL: 0
-;PCODE: $0000008A VOL: 0
 ; 0000 0071 
 ; 0000 0072     #ifdef __FLASH_RECOVER
 ; 0000 0073     FlashBackup.status=0;                   // Inicate that Flash buffer does
@@ -295,15 +293,15 @@
 ; 0000 007D     #endif
 ; 0000 007E 
 ; 0000 007F     LpmReplaceSpm(flashAddr, data);         // Fills Flash write buffer
+;PCODE: $0000008A VOL: 0
 ;PCODE: $0000008B VOL: 0
 ;PCODE: $0000008C VOL: 0
 ;PCODE: $0000008D VOL: 0
-;PCODE: $0000008E VOL: 0
 ; 0000 0080 
 ; 0000 0081 
 ; 0000 0082     WriteBufToFlash(pageAdr);               // Writes to Flash
+;PCODE: $0000008E VOL: 0
 ;PCODE: $0000008F VOL: 0
-;PCODE: $00000090 VOL: 0
 ; 0000 0083 
 ; 0000 0084     #ifdef __FLASH_RECOVER
 ; 0000 0085     FlashBackup.status = 0;                 // Indicates that Flash recovery buffer
@@ -312,34 +310,35 @@
 ; 0000 0088     #endif
 ; 0000 0089 
 ; 0000 008A     EECR |= eepromInterruptSettings;        // Restore EEPROM interrupt mask
+;PCODE: $00000090 VOL: 0
 ;PCODE: $00000091 VOL: 0
 ;PCODE: $00000092 VOL: 0
-;PCODE: $00000093 VOL: 0
 ; 0000 008B     SREG = sregSettings;
+;PCODE: $00000093 VOL: 0
 ;PCODE: $00000094 VOL: 0
-;PCODE: $00000095 VOL: 0
 ; 0000 008C     return TRUE;                            // Return TRUE if address
+;PCODE: $00000095 VOL: 0
 ;PCODE: $00000096 VOL: 0
 ;PCODE: $00000097 VOL: 0
 ;PCODE: $00000098 VOL: 0
 ;PCODE: $00000099 VOL: 0
 ;PCODE: $0000009A VOL: 0
 ;PCODE: $0000009B VOL: 0
-;PCODE: $0000009C VOL: 0
 ; 0000 008D                                             // valid for writing
 ; 0000 008E   }
 ; 0000 008F   else
-;PCODE: $0000009D VOL: 0
+;PCODE: $0000009C VOL: 0
 ; 0000 0090     return FALSE;                           // Return FALSE if address not
+;PCODE: $0000009D VOL: 0
 ;PCODE: $0000009E VOL: 0
 ;PCODE: $0000009F VOL: 0
 ;PCODE: $000000A0 VOL: 0
 ;PCODE: $000000A1 VOL: 0
 ;PCODE: $000000A2 VOL: 0
 ;PCODE: $000000A3 VOL: 0
-;PCODE: $000000A4 VOL: 0
 ; 0000 0091                                             // valid for writing
 ; 0000 0092 }
+;PCODE: $000000A4 VOL: 0
 ;PCODE: $000000A5 VOL: 0
 ;PCODE: $000000A6 VOL: 0
 ;PCODE: $000000A7 VOL: 0
@@ -347,7 +346,6 @@
 ;PCODE: $000000A9 VOL: 0
 ;PCODE: $000000AA VOL: 0
 ;PCODE: $000000AB VOL: 0
-;PCODE: $000000AC VOL: 0
 ;
 ;/*!
 ;* The function writes data from array dataPage[] to Flash page address
@@ -357,44 +355,42 @@
 ;**/
 ;unsigned char WriteFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage)
 ; 0000 009B {
+;PCODE: $000000AC VOL: 0
 ;PCODE: $000000AD VOL: 0
-;PCODE: $000000AE VOL: 0
 ; 0000 009C   unsigned int index;
 ; 0000 009D   unsigned char eepromInterruptSettings,sregSettings;
 ; 0000 009E   if( AddressCheck(flashStartAdr) ){
+;PCODE: $000000AE VOL: 0
 ;PCODE: $000000AF VOL: 0
-;PCODE: $000000B0 VOL: 0
 ;	flashStartAdr -> Y+6
 ;	*dataPage -> Y+4
 ;	index -> R16,R17
 ;	eepromInterruptSettings -> R19
 ;	sregSettings -> R18
+;PCODE: $000000B0 VOL: 0
 ;PCODE: $000000B1 VOL: 0
 ;PCODE: $000000B2 VOL: 0
 ;PCODE: $000000B3 VOL: 0
-;PCODE: $000000B4 VOL: 0
 ; 0000 009F     eepromInterruptSettings = EECR & (1<<EERIE); // Stoes EEPROM interrupt mask
+;PCODE: $000000B4 VOL: 0
 ;PCODE: $000000B5 VOL: 0
 ;PCODE: $000000B6 VOL: 0
-;PCODE: $000000B7 VOL: 0
 ; 0000 00A0     EECR &= ~(1<<EERIE);                    // Disable EEPROM interrupt
+;PCODE: $000000B7 VOL: 0
 ;PCODE: $000000B8 VOL: 0
-;PCODE: $000000B9 VOL: 0
 ; 0000 00A1     while(EECR & (1<<EEWE));                // Wait if ongoing EEPROM write
+;PCODE: $000000B9 VOL: 0
 ;PCODE: $000000BA VOL: 0
 ;PCODE: $000000BB VOL: 0
 ;PCODE: $000000BC VOL: 0
 ;PCODE: $000000BD VOL: 0
 ;PCODE: $000000BE VOL: 0
-;PCODE: $000000BF VOL: 0
 ; 0000 00A2 
 ; 0000 00A3     sregSettings= SREG;
+;PCODE: $000000BF VOL: 0
 ;PCODE: $000000C0 VOL: 0
-;PCODE: $000000C1 VOL: 0
 ; 0000 00A4     #asm("cli");
-;PCODE: $000000C2 VOL: 0
-	cli
-;PCODE: $000000C3 VOL: 0
+;PCODE: $000000C1 VOL: 0
 ; 0000 00A5 
 ; 0000 00A6     #ifdef __FLASH_RECOVER
 ; 0000 00A7     FlashBackup.status=0;                   // Inicate that Flash buffer does
@@ -420,38 +416,40 @@
 ; 0000 00BB     #endif
 ; 0000 00BC 
 ; 0000 00BD     if(index==0xFFF1)
+;PCODE: $000000C2 VOL: 0
+;PCODE: $000000C3 VOL: 0
 ;PCODE: $000000C4 VOL: 0
-;PCODE: $000000C5 VOL: 0
-;PCODE: $000000C6 VOL: 0
 ; 0000 00BE     {
 ; 0000 00BF         __AddrToZ24WordToR1R0ByteToSPMCR_SPM_F(0,0);
+;PCODE: $000000C5 VOL: 0
+;PCODE: $000000C6 VOL: 0
 ;PCODE: $000000C7 VOL: 0
 ;PCODE: $000000C8 VOL: 0
 ;PCODE: $000000C9 VOL: 0
+; 0000 00C0         __AddrToZ24ByteToSPMCR_SPM_W((void flash *)0x1EF00);
 ;PCODE: $000000CA VOL: 0
 ;PCODE: $000000CB VOL: 0
-; 0000 00C0         __AddrToZ24ByteToSPMCR_SPM_W((void flash *)0x1EF00);
+; 0000 00C1         __AddrToZ24ByteToSPMCR_SPM_E((void flash *)0x1EF00);
 ;PCODE: $000000CC VOL: 0
 ;PCODE: $000000CD VOL: 0
-; 0000 00C1         __AddrToZ24ByteToSPMCR_SPM_E((void flash *)0x1EF00);
+; 0000 00C2         __AddrToZ24ByteToSPMCR_SPM_EW((void flash *)0x1EF00);
 ;PCODE: $000000CE VOL: 0
 ;PCODE: $000000CF VOL: 0
-; 0000 00C2         __AddrToZ24ByteToSPMCR_SPM_EW((void flash *)0x1EF00);
-;PCODE: $000000D0 VOL: 0
-;PCODE: $000000D1 VOL: 0
 ; 0000 00C3     }
 ; 0000 00C4     _WAIT_FOR_SPM();
+;PCODE: $000000D0 VOL: 0
+;PCODE: $000000D1 VOL: 0
 ;PCODE: $000000D2 VOL: 0
 ;PCODE: $000000D3 VOL: 0
 ;PCODE: $000000D4 VOL: 0
 ;PCODE: $000000D5 VOL: 0
 ;PCODE: $000000D6 VOL: 0
-;PCODE: $000000D7 VOL: 0
-;PCODE: $000000D8 VOL: 0
 ; 0000 00C5     //_PAGE_ERASE( flashStartAdr );
 ; 0000 00C6     //_ENABLE_RWW_SECTION();
 ; 0000 00C7 
 ; 0000 00C8     for(index = 0; index < PAGESIZE; index+=2){ // Fills Flash write buffer
+;PCODE: $000000D7 VOL: 0
+;PCODE: $000000D8 VOL: 0
 ;PCODE: $000000D9 VOL: 0
 ;PCODE: $000000DA VOL: 0
 ;PCODE: $000000DB VOL: 0
@@ -459,11 +457,11 @@
 ;PCODE: $000000DD VOL: 0
 ;PCODE: $000000DE VOL: 0
 ;PCODE: $000000DF VOL: 0
-;PCODE: $000000E0 VOL: 0
-;PCODE: $000000E1 VOL: 0
 ; 0000 00C9       //_WAIT_FOR_SPM();
 ; 0000 00CA       //MY_FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
 ; 0000 00CB       _FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
+;PCODE: $000000E0 VOL: 0
+;PCODE: $000000E1 VOL: 0
 ;PCODE: $000000E2 VOL: 0
 ;PCODE: $000000E3 VOL: 0
 ;PCODE: $000000E4 VOL: 0
@@ -479,18 +477,16 @@
 ;PCODE: $000000EE VOL: 0
 ;PCODE: $000000EF VOL: 0
 ;PCODE: $000000F0 VOL: 0
+; 0000 00CC     }
 ;PCODE: $000000F1 VOL: 0
 ;PCODE: $000000F2 VOL: 0
-; 0000 00CC     }
 ;PCODE: $000000F3 VOL: 0
 ;PCODE: $000000F4 VOL: 0
 ;PCODE: $000000F5 VOL: 0
-;PCODE: $000000F6 VOL: 0
-;PCODE: $000000F7 VOL: 0
 ; 0000 00CD     //_PAGE_WRITE( flashStartAdr );
 ; 0000 00CE     WriteBufToFlash(flashStartAdr);         // Writes to Flash
-;PCODE: $000000F8 VOL: 0
-;PCODE: $000000F9 VOL: 0
+;PCODE: $000000F6 VOL: 0
+;PCODE: $000000F7 VOL: 0
 ; 0000 00CF     #ifdef __FLASH_RECOVER
 ; 0000 00D0       FlashBackup.status=0;                 // Inicate that Flash buffer does
 ; 0000 00D1                                             // not contain data for writing
@@ -498,33 +494,33 @@
 ; 0000 00D3     #endif
 ; 0000 00D4 
 ; 0000 00D5     EECR |= eepromInterruptSettings;        // Restore EEPROM interrupt mask
+;PCODE: $000000F8 VOL: 0
+;PCODE: $000000F9 VOL: 0
 ;PCODE: $000000FA VOL: 0
+; 0000 00D6     SREG = sregSettings;
 ;PCODE: $000000FB VOL: 0
 ;PCODE: $000000FC VOL: 0
-; 0000 00D6     SREG = sregSettings;
+; 0000 00D7     return TRUE;                            // Return TRUE if address
 ;PCODE: $000000FD VOL: 0
 ;PCODE: $000000FE VOL: 0
-; 0000 00D7     return TRUE;                            // Return TRUE if address
 ;PCODE: $000000FF VOL: 0
 ;PCODE: $00000100 VOL: 0
-;PCODE: $00000101 VOL: 0
-;PCODE: $00000102 VOL: 0
 ; 0000 00D8                                             // valid for writing
 ; 0000 00D9   }
 ; 0000 00DA   else
-;PCODE: $00000103 VOL: 0
+;PCODE: $00000101 VOL: 0
 ; 0000 00DB     return FALSE;                           // Return FALSE if not address not
+;PCODE: $00000102 VOL: 0
+;PCODE: $00000103 VOL: 0
 ;PCODE: $00000104 VOL: 0
 ;PCODE: $00000105 VOL: 0
-;PCODE: $00000106 VOL: 0
-;PCODE: $00000107 VOL: 0
 ; 0000 00DC                                             // valid for writing
 ; 0000 00DD }
+;PCODE: $00000106 VOL: 0
+;PCODE: $00000107 VOL: 0
 ;PCODE: $00000108 VOL: 0
 ;PCODE: $00000109 VOL: 0
 ;PCODE: $0000010A VOL: 0
-;PCODE: $0000010B VOL: 0
-;PCODE: $0000010C VOL: 0
 ;
 ;/*!
 ;* The function checks if global variable FlashBackup.status indicates that Flash recovery
@@ -535,8 +531,8 @@
 ;**/
 ;unsigned char RecoverFlash(){
 ; 0000 00E6 unsigned char RecoverFlash(){
-;PCODE: $0000010D VOL: 0
-;PCODE: $0000010E VOL: 0
+;PCODE: $0000010B VOL: 0
+;PCODE: $0000010C VOL: 0
 ; 0000 00E7 #ifdef __FLASH_RECOVER
 ; 0000 00E8   unsigned int index;
 ; 0000 00E9   unsigned long flashStartAdr = (MyAddressType)FlashBackup.pageNumber * PAGESIZE;
@@ -564,10 +560,10 @@
 ; 0000 00FF   }
 ; 0000 0100 #endif
 ; 0000 0101   return FALSE;
-;PCODE: $0000010F VOL: 0
-;PCODE: $00000110 VOL: 0
+;PCODE: $0000010D VOL: 0
+;PCODE: $0000010E VOL: 0
 ; 0000 0102 }
-;PCODE: $00000111 VOL: 0
+;PCODE: $0000010F VOL: 0
 ;
 ;
 ;/*!
@@ -581,8 +577,8 @@
 ;**/
 ;unsigned char AddressCheck(MyAddressType flashAdr){
 ; 0000 010E unsigned char AddressCheck(MyAddressType flashAdr){
-;PCODE: $00000112 VOL: 0
-;PCODE: $00000113 VOL: 0
+;PCODE: $00000110 VOL: 0
+;PCODE: $00000111 VOL: 0
 ; 0000 010F   #ifdef __FLASH_RECOVER
 ; 0000 0110   // The next line gives a warning 'pointless comparison with zero' if ADR_LIMIT_LOW is 0. Ignore it.
 ; 0000 0111   if( (flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) &&
@@ -592,8 +588,10 @@
 ; 0000 0115     return FALSE;                           // Address is not a valid page address
 ; 0000 0116   #else
 ; 0000 0117   if((flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) && !(flashAdr & (PAGESIZE-1) ) )
-;PCODE: $00000114 VOL: 0
+;PCODE: $00000112 VOL: 0
 ;	flashAdr -> Y+0
+;PCODE: $00000113 VOL: 0
+;PCODE: $00000114 VOL: 0
 ;PCODE: $00000115 VOL: 0
 ;PCODE: $00000116 VOL: 0
 ;PCODE: $00000117 VOL: 0
@@ -606,14 +604,12 @@
 ;PCODE: $0000011E VOL: 0
 ;PCODE: $0000011F VOL: 0
 ;PCODE: $00000120 VOL: 0
+; 0000 0118     return TRUE;                            // Address is a valid page address
 ;PCODE: $00000121 VOL: 0
 ;PCODE: $00000122 VOL: 0
-; 0000 0118     return TRUE;                            // Address is a valid page address
 ;PCODE: $00000123 VOL: 0
-;PCODE: $00000124 VOL: 0
-;PCODE: $00000125 VOL: 0
 ; 0000 0119   else
-;PCODE: $00000126 VOL: 0
+;PCODE: $00000124 VOL: 0
 ; 0000 011A   {
 ; 0000 011B     /*
 ; 0000 011C     while(1)
@@ -625,16 +621,16 @@
 ; 0000 0122     }
 ; 0000 0123     */
 ; 0000 0124     return FALSE;                           // Address is not a valid page address
+;PCODE: $00000125 VOL: 0
+;PCODE: $00000126 VOL: 0
 ;PCODE: $00000127 VOL: 0
-;PCODE: $00000128 VOL: 0
-;PCODE: $00000129 VOL: 0
 ; 0000 0125   }
-;PCODE: $0000012A VOL: 0
+;PCODE: $00000128 VOL: 0
 ; 0000 0126   #endif
 ; 0000 0127 }
+;PCODE: $00000129 VOL: 0
+;PCODE: $0000012A VOL: 0
 ;PCODE: $0000012B VOL: 0
-;PCODE: $0000012C VOL: 0
-;PCODE: $0000012D VOL: 0
 ;
 ;
 ;/*!
@@ -644,8 +640,8 @@
 ;
 ;void WriteBufToFlash(MyAddressType flashStartAdr) {
 ; 0000 012F void WriteBufToFlash(MyAddressType flashStartAdr) {
-;PCODE: $0000012E VOL: 0
-;PCODE: $0000012F VOL: 0
+;PCODE: $0000012C VOL: 0
+;PCODE: $0000012D VOL: 0
 ; 0000 0130     //_WAIT_FOR_SPM();
 ; 0000 0131     //MY_PAGE_ERASE( flashStartAdr );
 ; 0000 0132     //_PAGE_ERASE( flashStartAdr );
@@ -653,10 +649,10 @@
 ; 0000 0134     //_ENABLE_RWW_SECTION();
 ; 0000 0135     //MY_PAGE_WRITE( flashStartAdr );
 ; 0000 0136     _PAGE_WRITE( flashStartAdr );
-;PCODE: $00000130 VOL: 0
+;PCODE: $0000012E VOL: 0
 ;	flashStartAdr -> Y+0
-;PCODE: $00000131 VOL: 0
-;PCODE: $00000132 VOL: 0
+;PCODE: $0000012F VOL: 0
+;PCODE: $00000130 VOL: 0
 ; 0000 0137     //_WAIT_FOR_SPM();
 ; 0000 0138     //_ENABLE_RWW_SECTION();
 ; 0000 0139 /*
@@ -674,9 +670,9 @@
 ; 0000 0145 #pragma diag_default=Pe1053 // Back to default.
 ; 0000 0146 */
 ; 0000 0147 }
+;PCODE: $00000131 VOL: 0
+;PCODE: $00000132 VOL: 0
 ;PCODE: $00000133 VOL: 0
-;PCODE: $00000134 VOL: 0
-;PCODE: $00000135 VOL: 0
 ;
 ;/*!
 ;* The function reads Flash page given by flashAddr, replaces one byte given by
@@ -684,38 +680,40 @@
 ;**/
 ;void LpmReplaceSpm(MyAddressType flashAddr, unsigned char data){
 ; 0000 014D void LpmReplaceSpm(MyAddressType flashAddr, unsigned char data){
-;PCODE: $00000136 VOL: 0
-;PCODE: $00000137 VOL: 0
+;PCODE: $00000134 VOL: 0
+;PCODE: $00000135 VOL: 0
 ; 0000 014E //#pragma diag_suppress=Pe1053 // Suppress warning for conversion from long-type address to flash ptr.
 ; 0000 014F     unsigned int index, oddByte, pcWord;
 ; 0000 0150 
 ; 0000 0151     MyAddressType  pageAdr;
 ; 0000 0152     oddByte=(unsigned char)flashAddr & 1;
+;PCODE: $00000136 VOL: 0
+;PCODE: $00000137 VOL: 0
 ;PCODE: $00000138 VOL: 0
-;PCODE: $00000139 VOL: 0
-;PCODE: $0000013A VOL: 0
 ;	flashAddr -> Y+11
 ;	data -> Y+10
 ;	index -> R16,R17
 ;	oddByte -> R18,R19
 ;	pcWord -> R20,R21
 ;	pageAdr -> Y+6
+;PCODE: $00000139 VOL: 0
+;PCODE: $0000013A VOL: 0
 ;PCODE: $0000013B VOL: 0
 ;PCODE: $0000013C VOL: 0
+; 0000 0153     pcWord=(unsigned int)flashAddr & (PAGESIZE-2); // Used when writing FLASH temp buffer
 ;PCODE: $0000013D VOL: 0
 ;PCODE: $0000013E VOL: 0
-; 0000 0153     pcWord=(unsigned int)flashAddr & (PAGESIZE-2); // Used when writing FLASH temp buffer
 ;PCODE: $0000013F VOL: 0
+; 0000 0154     pageAdr=flashAddr & ~(PAGESIZE-1);        // Get FLASH page address from byte address
 ;PCODE: $00000140 VOL: 0
 ;PCODE: $00000141 VOL: 0
-; 0000 0154     pageAdr=flashAddr & ~(PAGESIZE-1);        // Get FLASH page address from byte address
 ;PCODE: $00000142 VOL: 0
-;PCODE: $00000143 VOL: 0
-;PCODE: $00000144 VOL: 0
 ; 0000 0155     //while( SPMCR_REG & (1<<SPMEN) );
 ; 0000 0156     //_ENABLE_RWW_SECTION();
 ; 0000 0157 
 ; 0000 0158     for(index=0; index < PAGESIZE; index+=2){
+;PCODE: $00000143 VOL: 0
+;PCODE: $00000144 VOL: 0
 ;PCODE: $00000145 VOL: 0
 ;PCODE: $00000146 VOL: 0
 ;PCODE: $00000147 VOL: 0
@@ -723,17 +721,17 @@
 ;PCODE: $00000149 VOL: 0
 ;PCODE: $0000014A VOL: 0
 ;PCODE: $0000014B VOL: 0
+; 0000 0159         if(index==pcWord){
 ;PCODE: $0000014C VOL: 0
 ;PCODE: $0000014D VOL: 0
-; 0000 0159         if(index==pcWord){
 ;PCODE: $0000014E VOL: 0
+; 0000 015A           if(oddByte){
 ;PCODE: $0000014F VOL: 0
 ;PCODE: $00000150 VOL: 0
-; 0000 015A           if(oddByte){
-;PCODE: $00000151 VOL: 0
-;PCODE: $00000152 VOL: 0
 ; 0000 015B             //MY_FILL_TEMP_WORD( index, (*(MyFlashCharPointer)(flashAddr & ~1) | ((unsigned int)data<<8)) );
 ; 0000 015C             _FILL_TEMP_WORD( index, (*(MyFlashCharPointer)(flashAddr & ~1) | ((unsigned int)data<<8)) );
+;PCODE: $00000151 VOL: 0
+;PCODE: $00000152 VOL: 0
 ;PCODE: $00000153 VOL: 0
 ;PCODE: $00000154 VOL: 0
 ;PCODE: $00000155 VOL: 0
@@ -743,14 +741,14 @@
 ;PCODE: $00000159 VOL: 0
 ;PCODE: $0000015A VOL: 0
 ;PCODE: $0000015B VOL: 0
-;PCODE: $0000015C VOL: 0
-;PCODE: $0000015D VOL: 0
 ; 0000 015D           }                                     // Write odd byte in temporary buffer
 ; 0000 015E           else{
-;PCODE: $0000015E VOL: 0
-;PCODE: $0000015F VOL: 0
+;PCODE: $0000015C VOL: 0
+;PCODE: $0000015D VOL: 0
 ; 0000 015F             //MY_FILL_TEMP_WORD( index, ( (*( (MyFlashCharPointer)flashAddr+1)<<8)  | data ) );
 ; 0000 0160             _FILL_TEMP_WORD( index, ( (*( (MyFlashCharPointer)flashAddr+1)<<8)  | data ) );
+;PCODE: $0000015E VOL: 0
+;PCODE: $0000015F VOL: 0
 ;PCODE: $00000160 VOL: 0
 ;PCODE: $00000161 VOL: 0
 ;PCODE: $00000162 VOL: 0
@@ -762,16 +760,16 @@
 ;PCODE: $00000168 VOL: 0
 ;PCODE: $00000169 VOL: 0
 ;PCODE: $0000016A VOL: 0
-;PCODE: $0000016B VOL: 0
-;PCODE: $0000016C VOL: 0
 ; 0000 0161           }                                     // Write even byte in temporary buffer
-;PCODE: $0000016D VOL: 0
+;PCODE: $0000016B VOL: 0
 ; 0000 0162         }
 ; 0000 0163         else{
-;PCODE: $0000016E VOL: 0
-;PCODE: $0000016F VOL: 0
+;PCODE: $0000016C VOL: 0
+;PCODE: $0000016D VOL: 0
 ; 0000 0164           //MY_FILL_TEMP_WORD(index, *( (MyFlashIntPointer)(pageAdr+index) ) );
 ; 0000 0165           _FILL_TEMP_WORD(index, *( (MyFlashIntPointer)(pageAdr+index) ) );
+;PCODE: $0000016E VOL: 0
+;PCODE: $0000016F VOL: 0
 ;PCODE: $00000170 VOL: 0
 ;PCODE: $00000171 VOL: 0
 ;PCODE: $00000172 VOL: 0
@@ -779,19 +777,17 @@
 ;PCODE: $00000174 VOL: 0
 ;PCODE: $00000175 VOL: 0
 ;PCODE: $00000176 VOL: 0
-;PCODE: $00000177 VOL: 0
-;PCODE: $00000178 VOL: 0
 ; 0000 0166         }                                       // Write Flash word directly to temporary buffer
-;PCODE: $00000179 VOL: 0
+;PCODE: $00000177 VOL: 0
 ; 0000 0167     }
+;PCODE: $00000178 VOL: 0
+;PCODE: $00000179 VOL: 0
 ;PCODE: $0000017A VOL: 0
 ;PCODE: $0000017B VOL: 0
 ;PCODE: $0000017C VOL: 0
-;PCODE: $0000017D VOL: 0
-;PCODE: $0000017E VOL: 0
 ; 0000 0168 //#pragma diag_default=Pe1053 // Back to default.
 ; 0000 0169 }
+;PCODE: $0000017D VOL: 0
+;PCODE: $0000017E VOL: 0
 ;PCODE: $0000017F VOL: 0
 ;PCODE: $00000180 VOL: 0
-;PCODE: $00000181 VOL: 0
-;PCODE: $00000182 VOL: 0

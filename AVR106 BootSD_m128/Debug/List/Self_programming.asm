@@ -1,6 +1,6 @@
 
-;CodeVisionAVR C Compiler V3.12 Advanced
-;(C) Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+;CodeVisionAVR C Compiler V3.32 Evaluation
+;(C) Copyright 1998-2017 Pavel Haiduc, HP InfoTech s.r.l.
 ;http://www.hpinfotech.com
 
 ;Build configuration    : Debug
@@ -18,7 +18,7 @@
 ;'char' is unsigned     : Yes
 ;8 bit enums            : Yes
 ;Global 'const' stored in FLASH: Yes
-;Enhanced function parameter passing: Yes
+;Enhanced function parameter passing: Mode 1
 ;Enhanced core instructions: On
 ;Automatic register allocation for global variables: On
 ;Smart register allocation: On
@@ -333,6 +333,13 @@ __DELAY_USW_LOOP:
 	.MACRO __POINTW2MN
 	LDI  R26,LOW(@0+(@1))
 	LDI  R27,HIGH(@0+(@1))
+	.ENDM
+
+	.MACRO __POINTD2M
+	LDI  R26,LOW(@0)
+	LDI  R27,HIGH(@0)
+	LDI  R24,BYTE3(@0)
+	LDI  R25,BYTE4(@0)
 	.ENDM
 
 	.MACRO __POINTW2FN
@@ -1256,7 +1263,7 @@ __GLOBAL_INI_END:
 	JMP  _main
 
 	.ESEG
-	.ORG 0
+	.ORG 0x00
 
 	.DSEG
 	.ORG 0x900
@@ -1357,9 +1364,9 @@ _ReadFlashByte:
 ; .FSTART _ReadFlashByte
 ; 0000 0049 //#pragma diag_suppress=Pe1053 // Suppress warning for conversion from long-type address to flash ptr.
 ; 0000 004A   return (unsigned char)*((MyFlashCharPointer)flashStartAdr);
-	CALL __PUTPARD2
+	RCALL __PUTPARD2
 ;	flashStartAdr -> Y+0
-	CALL SUBOPT_0x0
+	RCALL SUBOPT_0x0
 	__GETBRPF 30
 	JMP  _0x200000A
 ; 0000 004B //#pragma diag_default=Pe1053 // Back to default.
@@ -1405,7 +1412,7 @@ _0x5:
 	__GETD2S 4
 	CLR  R22
 	CLR  R23
-	CALL __ADDD21
+	RCALL __ADDD21
 	RCALL _ReadFlashByte
 	POP  R26
 	POP  R27
@@ -1499,17 +1506,16 @@ _WriteFlashPage:
 ; 0000 009E   if( AddressCheck(flashStartAdr) ){
 	ST   -Y,R27
 	ST   -Y,R26
-	CALL __SAVELOCR4
+	RCALL __SAVELOCR4
 ;	flashStartAdr -> Y+6
 ;	*dataPage -> Y+4
 ;	index -> R16,R17
 ;	eepromInterruptSettings -> R19
 ;	sregSettings -> R18
-	__GETD2S 6
+	RCALL SUBOPT_0x1
 	RCALL _AddressCheck
 	CPI  R30,0
-	BRNE PC+2
-	RJMP _0xD
+	BREQ _0xD
 ; 0000 009F     eepromInterruptSettings = EECR & (1<<EERIE); // Stoes EEPROM interrupt mask
 	IN   R30,0x1C
 	ANDI R30,LOW(0x8)
@@ -1524,7 +1530,7 @@ _0xE:
 ; 0000 00A3     sregSettings= SREG;
 	IN   R18,63
 ; 0000 00A4     #asm("cli");
-	cli
+	CLI
 ; 0000 00A5 
 ; 0000 00A6     #ifdef __FLASH_RECOVER
 ; 0000 00A7     FlashBackup.status=0;                   // Inicate that Flash buffer does
@@ -1557,19 +1563,19 @@ _0xE:
 	BRNE _0x11
 ; 0000 00BE     {
 ; 0000 00BF         __AddrToZ24WordToR1R0ByteToSPMCR_SPM_F(0,0);
-	CALL SUBOPT_0x1
+	RCALL SUBOPT_0x2
 	LDI  R26,LOW(0)
 	LDI  R27,0
-	CALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
+	RCALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
 ; 0000 00C0         __AddrToZ24ByteToSPMCR_SPM_W((void flash *)0x1EF00);
-	CALL SUBOPT_0x2
-	CALL ___AddrToZ24ByteToSPMCR_SPM_W
+	RCALL SUBOPT_0x3
+	RCALL ___AddrToZ24ByteToSPMCR_SPM_W
 ; 0000 00C1         __AddrToZ24ByteToSPMCR_SPM_E((void flash *)0x1EF00);
-	CALL SUBOPT_0x2
-	CALL ___AddrToZ24ByteToSPMCR_SPM_E
+	RCALL SUBOPT_0x3
+	RCALL ___AddrToZ24ByteToSPMCR_SPM_E
 ; 0000 00C2         __AddrToZ24ByteToSPMCR_SPM_EW((void flash *)0x1EF00);
-	CALL SUBOPT_0x2
-	CALL ___AddrToZ24ByteToSPMCR_SPM_EW
+	RCALL SUBOPT_0x3
+	RCALL ___AddrToZ24ByteToSPMCR_SPM_EW
 ; 0000 00C3     }
 ; 0000 00C4     _WAIT_FOR_SPM();
 _0x11:
@@ -1591,28 +1597,28 @@ _0x16:
 	MOVW R30,R16
 	CLR  R22
 	CLR  R23
-	CALL __PUTPARD1
+	RCALL __PUTPARD1
 	MOVW R30,R16
-	CALL SUBOPT_0x3
+	RCALL SUBOPT_0x4
 	LD   R0,X
 	CLR  R1
 	MOVW R30,R16
 	ADIW R30,1
-	CALL SUBOPT_0x3
+	RCALL SUBOPT_0x4
 	LD   R30,X
 	MOV  R31,R30
 	LDI  R30,0
 	MOVW R26,R0
 	ADD  R26,R30
 	ADC  R27,R31
-	CALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
+	RCALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
 ; 0000 00CC     }
 	__ADDWRN 16,17,2
 	RJMP _0x16
 _0x17:
 ; 0000 00CD     //_PAGE_WRITE( flashStartAdr );
 ; 0000 00CE     WriteBufToFlash(flashStartAdr);         // Writes to Flash
-	__GETD2S 6
+	RCALL SUBOPT_0x1
 	RCALL _WriteBufToFlash
 ; 0000 00CF     #ifdef __FLASH_RECOVER
 ; 0000 00D0       FlashBackup.status=0;                 // Inicate that Flash buffer does
@@ -1638,7 +1644,7 @@ _0xD:
 ; 0000 00DC                                             // valid for writing
 ; 0000 00DD }
 _0x200000C:
-	CALL __LOADLOCR4
+	RCALL __LOADLOCR4
 	ADIW R28,10
 	RET
 ; .FEND
@@ -1704,14 +1710,14 @@ _AddressCheck:
 ; 0000 0115     return FALSE;                           // Address is not a valid page address
 ; 0000 0116   #else
 ; 0000 0117   if((flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) && !(flashAdr & (PAGESIZE-1) ) )
-	CALL SUBOPT_0x4
+	RCALL SUBOPT_0x5
 ;	flashAdr -> Y+0
-	CALL __CPD20
+	RCALL __CPD20
 	BRLO _0x1A
-	CALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 	__CPD2N 0x1F000
 	BRSH _0x1A
-	CALL SUBOPT_0x0
+	RCALL SUBOPT_0x0
 	CPI  R30,0
 	BREQ _0x1B
 _0x1A:
@@ -1757,9 +1763,9 @@ _WriteBufToFlash:
 ; 0000 0134     //_ENABLE_RWW_SECTION();
 ; 0000 0135     //MY_PAGE_WRITE( flashStartAdr );
 ; 0000 0136     _PAGE_WRITE( flashStartAdr );
-	CALL SUBOPT_0x4
+	RCALL SUBOPT_0x5
 ;	flashStartAdr -> Y+0
-	CALL ___AddrToZ24ByteToSPMCR_SPM_EW
+	RCALL ___AddrToZ24ByteToSPMCR_SPM_EW
 ; 0000 0137     //_WAIT_FOR_SPM();
 ; 0000 0138     //_ENABLE_RWW_SECTION();
 ; 0000 0139 /*
@@ -2182,7 +2188,7 @@ _0x20030:
      //spm
 ; 0001 00D2 #endasm
 ; 0001 00D3 dospm();
-	CALL _dospm
+	RCALL _dospm
 ; 0001 00D4 }
 	JMP  _0x2000004
 ; .FEND
@@ -2207,7 +2213,7 @@ _0x20030:
 ___AddrToZ24ByteToSPMCR_SPM_W:
 ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_W
 ; 0001 00E5 _WAIT_FOR_SPM();
-	CALL __PUTPARD2
+	RCALL __PUTPARD2
 ;	*addr -> Y+0
 _0x20033:
 	LDS  R30,104
@@ -2230,7 +2236,7 @@ _0x20033:
      //spm
 ; 0001 00EE #endasm
 ; 0001 00EF dospmw();
-	CALL _dospmw
+	RCALL _dospmw
 ; 0001 00F0 }
 	JMP  _0x200000A
 ; .FEND
@@ -2240,7 +2246,7 @@ _0x20033:
 ___AddrToZ24ByteToSPMCR_SPM_E:
 ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_E
 ; 0001 00F4 _WAIT_FOR_SPM();
-	CALL __PUTPARD2
+	RCALL __PUTPARD2
 ;	*addr -> Y+0
 _0x20036:
 	LDS  R30,104
@@ -2263,7 +2269,7 @@ _0x20036:
      //spm
 ; 0001 00FD #endasm
 ; 0001 00FE dospme();
-	CALL _dospme
+	RCALL _dospme
 ; 0001 00FF }
 	JMP  _0x200000A
 ; .FEND
@@ -2273,7 +2279,7 @@ _0x20036:
 ___AddrToZ24ByteToSPMCR_SPM_EW:
 ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_EW
 ; 0001 0103 _WAIT_FOR_SPM();
-	CALL __PUTPARD2
+	RCALL __PUTPARD2
 ;	*addr -> Y+0
 _0x20039:
 	LDS  R30,104
@@ -2296,7 +2302,7 @@ _0x20039:
      //spm
 ; 0001 010C #endasm
 ; 0001 010D dospmew();
-	CALL _dospmew
+	RCALL _dospmew
 ; 0001 010E }
 	JMP  _0x200000A
 ; .FEND
@@ -2391,7 +2397,7 @@ _main:
 ;	k -> R20,R21
 ;	rollnum -> Y+11
 ;	rollbuf -> Y+0
-	sei
+	SEI
 ; 0002 0040 
 ; 0002 0041 #ifdef DEBUGLED
 ; 0002 0042   DDRC=0xFF;
@@ -2410,7 +2416,7 @@ _main:
 ; 0002 004F #endif
 ; 0002 0050   //init SD
 ; 0002 0051   if((result[0]=SD_init())!=SD_SUCCESS){
-	CALL _SD_init
+	RCALL _SD_init
 	STS  _result,R30
 ; 0002 0052 #ifdef DEBUGLED
 ; 0002 0053     errorSD(0);
@@ -2419,8 +2425,8 @@ _main:
 ; 0002 0056 
 ; 0002 0057   // read MBR get FAT start sector
 ; 0002 0058   if((result[0]=SD_readSingleBlock(0, sdBuf, &token))!=SD_SUCCESS){
-	CALL SUBOPT_0x1
-	CALL SUBOPT_0x6
+	RCALL SUBOPT_0x2
+	RCALL SUBOPT_0x7
 ; 0002 0059 #ifdef DEBUGLED
 ; 0002 005A     errorSD(1);
 ; 0002 005B #endif
@@ -2428,12 +2434,12 @@ _main:
 ; 0002 005D 
 ; 0002 005E   adr=buf2num(&sdBuf[445+9],4);//FAT start sector. 1 sector = 512 bytes
 	__POINTW1MN _sdBuf,454
-	CALL SUBOPT_0x7
-	CALL SUBOPT_0x8
+	RCALL SUBOPT_0x8
+	RCALL SUBOPT_0x9
 ; 0002 005F 
 ; 0002 0060   //load and read FAT ID (1st) sector. Get FAT info. Secors per Cluster and etc..
 ; 0002 0061   if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-	CALL SUBOPT_0x9
+	RCALL SUBOPT_0xA
 ; 0002 0062     #ifdef DEBUGLED
 ; 0002 0063     errorSD(2);
 ; 0002 0064     #endif
@@ -2443,7 +2449,7 @@ _main:
 	__GETBRMN 8,_sdBuf,13
 ; 0002 0068   SectorsPerFat=buf2num(&sdBuf[0x24],4); // 0xF10 for test sdcard
 	__POINTW1MN _sdBuf,36
-	CALL SUBOPT_0x7
+	RCALL SUBOPT_0x8
 	STS  _SectorsPerFat,R30
 	STS  _SectorsPerFat+1,R31
 	STS  _SectorsPerFat+2,R22
@@ -2465,7 +2471,7 @@ _main:
 	LDS  R25,_adr+3
 	CLR  R22
 	CLR  R23
-	CALL __ADDD12
+	RCALL __ADDD12
 	STS  _fat_begin_lba,R30
 	STS  _fat_begin_lba+1,R31
 	STS  _fat_begin_lba+2,R22
@@ -2477,12 +2483,12 @@ _main:
 	LDS  R31,_SectorsPerFat+1
 	LDS  R22,_SectorsPerFat+2
 	LDS  R23,_SectorsPerFat+3
-	CALL __LSLD1
+	RCALL __LSLD1
 	LDS  R26,_fat_begin_lba
 	LDS  R27,_fat_begin_lba+1
 	LDS  R24,_fat_begin_lba+2
 	LDS  R25,_fat_begin_lba+3
-	CALL __ADDD12
+	RCALL __ADDD12
 	STS  _cluster_begin_lba,R30
 	STS  _cluster_begin_lba+1,R31
 	STS  _cluster_begin_lba+2,R22
@@ -2490,7 +2496,7 @@ _main:
 ; 0002 0070   //read root dir (sector 2 but always offset 2 too then 0) to find folder 0 FAT reference. and find Flash.dat sector
 ; 0002 0071   //lba_addr = cluster_begin_lba + (cluster_number - 2) * sectors_per_cluster;
 ; 0002 0072   adr=cluster_begin_lba +(2-2)*SectorsPerCluster;
-	CALL SUBOPT_0x8
+	RCALL SUBOPT_0x9
 ; 0002 0073   //adr*=512UL;
 ; 0002 0074   result[1]=0;
 	LDI  R30,LOW(0)
@@ -2498,11 +2504,11 @@ _main:
 ; 0002 0075   for(i=0;i<SectorsPerCluster;i++)
 	__GETWRN 16,17,0
 _0x40007:
-	CALL SUBOPT_0xA
+	RCALL SUBOPT_0xB
 	BRSH _0x40008
 ; 0002 0076   {
 ; 0002 0077       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-	CALL SUBOPT_0x9
+	RCALL SUBOPT_0xA
 ; 0002 0078     #ifdef DEBUGLED
 ; 0002 0079         errorSD(3);
 ; 0002 007A     #endif
@@ -2515,7 +2521,7 @@ _0x4000B:
 ; 0002 007D       {
 ; 0002 007E            if((result[1]=compbuf("0          ",&sdBuf[j*32]))!=0)
 	__POINTW1MN _0x4000E,0
-	CALL SUBOPT_0xB
+	RCALL SUBOPT_0xC
 	BRNE _0x4000C
 ; 0002 007F            {
 ; 0002 0080                 break;//dir 0 is found
@@ -2530,30 +2536,30 @@ _0x4000C:
 	BREQ _0x4000F
 ; 0002 0084       {
 ; 0002 0085         fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-	CALL SUBOPT_0xC
-	CALL SUBOPT_0xD
+	RCALL SUBOPT_0xD
+	RCALL SUBOPT_0xE
 ; 0002 0086         fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
-	CALL SUBOPT_0xE
+	RCALL SUBOPT_0xF
 ; 0002 0087         break;
 	RJMP _0x40008
 ; 0002 0088       }
 ; 0002 0089       else
 _0x4000F:
 ; 0002 008A         adr++;
-	CALL SUBOPT_0xF
+	RCALL SUBOPT_0x10
 ; 0002 008B   }
 	__ADDWRN 16,17,1
 	RJMP _0x40007
 _0x40008:
 ; 0002 008C   adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
-	CALL SUBOPT_0x10
+	RCALL SUBOPT_0x11
 ; 0002 008D   for(i=0;i<SectorsPerCluster;i++)
 _0x40012:
-	CALL SUBOPT_0xA
+	RCALL SUBOPT_0xB
 	BRSH _0x40013
 ; 0002 008E   {
 ; 0002 008F       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-	CALL SUBOPT_0x9
+	RCALL SUBOPT_0xA
 ; 0002 0090     #ifdef DEBUGLED
 ; 0002 0091         errorSD(4);
 ; 0002 0092     #endif
@@ -2566,7 +2572,7 @@ _0x40016:
 ; 0002 0095       {
 ; 0002 0096            if((result[1]=compbuf("NEW",&sdBuf[j*32]))!=0)
 	__POINTW1MN _0x4000E,12
-	CALL SUBOPT_0xB
+	RCALL SUBOPT_0xC
 	BRNE _0x40017
 ; 0002 0097            {
 ; 0002 0098                 break;//file Flash... is found
@@ -2582,12 +2588,12 @@ _0x40017:
 ; 0002 009C       {
 ; 0002 009D         //read 1st number of cluster where data placed
 ; 0002 009E         fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-	CALL SUBOPT_0xC
-	CALL SUBOPT_0xD
+	RCALL SUBOPT_0xD
+	RCALL SUBOPT_0xE
 ; 0002 009F         fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
-	CALL SUBOPT_0xE
+	RCALL SUBOPT_0xF
 ; 0002 00A0         filesize = buf2num(&sdBuf[j*32+0x1C],8);
-	CALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	__ADDW1MN _sdBuf,28
 	ST   -Y,R31
 	ST   -Y,R30
@@ -2603,7 +2609,7 @@ _0x40017:
 ; 0002 00A3       else
 _0x40019:
 ; 0002 00A4         adr++;
-	CALL SUBOPT_0xF
+	RCALL SUBOPT_0x10
 ; 0002 00A5   }
 	__ADDWRN 16,17,1
 	RJMP _0x40012
@@ -2616,15 +2622,15 @@ _0x40013:
 ; 0002 00AB   }
 ; 0002 00AC   //change filename to DON after good prog
 ; 0002 00AD   sdBuf[j*32+0]='D';sdBuf[j*32+1]='O';sdBuf[j*32+2]='N';
-	CALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	__ADDW1MN _sdBuf,0
 	LDI  R26,LOW(68)
 	STD  Z+0,R26
-	CALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	__ADDW1MN _sdBuf,1
 	LDI  R26,LOW(79)
 	STD  Z+0,R26
-	CALL SUBOPT_0xC
+	RCALL SUBOPT_0xD
 	__ADDW1MN _sdBuf,2
 	LDI  R26,LOW(78)
 	STD  Z+0,R26
@@ -2633,7 +2639,7 @@ _0x40013:
 	LDS  R31,_adr+1
 	LDS  R22,_adr+2
 	LDS  R23,_adr+3
-	CALL __PUTPARD1
+	RCALL __PUTPARD1
 	LDI  R30,LOW(_sdBuf)
 	LDI  R31,HIGH(_sdBuf)
 	ST   -Y,R31
@@ -2657,7 +2663,7 @@ _0x4001C:
 	LDS  R27,_fat_file_adr+1
 	LDS  R24,_fat_file_adr+2
 	LDS  R25,_fat_file_adr+3
-	CALL SUBOPT_0x11
+	RCALL SUBOPT_0x12
 	BRNE PC+2
 	RJMP _0x4001E
 ; 0002 00B4   {
@@ -2667,8 +2673,8 @@ _0x4001C:
 	LDS  R31,_fat_begin_lba+1
 	LDS  R22,_fat_begin_lba+2
 	LDS  R23,_fat_begin_lba+3
-	CALL __PUTPARD1
-	RCALL SUBOPT_0x6
+	RCALL __PUTPARD1
+	RCALL SUBOPT_0x7
 ; 0002 00B7     #ifdef DEBUGLED
 ; 0002 00B8         errorSD(5);
 ; 0002 00B9     #endif
@@ -2680,23 +2686,23 @@ _0x4001C:
 	CALL __MULB1W2U
 	SUBI R30,LOW(-_sdBuf)
 	SBCI R31,HIGH(-_sdBuf)
-	RCALL SUBOPT_0x7
+	RCALL SUBOPT_0x8
 	STS  _fat_file_next_adr,R30
 	STS  _fat_file_next_adr+1,R31
 	STS  _fat_file_next_adr+2,R22
 	STS  _fat_file_next_adr+3,R23
 ; 0002 00BC 
 ; 0002 00BD     adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
-	CALL SUBOPT_0x10
+	RCALL SUBOPT_0x11
 ; 0002 00BE     for(i=0;i<SectorsPerCluster;i++)
 _0x40021:
-	RCALL SUBOPT_0xA
+	RCALL SUBOPT_0xB
 	BRLO PC+2
 	RJMP _0x40022
 ; 0002 00BF     {
 ; 0002 00C0         //read data from next sector of file cluster
 ; 0002 00C1         if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-	RCALL SUBOPT_0x9
+	RCALL SUBOPT_0xA
 ; 0002 00C2         #ifdef DEBUGLED
 ; 0002 00C3             errorSD(6);
 ; 0002 00C4         #endif
@@ -2704,10 +2710,9 @@ _0x40021:
 ; 0002 00C6         //address 2000 = start adr flash app 3 bytes, flash pages 2 bytes, checksum 2 bytes
 ; 0002 00C7         //app bytes starts from 2048, roll 0x88
 ; 0002 00C8         if(readbytes<512){
-	CALL SUBOPT_0x12
+	RCALL SUBOPT_0x13
 	__CPD2N 0x200
-	BRLO PC+2
-	RJMP _0x40024
+	BRSH _0x40024
 ; 0002 00C9             //j=0x99;
 ; 0002 00CA             for(j=0;j<256;j++){//find roll
 	__GETWRN 18,19,0
@@ -2730,18 +2735,11 @@ _0x4002A:
 	ADD  R30,R26
 	ADC  R31,R27
 	MOVW R22,R30
-	LDI  R26,LOW(_sdBuf)
-	LDI  R27,HIGH(_sdBuf)
-	ADD  R26,R20
-	ADC  R27,R21
-	LD   R30,X
+	RCALL SUBOPT_0x14
 	LSL  R30
 	MOV  R0,R30
-	LDI  R26,LOW(_sdBuf)
-	LDI  R27,HIGH(_sdBuf)
-	ADD  R26,R20
-	ADC  R27,R21
-	CALL SUBOPT_0x13
+	RCALL SUBOPT_0x14
+	RCALL SUBOPT_0x15
 ; 0002 00CE                         rollbuf[k]^=j;  //XOR   j=roll
 	MOVW R26,R28
 	ADD  R26,R20
@@ -2807,12 +2805,11 @@ _0x40030:
 	SUBI R30,LOW(-_sdBuf)
 	SBCI R31,HIGH(-_sdBuf)
 	MOVW R22,R30
-	CALL SUBOPT_0x14
-	LD   R30,X
+	RCALL SUBOPT_0x16
 	LSL  R30
 	MOV  R0,R30
-	CALL SUBOPT_0x14
-	CALL SUBOPT_0x13
+	RCALL SUBOPT_0x16
+	RCALL SUBOPT_0x15
 ; 0002 00E2                 sdBuf[j]^=rollnum;//0x88;  //XOR
 	MOVW R30,R18
 	SUBI R30,LOW(-_sdBuf)
@@ -2826,8 +2823,7 @@ _0x40030:
 ; 0002 00E3             }
 ; 0002 00E4             checksumCnt+=sdBuf[j];
 _0x40032:
-	CALL SUBOPT_0x14
-	LD   R30,X
+	RCALL SUBOPT_0x16
 	LDI  R31,0
 	LDS  R26,_checksumCnt
 	LDS  R27,_checksumCnt+1
@@ -2851,7 +2847,7 @@ _0x40031:
 	STS  _readbytes+3,R23
 ; 0002 00E7         //read app data
 ; 0002 00E8         if(readbytes>2048)
-	RCALL SUBOPT_0x12
+	RCALL SUBOPT_0x13
 	__CPD2N 0x801
 	BRLO _0x40033
 ; 0002 00E9         {
@@ -2863,17 +2859,17 @@ _0x40035:
 	BRSH _0x40036
 ; 0002 00EB            {
 ; 0002 00EC                if(WriteFlashPage(appStartAdr, &sdBuf[pagesCnt*PAGESIZE])==0)
-	RCALL SUBOPT_0x15
-	CALL __PUTPARD1
+	RCALL SUBOPT_0x17
+	RCALL __PUTPARD1
 	MOV  R26,R11
 	LDI  R27,0
 	LDI  R30,LOW(256)
 	LDI  R31,HIGH(256)
-	CALL __MULW12
+	RCALL __MULW12
 	SUBI R30,LOW(-_sdBuf)
 	SBCI R31,HIGH(-_sdBuf)
 	MOVW R26,R30
-	CALL _WriteFlashPage
+	RCALL _WriteFlashPage
 	CPI  R30,0
 	BRNE _0x40037
 ; 0002 00ED                {
@@ -2884,19 +2880,23 @@ _0x40039:
 ; 0002 00F1                       PORTC.6=0;
 	CBI  0x15,6
 ; 0002 00F2                       delay_ms(500);
-	RCALL SUBOPT_0x16
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RCALL _delay_ms
 ; 0002 00F3                       PORTC.6=1;
 	SBI  0x15,6
 ; 0002 00F4                       delay_ms(500);
-	RCALL SUBOPT_0x16
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RCALL _delay_ms
 ; 0002 00F5                     }while(1);
 	RJMP _0x40039
 ; 0002 00F6                }
 ; 0002 00F7                appStartAdr+=PAGESIZE;
 _0x40037:
-	RCALL SUBOPT_0x15
-	__ADDD1N 256
 	RCALL SUBOPT_0x17
+	__ADDD1N 256
+	RCALL SUBOPT_0x18
 ; 0002 00F8                appPages--;
 	MOVW R30,R12
 	SBIW R30,1
@@ -2914,11 +2914,15 @@ _0x40041:
 ; 0002 00FE                       PORTC.5=0;
 	CBI  0x15,5
 ; 0002 00FF                       delay_ms(500);
-	RCALL SUBOPT_0x16
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RCALL _delay_ms
 ; 0002 0100                       PORTC.5=1;
 	SBI  0x15,5
 ; 0002 0101                       delay_ms(500);
-	RCALL SUBOPT_0x16
+	LDI  R26,LOW(500)
+	LDI  R27,HIGH(500)
+	RCALL _delay_ms
 ; 0002 0102                     }while(1);
 	RJMP _0x40041
 ; 0002 0103                }
@@ -2932,30 +2936,30 @@ _0x40036:
 ; 0002 0107         else if(readbytes>=2000)//Offset=512-48=464
 	RJMP _0x40047
 _0x40033:
-	RCALL SUBOPT_0x12
+	RCALL SUBOPT_0x13
 	__CPD2N 0x7D0
 	BRLO _0x40048
 ; 0002 0108         {
 ; 0002 0109            appStartAdr=(unsigned long)sdBuf[464]<<16;
 	__GETB1MN _sdBuf,464
 	LDI  R31,0
-	CALL __CWD1
-	CALL __LSLD16
-	RCALL SUBOPT_0x17
+	RCALL __CWD1
+	RCALL __LSLD16
+	RCALL SUBOPT_0x18
 ; 0002 010A            appStartAdr|=(unsigned long)sdBuf[465]<<8;
 	__GETB1MN _sdBuf,465
 	LDI  R31,0
-	CALL __CWD1
+	RCALL __CWD1
 	MOVW R26,R30
 	MOVW R24,R22
 	LDI  R30,LOW(8)
-	CALL __LSLD12
-	RCALL SUBOPT_0x18
+	RCALL __LSLD12
+	RCALL SUBOPT_0x19
 ; 0002 010B            appStartAdr|=(unsigned long)sdBuf[466];
 	__GETB1MN _sdBuf,466
 	LDI  R31,0
-	CALL __CWD1
-	RCALL SUBOPT_0x18
+	RCALL __CWD1
+	RCALL SUBOPT_0x19
 ; 0002 010C            appPages=(unsigned int)sdBuf[467]<<8;
 	__GETBRMN 31,_sdBuf,467
 	LDI  R30,LOW(0)
@@ -2967,8 +2971,7 @@ _0x40033:
 ; 0002 010E            bytesChecksum=(unsigned int)sdBuf[469]<<8;
 	__GETBRMN 31,_sdBuf,469
 	LDI  R30,LOW(0)
-	STS  _bytesChecksum,R30
-	STS  _bytesChecksum+1,R31
+	RCALL SUBOPT_0x1A
 ; 0002 010F            bytesChecksum|=(unsigned int)sdBuf[470];
 	__GETB1MN _sdBuf,470
 	LDI  R31,0
@@ -2976,8 +2979,7 @@ _0x40033:
 	LDS  R27,_bytesChecksum+1
 	OR   R30,R26
 	OR   R31,R27
-	STS  _bytesChecksum,R30
-	STS  _bytesChecksum+1,R31
+	RCALL SUBOPT_0x1A
 ; 0002 0110            checksumCnt=0;
 	LDI  R30,LOW(0)
 	STS  _checksumCnt,R30
@@ -2990,15 +2992,15 @@ _0x40047:
 	LDS  R27,_fat_file_next_adr+1
 	LDS  R24,_fat_file_next_adr+2
 	LDS  R25,_fat_file_next_adr+3
-	RCALL SUBOPT_0x11
+	RCALL SUBOPT_0x12
 	BRNE _0x40049
 ; 0002 0113             if(readbytes >= filesize)
 	LDS  R30,_filesize
 	LDS  R31,_filesize+1
 	LDS  R22,_filesize+2
 	LDS  R23,_filesize+3
-	RCALL SUBOPT_0x12
-	CALL __CPD21
+	RCALL SUBOPT_0x13
+	RCALL __CPD21
 	BRSH _0x40022
 ; 0002 0114             {
 ; 0002 0115                 break;
@@ -3007,20 +3009,20 @@ _0x40047:
 ; 0002 0118             {
 ; 0002 0119 
 ; 0002 011A                 if(  WriteFlashPage(0x1EF00, sdBuf))//;     // Writes testbuffer1 to Flash page 2
-	RCALL SUBOPT_0x19
+	RCALL SUBOPT_0x1B
 	LDI  R26,LOW(_sdBuf)
 	LDI  R27,HIGH(_sdBuf)
-	CALL _WriteFlashPage
+	RCALL _WriteFlashPage
 	CPI  R30,0
 	BREQ _0x4004C
 ; 0002 011B                     PORTC.5=0;                                          // Function returns TRUE
 	CBI  0x15,5
 ; 0002 011C                 if(  ReadFlashPage (0x1EF00, testBuf))//;      // Reads back Flash page 2 to TestBuffer2
 _0x4004C:
-	RCALL SUBOPT_0x19
+	RCALL SUBOPT_0x1B
 	LDI  R26,LOW(_testBuf)
 	LDI  R27,HIGH(_testBuf)
-	CALL _ReadFlashPage
+	RCALL _ReadFlashPage
 	CPI  R30,0
 	BREQ _0x4004F
 ; 0002 011D                     PORTC.6=0;
@@ -3030,7 +3032,7 @@ _0x4004F:
 ; 0002 011F 
 ; 0002 0120         adr++;
 _0x40049:
-	RCALL SUBOPT_0xF
+	RCALL SUBOPT_0x10
 ; 0002 0121     }
 	__ADDWRN 16,17,1
 	RJMP _0x40021
@@ -3180,10 +3182,10 @@ _0x4005B:
 	BRLO _0x4005C
 ; 0002 016E     {
 ; 0002 016F         num<<=8;
-	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 	LDI  R30,LOW(8)
-	CALL __LSLD12
-	CALL __PUTD1S0
+	RCALL __LSLD12
+	RCALL SUBOPT_0x1C
 ; 0002 0170         num|=buf[len-1];
 	LDD  R30,Y+4
 	LDI  R31,0
@@ -3193,12 +3195,12 @@ _0x4005B:
 	ADD  R26,R30
 	ADC  R27,R31
 	LD   R30,X
-	RCALL SUBOPT_0x5
+	RCALL SUBOPT_0x6
 	CLR  R31
 	CLR  R22
 	CLR  R23
-	CALL __ORD12
-	CALL __PUTD1S0
+	RCALL __ORD12
+	RCALL SUBOPT_0x1C
 ; 0002 0171     }
 	LDD  R30,Y+4
 	SUBI R30,LOW(1)
@@ -3346,7 +3348,7 @@ _SD_powerUpSeq:
 ; 0003 002B     delay_ms(1);
 	LDI  R26,LOW(1)
 	LDI  R27,0
-	CALL _delay_ms
+	RCALL _delay_ms
 ; 0003 002C 
 ; 0003 002D     // send 80 clock cycles to synchronize
 ; 0003 002E     for(i = 0; i < 10; i++)
@@ -3361,8 +3363,10 @@ _0x60007:
 	RJMP _0x60007
 _0x60008:
 ; 0003 0032 PORTB |= (1 << 0       );
-	RCALL SUBOPT_0x1A
+	SBI  0x18,0
 ; 0003 0033     SPI_transfer(0xFF);
+	LDI  R26,LOW(255)
+	RCALL _SPI_transfer
 ; 0003 0034 }
 	RJMP _0x2000007
 ; .FEND
@@ -3384,21 +3388,21 @@ _SD_command:
 ;	count -> R16
 	LDD  R30,Y+7
 	ORI  R30,0x40
-	RCALL SUBOPT_0x1B
+	RCALL SUBOPT_0x1D
 ; 0003 003B 
 ; 0003 003C     // transmit argument
 ; 0003 003D     SPI_transfer((unsigned char)(arg >> 24));
 	LDI  R30,LOW(24)
-	CALL __LSRD12
+	RCALL __LSRD12
 	MOV  R26,R30
 	RCALL _SPI_transfer
 ; 0003 003E     SPI_transfer((unsigned char)(arg >> 16));
 	__GETD1S 3
-	CALL __LSRD16
-	RCALL SUBOPT_0x1B
+	RCALL __LSRD16
+	RCALL SUBOPT_0x1D
 ; 0003 003F     SPI_transfer((unsigned char)(arg >> 8));
 	LDI  R30,LOW(8)
-	CALL __LSRD12
+	RCALL __LSRD12
 	MOV  R26,R30
 	RCALL _SPI_transfer
 ; 0003 0040     SPI_transfer((unsigned char)(arg));
@@ -3442,7 +3446,7 @@ _SD_readRes1:
 ; 0003 0056     // keep polling until actual data received
 ; 0003 0057     //while((res1 = SPI_transfer(0xFF)) == 0xFF)
 ; 0003 0058     while(((res1 = SPI_transfer(0xFF))&0x80) != 0x00)
-	CALL __SAVELOCR4
+	RCALL __SAVELOCR4
 ;	res1 -> R17
 ;	i -> R18,R19
 	__GETWRN 18,19,0
@@ -3465,7 +3469,7 @@ _0x6000B:
 ; 0003 005F 
 ; 0003 0060     return res1;
 	MOV  R30,R17
-	CALL __LOADLOCR4
+	RCALL __LOADLOCR4
 _0x200000A:
 	ADIW R28,4
 	RET
@@ -3479,7 +3483,7 @@ _SD_goIdleState:
 ; 0003 0065     unsigned char res1;
 ; 0003 0066     // assert chip select
 ; 0003 0067     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1C
+	RCALL SUBOPT_0x1E
 ;	res1 -> R17
 ; 0003 0068     CS_ENABLE();
 ; 0003 0069     //SPI_transfer(0xFF);
@@ -3488,7 +3492,7 @@ _SD_goIdleState:
 ; 0003 006C     res1 = SD_command(CMD0, CMD0_ARG, CMD0_CRC);
 	LDI  R30,LOW(0)
 	ST   -Y,R30
-	RCALL SUBOPT_0x1
+	RCALL SUBOPT_0x2
 	LDI  R26,LOW(148)
 	RJMP _0x2000006
 ; 0003 006D 
@@ -3549,7 +3553,7 @@ _SD_sendIfCond:
 ; .FSTART _SD_sendIfCond
 ; 0003 008A     // assert chip select
 ; 0003 008B     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1D
+	RCALL SUBOPT_0x1F
 ;	*res -> Y+0
 ; 0003 008C     CS_ENABLE();
 ; 0003 008D     //SPI_transfer(0xFF);
@@ -3559,7 +3563,7 @@ _SD_sendIfCond:
 	LDI  R30,LOW(8)
 	ST   -Y,R30
 	__GETD1N 0x1AA
-	CALL __PUTPARD1
+	RCALL __PUTPARD1
 	LDI  R26,LOW(134)
 	RJMP _0x2000008
 ; 0003 0091 
@@ -3596,7 +3600,7 @@ _SD_readOCR:
 ; .FSTART _SD_readOCR
 ; 0003 00AE     // assert chip select
 ; 0003 00AF     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1D
+	RCALL SUBOPT_0x1F
 ;	*res -> Y+0
 ; 0003 00B0     CS_ENABLE();
 ; 0003 00B1     //SPI_transfer(0xFF);
@@ -3605,7 +3609,7 @@ _SD_readOCR:
 ; 0003 00B4     res[0] = SD_command(CMD58, CMD58_ARG, CMD58_CRC);
 	LDI  R30,LOW(58)
 	ST   -Y,R30
-	RCALL SUBOPT_0x1
+	RCALL SUBOPT_0x2
 	LDI  R26,LOW(0)
 _0x2000008:
 	RCALL _SD_command
@@ -3620,7 +3624,7 @@ _0x2000008:
 ; 0003 00B9 
 ; 0003 00BA     // deassert chip select
 ; 0003 00BB     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1E
+	RCALL SUBOPT_0x20
 ; 0003 00BC     CS_DISABLE();
 ; 0003 00BD     SPI_transfer(0xFF);
 ; 0003 00BE }
@@ -3636,7 +3640,7 @@ _SD_sendApp:
 ; 0003 00C2     unsigned char res1;
 ; 0003 00C3     // assert chip select
 ; 0003 00C4     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1C
+	RCALL SUBOPT_0x1E
 ;	res1 -> R17
 ; 0003 00C5     CS_ENABLE();
 ; 0003 00C6     //SPI_transfer(0xFF);
@@ -3667,7 +3671,7 @@ _SD_sendOpCond:
 ; 0003 00D8     unsigned char res1;
 ; 0003 00D9     // assert chip select
 ; 0003 00DA     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1C
+	RCALL SUBOPT_0x1E
 ;	res1 -> R17
 ; 0003 00DB     CS_ENABLE();
 ; 0003 00DC     //SPI_transfer(0xFF);
@@ -3678,7 +3682,7 @@ _SD_sendOpCond:
 	ST   -Y,R30
 	__GETD1N 0x40000000
 _0x2000005:
-	CALL __PUTPARD1
+	RCALL __PUTPARD1
 	LDI  R26,LOW(0)
 _0x2000006:
 	RCALL _SD_command
@@ -3689,7 +3693,7 @@ _0x2000006:
 ; 0003 00E3 
 ; 0003 00E4     // deassert chip select
 ; 0003 00E5     SPI_transfer(0xFF);
-	RCALL SUBOPT_0x1E
+	RCALL SUBOPT_0x20
 ; 0003 00E6     CS_DISABLE();
 ; 0003 00E7     SPI_transfer(0xFF);
 ; 0003 00E8 
@@ -3801,7 +3805,7 @@ _0x60018:
 ; 0003 0117             delay_ms(10);
 	LDI  R26,LOW(10)
 	LDI  R27,0
-	CALL _delay_ms
+	RCALL _delay_ms
 ; 0003 0118 
 ; 0003 0119         cmdAttempts++;
 _0x60019:
@@ -3854,7 +3858,7 @@ _SD_readSingleBlock:
 ; 0003 0132     unsigned char res1, read;
 ; 0003 0133     unsigned int i, readAttempts;
 ; 0003 0134     addr*=512UL;
-	RCALL SUBOPT_0x1F
+	RCALL SUBOPT_0x21
 ;	addr -> Y+10
 ;	*buf -> Y+8
 ;	*token -> Y+6
@@ -3873,7 +3877,7 @@ _SD_readSingleBlock:
 ; 0003 013D     // send CMD17
 ; 0003 013E     res1 = SD_command(CMD17, addr, CMD17_CRC);
 	LDI  R30,LOW(17)
-	RCALL SUBOPT_0x20
+	RCALL SUBOPT_0x22
 ; 0003 013F 
 ; 0003 0140     // read R1
 ; 0003 0141     //res1 = SD_readRes1();
@@ -3896,10 +3900,7 @@ _0x6001C:
 	CPC  R31,R26
 	BREQ _0x6001E
 ; 0003 0149             if((read = SPI_transfer(0xFF)) != 0xFF) break;
-	LDI  R26,LOW(255)
-	RCALL _SPI_transfer
-	MOV  R16,R30
-	CPI  R30,LOW(0xFF)
+	RCALL SUBOPT_0x23
 	BREQ _0x6001C
 ; 0003 014A 
 ; 0003 014B         // if response token is 0xFE
@@ -3949,7 +3950,7 @@ _0x60020:
 ; 0003 015A     // deassert chip select
 ; 0003 015B     SPI_transfer(0xFF);
 _0x6001B:
-	RCALL SUBOPT_0x1E
+	RCALL SUBOPT_0x20
 ; 0003 015C     CS_DISABLE();
 ; 0003 015D     SPI_transfer(0xFF);
 ; 0003 015E     if(read==0xFE)
@@ -3983,7 +3984,7 @@ _SD_writeSingleBlock:
 ; 0003 0173     unsigned char res1, read;
 ; 0003 0174     unsigned int i, readAttempts;
 ; 0003 0175     addr*=512UL;
-	RCALL SUBOPT_0x1F
+	RCALL SUBOPT_0x21
 ;	addr -> Y+10
 ;	*buf -> Y+8
 ;	*token -> Y+6
@@ -4004,7 +4005,7 @@ _SD_writeSingleBlock:
 ; 0003 017E     // send CMD24
 ; 0003 017F     res1=SD_command(CMD24, addr, CMD24_CRC);
 	LDI  R30,LOW(24)
-	RCALL SUBOPT_0x20
+	RCALL SUBOPT_0x22
 ; 0003 0180 
 ; 0003 0181     // read response
 ; 0003 0182     //res1 = SD_readRes1();
@@ -4026,7 +4027,7 @@ _0x60028:
 	__CPWRN 18,19,512
 	BRSH _0x60029
 	MOVW R30,R18
-	RCALL SUBOPT_0x3
+	RCALL SUBOPT_0x4
 	LD   R26,X
 	RCALL _SPI_transfer
 	__ADDWRN 18,19,1
@@ -4036,13 +4037,10 @@ _0x60029:
 	__GETWRN 20,21,0
 ; 0003 018F         while(++readAttempts != SD_MAX_WRITE_ATTEMPTS)
 _0x6002A:
-	RCALL SUBOPT_0x21
+	RCALL SUBOPT_0x24
 	BREQ _0x6002C
 ; 0003 0190             if((read = SPI_transfer(0xFF)) != 0xFF) { *token = 0xFF; break; }
-	LDI  R26,LOW(255)
-	RCALL _SPI_transfer
-	MOV  R16,R30
-	CPI  R30,LOW(0xFF)
+	RCALL SUBOPT_0x23
 	BREQ _0x6002D
 	LDD  R26,Y+6
 	LDD  R27,Y+6+1
@@ -4077,7 +4075,7 @@ _0x6002F:
 	CPI  R30,0
 	BRNE _0x60031
 ; 0003 019B                 if(++readAttempts == SD_MAX_WRITE_ATTEMPTS){
-	RCALL SUBOPT_0x21
+	RCALL SUBOPT_0x24
 	BRNE _0x60032
 ; 0003 019C                     *token = 0x00;
 	LDD  R26,Y+6
@@ -4098,7 +4096,7 @@ _0x6002E:
 ; 0003 01A3     // deassert chip select
 ; 0003 01A4     SPI_transfer(0xFF);
 _0x60026:
-	RCALL SUBOPT_0x1E
+	RCALL SUBOPT_0x20
 ; 0003 01A5     CS_DISABLE();
 ; 0003 01A6     SPI_transfer(0xFF);
 ; 0003 01A7 
@@ -4106,7 +4104,7 @@ _0x60026:
 _0x2000002:
 	MOV  R30,R17
 _0x2000001:
-	CALL __LOADLOCR6
+	RCALL __LOADLOCR6
 	ADIW R28,14
 	RET
 ; 0003 01A9 }
@@ -4147,43 +4145,48 @@ _app_pointer:
 	.BYTE 0x2
 
 	.CSEG
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
 SUBOPT_0x0:
-	CALL __GETD1S0
+	RCALL __GETD1S0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:9 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
 SUBOPT_0x1:
-	__GETD1N 0x0
-	CALL __PUTPARD1
+	__GETD2S 6
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:10 WORDS
 SUBOPT_0x2:
+	__GETD1N 0x0
+	RCALL __PUTPARD1
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x3:
 	__GETD2N 0x1EF00
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x3:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x4:
 	LDD  R26,Y+8
 	LDD  R27,Y+8+1
 	ADD  R26,R30
 	ADC  R27,R31
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x4:
-	CALL __PUTPARD2
-	CALL __GETD2S0
-	RET
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
 SUBOPT_0x5:
-	CALL __GETD2S0
+	RCALL __PUTPARD2
+	RCALL __GETD2S0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:37 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
 SUBOPT_0x6:
+	RCALL __GETD2S0
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:38 WORDS
+SUBOPT_0x7:
 	LDI  R30,LOW(_sdBuf)
 	LDI  R31,HIGH(_sdBuf)
 	ST   -Y,R31
@@ -4194,32 +4197,32 @@ SUBOPT_0x6:
 	STS  _result,R30
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0x7:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x8:
 	ST   -Y,R31
 	ST   -Y,R30
 	LDI  R26,LOW(4)
 	RJMP _buf2num
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
-SUBOPT_0x8:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
+SUBOPT_0x9:
 	STS  _adr,R30
 	STS  _adr+1,R31
 	STS  _adr+2,R22
 	STS  _adr+3,R23
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:27 WORDS
-SUBOPT_0x9:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:25 WORDS
+SUBOPT_0xA:
 	LDS  R30,_adr
 	LDS  R31,_adr+1
 	LDS  R22,_adr+2
 	LDS  R23,_adr+3
-	CALL __PUTPARD1
-	RJMP SUBOPT_0x6
+	RCALL __PUTPARD1
+	RJMP SUBOPT_0x7
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0xA:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:6 WORDS
+SUBOPT_0xB:
 	MOV  R30,R8
 	MOVW R26,R16
 	LDI  R31,0
@@ -4227,8 +4230,8 @@ SUBOPT_0xA:
 	CPC  R27,R31
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:10 WORDS
-SUBOPT_0xB:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:11 WORDS
+SUBOPT_0xC:
 	ST   -Y,R31
 	ST   -Y,R30
 	__MULBNWRU 18,19,32
@@ -4240,52 +4243,52 @@ SUBOPT_0xB:
 	CPI  R30,0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 8 TIMES, CODE SIZE REDUCTION:18 WORDS
-SUBOPT_0xC:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 8 TIMES, CODE SIZE REDUCTION:26 WORDS
+SUBOPT_0xD:
 	__MULBNWRU 18,19,32
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:13 WORDS
-SUBOPT_0xD:
+SUBOPT_0xE:
 	__ADDW1MN _sdBuf,20
 	LD   R30,Z
 	LDI  R31,0
-	CALL __CWD1
-	CALL __LSLD16
+	RCALL __CWD1
+	RCALL __LSLD16
 	STS  _fat_file_adr,R30
 	STS  _fat_file_adr+1,R31
 	STS  _fat_file_adr+2,R22
 	STS  _fat_file_adr+3,R23
-	RJMP SUBOPT_0xC
+	RJMP SUBOPT_0xD
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:19 WORDS
-SUBOPT_0xE:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:20 WORDS
+SUBOPT_0xF:
 	__ADDW1MN _sdBuf,26
 	LD   R30,Z
 	LDI  R31,0
-	CALL __CWD1
+	RCALL __CWD1
 	LDS  R26,_fat_file_adr
 	LDS  R27,_fat_file_adr+1
 	LDS  R24,_fat_file_adr+2
 	LDS  R25,_fat_file_adr+3
-	CALL __ORD12
+	RCALL __ORD12
 	STS  _fat_file_adr,R30
 	STS  _fat_file_adr+1,R31
 	STS  _fat_file_adr+2,R22
 	STS  _fat_file_adr+3,R23
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:13 WORDS
-SUBOPT_0xF:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:12 WORDS
+SUBOPT_0x10:
 	LDI  R26,LOW(_adr)
 	LDI  R27,HIGH(_adr)
-	CALL __GETD1P_INC
+	RCALL __GETD1P_INC
 	__SUBD1N -1
-	CALL __PUTDP1_DEC
+	RCALL __PUTDP1_DEC
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:29 WORDS
-SUBOPT_0x10:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:28 WORDS
+SUBOPT_0x11:
 	LDS  R30,_fat_file_adr
 	LDS  R31,_fat_file_adr+1
 	LDS  R22,_fat_file_adr+2
@@ -4295,24 +4298,24 @@ SUBOPT_0x10:
 	MOVW R24,R22
 	MOV  R30,R8
 	LDI  R31,0
-	CALL __CWD1
-	CALL __MULD12U
+	RCALL __CWD1
+	RCALL __MULD12U
 	LDS  R26,_cluster_begin_lba
 	LDS  R27,_cluster_begin_lba+1
 	LDS  R24,_cluster_begin_lba+2
 	LDS  R25,_cluster_begin_lba+3
-	CALL __ADDD12
-	RCALL SUBOPT_0x8
+	RCALL __ADDD12
+	RCALL SUBOPT_0x9
 	__GETWRN 16,17,0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-SUBOPT_0x11:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x12:
 	__CPD2N 0xFFFFFFF
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
-SUBOPT_0x12:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
+SUBOPT_0x13:
 	LDS  R26,_readbytes
 	LDS  R27,_readbytes+1
 	LDS  R24,_readbytes+2
@@ -4320,8 +4323,16 @@ SUBOPT_0x12:
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-SUBOPT_0x13:
+SUBOPT_0x14:
+	LDI  R26,LOW(_sdBuf)
+	LDI  R27,HIGH(_sdBuf)
+	ADD  R26,R20
+	ADC  R27,R21
 	LD   R30,X
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0x15:
 	ROL  R30
 	LDI  R30,0
 	ROL  R30
@@ -4330,30 +4341,25 @@ SUBOPT_0x13:
 	ST   X,R30
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x14:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:6 WORDS
+SUBOPT_0x16:
 	LDI  R26,LOW(_sdBuf)
 	LDI  R27,HIGH(_sdBuf)
 	ADD  R26,R18
 	ADC  R27,R19
+	LD   R30,X
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0x15:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:5 WORDS
+SUBOPT_0x17:
 	LDS  R30,_appStartAdr
 	LDS  R31,_appStartAdr+1
 	LDS  R22,_appStartAdr+2
 	LDS  R23,_appStartAdr+3
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0x16:
-	LDI  R26,LOW(500)
-	LDI  R27,HIGH(500)
-	JMP  _delay_ms
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
-SUBOPT_0x17:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
+SUBOPT_0x18:
 	STS  _appStartAdr,R30
 	STS  _appStartAdr+1,R31
 	STS  _appStartAdr+2,R22
@@ -4361,43 +4367,48 @@ SUBOPT_0x17:
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:7 WORDS
-SUBOPT_0x18:
+SUBOPT_0x19:
 	LDS  R26,_appStartAdr
 	LDS  R27,_appStartAdr+1
 	LDS  R24,_appStartAdr+2
 	LDS  R25,_appStartAdr+3
-	CALL __ORD12
-	RJMP SUBOPT_0x17
+	RCALL __ORD12
+	RJMP SUBOPT_0x18
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x19:
-	__GETD1N 0x1EF00
-	CALL __PUTPARD1
-	RET
-
-;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:5 WORDS
 SUBOPT_0x1A:
-	SBI  0x18,0
-	LDI  R26,LOW(255)
-	RJMP _SPI_transfer
+	STS  _bytesChecksum,R30
+	STS  _bytesChecksum+1,R31
+	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
 SUBOPT_0x1B:
+	__GETD1N 0x1EF00
+	RCALL __PUTPARD1
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+SUBOPT_0x1C:
+	RCALL __PUTD1S0
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0x1D:
 	MOV  R26,R30
 	RCALL _SPI_transfer
 	__GETD2S 3
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
-SUBOPT_0x1C:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+SUBOPT_0x1E:
 	ST   -Y,R17
 	LDI  R26,LOW(255)
 	RCALL _SPI_transfer
 	CBI  0x18,0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x1D:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+SUBOPT_0x1F:
 	ST   -Y,R27
 	ST   -Y,R26
 	LDI  R26,LOW(255)
@@ -4405,20 +4416,22 @@ SUBOPT_0x1D:
 	CBI  0x18,0
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:6 WORDS
-SUBOPT_0x1E:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:10 WORDS
+SUBOPT_0x20:
 	LDI  R26,LOW(255)
 	RCALL _SPI_transfer
-	RJMP SUBOPT_0x1A
+	SBI  0x18,0
+	LDI  R26,LOW(255)
+	RJMP _SPI_transfer
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:21 WORDS
-SUBOPT_0x1F:
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:20 WORDS
+SUBOPT_0x21:
 	ST   -Y,R27
 	ST   -Y,R26
-	CALL __SAVELOCR6
+	RCALL __SAVELOCR6
 	__GETD1S 10
 	__GETD2N 0x200
-	CALL __MULD12U
+	RCALL __MULD12U
 	__PUTD1S 10
 	LDD  R26,Y+6
 	LDD  R27,Y+6+1
@@ -4430,17 +4443,25 @@ SUBOPT_0x1F:
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:6 WORDS
-SUBOPT_0x20:
+SUBOPT_0x22:
 	ST   -Y,R30
 	__GETD1S 11
-	CALL __PUTPARD1
+	RCALL __PUTPARD1
 	LDI  R26,LOW(0)
 	RCALL _SD_command
 	MOV  R17,R30
 	RET
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-SUBOPT_0x21:
+SUBOPT_0x23:
+	LDI  R26,LOW(255)
+	RCALL _SPI_transfer
+	MOV  R16,R30
+	CPI  R30,LOW(0xFF)
+	RET
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0x24:
 	MOVW R30,R20
 	ADIW R30,1
 	MOVW R20,R30
@@ -4449,18 +4470,34 @@ SUBOPT_0x21:
 	CPC  R31,R26
 	RET
 
+;RUNTIME LIBRARY
 
 	.CSEG
-_delay_ms:
-	adiw r26,0
-	breq __delay_ms1
-__delay_ms0:
-	__DELAY_USW 0x3E8
-	wdr
-	sbiw r26,1
-	brne __delay_ms0
-__delay_ms1:
-	ret
+__SAVELOCR6:
+	ST   -Y,R21
+__SAVELOCR5:
+	ST   -Y,R20
+__SAVELOCR4:
+	ST   -Y,R19
+__SAVELOCR3:
+	ST   -Y,R18
+__SAVELOCR2:
+	ST   -Y,R17
+	ST   -Y,R16
+	RET
+
+__LOADLOCR6:
+	LDD  R21,Y+5
+__LOADLOCR5:
+	LDD  R20,Y+4
+__LOADLOCR4:
+	LDD  R19,Y+3
+__LOADLOCR3:
+	LDD  R18,Y+2
+__LOADLOCR2:
+	LDD  R17,Y+1
+	LD   R16,Y
+	RET
 
 __ADDD12:
 	ADD  R30,R26
@@ -4492,9 +4529,21 @@ __ANEGW1:
 __LSLD12:
 	TST  R30
 	MOV  R0,R30
+	LDI  R30,8
+	MOV  R1,R30
 	MOVW R30,R26
 	MOVW R22,R24
 	BREQ __LSLD12R
+__LSLD12S8:
+	CP   R0,R1
+	BRLO __LSLD12L
+	MOV  R23,R22
+	MOV  R22,R31
+	MOV  R31,R30
+	LDI  R30,0
+	SUB  R0,R1
+	BRNE __LSLD12S8
+	RET
 __LSLD12L:
 	LSL  R30
 	ROL  R31
@@ -4508,9 +4557,21 @@ __LSLD12R:
 __LSRD12:
 	TST  R30
 	MOV  R0,R30
+	LDI  R30,8
+	MOV  R1,R30
 	MOVW R30,R26
 	MOVW R22,R24
 	BREQ __LSRD12R
+__LSRD12S8:
+	CP   R0,R1
+	BRLO __LSRD12L
+	MOV  R30,R31
+	MOV  R31,R22
+	MOV  R22,R23
+	LDI  R23,0
+	SUB  R0,R1
+	BRNE __LSRD12S8
+	RET
 __LSRD12L:
 	LSR  R23
 	ROR  R22
@@ -4618,9 +4679,9 @@ __CHKSIGNW:
 __CHKSW1:
 	SBRS R27,7
 	RJMP __CHKSW2
-	COM  R26
-	COM  R27
-	ADIW R26,1
+	NEG  R27
+	NEG  R26
+	SBCI R27,0
 	BLD  R0,0
 	INC  R0
 	BST  R0,0
@@ -4689,31 +4750,16 @@ __CPD21:
 	CPC  R25,R23
 	RET
 
-__SAVELOCR6:
-	ST   -Y,R21
-__SAVELOCR5:
-	ST   -Y,R20
-__SAVELOCR4:
-	ST   -Y,R19
-__SAVELOCR3:
-	ST   -Y,R18
-__SAVELOCR2:
-	ST   -Y,R17
-	ST   -Y,R16
-	RET
-
-__LOADLOCR6:
-	LDD  R21,Y+5
-__LOADLOCR5:
-	LDD  R20,Y+4
-__LOADLOCR4:
-	LDD  R19,Y+3
-__LOADLOCR3:
-	LDD  R18,Y+2
-__LOADLOCR2:
-	LDD  R17,Y+1
-	LD   R16,Y
-	RET
+_delay_ms:
+	adiw r26,0
+	breq __delay_ms1
+__delay_ms0:
+	wdr
+	__DELAY_USW 0x3E8
+	sbiw r26,1
+	brne __delay_ms0
+__delay_ms1:
+	ret
 
 ;END OF CODE MARKER
 __END_OF_CODE:

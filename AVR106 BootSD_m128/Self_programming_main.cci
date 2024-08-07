@@ -1,6 +1,6 @@
 VERSION:3 SOURCE_TIMESTAMP:58F4766C
-NODE:I LEVEL:0 LINE:28 "C:\cvavr\inc\io.h"
-NODE:I LEVEL:0 LINE:29 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:28 "F:\MyProjects\cvavr_portable\cvavr_portable\cvavr332\inc\io.h"
+NODE:I LEVEL:0 LINE:29 "F:\MyProjects\cvavr_portable\cvavr_portable\cvavr332\inc\delay.h"
 NODE:I LEVEL:0 LINE:30 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\flash.h"
 NODE:I LEVEL:0 LINE:31 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.h"
 NODE:I LEVEL:0 LINE:32 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\spi_sdcard.h"

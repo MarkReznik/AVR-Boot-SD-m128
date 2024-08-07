@@ -1,19 +1,19 @@
 
-AVRASM ver. 2.1.30  F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm Sat Jul 20 14:51:46 2024
+AVRASM ver. 2.1.30  F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm Wed Aug 07 15:53:43 2024
 
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1100): warning: Register r4 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1101): warning: Register r5 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1102): warning: Register r6 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1103): warning: Register r7 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1104): warning: Register r9 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1105): warning: Register r8 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1106): warning: Register r11 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1107): warning: Register r12 already defined by the .DEF directive
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1108): warning: Register r13 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1107): warning: Register r4 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1108): warning: Register r5 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1109): warning: Register r6 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1110): warning: Register r7 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1111): warning: Register r9 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1112): warning: Register r8 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1113): warning: Register r11 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1114): warning: Register r12 already defined by the .DEF directive
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1115): warning: Register r13 already defined by the .DEF directive
                  
                  
-                 ;CodeVisionAVR C Compiler V3.12 Advanced
-                 ;(C) Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+                 ;CodeVisionAVR C Compiler V3.32 Evaluation
+                 ;(C) Copyright 1998-2017 Pavel Haiduc, HP InfoTech s.r.l.
                  ;http://www.hpinfotech.com
                  
                  ;Build configuration    : Debug
@@ -31,7 +31,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ;'char' is unsigned     : Yes
                  ;8 bit enums            : Yes
                  ;Global 'const' stored in FLASH: Yes
-                 ;Enhanced function parameter passing: Yes
+                 ;Enhanced function parameter passing: Mode 1
                  ;Enhanced core instructions: On
                  ;Automatic register allocation for global variables: On
                  ;Smart register allocation: On
@@ -346,6 +346,13 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  	.MACRO __POINTW2MN
                  	LDI  R26,LOW(@0+(@1))
                  	LDI  R27,HIGH(@0+(@1))
+                 	.ENDM
+                 
+                 	.MACRO __POINTD2M
+                 	LDI  R26,LOW(@0)
+                 	LDI  R27,HIGH(@0)
+                 	LDI  R24,BYTE3(@0)
+                 	LDI  R25,BYTE4(@0)
                  	.ENDM
                  
                  	.MACRO __POINTW2FN
@@ -1182,7 +1189,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
 00f852 6974
 00f853 676e      	.DB  0x5B,0x73,0x65,0x74,0x74,0x69,0x6E,0x67
 00f854 5d73
-F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1161): warning: .cseg .db misalignment - padding zero byte
+F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\Self_programming.asm(1168): warning: .cseg .db misalignment - padding zero byte
 00f855 0000      	.DB  0x73,0x5D,0x0
                  
                  __GLOBAL_INI_TBL:
@@ -1278,10 +1285,10 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
 00f899 e0c0      	LDI  R28,LOW(__SRAM_START+__DSTACK_SIZE)
 00f89a e0d9      	LDI  R29,HIGH(__SRAM_START+__DSTACK_SIZE)
                  
-00f89b 940c f9ea 	JMP  _main
+00f89b 940c f9c5 	JMP  _main
                  
                  	.ESEG
-                 	.ORG 0
+                 	.ORG 0x00
                  
                  	.DSEG
                  	.ORG 0x900
@@ -1382,14 +1389,14 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _ReadFlashByte
                  ; 0000 0049 //#pragma diag_suppress=Pe1053 // Suppress warning for conversion from long-type address to flash ptr.
                  ; 0000 004A   return (unsigned char)*((MyFlashCharPointer)flashStartAdr);
-00f89d 940e ffd0 	CALL __PUTPARD2
+00f89d d6d8      	RCALL __PUTPARD2
                  ;	flashStartAdr -> Y+0
-00f89f 940e fdee 	CALL SUBOPT_0x0
+00f89e d4dd      	RCALL SUBOPT_0x0
                 +
-00f8a1 bf6b     +OUT RAMPZ , R22
-00f8a2 91e6     +ELPM R30 , Z
+00f89f bf6b     +OUT RAMPZ , R22
+00f8a0 91e6     +ELPM R30 , Z
                  	__GETBRPF 30
-00f8a3 940c fce0 	JMP  _0x200000A
+00f8a1 940c fc78 	JMP  _0x200000A
                  ; 0000 004B //#pragma diag_default=Pe1053 // Back to default.
                  ; 0000 004C } // Returns data from Flash
                  ; .FEND
@@ -1406,71 +1413,71 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _ReadFlashPage
                  ; 0000 0055   unsigned int index;
                  ; 0000 0056   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
-00f8a5 93ba      	ST   -Y,R27
-00f8a6 93aa      	ST   -Y,R26
-00f8a7 931a      	ST   -Y,R17
-00f8a8 930a      	ST   -Y,R16
+00f8a3 93ba      	ST   -Y,R27
+00f8a4 93aa      	ST   -Y,R26
+00f8a5 931a      	ST   -Y,R17
+00f8a6 930a      	ST   -Y,R16
                  ;	flashStartAdr -> Y+4
                  ;	*dataPage -> Y+2
                  ;	index -> R16,R17
                 +
-00f8a9 81ec     +LDD R30 , Y + 4
-00f8aa 81fd     +LDD R31 , Y + 4 + 1
-00f8ab 816e     +LDD R22 , Y + 4 + 2
-00f8ac 817f     +LDD R23 , Y + 4 + 3
+00f8a7 81ec     +LDD R30 , Y + 4
+00f8a8 81fd     +LDD R31 , Y + 4 + 1
+00f8a9 816e     +LDD R22 , Y + 4 + 2
+00f8aa 817f     +LDD R23 , Y + 4 + 3
                  	__GETD1S 4
-00f8ad 30e0      	CPI  R30,0
-00f8ae f501      	BRNE _0x3
+00f8ab 30e0      	CPI  R30,0
+00f8ac f4f9      	BRNE _0x3
                  ; 0000 0057     for(index = 0; index < PAGESIZE; index++){
                 +
-00f8af e000     +LDI R16 , LOW ( 0 )
-00f8b0 e010     +LDI R17 , HIGH ( 0 )
+00f8ad e000     +LDI R16 , LOW ( 0 )
+00f8ae e010     +LDI R17 , HIGH ( 0 )
                  	__GETWRN 16,17,0
                  _0x5:
                 +
-00f8b1 3000     +CPI R16 , LOW ( 256 )
-00f8b2 e0e1     +LDI R30 , HIGH ( 256 )
-00f8b3 071e     +CPC R17 , R30
+00f8af 3000     +CPI R16 , LOW ( 256 )
+00f8b0 e0e1     +LDI R30 , HIGH ( 256 )
+00f8b1 071e     +CPC R17 , R30
                  	__CPWRN 16,17,256
-00f8b4 f4b8      	BRSH _0x6
+00f8b2 f4b0      	BRSH _0x6
                  ; 0000 0058       dataPage[index] = ReadFlashByte(flashStartAdr + index);
-00f8b5 01f8      	MOVW R30,R16
-00f8b6 81aa      	LDD  R26,Y+2
-00f8b7 81bb      	LDD  R27,Y+2+1
-00f8b8 0fea      	ADD  R30,R26
-00f8b9 1ffb      	ADC  R31,R27
-00f8ba 93ff      	PUSH R31
-00f8bb 93ef      	PUSH R30
-00f8bc 01f8      	MOVW R30,R16
+00f8b3 01f8      	MOVW R30,R16
+00f8b4 81aa      	LDD  R26,Y+2
+00f8b5 81bb      	LDD  R27,Y+2+1
+00f8b6 0fea      	ADD  R30,R26
+00f8b7 1ffb      	ADC  R31,R27
+00f8b8 93ff      	PUSH R31
+00f8b9 93ef      	PUSH R30
+00f8ba 01f8      	MOVW R30,R16
                 +
-00f8bd 81ac     +LDD R26 , Y + 4
-00f8be 81bd     +LDD R27 , Y + 4 + 1
-00f8bf 818e     +LDD R24 , Y + 4 + 2
-00f8c0 819f     +LDD R25 , Y + 4 + 3
+00f8bb 81ac     +LDD R26 , Y + 4
+00f8bc 81bd     +LDD R27 , Y + 4 + 1
+00f8bd 818e     +LDD R24 , Y + 4 + 2
+00f8be 819f     +LDD R25 , Y + 4 + 3
                  	__GETD2S 4
-00f8c1 2766      	CLR  R22
-00f8c2 2777      	CLR  R23
-00f8c3 940e ff37 	CALL __ADDD21
-00f8c5 dfd7      	RCALL _ReadFlashByte
-00f8c6 91af      	POP  R26
-00f8c7 91bf      	POP  R27
-00f8c8 93ec      	ST   X,R30
+00f8bf 2766      	CLR  R22
+00f8c0 2777      	CLR  R23
+00f8c1 d605      	RCALL __ADDD21
+00f8c2 dfda      	RCALL _ReadFlashByte
+00f8c3 91af      	POP  R26
+00f8c4 91bf      	POP  R27
+00f8c5 93ec      	ST   X,R30
                  ; 0000 0059     }
                 +
-00f8c9 5f0f     +SUBI R16 , LOW ( - 1 )
-00f8ca 4f1f     +SBCI R17 , HIGH ( - 1 )
+00f8c6 5f0f     +SUBI R16 , LOW ( - 1 )
+00f8c7 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-00f8cb cfe5      	RJMP _0x5
+00f8c8 cfe6      	RJMP _0x5
                  _0x6:
                  ; 0000 005A     return TRUE;                            // Return TRUE if valid page address
-00f8cc e0e1      	LDI  R30,LOW(1)
-00f8cd 940c fcca 	JMP  _0x200000B
+00f8c9 e0e1      	LDI  R30,LOW(1)
+00f8ca 940c fc64 	JMP  _0x200000B
                  ; 0000 005B   }
                  ; 0000 005C   else{
                  _0x3:
                  ; 0000 005D     return FALSE;                           // Return FALSE if not valid page address
-00f8cf e0e0      	LDI  R30,LOW(0)
-00f8d0 940c fcca 	JMP  _0x200000B
+00f8cc e0e0      	LDI  R30,LOW(0)
+00f8cd 940c fc64 	JMP  _0x200000B
                  ; 0000 005E   }
                  ; 0000 005F }
                  ; .FEND
@@ -1545,39 +1552,33 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 009C   unsigned int index;
                  ; 0000 009D   unsigned char eepromInterruptSettings,sregSettings;
                  ; 0000 009E   if( AddressCheck(flashStartAdr) ){
-00f8d2 93ba      	ST   -Y,R27
-00f8d3 93aa      	ST   -Y,R26
-00f8d4 940e ffe0 	CALL __SAVELOCR4
+00f8cf 93ba      	ST   -Y,R27
+00f8d0 93aa      	ST   -Y,R26
+00f8d1 d5e4      	RCALL __SAVELOCR4
                  ;	flashStartAdr -> Y+6
                  ;	*dataPage -> Y+4
                  ;	index -> R16,R17
                  ;	eepromInterruptSettings -> R19
                  ;	sregSettings -> R18
-                +
-00f8d6 81ae     +LDD R26 , Y + 6
-00f8d7 81bf     +LDD R27 , Y + 6 + 1
-00f8d8 8588     +LDD R24 , Y + 6 + 2
-00f8d9 8599     +LDD R25 , Y + 6 + 3
-                 	__GETD2S 6
-00f8da d055      	RCALL _AddressCheck
-00f8db 30e0      	CPI  R30,0
-00f8dc f409      	BRNE PC+2
-00f8dd c04d      	RJMP _0xD
+00f8d2 d4ab      	RCALL SUBOPT_0x1
+00f8d3 d044      	RCALL _AddressCheck
+00f8d4 30e0      	CPI  R30,0
+00f8d5 f1f1      	BREQ _0xD
                  ; 0000 009F     eepromInterruptSettings = EECR & (1<<EERIE); // Stoes EEPROM interrupt mask
-00f8de b3ec      	IN   R30,0x1C
-00f8df 70e8      	ANDI R30,LOW(0x8)
-00f8e0 2f3e      	MOV  R19,R30
+00f8d6 b3ec      	IN   R30,0x1C
+00f8d7 70e8      	ANDI R30,LOW(0x8)
+00f8d8 2f3e      	MOV  R19,R30
                  ; 0000 00A0     EECR &= ~(1<<EERIE);                    // Disable EEPROM interrupt
-00f8e1 98e3      	CBI  0x1C,3
+00f8d9 98e3      	CBI  0x1C,3
                  ; 0000 00A1     while(EECR & (1<<EEWE));                // Wait if ongoing EEPROM write
                  _0xE:
-00f8e2 99e1      	SBIC 0x1C,1
-00f8e3 cffe      	RJMP _0xE
+00f8da 99e1      	SBIC 0x1C,1
+00f8db cffe      	RJMP _0xE
                  ; 0000 00A2 
                  ; 0000 00A3     sregSettings= SREG;
-00f8e4 b72f      	IN   R18,63
+00f8dc b72f      	IN   R18,63
                  ; 0000 00A4     #asm("cli");
-00f8e5 94f8      	cli
+00f8dd 94f8      	CLI
                  ; 0000 00A5 
                  ; 0000 00A6     #ifdef __FLASH_RECOVER
                  ; 0000 00A7     FlashBackup.status=0;                   // Inicate that Flash buffer does
@@ -1603,85 +1604,80 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 00BB     #endif
                  ; 0000 00BC 
                  ; 0000 00BD     if(index==0xFFF1)
-00f8e6 efe1      	LDI  R30,LOW(65521)
-00f8e7 efff      	LDI  R31,HIGH(65521)
-00f8e8 17e0      	CP   R30,R16
-00f8e9 07f1      	CPC  R31,R17
-00f8ea f491      	BRNE _0x11
+00f8de efe1      	LDI  R30,LOW(65521)
+00f8df efff      	LDI  R31,HIGH(65521)
+00f8e0 17e0      	CP   R30,R16
+00f8e1 07f1      	CPC  R31,R17
+00f8e2 f451      	BRNE _0x11
                  ; 0000 00BE     {
                  ; 0000 00BF         __AddrToZ24WordToR1R0ByteToSPMCR_SPM_F(0,0);
-00f8eb 940e fdf1 	CALL SUBOPT_0x1
-00f8ed e0a0      	LDI  R26,LOW(0)
-00f8ee e0b0      	LDI  R27,0
-00f8ef 940e f9b0 	CALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
+00f8e3 d49f      	RCALL SUBOPT_0x2
+00f8e4 e0a0      	LDI  R26,LOW(0)
+00f8e5 e0b0      	LDI  R27,0
+00f8e6 d0ab      	RCALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
                  ; 0000 00C0         __AddrToZ24ByteToSPMCR_SPM_W((void flash *)0x1EF00);
-00f8f1 940e fdf8 	CALL SUBOPT_0x2
-00f8f3 940e f9c0 	CALL ___AddrToZ24ByteToSPMCR_SPM_W
+00f8e7 d4a1      	RCALL SUBOPT_0x3
+00f8e8 d0b8      	RCALL ___AddrToZ24ByteToSPMCR_SPM_W
                  ; 0000 00C1         __AddrToZ24ByteToSPMCR_SPM_E((void flash *)0x1EF00);
-00f8f5 940e fdf8 	CALL SUBOPT_0x2
-00f8f7 940e f9ce 	CALL ___AddrToZ24ByteToSPMCR_SPM_E
+00f8e9 d49f      	RCALL SUBOPT_0x3
+00f8ea d0c2      	RCALL ___AddrToZ24ByteToSPMCR_SPM_E
                  ; 0000 00C2         __AddrToZ24ByteToSPMCR_SPM_EW((void flash *)0x1EF00);
-00f8f9 940e fdf8 	CALL SUBOPT_0x2
-00f8fb 940e f9dc 	CALL ___AddrToZ24ByteToSPMCR_SPM_EW
+00f8eb d49d      	RCALL SUBOPT_0x3
+00f8ec d0cc      	RCALL ___AddrToZ24ByteToSPMCR_SPM_EW
                  ; 0000 00C3     }
                  ; 0000 00C4     _WAIT_FOR_SPM();
                  _0x11:
                  _0x12:
-00f8fd 91e0 0068 	LDS  R30,104
-00f8ff 70e1      	ANDI R30,LOW(0x1)
-00f900 f7e1      	BRNE _0x12
+00f8ed 91e0 0068 	LDS  R30,104
+00f8ef 70e1      	ANDI R30,LOW(0x1)
+00f8f0 f7e1      	BRNE _0x12
                  ; 0000 00C5     //_PAGE_ERASE( flashStartAdr );
                  ; 0000 00C6     //_ENABLE_RWW_SECTION();
                  ; 0000 00C7 
                  ; 0000 00C8     for(index = 0; index < PAGESIZE; index+=2){ // Fills Flash write buffer
                 +
-00f901 e000     +LDI R16 , LOW ( 0 )
-00f902 e010     +LDI R17 , HIGH ( 0 )
+00f8f1 e000     +LDI R16 , LOW ( 0 )
+00f8f2 e010     +LDI R17 , HIGH ( 0 )
                  	__GETWRN 16,17,0
                  _0x16:
                 +
-00f903 3000     +CPI R16 , LOW ( 256 )
-00f904 e0e1     +LDI R30 , HIGH ( 256 )
-00f905 071e     +CPC R17 , R30
+00f8f3 3000     +CPI R16 , LOW ( 256 )
+00f8f4 e0e1     +LDI R30 , HIGH ( 256 )
+00f8f5 071e     +CPC R17 , R30
                  	__CPWRN 16,17,256
-00f906 f4c8      	BRSH _0x17
+00f8f6 f4a8      	BRSH _0x17
                  ; 0000 00C9       //_WAIT_FOR_SPM();
                  ; 0000 00CA       //MY_FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
                  ; 0000 00CB       _FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
-00f907 01f8      	MOVW R30,R16
-00f908 2766      	CLR  R22
-00f909 2777      	CLR  R23
-00f90a 940e ffcb 	CALL __PUTPARD1
-00f90c 01f8      	MOVW R30,R16
-00f90d 940e fdfd 	CALL SUBOPT_0x3
-00f90f 900c      	LD   R0,X
-00f910 2411      	CLR  R1
-00f911 01f8      	MOVW R30,R16
-00f912 9631      	ADIW R30,1
-00f913 940e fdfd 	CALL SUBOPT_0x3
-00f915 91ec      	LD   R30,X
-00f916 2ffe      	MOV  R31,R30
-00f917 e0e0      	LDI  R30,0
-00f918 01d0      	MOVW R26,R0
-00f919 0fae      	ADD  R26,R30
-00f91a 1fbf      	ADC  R27,R31
-00f91b 940e f9b0 	CALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
+00f8f7 01f8      	MOVW R30,R16
+00f8f8 2766      	CLR  R22
+00f8f9 2777      	CLR  R23
+00f8fa d676      	RCALL __PUTPARD1
+00f8fb 01f8      	MOVW R30,R16
+00f8fc d491      	RCALL SUBOPT_0x4
+00f8fd 900c      	LD   R0,X
+00f8fe 2411      	CLR  R1
+00f8ff 01f8      	MOVW R30,R16
+00f900 9631      	ADIW R30,1
+00f901 d48c      	RCALL SUBOPT_0x4
+00f902 91ec      	LD   R30,X
+00f903 2ffe      	MOV  R31,R30
+00f904 e0e0      	LDI  R30,0
+00f905 01d0      	MOVW R26,R0
+00f906 0fae      	ADD  R26,R30
+00f907 1fbf      	ADC  R27,R31
+00f908 d089      	RCALL ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
                  ; 0000 00CC     }
                 +
-00f91d 5f0e     +SUBI R16 , LOW ( - 2 )
-00f91e 4f1f     +SBCI R17 , HIGH ( - 2 )
+00f909 5f0e     +SUBI R16 , LOW ( - 2 )
+00f90a 4f1f     +SBCI R17 , HIGH ( - 2 )
                  	__ADDWRN 16,17,2
-00f91f cfe3      	RJMP _0x16
+00f90b cfe7      	RJMP _0x16
                  _0x17:
                  ; 0000 00CD     //_PAGE_WRITE( flashStartAdr );
                  ; 0000 00CE     WriteBufToFlash(flashStartAdr);         // Writes to Flash
-                +
-00f920 81ae     +LDD R26 , Y + 6
-00f921 81bf     +LDD R27 , Y + 6 + 1
-00f922 8588     +LDD R24 , Y + 6 + 2
-00f923 8599     +LDD R25 , Y + 6 + 3
-                 	__GETD2S 6
-00f924 d025      	RCALL _WriteBufToFlash
+00f90c d471      	RCALL SUBOPT_0x1
+00f90d d020      	RCALL _WriteBufToFlash
                  ; 0000 00CF     #ifdef __FLASH_RECOVER
                  ; 0000 00D0       FlashBackup.status=0;                 // Inicate that Flash buffer does
                  ; 0000 00D1                                             // not contain data for writing
@@ -1689,26 +1685,26 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 00D3     #endif
                  ; 0000 00D4 
                  ; 0000 00D5     EECR |= eepromInterruptSettings;        // Restore EEPROM interrupt mask
-00f925 b3ec      	IN   R30,0x1C
-00f926 2be3      	OR   R30,R19
-00f927 bbec      	OUT  0x1C,R30
+00f90e b3ec      	IN   R30,0x1C
+00f90f 2be3      	OR   R30,R19
+00f910 bbec      	OUT  0x1C,R30
                  ; 0000 00D6     SREG = sregSettings;
-00f928 bf2f      	OUT  0x3F,R18
+00f911 bf2f      	OUT  0x3F,R18
                  ; 0000 00D7     return TRUE;                            // Return TRUE if address
-00f929 e0e1      	LDI  R30,LOW(1)
-00f92a c001      	RJMP _0x200000C
+00f912 e0e1      	LDI  R30,LOW(1)
+00f913 c001      	RJMP _0x200000C
                  ; 0000 00D8                                             // valid for writing
                  ; 0000 00D9   }
                  ; 0000 00DA   else
                  _0xD:
                  ; 0000 00DB     return FALSE;                           // Return FALSE if not address not
-00f92b e0e0      	LDI  R30,LOW(0)
+00f914 e0e0      	LDI  R30,LOW(0)
                  ; 0000 00DC                                             // valid for writing
                  ; 0000 00DD }
                  _0x200000C:
-00f92c 940e ffe7 	CALL __LOADLOCR4
-00f92e 962a      	ADIW R28,10
-00f92f 9508      	RET
+00f915 d5a7      	RCALL __LOADLOCR4
+00f916 962a      	ADIW R28,10
+00f917 9508      	RET
                  ; .FEND
                  ;
                  ;/*!
@@ -1772,30 +1768,30 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 0115     return FALSE;                           // Address is not a valid page address
                  ; 0000 0116   #else
                  ; 0000 0117   if((flashAdr >= ADR_LIMIT_LOW) && (flashAdr <= ADR_LIMIT_HIGH) && !(flashAdr & (PAGESIZE-1) ) )
-00f930 940e fe02 	CALL SUBOPT_0x4
+00f918 d47a      	RCALL SUBOPT_0x5
                  ;	flashAdr -> Y+0
-00f932 940e ffd5 	CALL __CPD20
-00f934 f070      	BRLO _0x1A
-00f935 940e fe07 	CALL SUBOPT_0x5
+00f919 d661      	RCALL __CPD20
+00f91a f060      	BRLO _0x1A
+00f91b d47a      	RCALL SUBOPT_0x6
                 +
-00f937 30a0     +CPI R26 , LOW ( 0x1F000 )
-00f938 efe0     +LDI R30 , HIGH ( 0x1F000 )
-00f939 07be     +CPC R27 , R30
-00f93a e0e1     +LDI R30 , BYTE3 ( 0x1F000 )
-00f93b 078e     +CPC R24 , R30
-00f93c e0e0     +LDI R30 , BYTE4 ( 0x1F000 )
-00f93d 079e     +CPC R25 , R30
+00f91c 30a0     +CPI R26 , LOW ( 0x1F000 )
+00f91d efe0     +LDI R30 , HIGH ( 0x1F000 )
+00f91e 07be     +CPC R27 , R30
+00f91f e0e1     +LDI R30 , BYTE3 ( 0x1F000 )
+00f920 078e     +CPC R24 , R30
+00f921 e0e0     +LDI R30 , BYTE4 ( 0x1F000 )
+00f922 079e     +CPC R25 , R30
                  	__CPD2N 0x1F000
-00f93e f420      	BRSH _0x1A
-00f93f 940e fdee 	CALL SUBOPT_0x0
-00f941 30e0      	CPI  R30,0
-00f942 f009      	BREQ _0x1B
+00f923 f418      	BRSH _0x1A
+00f924 d457      	RCALL SUBOPT_0x0
+00f925 30e0      	CPI  R30,0
+00f926 f009      	BREQ _0x1B
                  _0x1A:
-00f943 c003      	RJMP _0x19
+00f927 c003      	RJMP _0x19
                  _0x1B:
                  ; 0000 0118     return TRUE;                            // Address is a valid page address
-00f944 e0e1      	LDI  R30,LOW(1)
-00f945 940c fce0 	JMP  _0x200000A
+00f928 e0e1      	LDI  R30,LOW(1)
+00f929 940c fc78 	JMP  _0x200000A
                  ; 0000 0119   else
                  _0x19:
                  ; 0000 011A   {
@@ -1809,8 +1805,8 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 0122     }
                  ; 0000 0123     */
                  ; 0000 0124     return FALSE;                           // Address is not a valid page address
-00f947 e0e0      	LDI  R30,LOW(0)
-00f948 940c fce0 	JMP  _0x200000A
+00f92b e0e0      	LDI  R30,LOW(0)
+00f92c 940c fc78 	JMP  _0x200000A
                  ; 0000 0125   }
                  ; 0000 0126   #endif
                  ; 0000 0127 }
@@ -1833,9 +1829,9 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 0134     //_ENABLE_RWW_SECTION();
                  ; 0000 0135     //MY_PAGE_WRITE( flashStartAdr );
                  ; 0000 0136     _PAGE_WRITE( flashStartAdr );
-00f94a 940e fe02 	CALL SUBOPT_0x4
+00f92e d464      	RCALL SUBOPT_0x5
                  ;	flashStartAdr -> Y+0
-00f94c 940e f9dc 	CALL ___AddrToZ24ByteToSPMCR_SPM_EW
+00f92f d089      	RCALL ___AddrToZ24ByteToSPMCR_SPM_EW
                  ; 0000 0137     //_WAIT_FOR_SPM();
                  ; 0000 0138     //_ENABLE_RWW_SECTION();
                  ; 0000 0139 /*
@@ -1853,7 +1849,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0000 0145 #pragma diag_default=Pe1053 // Back to default.
                  ; 0000 0146 */
                  ; 0000 0147 }
-00f94e 940c fce0 	JMP  _0x200000A
+00f930 940c fc78 	JMP  _0x200000A
                  ; .FEND
                  ;
                  ;/*!
@@ -1929,54 +1925,54 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _dospmew
                  ; 0001 0019     #asm
                  ; 0001 001A          ldi   r22,$03
-00f950 e063               ldi   r22,$03
+00f932 e063               ldi   r22,$03
                  ; 0001 001B          WR_SPMCR_REG_R22
-00f951 9360 0068          WR_SPMCR_REG_R22
+00f933 9360 0068          WR_SPMCR_REG_R22
                  ; 0001 001C          spm
-00f953 95e8               spm
+00f935 95e8               spm
                  ; 0001 001D     #endasm
                  ; 0001 001E     _WAIT_FOR_SPM();
                  _0x20003:
-00f954 91e0 0068 	LDS  R30,104
-00f956 70e1      	ANDI R30,LOW(0x1)
-00f957 f7e1      	BRNE _0x20003
+00f936 91e0 0068 	LDS  R30,104
+00f938 70e1      	ANDI R30,LOW(0x1)
+00f939 f7e1      	BRNE _0x20003
                  ; 0001 001F     #asm
                  ; 0001 0020         ldi   r22,$05
-00f958 e065              ldi   r22,$05
+00f93a e065              ldi   r22,$05
                  ; 0001 0021         WR_SPMCR_REG_R22
-00f959 9360 0068         WR_SPMCR_REG_R22
+00f93b 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 0022         spm
-00f95b 95e8              spm
+00f93d 95e8              spm
                  ; 0001 0023     #endasm
                  ; 0001 0024     _WAIT_FOR_SPM();
                  _0x20006:
-00f95c 91e0 0068 	LDS  R30,104
-00f95e 70e1      	ANDI R30,LOW(0x1)
-00f95f f7e1      	BRNE _0x20006
+00f93e 91e0 0068 	LDS  R30,104
+00f940 70e1      	ANDI R30,LOW(0x1)
+00f941 f7e1      	BRNE _0x20006
                  ; 0001 0025     while( SPMCR_REG & (1<<RWWSB) )
                  _0x20009:
-00f960 91e0 0068 	LDS  R30,104
-00f962 74e0      	ANDI R30,LOW(0x40)
-00f963 f049      	BREQ _0x2000B
+00f942 91e0 0068 	LDS  R30,104
+00f944 74e0      	ANDI R30,LOW(0x40)
+00f945 f049      	BREQ _0x2000B
                  ; 0001 0026     {
                  ; 0001 0027     #asm
                  ; 0001 0028         ldi   r22,$11
-00f964 e161              ldi   r22,$11
+00f946 e161              ldi   r22,$11
                  ; 0001 0029         WR_SPMCR_REG_R22
-00f965 9360 0068         WR_SPMCR_REG_R22
+00f947 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 002A         spm
-00f967 95e8              spm
+00f949 95e8              spm
                  ; 0001 002B     #endasm
                  ; 0001 002C         _WAIT_FOR_SPM();
                  _0x2000C:
-00f968 91e0 0068 	LDS  R30,104
-00f96a 70e1      	ANDI R30,LOW(0x1)
-00f96b f7e1      	BRNE _0x2000C
+00f94a 91e0 0068 	LDS  R30,104
+00f94c 70e1      	ANDI R30,LOW(0x1)
+00f94d f7e1      	BRNE _0x2000C
                  ; 0001 002D     }
-00f96c cff3      	RJMP _0x20009
+00f94e cff3      	RJMP _0x20009
                  _0x2000B:
                  ; 0001 002E }
-00f96d 9508      	RET
+00f94f 9508      	RET
                  ; .FEND
                  ;
                  ;void dospmw(void)
@@ -1985,41 +1981,41 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _dospmw
                  ; 0001 0032     #asm
                  ; 0001 0033         ldi   r22,$05
-00f96e e065              ldi   r22,$05
+00f950 e065              ldi   r22,$05
                  ; 0001 0034         WR_SPMCR_REG_R22
-00f96f 9360 0068         WR_SPMCR_REG_R22
+00f951 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 0035         spm
-00f971 95e8              spm
+00f953 95e8              spm
                  ; 0001 0036     #endasm
                  ; 0001 0037     _WAIT_FOR_SPM();
                  _0x2000F:
-00f972 91e0 0068 	LDS  R30,104
-00f974 70e1      	ANDI R30,LOW(0x1)
-00f975 f7e1      	BRNE _0x2000F
+00f954 91e0 0068 	LDS  R30,104
+00f956 70e1      	ANDI R30,LOW(0x1)
+00f957 f7e1      	BRNE _0x2000F
                  ; 0001 0038     while( SPMCR_REG & (1<<RWWSB) )
                  _0x20012:
-00f976 91e0 0068 	LDS  R30,104
-00f978 74e0      	ANDI R30,LOW(0x40)
-00f979 f049      	BREQ _0x20014
+00f958 91e0 0068 	LDS  R30,104
+00f95a 74e0      	ANDI R30,LOW(0x40)
+00f95b f049      	BREQ _0x20014
                  ; 0001 0039     {
                  ; 0001 003A     #asm
                  ; 0001 003B         ldi   r22,$11
-00f97a e161              ldi   r22,$11
+00f95c e161              ldi   r22,$11
                  ; 0001 003C         WR_SPMCR_REG_R22
-00f97b 9360 0068         WR_SPMCR_REG_R22
+00f95d 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 003D         spm
-00f97d 95e8              spm
+00f95f 95e8              spm
                  ; 0001 003E     #endasm
                  ; 0001 003F         _WAIT_FOR_SPM();
                  _0x20015:
-00f97e 91e0 0068 	LDS  R30,104
-00f980 70e1      	ANDI R30,LOW(0x1)
-00f981 f7e1      	BRNE _0x20015
+00f960 91e0 0068 	LDS  R30,104
+00f962 70e1      	ANDI R30,LOW(0x1)
+00f963 f7e1      	BRNE _0x20015
                  ; 0001 0040     }
-00f982 cff3      	RJMP _0x20012
+00f964 cff3      	RJMP _0x20012
                  _0x20014:
                  ; 0001 0041 }
-00f983 9508      	RET
+00f965 9508      	RET
                  ; .FEND
                  ;
                  ;void dospme(void)
@@ -2028,41 +2024,41 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _dospme
                  ; 0001 0045     #asm
                  ; 0001 0046         ldi   r22,$03
-00f984 e063              ldi   r22,$03
+00f966 e063              ldi   r22,$03
                  ; 0001 0047         WR_SPMCR_REG_R22
-00f985 9360 0068         WR_SPMCR_REG_R22
+00f967 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 0048         spm
-00f987 95e8              spm
+00f969 95e8              spm
                  ; 0001 0049     #endasm
                  ; 0001 004A     _WAIT_FOR_SPM();
                  _0x20018:
-00f988 91e0 0068 	LDS  R30,104
-00f98a 70e1      	ANDI R30,LOW(0x1)
-00f98b f7e1      	BRNE _0x20018
+00f96a 91e0 0068 	LDS  R30,104
+00f96c 70e1      	ANDI R30,LOW(0x1)
+00f96d f7e1      	BRNE _0x20018
                  ; 0001 004B     while( SPMCR_REG & (1<<RWWSB) )
                  _0x2001B:
-00f98c 91e0 0068 	LDS  R30,104
-00f98e 74e0      	ANDI R30,LOW(0x40)
-00f98f f049      	BREQ _0x2001D
+00f96e 91e0 0068 	LDS  R30,104
+00f970 74e0      	ANDI R30,LOW(0x40)
+00f971 f049      	BREQ _0x2001D
                  ; 0001 004C     {
                  ; 0001 004D     #asm
                  ; 0001 004E         ldi   r22,$11
-00f990 e161              ldi   r22,$11
+00f972 e161              ldi   r22,$11
                  ; 0001 004F         WR_SPMCR_REG_R22
-00f991 9360 0068         WR_SPMCR_REG_R22
+00f973 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 0050         spm
-00f993 95e8              spm
+00f975 95e8              spm
                  ; 0001 0051     #endasm
                  ; 0001 0052         _WAIT_FOR_SPM();
                  _0x2001E:
-00f994 91e0 0068 	LDS  R30,104
-00f996 70e1      	ANDI R30,LOW(0x1)
-00f997 f7e1      	BRNE _0x2001E
+00f976 91e0 0068 	LDS  R30,104
+00f978 70e1      	ANDI R30,LOW(0x1)
+00f979 f7e1      	BRNE _0x2001E
                  ; 0001 0053     }
-00f998 cff3      	RJMP _0x2001B
+00f97a cff3      	RJMP _0x2001B
                  _0x2001D:
                  ; 0001 0054 }
-00f999 9508      	RET
+00f97b 9508      	RET
                  ; .FEND
                  ;
                  ;void dospm(void)
@@ -2071,41 +2067,41 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _dospm
                  ; 0001 0058     #asm
                  ; 0001 0059          ldi   r22,$01
-00f99a e061               ldi   r22,$01
+00f97c e061               ldi   r22,$01
                  ; 0001 005A          WR_SPMCR_REG_R22
-00f99b 9360 0068          WR_SPMCR_REG_R22
+00f97d 9360 0068          WR_SPMCR_REG_R22
                  ; 0001 005B          spm
-00f99d 95e8               spm
+00f97f 95e8               spm
                  ; 0001 005C     #endasm
                  ; 0001 005D     _WAIT_FOR_SPM();
                  _0x20021:
-00f99e 91e0 0068 	LDS  R30,104
-00f9a0 70e1      	ANDI R30,LOW(0x1)
-00f9a1 f7e1      	BRNE _0x20021
+00f980 91e0 0068 	LDS  R30,104
+00f982 70e1      	ANDI R30,LOW(0x1)
+00f983 f7e1      	BRNE _0x20021
                  ; 0001 005E     while( SPMCR_REG & (1<<RWWSB) )
                  _0x20024:
-00f9a2 91e0 0068 	LDS  R30,104
-00f9a4 74e0      	ANDI R30,LOW(0x40)
-00f9a5 f049      	BREQ _0x20026
+00f984 91e0 0068 	LDS  R30,104
+00f986 74e0      	ANDI R30,LOW(0x40)
+00f987 f049      	BREQ _0x20026
                  ; 0001 005F     {
                  ; 0001 0060     #asm
                  ; 0001 0061         ldi   r22,$11
-00f9a6 e161              ldi   r22,$11
+00f988 e161              ldi   r22,$11
                  ; 0001 0062         WR_SPMCR_REG_R22
-00f9a7 9360 0068         WR_SPMCR_REG_R22
+00f989 9360 0068         WR_SPMCR_REG_R22
                  ; 0001 0063         spm
-00f9a9 95e8              spm
+00f98b 95e8              spm
                  ; 0001 0064     #endasm
                  ; 0001 0065         _WAIT_FOR_SPM();
                  _0x20027:
-00f9aa 91e0 0068 	LDS  R30,104
-00f9ac 70e1      	ANDI R30,LOW(0x1)
-00f9ad f7e1      	BRNE _0x20027
+00f98c 91e0 0068 	LDS  R30,104
+00f98e 70e1      	ANDI R30,LOW(0x1)
+00f98f f7e1      	BRNE _0x20027
                  ; 0001 0066     }
-00f9ae cff3      	RJMP _0x20024
+00f990 cff3      	RJMP _0x20024
                  _0x20026:
                  ; 0001 0067 }
-00f9af 9508      	RET
+00f991 9508      	RET
                  ; .FEND
                  ;
                  ;#pragma warn-
@@ -2220,27 +2216,27 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F:
                  ; .FSTART ___AddrToZ24WordToR1R0ByteToSPMCR_SPM_F
                  ; 0001 00C7 _WAIT_FOR_SPM();
-00f9b0 93ba      	ST   -Y,R27
-00f9b1 93aa      	ST   -Y,R26
+00f992 93ba      	ST   -Y,R27
+00f993 93aa      	ST   -Y,R26
                  ;	*addr -> Y+2
                  ;	data -> Y+0
                  _0x20030:
-00f9b2 91e0 0068 	LDS  R30,104
-00f9b4 70e1      	ANDI R30,LOW(0x1)
-00f9b5 f7e1      	BRNE _0x20030
+00f994 91e0 0068 	LDS  R30,104
+00f996 70e1      	ANDI R30,LOW(0x1)
+00f997 f7e1      	BRNE _0x20030
                  ; 0001 00C8 #asm
                  ; 0001 00C9      ldd  r30,y+2
-00f9b6 81ea           ldd  r30,y+2
+00f998 81ea           ldd  r30,y+2
                  ; 0001 00CA      ldd  r31,y+3
-00f9b7 81fb           ldd  r31,y+3
+00f999 81fb           ldd  r31,y+3
                  ; 0001 00CB      ldd  r22,y+4
-00f9b8 816c           ldd  r22,y+4
+00f99a 816c           ldd  r22,y+4
                  ; 0001 00CC      out  rampz,r22
-00f9b9 bf6b           out  rampz,r22
+00f99b bf6b           out  rampz,r22
                  ; 0001 00CD      ldd  r0,y+0
-00f9ba 8008           ldd  r0,y+0
+00f99c 8008           ldd  r0,y+0
                  ; 0001 00CE      ldd  r1,y+1
-00f9bb 8019           ldd  r1,y+1
+00f99d 8019           ldd  r1,y+1
                  ; 0001 00CF      //ld   r22,y
                       //ld   r22,y
                  ; 0001 00D0      //WR_SPMCR_REG_R22
@@ -2249,9 +2245,9 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                       //spm
                  ; 0001 00D2 #endasm
                  ; 0001 00D3 dospm();
-00f9bc 940e f99a 	CALL _dospm
+00f99e dfdd      	RCALL _dospm
                  ; 0001 00D4 }
-00f9be 940c fd74 	JMP  _0x2000004
+00f99f 940c fd09 	JMP  _0x2000004
                  ; .FEND
                  ;
                  ;void __AddrToZ24ByteToSPMCR_SPM(void flash *addr, unsigned char ctrl)
@@ -2274,21 +2270,21 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ___AddrToZ24ByteToSPMCR_SPM_W:
                  ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_W
                  ; 0001 00E5 _WAIT_FOR_SPM();
-00f9c0 940e ffd0 	CALL __PUTPARD2
+00f9a1 d5d4      	RCALL __PUTPARD2
                  ;	*addr -> Y+0
                  _0x20033:
-00f9c2 91e0 0068 	LDS  R30,104
-00f9c4 70e1      	ANDI R30,LOW(0x1)
-00f9c5 f7e1      	BRNE _0x20033
+00f9a2 91e0 0068 	LDS  R30,104
+00f9a4 70e1      	ANDI R30,LOW(0x1)
+00f9a5 f7e1      	BRNE _0x20033
                  ; 0001 00E6 #asm
                  ; 0001 00E7      ldd  r30,y+0
-00f9c6 81e8           ldd  r30,y+0
+00f9a6 81e8           ldd  r30,y+0
                  ; 0001 00E8      ldd  r31,y+1
-00f9c7 81f9           ldd  r31,y+1
+00f9a7 81f9           ldd  r31,y+1
                  ; 0001 00E9      ldd  r22,y+2
-00f9c8 816a           ldd  r22,y+2
+00f9a8 816a           ldd  r22,y+2
                  ; 0001 00EA      out  rampz,r22
-00f9c9 bf6b           out  rampz,r22
+00f9a9 bf6b           out  rampz,r22
                  ; 0001 00EB      //ld   r22,y
                       //ld   r22,y
                  ; 0001 00EC      //WR_SPMCR_REG_R22
@@ -2297,9 +2293,9 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                       //spm
                  ; 0001 00EE #endasm
                  ; 0001 00EF dospmw();
-00f9ca 940e f96e 	CALL _dospmw
+00f9aa dfa5      	RCALL _dospmw
                  ; 0001 00F0 }
-00f9cc 940c fce0 	JMP  _0x200000A
+00f9ab 940c fc78 	JMP  _0x200000A
                  ; .FEND
                  ;
                  ;void __AddrToZ24ByteToSPMCR_SPM_E(void flash *addr)
@@ -2307,21 +2303,21 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ___AddrToZ24ByteToSPMCR_SPM_E:
                  ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_E
                  ; 0001 00F4 _WAIT_FOR_SPM();
-00f9ce 940e ffd0 	CALL __PUTPARD2
+00f9ad d5c8      	RCALL __PUTPARD2
                  ;	*addr -> Y+0
                  _0x20036:
-00f9d0 91e0 0068 	LDS  R30,104
-00f9d2 70e1      	ANDI R30,LOW(0x1)
-00f9d3 f7e1      	BRNE _0x20036
+00f9ae 91e0 0068 	LDS  R30,104
+00f9b0 70e1      	ANDI R30,LOW(0x1)
+00f9b1 f7e1      	BRNE _0x20036
                  ; 0001 00F5 #asm
                  ; 0001 00F6      ldd  r30,y+0
-00f9d4 81e8           ldd  r30,y+0
+00f9b2 81e8           ldd  r30,y+0
                  ; 0001 00F7      ldd  r31,y+1
-00f9d5 81f9           ldd  r31,y+1
+00f9b3 81f9           ldd  r31,y+1
                  ; 0001 00F8      ldd  r22,y+2
-00f9d6 816a           ldd  r22,y+2
+00f9b4 816a           ldd  r22,y+2
                  ; 0001 00F9      out  rampz,r22
-00f9d7 bf6b           out  rampz,r22
+00f9b5 bf6b           out  rampz,r22
                  ; 0001 00FA      //ld   r22,y
                       //ld   r22,y
                  ; 0001 00FB      //WR_SPMCR_REG_R22
@@ -2330,9 +2326,9 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                       //spm
                  ; 0001 00FD #endasm
                  ; 0001 00FE dospme();
-00f9d8 940e f984 	CALL _dospme
+00f9b6 dfaf      	RCALL _dospme
                  ; 0001 00FF }
-00f9da 940c fce0 	JMP  _0x200000A
+00f9b7 940c fc78 	JMP  _0x200000A
                  ; .FEND
                  ;
                  ;void __AddrToZ24ByteToSPMCR_SPM_EW(void flash *addr)
@@ -2340,21 +2336,21 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ___AddrToZ24ByteToSPMCR_SPM_EW:
                  ; .FSTART ___AddrToZ24ByteToSPMCR_SPM_EW
                  ; 0001 0103 _WAIT_FOR_SPM();
-00f9dc 940e ffd0 	CALL __PUTPARD2
+00f9b9 d5bc      	RCALL __PUTPARD2
                  ;	*addr -> Y+0
                  _0x20039:
-00f9de 91e0 0068 	LDS  R30,104
-00f9e0 70e1      	ANDI R30,LOW(0x1)
-00f9e1 f7e1      	BRNE _0x20039
+00f9ba 91e0 0068 	LDS  R30,104
+00f9bc 70e1      	ANDI R30,LOW(0x1)
+00f9bd f7e1      	BRNE _0x20039
                  ; 0001 0104 #asm
                  ; 0001 0105      ldd  r30,y+0
-00f9e2 81e8           ldd  r30,y+0
+00f9be 81e8           ldd  r30,y+0
                  ; 0001 0106      ldd  r31,y+1
-00f9e3 81f9           ldd  r31,y+1
+00f9bf 81f9           ldd  r31,y+1
                  ; 0001 0107      ldd  r22,y+2
-00f9e4 816a           ldd  r22,y+2
+00f9c0 816a           ldd  r22,y+2
                  ; 0001 0108      out  rampz,r22
-00f9e5 bf6b           out  rampz,r22
+00f9c1 bf6b           out  rampz,r22
                  ; 0001 0109      //ld   r22,y
                       //ld   r22,y
                  ; 0001 010A      //WR_SPMCR_REG_R22
@@ -2363,9 +2359,9 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                       //spm
                  ; 0001 010C #endasm
                  ; 0001 010D dospmew();
-00f9e6 940e f950 	CALL _dospmew
+00f9c2 df6f      	RCALL _dospmew
                  ; 0001 010E }
-00f9e8 940c fce0 	JMP  _0x200000A
+00f9c3 940c fc78 	JMP  _0x200000A
                  ; .FEND
                  ;
                  ;#ifdef _WARNINGS_ON_
@@ -2443,13 +2439,13 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 003D   unsigned char rollbuf[11];
                  ; 0002 003E /* globally enable interrupts */
                  ; 0002 003F #asm("sei")
-00f9ea 972c      	SBIW R28,12
+00f9c5 972c      	SBIW R28,12
                  ;	i -> R16,R17
                  ;	j -> R18,R19
                  ;	k -> R20,R21
                  ;	rollnum -> Y+11
                  ;	rollbuf -> Y+0
-00f9eb 9478      	sei
+00f9c6 9478      	SEI
                  ; 0002 0040 
                  ; 0002 0041 #ifdef DEBUGLED
                  ; 0002 0042   DDRC=0xFF;
@@ -2468,8 +2464,8 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 004F #endif
                  ; 0002 0050   //init SD
                  ; 0002 0051   if((result[0]=SD_init())!=SD_SUCCESS){
-00f9ec 940e fd38 	CALL _SD_init
-00f9ee 93e0 091b 	STS  _result,R30
+00f9c7 d306      	RCALL _SD_init
+00f9c8 93e0 091b 	STS  _result,R30
                  ; 0002 0052 #ifdef DEBUGLED
                  ; 0002 0053     errorSD(0);
                  ; 0002 0054 #endif
@@ -2477,8 +2473,8 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 0056 
                  ; 0002 0057   // read MBR get FAT start sector
                  ; 0002 0058   if((result[0]=SD_readSingleBlock(0, sdBuf, &token))!=SD_SUCCESS){
-00f9f0 940e fdf1 	CALL SUBOPT_0x1
-00f9f2 940e fe0a 	CALL SUBOPT_0x6
+00f9ca d3b8      	RCALL SUBOPT_0x2
+00f9cb d3cc      	RCALL SUBOPT_0x7
                  ; 0002 0059 #ifdef DEBUGLED
                  ; 0002 005A     errorSD(1);
                  ; 0002 005B #endif
@@ -2486,15 +2482,15 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 005D 
                  ; 0002 005E   adr=buf2num(&sdBuf[445+9],4);//FAT start sector. 1 sector = 512 bytes
                 +
-00f9f4 eee6     +LDI R30 , LOW ( _sdBuf + ( 454 ) )
-00f9f5 e0fa     +LDI R31 , HIGH ( _sdBuf + ( 454 ) )
+00f9cc eee6     +LDI R30 , LOW ( _sdBuf + ( 454 ) )
+00f9cd e0fa     +LDI R31 , HIGH ( _sdBuf + ( 454 ) )
                  	__POINTW1MN _sdBuf,454
-00f9f6 940e fe14 	CALL SUBOPT_0x7
-00f9f8 940e fe18 	CALL SUBOPT_0x8
+00f9ce d3d3      	RCALL SUBOPT_0x8
+00f9cf d3d6      	RCALL SUBOPT_0x9
                  ; 0002 005F 
                  ; 0002 0060   //load and read FAT ID (1st) sector. Get FAT info. Secors per Cluster and etc..
                  ; 0002 0061   if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-00f9fa 940e fe21 	CALL SUBOPT_0x9
+00f9d0 d3de      	RCALL SUBOPT_0xA
                  ; 0002 0062     #ifdef DEBUGLED
                  ; 0002 0063     errorSD(2);
                  ; 0002 0064     #endif
@@ -2502,224 +2498,224 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 0066 
                  ; 0002 0067   SectorsPerCluster=sdBuf[0x0D];// 8 sectors per cluster
                 +
-00f9fc 9080 092d+LDS R8 , _sdBuf + ( 13 )
+00f9d1 9080 092d+LDS R8 , _sdBuf + ( 13 )
                  	__GETBRMN 8,_sdBuf,13
                  ; 0002 0068   SectorsPerFat=buf2num(&sdBuf[0x24],4); // 0xF10 for test sdcard
                 +
-00f9fe e4e4     +LDI R30 , LOW ( _sdBuf + ( 36 ) )
-00f9ff e0f9     +LDI R31 , HIGH ( _sdBuf + ( 36 ) )
+00f9d3 e4e4     +LDI R30 , LOW ( _sdBuf + ( 36 ) )
+00f9d4 e0f9     +LDI R31 , HIGH ( _sdBuf + ( 36 ) )
                  	__POINTW1MN _sdBuf,36
-00fa00 940e fe14 	CALL SUBOPT_0x7
-00fa02 93e0 0c28 	STS  _SectorsPerFat,R30
-00fa04 93f0 0c29 	STS  _SectorsPerFat+1,R31
-00fa06 9360 0c2a 	STS  _SectorsPerFat+2,R22
-00fa08 9370 0c2b 	STS  _SectorsPerFat+3,R23
+00f9d5 d3cc      	RCALL SUBOPT_0x8
+00f9d6 93e0 0c28 	STS  _SectorsPerFat,R30
+00f9d8 93f0 0c29 	STS  _SectorsPerFat+1,R31
+00f9da 9360 0c2a 	STS  _SectorsPerFat+2,R22
+00f9dc 9370 0c2b 	STS  _SectorsPerFat+3,R23
                  ; 0002 0069   Number_of_Reserved_Sectors=buf2num(&sdBuf[0x0E],2); // 0x20 usually
                 +
-00fa0a e2ee     +LDI R30 , LOW ( _sdBuf + ( 14 ) )
-00fa0b e0f9     +LDI R31 , HIGH ( _sdBuf + ( 14 ) )
+00f9de e2ee     +LDI R30 , LOW ( _sdBuf + ( 14 ) )
+00f9df e0f9     +LDI R31 , HIGH ( _sdBuf + ( 14 ) )
                  	__POINTW1MN _sdBuf,14
-00fa0c 93fa      	ST   -Y,R31
-00fa0d 93ea      	ST   -Y,R30
-00fa0e e0a2      	LDI  R26,LOW(2)
-00fa0f d254      	RCALL _buf2num
-00fa10 93e0 0c48 	STS  _Number_of_Reserved_Sectors,R30
-00fa12 93f0 0c49 	STS  _Number_of_Reserved_Sectors+1,R31
+00f9e0 93fa      	ST   -Y,R31
+00f9e1 93ea      	ST   -Y,R30
+00f9e2 e0a2      	LDI  R26,LOW(2)
+00f9e3 d220      	RCALL _buf2num
+00f9e4 93e0 0c48 	STS  _Number_of_Reserved_Sectors,R30
+00f9e6 93f0 0c49 	STS  _Number_of_Reserved_Sectors+1,R31
                  ; 0002 006A   //read the FAT fils/directories info from Root Directory cluster (usually 2),Number_of_Reserved_Sectors (usually 0x20) ...
                  ; 0002 006B   //(unsigned long)fat_begin_lba = Partition_LBA_Begin + Number_of_Reserved_Sectors;
                  ; 0002 006C   fat_begin_lba=adr+Number_of_Reserved_Sectors;//0x20;//first sector of FAT data
-00fa14 91a0 0c24 	LDS  R26,_adr
-00fa16 91b0 0c25 	LDS  R27,_adr+1
-00fa18 9180 0c26 	LDS  R24,_adr+2
-00fa1a 9190 0c27 	LDS  R25,_adr+3
-00fa1c 2766      	CLR  R22
-00fa1d 2777      	CLR  R23
-00fa1e 940e ff32 	CALL __ADDD12
-00fa20 93e0 0c2c 	STS  _fat_begin_lba,R30
-00fa22 93f0 0c2d 	STS  _fat_begin_lba+1,R31
-00fa24 9360 0c2e 	STS  _fat_begin_lba+2,R22
-00fa26 9370 0c2f 	STS  _fat_begin_lba+3,R23
+00f9e8 91a0 0c24 	LDS  R26,_adr
+00f9ea 91b0 0c25 	LDS  R27,_adr+1
+00f9ec 9180 0c26 	LDS  R24,_adr+2
+00f9ee 9190 0c27 	LDS  R25,_adr+3
+00f9f0 2766      	CLR  R22
+00f9f1 2777      	CLR  R23
+00f9f2 d4cf      	RCALL __ADDD12
+00f9f3 93e0 0c2c 	STS  _fat_begin_lba,R30
+00f9f5 93f0 0c2d 	STS  _fat_begin_lba+1,R31
+00f9f7 9360 0c2e 	STS  _fat_begin_lba+2,R22
+00f9f9 9370 0c2f 	STS  _fat_begin_lba+3,R23
                  ; 0002 006D   //(unsigned long)cluster_begin_lba = Partition_LBA_Begin + Number_of_Reserved_Sectors + (Number_of_FATs * Sectors_Per_ ...
                  ; 0002 006E   //Number_of_FATs always 2. Offset 0x10 8bit
                  ; 0002 006F   cluster_begin_lba=fat_begin_lba+(2*SectorsPerFat);//number of sector where data begin
-00fa28 91e0 0c28 	LDS  R30,_SectorsPerFat
-00fa2a 91f0 0c29 	LDS  R31,_SectorsPerFat+1
-00fa2c 9160 0c2a 	LDS  R22,_SectorsPerFat+2
-00fa2e 9170 0c2b 	LDS  R23,_SectorsPerFat+3
-00fa30 940e ff5d 	CALL __LSLD1
-00fa32 91a0 0c2c 	LDS  R26,_fat_begin_lba
-00fa34 91b0 0c2d 	LDS  R27,_fat_begin_lba+1
-00fa36 9180 0c2e 	LDS  R24,_fat_begin_lba+2
-00fa38 9190 0c2f 	LDS  R25,_fat_begin_lba+3
-00fa3a 940e ff32 	CALL __ADDD12
-00fa3c 93e0 0c30 	STS  _cluster_begin_lba,R30
-00fa3e 93f0 0c31 	STS  _cluster_begin_lba+1,R31
-00fa40 9360 0c32 	STS  _cluster_begin_lba+2,R22
-00fa42 9370 0c33 	STS  _cluster_begin_lba+3,R23
+00f9fb 91e0 0c28 	LDS  R30,_SectorsPerFat
+00f9fd 91f0 0c29 	LDS  R31,_SectorsPerFat+1
+00f9ff 9160 0c2a 	LDS  R22,_SectorsPerFat+2
+00fa01 9170 0c2b 	LDS  R23,_SectorsPerFat+3
+00fa03 d4ff      	RCALL __LSLD1
+00fa04 91a0 0c2c 	LDS  R26,_fat_begin_lba
+00fa06 91b0 0c2d 	LDS  R27,_fat_begin_lba+1
+00fa08 9180 0c2e 	LDS  R24,_fat_begin_lba+2
+00fa0a 9190 0c2f 	LDS  R25,_fat_begin_lba+3
+00fa0c d4b5      	RCALL __ADDD12
+00fa0d 93e0 0c30 	STS  _cluster_begin_lba,R30
+00fa0f 93f0 0c31 	STS  _cluster_begin_lba+1,R31
+00fa11 9360 0c32 	STS  _cluster_begin_lba+2,R22
+00fa13 9370 0c33 	STS  _cluster_begin_lba+3,R23
                  ; 0002 0070   //read root dir (sector 2 but always offset 2 too then 0) to find folder 0 FAT reference. and find Flash.dat sector
                  ; 0002 0071   //lba_addr = cluster_begin_lba + (cluster_number - 2) * sectors_per_cluster;
                  ; 0002 0072   adr=cluster_begin_lba +(2-2)*SectorsPerCluster;
-00fa44 940e fe18 	CALL SUBOPT_0x8
+00fa15 d390      	RCALL SUBOPT_0x9
                  ; 0002 0073   //adr*=512UL;
                  ; 0002 0074   result[1]=0;
-00fa46 e0e0      	LDI  R30,LOW(0)
+00fa16 e0e0      	LDI  R30,LOW(0)
                 +
-00fa47 93e0 091c+STS _result + ( 1 ) , R30
+00fa17 93e0 091c+STS _result + ( 1 ) , R30
                  	__PUTB1MN _result,1
                  ; 0002 0075   for(i=0;i<SectorsPerCluster;i++)
                 +
-00fa49 e000     +LDI R16 , LOW ( 0 )
-00fa4a e010     +LDI R17 , HIGH ( 0 )
+00fa19 e000     +LDI R16 , LOW ( 0 )
+00fa1a e010     +LDI R17 , HIGH ( 0 )
                  	__GETWRN 16,17,0
                  _0x40007:
-00fa4b 940e fe2c 	CALL SUBOPT_0xA
-00fa4d f500      	BRSH _0x40008
+00fa1b d39d      	RCALL SUBOPT_0xB
+00fa1c f4d0      	BRSH _0x40008
                  ; 0002 0076   {
                  ; 0002 0077       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-00fa4e 940e fe21 	CALL SUBOPT_0x9
+00fa1d d391      	RCALL SUBOPT_0xA
                  ; 0002 0078     #ifdef DEBUGLED
                  ; 0002 0079         errorSD(3);
                  ; 0002 007A     #endif
                  ; 0002 007B       }
                  ; 0002 007C       for(j=0;j<(16);j++)
                 +
-00fa50 e020     +LDI R18 , LOW ( 0 )
-00fa51 e030     +LDI R19 , HIGH ( 0 )
+00fa1e e020     +LDI R18 , LOW ( 0 )
+00fa1f e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x4000B:
                 +
-00fa52 3120     +CPI R18 , LOW ( 16 )
-00fa53 e0e0     +LDI R30 , HIGH ( 16 )
-00fa54 073e     +CPC R19 , R30
+00fa20 3120     +CPI R18 , LOW ( 16 )
+00fa21 e0e0     +LDI R30 , HIGH ( 16 )
+00fa22 073e     +CPC R19 , R30
                  	__CPWRN 18,19,16
-00fa55 f440      	BRSH _0x4000C
+00fa23 f438      	BRSH _0x4000C
                  ; 0002 007D       {
                  ; 0002 007E            if((result[1]=compbuf("0          ",&sdBuf[j*32]))!=0)
                 +
-00fa56 e0e0     +LDI R30 , LOW ( _0x4000E + ( 0 ) )
-00fa57 e0f9     +LDI R31 , HIGH ( _0x4000E + ( 0 ) )
+00fa24 e0e0     +LDI R30 , LOW ( _0x4000E + ( 0 ) )
+00fa25 e0f9     +LDI R31 , HIGH ( _0x4000E + ( 0 ) )
                  	__POINTW1MN _0x4000E,0
-00fa58 940e fe32 	CALL SUBOPT_0xB
-00fa5a f419      	BRNE _0x4000C
+00fa26 d398      	RCALL SUBOPT_0xC
+00fa27 f419      	BRNE _0x4000C
                  ; 0002 007F            {
                  ; 0002 0080                 break;//dir 0 is found
                  ; 0002 0081            }
                  ; 0002 0082       }
                 +
-00fa5b 5f2f     +SUBI R18 , LOW ( - 1 )
-00fa5c 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fa28 5f2f     +SUBI R18 , LOW ( - 1 )
+00fa29 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fa5d cff4      	RJMP _0x4000B
+00fa2a cff5      	RJMP _0x4000B
                  _0x4000C:
                  ; 0002 0083       if(result[1]!=0)
                 +
-00fa5e 91e0 091c+LDS R30 , _result + ( 1 )
+00fa2b 91e0 091c+LDS R30 , _result + ( 1 )
                  	__GETB1MN _result,1
-00fa60 30e0      	CPI  R30,0
-00fa61 f039      	BREQ _0x4000F
+00fa2d 30e0      	CPI  R30,0
+00fa2e f021      	BREQ _0x4000F
                  ; 0002 0084       {
                  ; 0002 0085         fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-00fa62 940e fe41 	CALL SUBOPT_0xC
-00fa64 940e fe47 	CALL SUBOPT_0xD
+00fa2f d39e      	RCALL SUBOPT_0xD
+00fa30 d3a3      	RCALL SUBOPT_0xE
                  ; 0002 0086         fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
-00fa66 940e fe58 	CALL SUBOPT_0xE
+00fa31 d3b1      	RCALL SUBOPT_0xF
                  ; 0002 0087         break;
-00fa68 c005      	RJMP _0x40008
+00fa32 c004      	RJMP _0x40008
                  ; 0002 0088       }
                  ; 0002 0089       else
                  _0x4000F:
                  ; 0002 008A         adr++;
-00fa69 940e fe71 	CALL SUBOPT_0xF
+00fa33 d3c6      	RCALL SUBOPT_0x10
                  ; 0002 008B   }
                 +
-00fa6b 5f0f     +SUBI R16 , LOW ( - 1 )
-00fa6c 4f1f     +SBCI R17 , HIGH ( - 1 )
+00fa34 5f0f     +SUBI R16 , LOW ( - 1 )
+00fa35 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-00fa6d cfdd      	RJMP _0x40007
+00fa36 cfe4      	RJMP _0x40007
                  _0x40008:
                  ; 0002 008C   adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
-00fa6e 940e fe7c 	CALL SUBOPT_0x10
+00fa37 d3cb      	RCALL SUBOPT_0x11
                  ; 0002 008D   for(i=0;i<SectorsPerCluster;i++)
                  _0x40012:
-00fa70 940e fe2c 	CALL SUBOPT_0xA
-00fa72 f580      	BRSH _0x40013
+00fa38 d380      	RCALL SUBOPT_0xB
+00fa39 f548      	BRSH _0x40013
                  ; 0002 008E   {
                  ; 0002 008F       if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-00fa73 940e fe21 	CALL SUBOPT_0x9
+00fa3a d374      	RCALL SUBOPT_0xA
                  ; 0002 0090     #ifdef DEBUGLED
                  ; 0002 0091         errorSD(4);
                  ; 0002 0092     #endif
                  ; 0002 0093       }
                  ; 0002 0094       for(j=0;j<(16);j++)
                 +
-00fa75 e020     +LDI R18 , LOW ( 0 )
-00fa76 e030     +LDI R19 , HIGH ( 0 )
+00fa3b e020     +LDI R18 , LOW ( 0 )
+00fa3c e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x40016:
                 +
-00fa77 3120     +CPI R18 , LOW ( 16 )
-00fa78 e0e0     +LDI R30 , HIGH ( 16 )
-00fa79 073e     +CPC R19 , R30
+00fa3d 3120     +CPI R18 , LOW ( 16 )
+00fa3e e0e0     +LDI R30 , HIGH ( 16 )
+00fa3f 073e     +CPC R19 , R30
                  	__CPWRN 18,19,16
-00fa7a f440      	BRSH _0x40017
+00fa40 f438      	BRSH _0x40017
                  ; 0002 0095       {
                  ; 0002 0096            if((result[1]=compbuf("NEW",&sdBuf[j*32]))!=0)
                 +
-00fa7b e0ec     +LDI R30 , LOW ( _0x4000E + ( 12 ) )
-00fa7c e0f9     +LDI R31 , HIGH ( _0x4000E + ( 12 ) )
+00fa41 e0ec     +LDI R30 , LOW ( _0x4000E + ( 12 ) )
+00fa42 e0f9     +LDI R31 , HIGH ( _0x4000E + ( 12 ) )
                  	__POINTW1MN _0x4000E,12
-00fa7d 940e fe32 	CALL SUBOPT_0xB
-00fa7f f419      	BRNE _0x40017
+00fa43 d37b      	RCALL SUBOPT_0xC
+00fa44 f419      	BRNE _0x40017
                  ; 0002 0097            {
                  ; 0002 0098                 break;//file Flash... is found
                  ; 0002 0099            }
                  ; 0002 009A       }
                 +
-00fa80 5f2f     +SUBI R18 , LOW ( - 1 )
-00fa81 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fa45 5f2f     +SUBI R18 , LOW ( - 1 )
+00fa46 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fa82 cff4      	RJMP _0x40016
+00fa47 cff5      	RJMP _0x40016
                  _0x40017:
                  ; 0002 009B       if(result[1]!=0)
                 +
-00fa83 91e0 091c+LDS R30 , _result + ( 1 )
+00fa48 91e0 091c+LDS R30 , _result + ( 1 )
                  	__GETB1MN _result,1
-00fa85 30e0      	CPI  R30,0
-00fa86 f0b9      	BREQ _0x40019
+00fa4a 30e0      	CPI  R30,0
+00fa4b f099      	BREQ _0x40019
                  ; 0002 009C       {
                  ; 0002 009D         //read 1st number of cluster where data placed
                  ; 0002 009E         fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-00fa87 940e fe41 	CALL SUBOPT_0xC
-00fa89 940e fe47 	CALL SUBOPT_0xD
+00fa4c d381      	RCALL SUBOPT_0xD
+00fa4d d386      	RCALL SUBOPT_0xE
                  ; 0002 009F         fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
-00fa8b 940e fe58 	CALL SUBOPT_0xE
+00fa4e d394      	RCALL SUBOPT_0xF
                  ; 0002 00A0         filesize = buf2num(&sdBuf[j*32+0x1C],8);
-00fa8d 940e fe41 	CALL SUBOPT_0xC
+00fa4f d37e      	RCALL SUBOPT_0xD
                 +
-00fa8f 5ce4     +SUBI R30 , LOW ( - _sdBuf - ( 28 ) )
-00fa90 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 28 ) )
+00fa50 5ce4     +SUBI R30 , LOW ( - _sdBuf - ( 28 ) )
+00fa51 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 28 ) )
                  	__ADDW1MN _sdBuf,28
-00fa91 93fa      	ST   -Y,R31
-00fa92 93ea      	ST   -Y,R30
-00fa93 e0a8      	LDI  R26,LOW(8)
-00fa94 d1cf      	RCALL _buf2num
-00fa95 93e0 0c3c 	STS  _filesize,R30
-00fa97 93f0 0c3d 	STS  _filesize+1,R31
-00fa99 9360 0c3e 	STS  _filesize+2,R22
-00fa9b 9370 0c3f 	STS  _filesize+3,R23
+00fa52 93fa      	ST   -Y,R31
+00fa53 93ea      	ST   -Y,R30
+00fa54 e0a8      	LDI  R26,LOW(8)
+00fa55 d1ae      	RCALL _buf2num
+00fa56 93e0 0c3c 	STS  _filesize,R30
+00fa58 93f0 0c3d 	STS  _filesize+1,R31
+00fa5a 9360 0c3e 	STS  _filesize+2,R22
+00fa5c 9370 0c3f 	STS  _filesize+3,R23
                  ; 0002 00A1         break;
-00fa9d c005      	RJMP _0x40013
+00fa5e c004      	RJMP _0x40013
                  ; 0002 00A2       }
                  ; 0002 00A3       else
                  _0x40019:
                  ; 0002 00A4         adr++;
-00fa9e 940e fe71 	CALL SUBOPT_0xF
+00fa5f d39a      	RCALL SUBOPT_0x10
                  ; 0002 00A5   }
                 +
-00faa0 5f0f     +SUBI R16 , LOW ( - 1 )
-00faa1 4f1f     +SBCI R17 , HIGH ( - 1 )
+00fa60 5f0f     +SUBI R16 , LOW ( - 1 )
+00fa61 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-00faa2 cfcd      	RJMP _0x40012
+00fa62 cfd5      	RJMP _0x40012
                  _0x40013:
                  ; 0002 00A6 
                  ; 0002 00A7   if(result[1]==0){// error if file not found
@@ -2729,96 +2725,96 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 00AB   }
                  ; 0002 00AC   //change filename to DON after good prog
                  ; 0002 00AD   sdBuf[j*32+0]='D';sdBuf[j*32+1]='O';sdBuf[j*32+2]='N';
-00faa3 940e fe41 	CALL SUBOPT_0xC
+00fa63 d36a      	RCALL SUBOPT_0xD
                 +
-00faa5 5ee0     +SUBI R30 , LOW ( - _sdBuf - ( 0 ) )
-00faa6 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 0 ) )
+00fa64 5ee0     +SUBI R30 , LOW ( - _sdBuf - ( 0 ) )
+00fa65 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 0 ) )
                  	__ADDW1MN _sdBuf,0
-00faa7 e4a4      	LDI  R26,LOW(68)
-00faa8 83a0      	STD  Z+0,R26
-00faa9 940e fe41 	CALL SUBOPT_0xC
+00fa66 e4a4      	LDI  R26,LOW(68)
+00fa67 83a0      	STD  Z+0,R26
+00fa68 d365      	RCALL SUBOPT_0xD
                 +
-00faab 5def     +SUBI R30 , LOW ( - _sdBuf - ( 1 ) )
-00faac 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 1 ) )
+00fa69 5def     +SUBI R30 , LOW ( - _sdBuf - ( 1 ) )
+00fa6a 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 1 ) )
                  	__ADDW1MN _sdBuf,1
-00faad e4af      	LDI  R26,LOW(79)
-00faae 83a0      	STD  Z+0,R26
-00faaf 940e fe41 	CALL SUBOPT_0xC
+00fa6b e4af      	LDI  R26,LOW(79)
+00fa6c 83a0      	STD  Z+0,R26
+00fa6d d360      	RCALL SUBOPT_0xD
                 +
-00fab1 5dee     +SUBI R30 , LOW ( - _sdBuf - ( 2 ) )
-00fab2 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 2 ) )
+00fa6e 5dee     +SUBI R30 , LOW ( - _sdBuf - ( 2 ) )
+00fa6f 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 2 ) )
                  	__ADDW1MN _sdBuf,2
-00fab3 e4ae      	LDI  R26,LOW(78)
-00fab4 83a0      	STD  Z+0,R26
+00fa70 e4ae      	LDI  R26,LOW(78)
+00fa71 83a0      	STD  Z+0,R26
                  ; 0002 00AE   result[0]=SD_writeSingleBlock(adr, sdBuf, &token);
-00fab5 91e0 0c24 	LDS  R30,_adr
-00fab7 91f0 0c25 	LDS  R31,_adr+1
-00fab9 9160 0c26 	LDS  R22,_adr+2
-00fabb 9170 0c27 	LDS  R23,_adr+3
-00fabd 940e ffcb 	CALL __PUTPARD1
-00fabf e2e0      	LDI  R30,LOW(_sdBuf)
-00fac0 e0f9      	LDI  R31,HIGH(_sdBuf)
-00fac1 93fa      	ST   -Y,R31
-00fac2 93ea      	ST   -Y,R30
-00fac3 e0a9      	LDI  R26,LOW(9)
-00fac4 e0b0      	LDI  R27,HIGH(9)
-00fac5 d2e7      	RCALL _SD_writeSingleBlock
-00fac6 93e0 091b 	STS  _result,R30
+00fa72 91e0 0c24 	LDS  R30,_adr
+00fa74 91f0 0c25 	LDS  R31,_adr+1
+00fa76 9160 0c26 	LDS  R22,_adr+2
+00fa78 9170 0c27 	LDS  R23,_adr+3
+00fa7a d4f6      	RCALL __PUTPARD1
+00fa7b e2e0      	LDI  R30,LOW(_sdBuf)
+00fa7c e0f9      	LDI  R31,HIGH(_sdBuf)
+00fa7d 93fa      	ST   -Y,R31
+00fa7e 93ea      	ST   -Y,R30
+00fa7f e0a9      	LDI  R26,LOW(9)
+00fa80 e0b0      	LDI  R27,HIGH(9)
+00fa81 d2bd      	RCALL _SD_writeSingleBlock
+00fa82 93e0 091b 	STS  _result,R30
                  ; 0002 00AF 
                  ; 0002 00B0 
                  ; 0002 00B1   //check FAT for chain of clusters to read
                  ; 0002 00B2   readbytes=0;
-00fac8 e0e0      	LDI  R30,LOW(0)
-00fac9 93e0 0c40 	STS  _readbytes,R30
-00facb 93e0 0c41 	STS  _readbytes+1,R30
-00facd 93e0 0c42 	STS  _readbytes+2,R30
-00facf 93e0 0c43 	STS  _readbytes+3,R30
+00fa84 e0e0      	LDI  R30,LOW(0)
+00fa85 93e0 0c40 	STS  _readbytes,R30
+00fa87 93e0 0c41 	STS  _readbytes+1,R30
+00fa89 93e0 0c42 	STS  _readbytes+2,R30
+00fa8b 93e0 0c43 	STS  _readbytes+3,R30
                  ; 0002 00B3   while(fat_file_adr != 0x0FFFFFFFUL)
                  _0x4001C:
-00fad1 91a0 0c34 	LDS  R26,_fat_file_adr
-00fad3 91b0 0c35 	LDS  R27,_fat_file_adr+1
-00fad5 9180 0c36 	LDS  R24,_fat_file_adr+2
-00fad7 9190 0c37 	LDS  R25,_fat_file_adr+3
-00fad9 940e fe9e 	CALL SUBOPT_0x11
-00fadb f409      	BRNE PC+2
-00fadc c16f      	RJMP _0x4001E
+00fa8d 91a0 0c34 	LDS  R26,_fat_file_adr
+00fa8f 91b0 0c35 	LDS  R27,_fat_file_adr+1
+00fa91 9180 0c36 	LDS  R24,_fat_file_adr+2
+00fa93 9190 0c37 	LDS  R25,_fat_file_adr+3
+00fa95 d38c      	RCALL SUBOPT_0x12
+00fa96 f409      	BRNE PC+2
+00fa97 c154      	RJMP _0x4001E
                  ; 0002 00B4   {
                  ; 0002 00B5     //read where next cluster from FAT, check that not EOF
                  ; 0002 00B6     if((result[0]=SD_readSingleBlock(fat_begin_lba, sdBuf, &token))!=SD_SUCCESS){
-00fadd 91e0 0c2c 	LDS  R30,_fat_begin_lba
-00fadf 91f0 0c2d 	LDS  R31,_fat_begin_lba+1
-00fae1 9160 0c2e 	LDS  R22,_fat_begin_lba+2
-00fae3 9170 0c2f 	LDS  R23,_fat_begin_lba+3
-00fae5 940e ffcb 	CALL __PUTPARD1
-00fae7 d322      	RCALL SUBOPT_0x6
+00fa98 91e0 0c2c 	LDS  R30,_fat_begin_lba
+00fa9a 91f0 0c2d 	LDS  R31,_fat_begin_lba+1
+00fa9c 9160 0c2e 	LDS  R22,_fat_begin_lba+2
+00fa9e 9170 0c2f 	LDS  R23,_fat_begin_lba+3
+00faa0 d4d0      	RCALL __PUTPARD1
+00faa1 d2f6      	RCALL SUBOPT_0x7
                  ; 0002 00B7     #ifdef DEBUGLED
                  ; 0002 00B8         errorSD(5);
                  ; 0002 00B9     #endif
                  ; 0002 00BA     }
                  ; 0002 00BB     fat_file_next_adr=buf2num(&sdBuf[fat_file_adr*4],4);
-00fae8 91a0 0c34 	LDS  R26,_fat_file_adr
-00faea 91b0 0c35 	LDS  R27,_fat_file_adr+1
-00faec e0e4      	LDI  R30,LOW(4)
-00faed 940e ff99 	CALL __MULB1W2U
-00faef 5ee0      	SUBI R30,LOW(-_sdBuf)
-00faf0 4ff6      	SBCI R31,HIGH(-_sdBuf)
-00faf1 d322      	RCALL SUBOPT_0x7
-00faf2 93e0 0c38 	STS  _fat_file_next_adr,R30
-00faf4 93f0 0c39 	STS  _fat_file_next_adr+1,R31
-00faf6 9360 0c3a 	STS  _fat_file_next_adr+2,R22
-00faf8 9370 0c3b 	STS  _fat_file_next_adr+3,R23
+00faa2 91a0 0c34 	LDS  R26,_fat_file_adr
+00faa4 91b0 0c35 	LDS  R27,_fat_file_adr+1
+00faa6 e0e4      	LDI  R30,LOW(4)
+00faa7 940e ff3f 	CALL __MULB1W2U
+00faa9 5ee0      	SUBI R30,LOW(-_sdBuf)
+00faaa 4ff6      	SBCI R31,HIGH(-_sdBuf)
+00faab d2f6      	RCALL SUBOPT_0x8
+00faac 93e0 0c38 	STS  _fat_file_next_adr,R30
+00faae 93f0 0c39 	STS  _fat_file_next_adr+1,R31
+00fab0 9360 0c3a 	STS  _fat_file_next_adr+2,R22
+00fab2 9370 0c3b 	STS  _fat_file_next_adr+3,R23
                  ; 0002 00BC 
                  ; 0002 00BD     adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
-00fafa 940e fe7c 	CALL SUBOPT_0x10
+00fab4 d34e      	RCALL SUBOPT_0x11
                  ; 0002 00BE     for(i=0;i<SectorsPerCluster;i++)
                  _0x40021:
-00fafc d32f      	RCALL SUBOPT_0xA
-00fafd f008      	BRLO PC+2
-00fafe c13c      	RJMP _0x40022
+00fab5 d303      	RCALL SUBOPT_0xB
+00fab6 f008      	BRLO PC+2
+00fab7 c123      	RJMP _0x40022
                  ; 0002 00BF     {
                  ; 0002 00C0         //read data from next sector of file cluster
                  ; 0002 00C1         if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
-00faff d321      	RCALL SUBOPT_0x9
+00fab8 d2f6      	RCALL SUBOPT_0xA
                  ; 0002 00C2         #ifdef DEBUGLED
                  ; 0002 00C3             errorSD(6);
                  ; 0002 00C4         #endif
@@ -2826,398 +2822,394 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 00C6         //address 2000 = start adr flash app 3 bytes, flash pages 2 bytes, checksum 2 bytes
                  ; 0002 00C7         //app bytes starts from 2048, roll 0x88
                  ; 0002 00C8         if(readbytes<512){
-00fb00 940e fea6 	CALL SUBOPT_0x12
+00fab9 d370      	RCALL SUBOPT_0x13
                 +
-00fb02 30a0     +CPI R26 , LOW ( 0x200 )
-00fb03 e0e2     +LDI R30 , HIGH ( 0x200 )
-00fb04 07be     +CPC R27 , R30
-00fb05 e0e0     +LDI R30 , BYTE3 ( 0x200 )
-00fb06 078e     +CPC R24 , R30
-00fb07 e0e0     +LDI R30 , BYTE4 ( 0x200 )
-00fb08 079e     +CPC R25 , R30
+00faba 30a0     +CPI R26 , LOW ( 0x200 )
+00fabb e0e2     +LDI R30 , HIGH ( 0x200 )
+00fabc 07be     +CPC R27 , R30
+00fabd e0e0     +LDI R30 , BYTE3 ( 0x200 )
+00fabe 078e     +CPC R24 , R30
+00fabf e0e0     +LDI R30 , BYTE4 ( 0x200 )
+00fac0 079e     +CPC R25 , R30
                  	__CPD2N 0x200
-00fb09 f008      	BRLO PC+2
-00fb0a c043      	RJMP _0x40024
+00fac1 f5d8      	BRSH _0x40024
                  ; 0002 00C9             //j=0x99;
                  ; 0002 00CA             for(j=0;j<256;j++){//find roll
                 +
-00fb0b e020     +LDI R18 , LOW ( 0 )
-00fb0c e030     +LDI R19 , HIGH ( 0 )
+00fac2 e020     +LDI R18 , LOW ( 0 )
+00fac3 e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x40026:
                 +
-00fb0d 3020     +CPI R18 , LOW ( 256 )
-00fb0e e0e1     +LDI R30 , HIGH ( 256 )
-00fb0f 073e     +CPC R19 , R30
+00fac4 3020     +CPI R18 , LOW ( 256 )
+00fac5 e0e1     +LDI R30 , HIGH ( 256 )
+00fac6 073e     +CPC R19 , R30
                  	__CPWRN 18,19,256
-00fb10 f5b8      	BRSH _0x40027
+00fac7 f578      	BRSH _0x40027
                  ; 0002 00CB                if(j>0){
-00fb11 2400      	CLR  R0
-00fb12 1602      	CP   R0,R18
-00fb13 0603      	CPC  R0,R19
-00fb14 f508      	BRSH _0x40028
+00fac8 2400      	CLR  R0
+00fac9 1602      	CP   R0,R18
+00faca 0603      	CPC  R0,R19
+00facb f4c8      	BRSH _0x40028
                  ; 0002 00CC                    for(k=0;k<10;k++){//[settings]
                 +
-00fb15 e040     +LDI R20 , LOW ( 0 )
-00fb16 e050     +LDI R21 , HIGH ( 0 )
+00facc e040     +LDI R20 , LOW ( 0 )
+00facd e050     +LDI R21 , HIGH ( 0 )
                  	__GETWRN 20,21,0
                  _0x4002A:
                 +
-00fb17 304a     +CPI R20 , LOW ( 10 )
-00fb18 e0e0     +LDI R30 , HIGH ( 10 )
-00fb19 075e     +CPC R21 , R30
+00face 304a     +CPI R20 , LOW ( 10 )
+00facf e0e0     +LDI R30 , HIGH ( 10 )
+00fad0 075e     +CPC R21 , R30
                  	__CPWRN 20,21,10
-00fb1a f4d8      	BRSH _0x4002B
+00fad1 f498      	BRSH _0x4002B
                  ; 0002 00CD                         rollbuf[k]=(sdBuf[k]<<1)|(sdBuf[k]>>7);  //ROL
-00fb1b 01fa      	MOVW R30,R20
-00fb1c 01de      	MOVW R26,R28
-00fb1d 0fea      	ADD  R30,R26
-00fb1e 1ffb      	ADC  R31,R27
-00fb1f 01bf      	MOVW R22,R30
-00fb20 e2a0      	LDI  R26,LOW(_sdBuf)
-00fb21 e0b9      	LDI  R27,HIGH(_sdBuf)
-00fb22 0fa4      	ADD  R26,R20
-00fb23 1fb5      	ADC  R27,R21
-00fb24 91ec      	LD   R30,X
-00fb25 0fee      	LSL  R30
-00fb26 2e0e      	MOV  R0,R30
-00fb27 e2a0      	LDI  R26,LOW(_sdBuf)
-00fb28 e0b9      	LDI  R27,HIGH(_sdBuf)
-00fb29 0fa4      	ADD  R26,R20
-00fb2a 1fb5      	ADC  R27,R21
-00fb2b 940e feaf 	CALL SUBOPT_0x13
+00fad2 01fa      	MOVW R30,R20
+00fad3 01de      	MOVW R26,R28
+00fad4 0fea      	ADD  R30,R26
+00fad5 1ffb      	ADC  R31,R27
+00fad6 01bf      	MOVW R22,R30
+00fad7 d35b      	RCALL SUBOPT_0x14
+00fad8 0fee      	LSL  R30
+00fad9 2e0e      	MOV  R0,R30
+00fada d358      	RCALL SUBOPT_0x14
+00fadb d35d      	RCALL SUBOPT_0x15
                  ; 0002 00CE                         rollbuf[k]^=j;  //XOR   j=roll
-00fb2d 01de      	MOVW R26,R28
-00fb2e 0fa4      	ADD  R26,R20
-00fb2f 1fb5      	ADC  R27,R21
-00fb30 91ec      	LD   R30,X
-00fb31 27e2      	EOR  R30,R18
-00fb32 93ec      	ST   X,R30
+00fadc 01de      	MOVW R26,R28
+00fadd 0fa4      	ADD  R26,R20
+00fade 1fb5      	ADC  R27,R21
+00fadf 91ec      	LD   R30,X
+00fae0 27e2      	EOR  R30,R18
+00fae1 93ec      	ST   X,R30
                  ; 0002 00CF                    }
                 +
-00fb33 5f4f     +SUBI R20 , LOW ( - 1 )
-00fb34 4f5f     +SBCI R21 , HIGH ( - 1 )
+00fae2 5f4f     +SUBI R20 , LOW ( - 1 )
+00fae3 4f5f     +SBCI R21 , HIGH ( - 1 )
                  	__ADDWRN 20,21,1
-00fb35 cfe1      	RJMP _0x4002A
+00fae4 cfe9      	RJMP _0x4002A
                  _0x4002B:
                  ; 0002 00D0                }
                  ; 0002 00D1                result[1]=compbuf("[settings]",&rollbuf[0]);
                  _0x40028:
                 +
-00fb36 e1e0     +LDI R30 , LOW ( _0x4000E + ( 16 ) )
-00fb37 e0f9     +LDI R31 , HIGH ( _0x4000E + ( 16 ) )
+00fae5 e1e0     +LDI R30 , LOW ( _0x4000E + ( 16 ) )
+00fae6 e0f9     +LDI R31 , HIGH ( _0x4000E + ( 16 ) )
                  	__POINTW1MN _0x4000E,16
-00fb38 93fa      	ST   -Y,R31
-00fb39 93ea      	ST   -Y,R30
-00fb3a 01de      	MOVW R26,R28
-00fb3b 9612      	ADIW R26,2
-00fb3c d111      	RCALL _compbuf
+00fae7 93fa      	ST   -Y,R31
+00fae8 93ea      	ST   -Y,R30
+00fae9 01de      	MOVW R26,R28
+00faea 9612      	ADIW R26,2
+00faeb d102      	RCALL _compbuf
                 +
-00fb3d 93e0 091c+STS _result + ( 1 ) , R30
+00faec 93e0 091c+STS _result + ( 1 ) , R30
                  	__PUTB1MN _result,1
                  ; 0002 00D2                if(result[1]!=0){
                 +
-00fb3f 91e0 091c+LDS R30 , _result + ( 1 )
+00faee 91e0 091c+LDS R30 , _result + ( 1 )
                  	__GETB1MN _result,1
-00fb41 30e0      	CPI  R30,0
-00fb42 f011      	BREQ _0x4002C
+00faf0 30e0      	CPI  R30,0
+00faf1 f011      	BREQ _0x4002C
                  ; 0002 00D3                     rollnum=j;
                 +
-00fb43 872b     +STD Y + 11 , R18
+00faf2 872b     +STD Y + 11 , R18
                  	__PUTBSR 18,11
                  ; 0002 00D4                     break;
-00fb44 c003      	RJMP _0x40027
+00faf3 c003      	RJMP _0x40027
                  ; 0002 00D5                }
                  ; 0002 00D6             }
                  _0x4002C:
                 +
-00fb45 5f2f     +SUBI R18 , LOW ( - 1 )
-00fb46 4f3f     +SBCI R19 , HIGH ( - 1 )
+00faf4 5f2f     +SUBI R18 , LOW ( - 1 )
+00faf5 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fb47 cfc5      	RJMP _0x40026
+00faf6 cfcd      	RJMP _0x40026
                  _0x40027:
                  ; 0002 00D7             if(result[1]==0){//roll didn't found
                 +
-00fb48 91e0 091c+LDS R30 , _result + ( 1 )
+00faf7 91e0 091c+LDS R30 , _result + ( 1 )
                  	__GETB1MN _result,1
-00fb4a 30e0      	CPI  R30,0
-00fb4b f411      	BRNE _0x4002D
+00faf9 30e0      	CPI  R30,0
+00fafa f411      	BRNE _0x4002D
                  ; 0002 00D8                 #ifdef DEBUGLED
                  ; 0002 00D9                 errorSD(7);
                  ; 0002 00DA                 #endif
                  ; 0002 00DB                 return;
-00fb4c 962c      	ADIW R28,12
+00fafb 962c      	ADIW R28,12
                  _0x4002E:
-00fb4d cfff      	RJMP _0x4002E
+00fafc cfff      	RJMP _0x4002E
                  ; 0002 00DC             }
                  ; 0002 00DD         }
                  _0x4002D:
                  ; 0002 00DE         for(j=0;j<512;j++)
                  _0x40024:
                 +
-00fb4e e020     +LDI R18 , LOW ( 0 )
-00fb4f e030     +LDI R19 , HIGH ( 0 )
+00fafd e020     +LDI R18 , LOW ( 0 )
+00fafe e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x40030:
                 +
-00fb50 3020     +CPI R18 , LOW ( 512 )
-00fb51 e0e2     +LDI R30 , HIGH ( 512 )
-00fb52 073e     +CPC R19 , R30
+00faff 3020     +CPI R18 , LOW ( 512 )
+00fb00 e0e2     +LDI R30 , HIGH ( 512 )
+00fb01 073e     +CPC R19 , R30
                  	__CPWRN 18,19,512
-00fb53 f550      	BRSH _0x40031
+00fb02 f520      	BRSH _0x40031
                  ; 0002 00DF         {
                  ; 0002 00E0             if(rollnum!=0){
-00fb54 85eb      	LDD  R30,Y+11
-00fb55 30e0      	CPI  R30,0
-00fb56 f0b1      	BREQ _0x40032
+00fb03 85eb      	LDD  R30,Y+11
+00fb04 30e0      	CPI  R30,0
+00fb05 f091      	BREQ _0x40032
                  ; 0002 00E1                 sdBuf[j]=(sdBuf[j]<<1)|(sdBuf[j]>>7);  //ROL
-00fb57 01f9      	MOVW R30,R18
-00fb58 5ee0      	SUBI R30,LOW(-_sdBuf)
-00fb59 4ff6      	SBCI R31,HIGH(-_sdBuf)
-00fb5a 01bf      	MOVW R22,R30
-00fb5b 940e feb7 	CALL SUBOPT_0x14
-00fb5d 91ec      	LD   R30,X
-00fb5e 0fee      	LSL  R30
-00fb5f 2e0e      	MOV  R0,R30
-00fb60 940e feb7 	CALL SUBOPT_0x14
-00fb62 940e feaf 	CALL SUBOPT_0x13
+00fb06 01f9      	MOVW R30,R18
+00fb07 5ee0      	SUBI R30,LOW(-_sdBuf)
+00fb08 4ff6      	SBCI R31,HIGH(-_sdBuf)
+00fb09 01bf      	MOVW R22,R30
+00fb0a d335      	RCALL SUBOPT_0x16
+00fb0b 0fee      	LSL  R30
+00fb0c 2e0e      	MOV  R0,R30
+00fb0d d332      	RCALL SUBOPT_0x16
+00fb0e d32a      	RCALL SUBOPT_0x15
                  ; 0002 00E2                 sdBuf[j]^=rollnum;//0x88;  //XOR
-00fb64 01f9      	MOVW R30,R18
-00fb65 5ee0      	SUBI R30,LOW(-_sdBuf)
-00fb66 4ff6      	SBCI R31,HIGH(-_sdBuf)
-00fb67 010f      	MOVW R0,R30
-00fb68 81e0      	LD   R30,Z
-00fb69 85ab      	LDD  R26,Y+11
-00fb6a 27ea      	EOR  R30,R26
-00fb6b 01d0      	MOVW R26,R0
-00fb6c 93ec      	ST   X,R30
+00fb0f 01f9      	MOVW R30,R18
+00fb10 5ee0      	SUBI R30,LOW(-_sdBuf)
+00fb11 4ff6      	SBCI R31,HIGH(-_sdBuf)
+00fb12 010f      	MOVW R0,R30
+00fb13 81e0      	LD   R30,Z
+00fb14 85ab      	LDD  R26,Y+11
+00fb15 27ea      	EOR  R30,R26
+00fb16 01d0      	MOVW R26,R0
+00fb17 93ec      	ST   X,R30
                  ; 0002 00E3             }
                  ; 0002 00E4             checksumCnt+=sdBuf[j];
                  _0x40032:
-00fb6d 940e feb7 	CALL SUBOPT_0x14
-00fb6f 91ec      	LD   R30,X
-00fb70 e0f0      	LDI  R31,0
-00fb71 91a0 0c46 	LDS  R26,_checksumCnt
-00fb73 91b0 0c47 	LDS  R27,_checksumCnt+1
-00fb75 0fea      	ADD  R30,R26
-00fb76 1ffb      	ADC  R31,R27
-00fb77 93e0 0c46 	STS  _checksumCnt,R30
-00fb79 93f0 0c47 	STS  _checksumCnt+1,R31
+00fb18 d327      	RCALL SUBOPT_0x16
+00fb19 e0f0      	LDI  R31,0
+00fb1a 91a0 0c46 	LDS  R26,_checksumCnt
+00fb1c 91b0 0c47 	LDS  R27,_checksumCnt+1
+00fb1e 0fea      	ADD  R30,R26
+00fb1f 1ffb      	ADC  R31,R27
+00fb20 93e0 0c46 	STS  _checksumCnt,R30
+00fb22 93f0 0c47 	STS  _checksumCnt+1,R31
                  ; 0002 00E5         }
                 +
-00fb7b 5f2f     +SUBI R18 , LOW ( - 1 )
-00fb7c 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fb24 5f2f     +SUBI R18 , LOW ( - 1 )
+00fb25 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fb7d cfd2      	RJMP _0x40030
+00fb26 cfd8      	RJMP _0x40030
                  _0x40031:
                  ; 0002 00E6         readbytes+=512;
-00fb7e 91e0 0c40 	LDS  R30,_readbytes
-00fb80 91f0 0c41 	LDS  R31,_readbytes+1
-00fb82 9160 0c42 	LDS  R22,_readbytes+2
-00fb84 9170 0c43 	LDS  R23,_readbytes+3
+00fb27 91e0 0c40 	LDS  R30,_readbytes
+00fb29 91f0 0c41 	LDS  R31,_readbytes+1
+00fb2b 9160 0c42 	LDS  R22,_readbytes+2
+00fb2d 9170 0c43 	LDS  R23,_readbytes+3
                 +
-00fb86 50e0     +SUBI R30 , LOW ( - 512 )
-00fb87 4ffe     +SBCI R31 , HIGH ( - 512 )
-00fb88 4f6f     +SBCI R22 , BYTE3 ( - 512 )
-00fb89 4f7f     +SBCI R23 , BYTE4 ( - 512 )
+00fb2f 50e0     +SUBI R30 , LOW ( - 512 )
+00fb30 4ffe     +SBCI R31 , HIGH ( - 512 )
+00fb31 4f6f     +SBCI R22 , BYTE3 ( - 512 )
+00fb32 4f7f     +SBCI R23 , BYTE4 ( - 512 )
                  	__ADDD1N 512
-00fb8a 93e0 0c40 	STS  _readbytes,R30
-00fb8c 93f0 0c41 	STS  _readbytes+1,R31
-00fb8e 9360 0c42 	STS  _readbytes+2,R22
-00fb90 9370 0c43 	STS  _readbytes+3,R23
+00fb33 93e0 0c40 	STS  _readbytes,R30
+00fb35 93f0 0c41 	STS  _readbytes+1,R31
+00fb37 9360 0c42 	STS  _readbytes+2,R22
+00fb39 9370 0c43 	STS  _readbytes+3,R23
                  ; 0002 00E7         //read app data
                  ; 0002 00E8         if(readbytes>2048)
-00fb92 d313      	RCALL SUBOPT_0x12
+00fb3b d2ee      	RCALL SUBOPT_0x13
                 +
-00fb93 30a1     +CPI R26 , LOW ( 0x801 )
-00fb94 e0e8     +LDI R30 , HIGH ( 0x801 )
-00fb95 07be     +CPC R27 , R30
-00fb96 e0e0     +LDI R30 , BYTE3 ( 0x801 )
-00fb97 078e     +CPC R24 , R30
-00fb98 e0e0     +LDI R30 , BYTE4 ( 0x801 )
-00fb99 079e     +CPC R25 , R30
+00fb3c 30a1     +CPI R26 , LOW ( 0x801 )
+00fb3d e0e8     +LDI R30 , HIGH ( 0x801 )
+00fb3e 07be     +CPC R27 , R30
+00fb3f e0e0     +LDI R30 , BYTE3 ( 0x801 )
+00fb40 078e     +CPC R24 , R30
+00fb41 e0e0     +LDI R30 , BYTE4 ( 0x801 )
+00fb42 079e     +CPC R25 , R30
                  	__CPD2N 0x801
-00fb9a f190      	BRLO _0x40033
+00fb43 f1b8      	BRLO _0x40033
                  ; 0002 00E9         {
                  ; 0002 00EA            for(pagesCnt=0;pagesCnt<PAGES_PER_SDBUF;pagesCnt++)
-00fb9b 24bb      	CLR  R11
+00fb44 24bb      	CLR  R11
                  _0x40035:
-00fb9c e0e2      	LDI  R30,LOW(2)
-00fb9d 16be      	CP   R11,R30
-00fb9e f568      	BRSH _0x40036
+00fb45 e0e2      	LDI  R30,LOW(2)
+00fb46 16be      	CP   R11,R30
+00fb47 f590      	BRSH _0x40036
                  ; 0002 00EB            {
                  ; 0002 00EC                if(WriteFlashPage(appStartAdr, &sdBuf[pagesCnt*PAGESIZE])==0)
-00fb9f d31c      	RCALL SUBOPT_0x15
-00fba0 940e ffcb 	CALL __PUTPARD1
-00fba2 2dab      	MOV  R26,R11
-00fba3 e0b0      	LDI  R27,0
-00fba4 e0e0      	LDI  R30,LOW(256)
-00fba5 e0f1      	LDI  R31,HIGH(256)
-00fba6 940e ff9f 	CALL __MULW12
-00fba8 5ee0      	SUBI R30,LOW(-_sdBuf)
-00fba9 4ff6      	SBCI R31,HIGH(-_sdBuf)
-00fbaa 01df      	MOVW R26,R30
-00fbab 940e f8d2 	CALL _WriteFlashPage
-00fbad 30e0      	CPI  R30,0
-00fbae f429      	BRNE _0x40037
+00fb48 d2fd      	RCALL SUBOPT_0x17
+00fb49 d427      	RCALL __PUTPARD1
+00fb4a 2dab      	MOV  R26,R11
+00fb4b e0b0      	LDI  R27,0
+00fb4c e0e0      	LDI  R30,LOW(256)
+00fb4d e0f1      	LDI  R31,HIGH(256)
+00fb4e d3f6      	RCALL __MULW12
+00fb4f 5ee0      	SUBI R30,LOW(-_sdBuf)
+00fb50 4ff6      	SBCI R31,HIGH(-_sdBuf)
+00fb51 01df      	MOVW R26,R30
+00fb52 dd7c      	RCALL _WriteFlashPage
+00fb53 30e0      	CPI  R30,0
+00fb54 f449      	BRNE _0x40037
                  ; 0002 00ED                {
                  ; 0002 00EE                     //while(1)
                  ; 0002 00EF                     do
                  _0x40039:
                  ; 0002 00F0                     {
                  ; 0002 00F1                       PORTC.6=0;
-00fbaf 98ae      	CBI  0x15,6
+00fb55 98ae      	CBI  0x15,6
                  ; 0002 00F2                       delay_ms(500);
-00fbb0 d314      	RCALL SUBOPT_0x16
+00fb56 efa4      	LDI  R26,LOW(500)
+00fb57 e0b1      	LDI  R27,HIGH(500)
+00fb58 d42b      	RCALL _delay_ms
                  ; 0002 00F3                       PORTC.6=1;
-00fbb1 9aae      	SBI  0x15,6
+00fb59 9aae      	SBI  0x15,6
                  ; 0002 00F4                       delay_ms(500);
-00fbb2 d312      	RCALL SUBOPT_0x16
+00fb5a efa4      	LDI  R26,LOW(500)
+00fb5b e0b1      	LDI  R27,HIGH(500)
+00fb5c d427      	RCALL _delay_ms
                  ; 0002 00F5                     }while(1);
-00fbb3 cffb      	RJMP _0x40039
+00fb5d cff7      	RJMP _0x40039
                  ; 0002 00F6                }
                  ; 0002 00F7                appStartAdr+=PAGESIZE;
                  _0x40037:
-00fbb4 d307      	RCALL SUBOPT_0x15
+00fb5e d2e7      	RCALL SUBOPT_0x17
                 +
-00fbb5 50e0     +SUBI R30 , LOW ( - 256 )
-00fbb6 4fff     +SBCI R31 , HIGH ( - 256 )
-00fbb7 4f6f     +SBCI R22 , BYTE3 ( - 256 )
-00fbb8 4f7f     +SBCI R23 , BYTE4 ( - 256 )
+00fb5f 50e0     +SUBI R30 , LOW ( - 256 )
+00fb60 4fff     +SBCI R31 , HIGH ( - 256 )
+00fb61 4f6f     +SBCI R22 , BYTE3 ( - 256 )
+00fb62 4f7f     +SBCI R23 , BYTE4 ( - 256 )
                  	__ADDD1N 256
-00fbb9 d30f      	RCALL SUBOPT_0x17
+00fb63 d2eb      	RCALL SUBOPT_0x18
                  ; 0002 00F8                appPages--;
-00fbba 01f6      	MOVW R30,R12
-00fbbb 9731      	SBIW R30,1
-00fbbc 016f      	MOVW R12,R30
+00fb64 01f6      	MOVW R30,R12
+00fb65 9731      	SBIW R30,1
+00fb66 016f      	MOVW R12,R30
                  ; 0002 00F9                if(appPages==0)
-00fbbd 2c0c      	MOV  R0,R12
-00fbbe 280d      	OR   R0,R13
-00fbbf f451      	BRNE _0x4003F
+00fb67 2c0c      	MOV  R0,R12
+00fb68 280d      	OR   R0,R13
+00fb69 f471      	BRNE _0x4003F
                  ; 0002 00FA                {
                  ; 0002 00FB                     app_pointer();
                 +
-00fbc0 91e0 0c4a+LDS R30 , _app_pointer + ( 0 )
-00fbc2 91f0 0c4b+LDS R31 , _app_pointer + ( 0 ) + 1
-00fbc4 9509     +ICALL
+00fb6a 91e0 0c4a+LDS R30 , _app_pointer + ( 0 )
+00fb6c 91f0 0c4b+LDS R31 , _app_pointer + ( 0 ) + 1
+00fb6e 9509     +ICALL
                  	__CALL1MN _app_pointer,0
                  ; 0002 00FC                     do
                  _0x40041:
                  ; 0002 00FD                     {
                  ; 0002 00FE                       PORTC.5=0;
-00fbc5 98ad      	CBI  0x15,5
+00fb6f 98ad      	CBI  0x15,5
                  ; 0002 00FF                       delay_ms(500);
-00fbc6 d2fe      	RCALL SUBOPT_0x16
+00fb70 efa4      	LDI  R26,LOW(500)
+00fb71 e0b1      	LDI  R27,HIGH(500)
+00fb72 d411      	RCALL _delay_ms
                  ; 0002 0100                       PORTC.5=1;
-00fbc7 9aad      	SBI  0x15,5
+00fb73 9aad      	SBI  0x15,5
                  ; 0002 0101                       delay_ms(500);
-00fbc8 d2fc      	RCALL SUBOPT_0x16
+00fb74 efa4      	LDI  R26,LOW(500)
+00fb75 e0b1      	LDI  R27,HIGH(500)
+00fb76 d40d      	RCALL _delay_ms
                  ; 0002 0102                     }while(1);
-00fbc9 cffb      	RJMP _0x40041
+00fb77 cff7      	RJMP _0x40041
                  ; 0002 0103                }
                  ; 0002 0104            }
                  _0x4003F:
-00fbca 94b3      	INC  R11
-00fbcb cfd0      	RJMP _0x40035
+00fb78 94b3      	INC  R11
+00fb79 cfcb      	RJMP _0x40035
                  _0x40036:
                  ; 0002 0105         }
                  ; 0002 0106         //read app start adr, num of pages, checksum
                  ; 0002 0107         else if(readbytes>=2000)//Offset=512-48=464
-00fbcc c044      	RJMP _0x40047
+00fb7a c039      	RJMP _0x40047
                  _0x40033:
-00fbcd d2d8      	RCALL SUBOPT_0x12
+00fb7b d2ae      	RCALL SUBOPT_0x13
                 +
-00fbce 3da0     +CPI R26 , LOW ( 0x7D0 )
-00fbcf e0e7     +LDI R30 , HIGH ( 0x7D0 )
-00fbd0 07be     +CPC R27 , R30
-00fbd1 e0e0     +LDI R30 , BYTE3 ( 0x7D0 )
-00fbd2 078e     +CPC R24 , R30
-00fbd3 e0e0     +LDI R30 , BYTE4 ( 0x7D0 )
-00fbd4 079e     +CPC R25 , R30
+00fb7c 3da0     +CPI R26 , LOW ( 0x7D0 )
+00fb7d e0e7     +LDI R30 , HIGH ( 0x7D0 )
+00fb7e 07be     +CPC R27 , R30
+00fb7f e0e0     +LDI R30 , BYTE3 ( 0x7D0 )
+00fb80 078e     +CPC R24 , R30
+00fb81 e0e0     +LDI R30 , BYTE4 ( 0x7D0 )
+00fb82 079e     +CPC R25 , R30
                  	__CPD2N 0x7D0
-00fbd5 f1d8      	BRLO _0x40048
+00fb83 f180      	BRLO _0x40048
                  ; 0002 0108         {
                  ; 0002 0109            appStartAdr=(unsigned long)sdBuf[464]<<16;
                 +
-00fbd6 91e0 0af0+LDS R30 , _sdBuf + ( 464 )
+00fb84 91e0 0af0+LDS R30 , _sdBuf + ( 464 )
                  	__GETB1MN _sdBuf,464
-00fbd8 e0f0      	LDI  R31,0
-00fbd9 940e ff6c 	CALL __CWD1
-00fbdb 940e ff67 	CALL __LSLD16
-00fbdd d2eb      	RCALL SUBOPT_0x17
+00fb86 e0f0      	LDI  R31,0
+00fb87 d38a      	RCALL __CWD1
+00fb88 d384      	RCALL __LSLD16
+00fb89 d2c5      	RCALL SUBOPT_0x18
                  ; 0002 010A            appStartAdr|=(unsigned long)sdBuf[465]<<8;
                 +
-00fbde 91e0 0af1+LDS R30 , _sdBuf + ( 465 )
+00fb8a 91e0 0af1+LDS R30 , _sdBuf + ( 465 )
                  	__GETB1MN _sdBuf,465
-00fbe0 e0f0      	LDI  R31,0
-00fbe1 940e ff6c 	CALL __CWD1
-00fbe3 01df      	MOVW R26,R30
-00fbe4 01cb      	MOVW R24,R22
-00fbe5 e0e8      	LDI  R30,LOW(8)
-00fbe6 940e ff45 	CALL __LSLD12
-00fbe8 d2e9      	RCALL SUBOPT_0x18
+00fb8c e0f0      	LDI  R31,0
+00fb8d d384      	RCALL __CWD1
+00fb8e 01df      	MOVW R26,R30
+00fb8f 01cb      	MOVW R24,R22
+00fb90 e0e8      	LDI  R30,LOW(8)
+00fb91 d343      	RCALL __LSLD12
+00fb92 d2c5      	RCALL SUBOPT_0x19
                  ; 0002 010B            appStartAdr|=(unsigned long)sdBuf[466];
                 +
-00fbe9 91e0 0af2+LDS R30 , _sdBuf + ( 466 )
+00fb93 91e0 0af2+LDS R30 , _sdBuf + ( 466 )
                  	__GETB1MN _sdBuf,466
-00fbeb e0f0      	LDI  R31,0
-00fbec 940e ff6c 	CALL __CWD1
-00fbee d2e3      	RCALL SUBOPT_0x18
+00fb95 e0f0      	LDI  R31,0
+00fb96 d37b      	RCALL __CWD1
+00fb97 d2c0      	RCALL SUBOPT_0x19
                  ; 0002 010C            appPages=(unsigned int)sdBuf[467]<<8;
                 +
-00fbef 91f0 0af3+LDS R31 , _sdBuf + ( 467 )
+00fb98 91f0 0af3+LDS R31 , _sdBuf + ( 467 )
                  	__GETBRMN 31,_sdBuf,467
-00fbf1 e0e0      	LDI  R30,LOW(0)
-00fbf2 016f      	MOVW R12,R30
+00fb9a e0e0      	LDI  R30,LOW(0)
+00fb9b 016f      	MOVW R12,R30
                  ; 0002 010D            appPages|=(unsigned int)sdBuf[468];
                 +
-00fbf3 91e0 0af4+LDS R30 , _sdBuf + ( 468 )
+00fb9c 91e0 0af4+LDS R30 , _sdBuf + ( 468 )
                  	__GETB1MN _sdBuf,468
-00fbf5 e0f0      	LDI  R31,0
+00fb9e e0f0      	LDI  R31,0
                 +
-00fbf6 2ace     +OR R12 , R30
-00fbf7 2adf     +OR R13 , R31
+00fb9f 2ace     +OR R12 , R30
+00fba0 2adf     +OR R13 , R31
                  	__ORWRR 12,13,30,31
                  ; 0002 010E            bytesChecksum=(unsigned int)sdBuf[469]<<8;
                 +
-00fbf8 91f0 0af5+LDS R31 , _sdBuf + ( 469 )
+00fba1 91f0 0af5+LDS R31 , _sdBuf + ( 469 )
                  	__GETBRMN 31,_sdBuf,469
-00fbfa e0e0      	LDI  R30,LOW(0)
-00fbfb 93e0 0c44 	STS  _bytesChecksum,R30
-00fbfd 93f0 0c45 	STS  _bytesChecksum+1,R31
+00fba3 e0e0      	LDI  R30,LOW(0)
+00fba4 d2bd      	RCALL SUBOPT_0x1A
                  ; 0002 010F            bytesChecksum|=(unsigned int)sdBuf[470];
                 +
-00fbff 91e0 0af6+LDS R30 , _sdBuf + ( 470 )
+00fba5 91e0 0af6+LDS R30 , _sdBuf + ( 470 )
                  	__GETB1MN _sdBuf,470
-00fc01 e0f0      	LDI  R31,0
-00fc02 91a0 0c44 	LDS  R26,_bytesChecksum
-00fc04 91b0 0c45 	LDS  R27,_bytesChecksum+1
-00fc06 2bea      	OR   R30,R26
-00fc07 2bfb      	OR   R31,R27
-00fc08 93e0 0c44 	STS  _bytesChecksum,R30
-00fc0a 93f0 0c45 	STS  _bytesChecksum+1,R31
+00fba7 e0f0      	LDI  R31,0
+00fba8 91a0 0c44 	LDS  R26,_bytesChecksum
+00fbaa 91b0 0c45 	LDS  R27,_bytesChecksum+1
+00fbac 2bea      	OR   R30,R26
+00fbad 2bfb      	OR   R31,R27
+00fbae d2b3      	RCALL SUBOPT_0x1A
                  ; 0002 0110            checksumCnt=0;
-00fc0c e0e0      	LDI  R30,LOW(0)
-00fc0d 93e0 0c46 	STS  _checksumCnt,R30
-00fc0f 93e0 0c47 	STS  _checksumCnt+1,R30
+00fbaf e0e0      	LDI  R30,LOW(0)
+00fbb0 93e0 0c46 	STS  _checksumCnt,R30
+00fbb2 93e0 0c47 	STS  _checksumCnt+1,R30
                  ; 0002 0111         }
                  ; 0002 0112         if(fat_file_next_adr == 0x0FFFFFFFUL)
                  _0x40048:
                  _0x40047:
-00fc11 91a0 0c38 	LDS  R26,_fat_file_next_adr
-00fc13 91b0 0c39 	LDS  R27,_fat_file_next_adr+1
-00fc15 9180 0c3a 	LDS  R24,_fat_file_next_adr+2
-00fc17 9190 0c3b 	LDS  R25,_fat_file_next_adr+3
-00fc19 d284      	RCALL SUBOPT_0x11
-00fc1a f4e1      	BRNE _0x40049
+00fbb4 91a0 0c38 	LDS  R26,_fat_file_next_adr
+00fbb6 91b0 0c39 	LDS  R27,_fat_file_next_adr+1
+00fbb8 9180 0c3a 	LDS  R24,_fat_file_next_adr+2
+00fbba 9190 0c3b 	LDS  R25,_fat_file_next_adr+3
+00fbbc d265      	RCALL SUBOPT_0x12
+00fbbd f4c9      	BRNE _0x40049
                  ; 0002 0113             if(readbytes >= filesize)
-00fc1b 91e0 0c3c 	LDS  R30,_filesize
-00fc1d 91f0 0c3d 	LDS  R31,_filesize+1
-00fc1f 9160 0c3e 	LDS  R22,_filesize+2
-00fc21 9170 0c3f 	LDS  R23,_filesize+3
-00fc23 d282      	RCALL SUBOPT_0x12
-00fc24 940e ffd9 	CALL __CPD21
-00fc26 f4a0      	BRSH _0x40022
+00fbbe 91e0 0c3c 	LDS  R30,_filesize
+00fbc0 91f0 0c3d 	LDS  R31,_filesize+1
+00fbc2 9160 0c3e 	LDS  R22,_filesize+2
+00fbc4 9170 0c3f 	LDS  R23,_filesize+3
+00fbc6 d263      	RCALL SUBOPT_0x13
+00fbc7 d3b7      	RCALL __CPD21
+00fbc8 f490      	BRSH _0x40022
                  ; 0002 0114             {
                  ; 0002 0115                 break;
                  ; 0002 0116             }
@@ -3225,54 +3217,54 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 0118             {
                  ; 0002 0119 
                  ; 0002 011A                 if(  WriteFlashPage(0x1EF00, sdBuf))//;     // Writes testbuffer1 to Flash page 2
-00fc27 d2b5      	RCALL SUBOPT_0x19
-00fc28 e2a0      	LDI  R26,LOW(_sdBuf)
-00fc29 e0b9      	LDI  R27,HIGH(_sdBuf)
-00fc2a 940e f8d2 	CALL _WriteFlashPage
-00fc2c 30e0      	CPI  R30,0
-00fc2d f009      	BREQ _0x4004C
+00fbc9 d29d      	RCALL SUBOPT_0x1B
+00fbca e2a0      	LDI  R26,LOW(_sdBuf)
+00fbcb e0b9      	LDI  R27,HIGH(_sdBuf)
+00fbcc dd02      	RCALL _WriteFlashPage
+00fbcd 30e0      	CPI  R30,0
+00fbce f009      	BREQ _0x4004C
                  ; 0002 011B                     PORTC.5=0;                                          // Function returns TRUE
-00fc2e 98ad      	CBI  0x15,5
+00fbcf 98ad      	CBI  0x15,5
                  ; 0002 011C                 if(  ReadFlashPage (0x1EF00, testBuf))//;      // Reads back Flash page 2 to TestBuffer2
                  _0x4004C:
-00fc2f d2ad      	RCALL SUBOPT_0x19
-00fc30 e2a0      	LDI  R26,LOW(_testBuf)
-00fc31 e0bb      	LDI  R27,HIGH(_testBuf)
-00fc32 940e f8a5 	CALL _ReadFlashPage
-00fc34 30e0      	CPI  R30,0
-00fc35 f009      	BREQ _0x4004F
+00fbd0 d296      	RCALL SUBOPT_0x1B
+00fbd1 e2a0      	LDI  R26,LOW(_testBuf)
+00fbd2 e0bb      	LDI  R27,HIGH(_testBuf)
+00fbd3 dccf      	RCALL _ReadFlashPage
+00fbd4 30e0      	CPI  R30,0
+00fbd5 f009      	BREQ _0x4004F
                  ; 0002 011D                     PORTC.6=0;
-00fc36 98ae      	CBI  0x15,6
+00fbd6 98ae      	CBI  0x15,6
                  ; 0002 011E             }
                  _0x4004F:
                  ; 0002 011F 
                  ; 0002 0120         adr++;
                  _0x40049:
-00fc37 d239      	RCALL SUBOPT_0xF
+00fbd7 d222      	RCALL SUBOPT_0x10
                  ; 0002 0121     }
                 +
-00fc38 5f0f     +SUBI R16 , LOW ( - 1 )
-00fc39 4f1f     +SBCI R17 , HIGH ( - 1 )
+00fbd8 5f0f     +SUBI R16 , LOW ( - 1 )
+00fbd9 4f1f     +SBCI R17 , HIGH ( - 1 )
                  	__ADDWRN 16,17,1
-00fc3a cec1      	RJMP _0x40021
+00fbda ceda      	RJMP _0x40021
                  _0x40022:
                  ; 0002 0122     fat_file_adr = fat_file_next_adr;
-00fc3b 91e0 0c38 	LDS  R30,_fat_file_next_adr
-00fc3d 91f0 0c39 	LDS  R31,_fat_file_next_adr+1
-00fc3f 9160 0c3a 	LDS  R22,_fat_file_next_adr+2
-00fc41 9170 0c3b 	LDS  R23,_fat_file_next_adr+3
-00fc43 93e0 0c34 	STS  _fat_file_adr,R30
-00fc45 93f0 0c35 	STS  _fat_file_adr+1,R31
-00fc47 9360 0c36 	STS  _fat_file_adr+2,R22
-00fc49 9370 0c37 	STS  _fat_file_adr+3,R23
+00fbdb 91e0 0c38 	LDS  R30,_fat_file_next_adr
+00fbdd 91f0 0c39 	LDS  R31,_fat_file_next_adr+1
+00fbdf 9160 0c3a 	LDS  R22,_fat_file_next_adr+2
+00fbe1 9170 0c3b 	LDS  R23,_fat_file_next_adr+3
+00fbe3 93e0 0c34 	STS  _fat_file_adr,R30
+00fbe5 93f0 0c35 	STS  _fat_file_adr+1,R31
+00fbe7 9360 0c36 	STS  _fat_file_adr+2,R22
+00fbe9 9370 0c37 	STS  _fat_file_adr+3,R23
                  ; 0002 0123   }
-00fc4b ce85      	RJMP _0x4001C
+00fbeb cea1      	RJMP _0x4001C
                  _0x4001E:
                  ; 0002 0124 
                  ; 0002 0125 
                  ; 0002 0126   while(1);
                  _0x40052:
-00fc4c cfff      	RJMP _0x40052
+00fbec cfff      	RJMP _0x40052
                  ; 0002 0127   //static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
                  ; 0002 0128   //if(PORTA==0x55)
                  ; 0002 0129     //testWrite();                                          // Returns TRUE
@@ -3310,7 +3302,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 0149   //}
                  ; 0002 014A }
                  _0x40055:
-00fc4d cfff      	RJMP _0x40055
+00fbed cfff      	RJMP _0x40055
                  ; .FEND
                  
                  	.DSEG
@@ -3324,40 +3316,40 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  _compbuf:
                  ; .FSTART _compbuf
                  ; 0002 014E     while(*src)
-00fc4e 93ba      	ST   -Y,R27
-00fc4f 93aa      	ST   -Y,R26
+00fbee 93ba      	ST   -Y,R27
+00fbef 93aa      	ST   -Y,R26
                  ;	*src -> Y+2
                  ;	*dest -> Y+0
                  _0x40056:
-00fc50 81aa      	LDD  R26,Y+2
-00fc51 81bb      	LDD  R27,Y+2+1
-00fc52 91ec      	LD   R30,X
-00fc53 30e0      	CPI  R30,0
-00fc54 f069      	BREQ _0x40058
+00fbf0 81aa      	LDD  R26,Y+2
+00fbf1 81bb      	LDD  R27,Y+2+1
+00fbf2 91ec      	LD   R30,X
+00fbf3 30e0      	CPI  R30,0
+00fbf4 f069      	BREQ _0x40058
                  ; 0002 014F     {
                  ; 0002 0150         if(*src++ != *dest++)
-00fc55 900d      	LD   R0,X+
-00fc56 83aa      	STD  Y+2,R26
-00fc57 83bb      	STD  Y+2+1,R27
-00fc58 81a8      	LD   R26,Y
-00fc59 81b9      	LDD  R27,Y+1
-00fc5a 91ed      	LD   R30,X+
-00fc5b 83a8      	ST   Y,R26
-00fc5c 83b9      	STD  Y+1,R27
-00fc5d 15e0      	CP   R30,R0
-00fc5e f011      	BREQ _0x40059
+00fbf5 900d      	LD   R0,X+
+00fbf6 83aa      	STD  Y+2,R26
+00fbf7 83bb      	STD  Y+2+1,R27
+00fbf8 81a8      	LD   R26,Y
+00fbf9 81b9      	LDD  R27,Y+1
+00fbfa 91ed      	LD   R30,X+
+00fbfb 83a8      	ST   Y,R26
+00fbfc 83b9      	STD  Y+1,R27
+00fbfd 15e0      	CP   R30,R0
+00fbfe f011      	BREQ _0x40059
                  ; 0002 0151             return 0;
-00fc5f e0e0      	LDI  R30,LOW(0)
-00fc60 c07f      	RJMP _0x200000A
+00fbff e0e0      	LDI  R30,LOW(0)
+00fc00 c077      	RJMP _0x200000A
                  ; 0002 0152         //src++;dest++;
                  ; 0002 0153         //len--;
                  ; 0002 0154     }
                  _0x40059:
-00fc61 cfee      	RJMP _0x40056
+00fc01 cfee      	RJMP _0x40056
                  _0x40058:
                  ; 0002 0155     return 1;
-00fc62 e0e1      	LDI  R30,LOW(1)
-00fc63 c07c      	RJMP _0x200000A
+00fc02 e0e1      	LDI  R30,LOW(1)
+00fc03 c074      	RJMP _0x200000A
                  ; 0002 0156 }
                  ; .FEND
                  ;
@@ -3385,51 +3377,51 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0002 016B     unsigned long num=0;
                  ; 0002 016C     //unsigned char i;
                  ; 0002 016D     for(;len>0;len--)
-00fc64 93aa      	ST   -Y,R26
-00fc65 9724      	SBIW R28,4
-00fc66 e0e0      	LDI  R30,LOW(0)
-00fc67 83e8      	ST   Y,R30
-00fc68 83e9      	STD  Y+1,R30
-00fc69 83ea      	STD  Y+2,R30
-00fc6a 83eb      	STD  Y+3,R30
+00fc04 93aa      	ST   -Y,R26
+00fc05 9724      	SBIW R28,4
+00fc06 e0e0      	LDI  R30,LOW(0)
+00fc07 83e8      	ST   Y,R30
+00fc08 83e9      	STD  Y+1,R30
+00fc09 83ea      	STD  Y+2,R30
+00fc0a 83eb      	STD  Y+3,R30
                  ;	*buf -> Y+5
                  ;	len -> Y+4
                  ;	num -> Y+0
                  _0x4005B:
-00fc6b 81ac      	LDD  R26,Y+4
-00fc6c 30a1      	CPI  R26,LOW(0x1)
-00fc6d f0d0      	BRLO _0x4005C
+00fc0b 81ac      	LDD  R26,Y+4
+00fc0c 30a1      	CPI  R26,LOW(0x1)
+00fc0d f0b0      	BRLO _0x4005C
                  ; 0002 016E     {
                  ; 0002 016F         num<<=8;
-00fc6e d198      	RCALL SUBOPT_0x5
-00fc6f e0e8      	LDI  R30,LOW(8)
-00fc70 940e ff45 	CALL __LSLD12
-00fc72 940e ffc6 	CALL __PUTD1S0
+00fc0e d187      	RCALL SUBOPT_0x6
+00fc0f e0e8      	LDI  R30,LOW(8)
+00fc10 d2c4      	RCALL __LSLD12
+00fc11 d25b      	RCALL SUBOPT_0x1C
                  ; 0002 0170         num|=buf[len-1];
-00fc74 81ec      	LDD  R30,Y+4
-00fc75 e0f0      	LDI  R31,0
-00fc76 9731      	SBIW R30,1
-00fc77 81ad      	LDD  R26,Y+5
-00fc78 81be      	LDD  R27,Y+5+1
-00fc79 0fae      	ADD  R26,R30
-00fc7a 1fbf      	ADC  R27,R31
-00fc7b 91ec      	LD   R30,X
-00fc7c d18a      	RCALL SUBOPT_0x5
-00fc7d 27ff      	CLR  R31
-00fc7e 2766      	CLR  R22
-00fc7f 2777      	CLR  R23
-00fc80 940e ff3c 	CALL __ORD12
-00fc82 940e ffc6 	CALL __PUTD1S0
+00fc12 81ec      	LDD  R30,Y+4
+00fc13 e0f0      	LDI  R31,0
+00fc14 9731      	SBIW R30,1
+00fc15 81ad      	LDD  R26,Y+5
+00fc16 81be      	LDD  R27,Y+5+1
+00fc17 0fae      	ADD  R26,R30
+00fc18 1fbf      	ADC  R27,R31
+00fc19 91ec      	LD   R30,X
+00fc1a d17b      	RCALL SUBOPT_0x6
+00fc1b 27ff      	CLR  R31
+00fc1c 2766      	CLR  R22
+00fc1d 2777      	CLR  R23
+00fc1e d2ad      	RCALL __ORD12
+00fc1f d24d      	RCALL SUBOPT_0x1C
                  ; 0002 0171     }
-00fc84 81ec      	LDD  R30,Y+4
-00fc85 50e1      	SUBI R30,LOW(1)
-00fc86 83ec      	STD  Y+4,R30
-00fc87 cfe3      	RJMP _0x4005B
+00fc20 81ec      	LDD  R30,Y+4
+00fc21 50e1      	SUBI R30,LOW(1)
+00fc22 83ec      	STD  Y+4,R30
+00fc23 cfe7      	RJMP _0x4005B
                  _0x4005C:
                  ; 0002 0172     return num;
-00fc88 d165      	RCALL SUBOPT_0x0
-00fc89 9627      	ADIW R28,7
-00fc8a 9508      	RET
+00fc24 d157      	RCALL SUBOPT_0x0
+00fc25 9627      	ADIW R28,7
+00fc26 9508      	RET
                  ; 0002 0173 }
                  ; .FEND
                  ;
@@ -3494,23 +3486,23 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _SPI_init
                  ; 0003 0008     // set CS, MOSI and SCK to output
                  ; 0003 0009     DDR_SPI = (1 << CS) | (1 << MOSI) | (1 << SCK);
-00fc8b e0e7      	LDI  R30,LOW(7)
-00fc8c bbe7      	OUT  0x17,R30
+00fc27 e0e7      	LDI  R30,LOW(7)
+00fc28 bbe7      	OUT  0x17,R30
                  ; 0003 000A     PORT_SPI|=(1 << CS);
-00fc8d 9ac0      	SBI  0x18,0
+00fc29 9ac0      	SBI  0x18,0
                  ; 0003 000B     // enable pull up resistor in MISO
                  ; 0003 000C     DDR_SPI &= ~(1 << MISO);
-00fc8e 98bb      	CBI  0x17,3
+00fc2a 98bb      	CBI  0x17,3
                  ; 0003 000D     PORT_SPI &= ~(1 << MISO);
-00fc8f 98c3      	CBI  0x18,3
+00fc2b 98c3      	CBI  0x18,3
                  ; 0003 000E     //PORT_SPI |= (1 << MISO);
                  ; 0003 000F 
                  ; 0003 0010     // enable SPI, set as master, and clock to fosc/128
                  ; 0003 0011     SPCR = (1 << SPE) | (1 << MSTR) | (0 << SPR1) | (0 << SPR0);
-00fc90 e5e0      	LDI  R30,LOW(80)
-00fc91 b9ed      	OUT  0xD,R30
+00fc2c e5e0      	LDI  R30,LOW(80)
+00fc2d b9ed      	OUT  0xD,R30
                  ; 0003 0012 }
-00fc92 9508      	RET
+00fc2e 9508      	RET
                  ; .FEND
                  ;
                  ;unsigned char SPI_transfer(unsigned char data)
@@ -3519,22 +3511,22 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _SPI_transfer
                  ; 0003 0016     // load data into register
                  ; 0003 0017     SPDR = data;
-00fc93 93aa      	ST   -Y,R26
+00fc2f 93aa      	ST   -Y,R26
                  ;	data -> Y+0
-00fc94 81e8      	LD   R30,Y
-00fc95 b9ef      	OUT  0xF,R30
+00fc30 81e8      	LD   R30,Y
+00fc31 b9ef      	OUT  0xF,R30
                  ; 0003 0018 
                  ; 0003 0019     // Wait for transmission complete
                  ; 0003 001A     while(!(SPSR & (1 << SPIF)));
                  _0x60003:
-00fc96 9b77      	SBIS 0xE,7
-00fc97 cffe      	RJMP _0x60003
+00fc32 9b77      	SBIS 0xE,7
+00fc33 cffe      	RJMP _0x60003
                  ; 0003 001B 
                  ; 0003 001C     // return SPDR
                  ; 0003 001D     return SPDR;
-00fc98 b1ef      	IN   R30,0xF
-00fc99 9621      	ADIW R28,1
-00fc9a 9508      	RET
+00fc34 b1ef      	IN   R30,0xF
+00fc35 9621      	ADIW R28,1
+00fc36 9508      	RET
                  ; 0003 001E }
                  ; .FEND
                  ;
@@ -3546,37 +3538,39 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0023     unsigned char i;
                  ; 0003 0024 
                  ; 0003 0025     SPI_init();
-00fc9b 931a      	ST   -Y,R17
+00fc37 931a      	ST   -Y,R17
                  ;	i -> R17
-00fc9c dfee      	RCALL _SPI_init
+00fc38 dfee      	RCALL _SPI_init
                  ; 0003 0026 
                  ; 0003 0027     // make sure card is deselected
                  ; 0003 0028     CS_DISABLE();
-00fc9d 9ac0      	SBI  0x18,0
+00fc39 9ac0      	SBI  0x18,0
                  ; 0003 0029 
                  ; 0003 002A     // give SD card time to power up
                  ; 0003 002B     delay_ms(1);
-00fc9e e0a1      	LDI  R26,LOW(1)
-00fc9f e0b0      	LDI  R27,0
-00fca0 940e ff28 	CALL _delay_ms
+00fc3a e0a1      	LDI  R26,LOW(1)
+00fc3b e0b0      	LDI  R27,0
+00fc3c d347      	RCALL _delay_ms
                  ; 0003 002C 
                  ; 0003 002D     // send 80 clock cycles to synchronize
                  ; 0003 002E     for(i = 0; i < 10; i++)
-00fca2 e010      	LDI  R17,LOW(0)
+00fc3d e010      	LDI  R17,LOW(0)
                  _0x60007:
-00fca3 301a      	CPI  R17,10
-00fca4 f420      	BRSH _0x60008
+00fc3e 301a      	CPI  R17,10
+00fc3f f420      	BRSH _0x60008
                  ; 0003 002F         SPI_transfer(0xFF);
-00fca5 efaf      	LDI  R26,LOW(255)
-00fca6 dfec      	RCALL _SPI_transfer
-00fca7 5f1f      	SUBI R17,-1
-00fca8 cffa      	RJMP _0x60007
+00fc40 efaf      	LDI  R26,LOW(255)
+00fc41 dfed      	RCALL _SPI_transfer
+00fc42 5f1f      	SUBI R17,-1
+00fc43 cffa      	RJMP _0x60007
                  _0x60008:
                  ; 0003 0032 PORTB |= (1 << 0       );
-00fca9 d23a      	RCALL SUBOPT_0x1A
+00fc44 9ac0      	SBI  0x18,0
                  ; 0003 0033     SPI_transfer(0xFF);
+00fc45 efaf      	LDI  R26,LOW(255)
+00fc46 dfe8      	RCALL _SPI_transfer
                  ; 0003 0034 }
-00fcaa c08b      	RJMP _0x2000007
+00fc47 c084      	RJMP _0x2000007
                  ; .FEND
                  ;
                  ;unsigned char SD_command(unsigned char cmd, unsigned long arg, unsigned char crc)
@@ -3586,53 +3580,53 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0038     unsigned char res,count;
                  ; 0003 0039     // transmit command to sd card
                  ; 0003 003A     SPI_transfer(cmd|0x40);
-00fcab 93aa      	ST   -Y,R26
-00fcac 931a      	ST   -Y,R17
-00fcad 930a      	ST   -Y,R16
+00fc48 93aa      	ST   -Y,R26
+00fc49 931a      	ST   -Y,R17
+00fc4a 930a      	ST   -Y,R16
                  ;	cmd -> Y+7
                  ;	arg -> Y+3
                  ;	crc -> Y+2
                  ;	res -> R17
                  ;	count -> R16
-00fcae 81ef      	LDD  R30,Y+7
-00fcaf 64e0      	ORI  R30,0x40
-00fcb0 d236      	RCALL SUBOPT_0x1B
+00fc4b 81ef      	LDD  R30,Y+7
+00fc4c 64e0      	ORI  R30,0x40
+00fc4d d221      	RCALL SUBOPT_0x1D
                  ; 0003 003B 
                  ; 0003 003C     // transmit argument
                  ; 0003 003D     SPI_transfer((unsigned char)(arg >> 24));
-00fcb1 e1e8      	LDI  R30,LOW(24)
-00fcb2 940e ff51 	CALL __LSRD12
-00fcb4 2fae      	MOV  R26,R30
-00fcb5 dfdd      	RCALL _SPI_transfer
+00fc4e e1e8      	LDI  R30,LOW(24)
+00fc4f d29c      	RCALL __LSRD12
+00fc50 2fae      	MOV  R26,R30
+00fc51 dfdd      	RCALL _SPI_transfer
                  ; 0003 003E     SPI_transfer((unsigned char)(arg >> 16));
                 +
-00fcb6 81eb     +LDD R30 , Y + 3
-00fcb7 81fc     +LDD R31 , Y + 3 + 1
-00fcb8 816d     +LDD R22 , Y + 3 + 2
-00fcb9 817e     +LDD R23 , Y + 3 + 3
+00fc52 81eb     +LDD R30 , Y + 3
+00fc53 81fc     +LDD R31 , Y + 3 + 1
+00fc54 816d     +LDD R22 , Y + 3 + 2
+00fc55 817e     +LDD R23 , Y + 3 + 3
                  	__GETD1S 3
-00fcba 940e ff62 	CALL __LSRD16
-00fcbc d22a      	RCALL SUBOPT_0x1B
+00fc56 d2b1      	RCALL __LSRD16
+00fc57 d217      	RCALL SUBOPT_0x1D
                  ; 0003 003F     SPI_transfer((unsigned char)(arg >> 8));
-00fcbd e0e8      	LDI  R30,LOW(8)
-00fcbe 940e ff51 	CALL __LSRD12
-00fcc0 2fae      	MOV  R26,R30
-00fcc1 dfd1      	RCALL _SPI_transfer
+00fc58 e0e8      	LDI  R30,LOW(8)
+00fc59 d292      	RCALL __LSRD12
+00fc5a 2fae      	MOV  R26,R30
+00fc5b dfd3      	RCALL _SPI_transfer
                  ; 0003 0040     SPI_transfer((unsigned char)(arg));
-00fcc2 81ab      	LDD  R26,Y+3
-00fcc3 dfcf      	RCALL _SPI_transfer
+00fc5c 81ab      	LDD  R26,Y+3
+00fc5d dfd1      	RCALL _SPI_transfer
                  ; 0003 0041 
                  ; 0003 0042     // transmit crc
                  ; 0003 0043     SPI_transfer(crc|0x01);
-00fcc4 81ea      	LDD  R30,Y+2
-00fcc5 60e1      	ORI  R30,1
-00fcc6 2fae      	MOV  R26,R30
-00fcc7 dfcb      	RCALL _SPI_transfer
+00fc5e 81ea      	LDD  R30,Y+2
+00fc5f 60e1      	ORI  R30,1
+00fc60 2fae      	MOV  R26,R30
+00fc61 dfcd      	RCALL _SPI_transfer
                  ; 0003 0044 
                  ; 0003 0045     //wait response R1
                  ; 0003 0046     res = SD_readRes1();
-00fcc8 d005      	RCALL _SD_readRes1
-00fcc9 2f1e      	MOV  R17,R30
+00fc62 d005      	RCALL _SD_readRes1
+00fc63 2f1e      	MOV  R17,R30
                  ; 0003 0047     /*
                  ; 0003 0048     do {
                  ; 0003 0049      res=SPI_transfer(0xFF);;
@@ -3641,10 +3635,10 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 004C     */
                  ; 0003 004D     return res;
                  _0x200000B:
-00fcca 8119      	LDD  R17,Y+1
-00fccb 8108      	LDD  R16,Y+0
-00fccc 9628      	ADIW R28,8
-00fccd 9508      	RET
+00fc64 8119      	LDD  R17,Y+1
+00fc65 8108      	LDD  R16,Y+0
+00fc66 9628      	ADIW R28,8
+00fc67 9508      	RET
                  ; 0003 004E }
                  ; .FEND
                  ;
@@ -3659,43 +3653,43 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0056     // keep polling until actual data received
                  ; 0003 0057     //while((res1 = SPI_transfer(0xFF)) == 0xFF)
                  ; 0003 0058     while(((res1 = SPI_transfer(0xFF))&0x80) != 0x00)
-00fcce 940e ffe0 	CALL __SAVELOCR4
+00fc68 d24d      	RCALL __SAVELOCR4
                  ;	res1 -> R17
                  ;	i -> R18,R19
                 +
-00fcd0 e020     +LDI R18 , LOW ( 0 )
-00fcd1 e030     +LDI R19 , HIGH ( 0 )
+00fc69 e020     +LDI R18 , LOW ( 0 )
+00fc6a e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x60009:
-00fcd2 efaf      	LDI  R26,LOW(255)
-00fcd3 dfbf      	RCALL _SPI_transfer
-00fcd4 2f1e      	MOV  R17,R30
-00fcd5 78e0      	ANDI R30,LOW(0x80)
-00fcd6 f031      	BREQ _0x6000B
+00fc6b efaf      	LDI  R26,LOW(255)
+00fc6c dfc2      	RCALL _SPI_transfer
+00fc6d 2f1e      	MOV  R17,R30
+00fc6e 78e0      	ANDI R30,LOW(0x80)
+00fc6f f031      	BREQ _0x6000B
                  ; 0003 0059     {
                  ; 0003 005A         i++;
                 +
-00fcd7 5f2f     +SUBI R18 , LOW ( - 1 )
-00fcd8 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fc70 5f2f     +SUBI R18 , LOW ( - 1 )
+00fc71 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
                  ; 0003 005B 
                  ; 0003 005C         // if no data received for (254)8 bytes, break
                  ; 0003 005D         if(i > 0x1FF) break;
                 +
-00fcd9 3020     +CPI R18 , LOW ( 512 )
-00fcda e0e2     +LDI R30 , HIGH ( 512 )
-00fcdb 073e     +CPC R19 , R30
+00fc72 3020     +CPI R18 , LOW ( 512 )
+00fc73 e0e2     +LDI R30 , HIGH ( 512 )
+00fc74 073e     +CPC R19 , R30
                  	__CPWRN 18,19,512
-00fcdc f3a8      	BRLO _0x60009
+00fc75 f3a8      	BRLO _0x60009
                  ; 0003 005E     }
                  _0x6000B:
                  ; 0003 005F 
                  ; 0003 0060     return res1;
-00fcdd 2fe1      	MOV  R30,R17
-00fcde 940e ffe7 	CALL __LOADLOCR4
+00fc76 2fe1      	MOV  R30,R17
+00fc77 d245      	RCALL __LOADLOCR4
                  _0x200000A:
-00fce0 9624      	ADIW R28,4
-00fce1 9508      	RET
+00fc78 9624      	ADIW R28,4
+00fc79 9508      	RET
                  ; 0003 0061 }
                  ; .FEND
                  ;
@@ -3706,18 +3700,18 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0065     unsigned char res1;
                  ; 0003 0066     // assert chip select
                  ; 0003 0067     SPI_transfer(0xFF);
-00fce2 d20b      	RCALL SUBOPT_0x1C
+00fc7a d1fb      	RCALL SUBOPT_0x1E
                  ;	res1 -> R17
                  ; 0003 0068     CS_ENABLE();
                  ; 0003 0069     //SPI_transfer(0xFF);
                  ; 0003 006A 
                  ; 0003 006B     // send CMD0
                  ; 0003 006C     res1 = SD_command(CMD0, CMD0_ARG, CMD0_CRC);
-00fce3 e0e0      	LDI  R30,LOW(0)
-00fce4 93ea      	ST   -Y,R30
-00fce5 d10b      	RCALL SUBOPT_0x1
-00fce6 e9a4      	LDI  R26,LOW(148)
-00fce7 c04a      	RJMP _0x2000006
+00fc7b e0e0      	LDI  R30,LOW(0)
+00fc7c 93ea      	ST   -Y,R30
+00fc7d d105      	RCALL SUBOPT_0x2
+00fc7e e9a4      	LDI  R26,LOW(148)
+00fc7f c048      	RJMP _0x2000006
                  ; 0003 006D 
                  ; 0003 006E     // read response
                  ; 0003 006F     //res1 = SD_readRes1();
@@ -3740,54 +3734,54 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 007D 
                  ; 0003 007E     // if error reading R1, return
                  ; 0003 007F     if(res[0] > 1) return;
-00fce8 93ba      	ST   -Y,R27
-00fce9 93aa      	ST   -Y,R26
+00fc80 93ba      	ST   -Y,R27
+00fc81 93aa      	ST   -Y,R26
                  ;	*res -> Y+0
-00fcea 81a8      	LD   R26,Y
-00fceb 81b9      	LDD  R27,Y+1
-00fcec 91ac      	LD   R26,X
-00fced 30a2      	CPI  R26,LOW(0x2)
-00fcee f578      	BRSH _0x2000009
+00fc82 81a8      	LD   R26,Y
+00fc83 81b9      	LDD  R27,Y+1
+00fc84 91ac      	LD   R26,X
+00fc85 30a2      	CPI  R26,LOW(0x2)
+00fc86 f570      	BRSH _0x2000009
                  ; 0003 0080 
                  ; 0003 0081     // read remaining bytes
                  ; 0003 0082     res[1] = SPI_transfer(0xFF);
-00fcef efaf      	LDI  R26,LOW(255)
-00fcf0 dfa2      	RCALL _SPI_transfer
+00fc87 efaf      	LDI  R26,LOW(255)
+00fc88 dfa6      	RCALL _SPI_transfer
                 +
-00fcf1 81a8     +LDD R26 , Y + 0
-00fcf2 81b9     +LDD R27 , Y + 0 + 1
-00fcf3 9611     +ADIW R26 , 1
-00fcf4 93ec     +ST X , R30
+00fc89 81a8     +LDD R26 , Y + 0
+00fc8a 81b9     +LDD R27 , Y + 0 + 1
+00fc8b 9611     +ADIW R26 , 1
+00fc8c 93ec     +ST X , R30
                  	__PUTB1SNS 0,1
                  ; 0003 0083     res[2] = SPI_transfer(0xFF);
-00fcf5 efaf      	LDI  R26,LOW(255)
-00fcf6 df9c      	RCALL _SPI_transfer
+00fc8d efaf      	LDI  R26,LOW(255)
+00fc8e dfa0      	RCALL _SPI_transfer
                 +
-00fcf7 81a8     +LDD R26 , Y + 0
-00fcf8 81b9     +LDD R27 , Y + 0 + 1
-00fcf9 9612     +ADIW R26 , 2
-00fcfa 93ec     +ST X , R30
+00fc8f 81a8     +LDD R26 , Y + 0
+00fc90 81b9     +LDD R27 , Y + 0 + 1
+00fc91 9612     +ADIW R26 , 2
+00fc92 93ec     +ST X , R30
                  	__PUTB1SNS 0,2
                  ; 0003 0084     res[3] = SPI_transfer(0xFF);
-00fcfb efaf      	LDI  R26,LOW(255)
-00fcfc df96      	RCALL _SPI_transfer
+00fc93 efaf      	LDI  R26,LOW(255)
+00fc94 df9a      	RCALL _SPI_transfer
                 +
-00fcfd 81a8     +LDD R26 , Y + 0
-00fcfe 81b9     +LDD R27 , Y + 0 + 1
-00fcff 9613     +ADIW R26 , 3
-00fd00 93ec     +ST X , R30
+00fc95 81a8     +LDD R26 , Y + 0
+00fc96 81b9     +LDD R27 , Y + 0 + 1
+00fc97 9613     +ADIW R26 , 3
+00fc98 93ec     +ST X , R30
                  	__PUTB1SNS 0,3
                  ; 0003 0085     res[4] = SPI_transfer(0xFF);
-00fd01 efaf      	LDI  R26,LOW(255)
-00fd02 df90      	RCALL _SPI_transfer
+00fc99 efaf      	LDI  R26,LOW(255)
+00fc9a df94      	RCALL _SPI_transfer
                 +
-00fd03 81a8     +LDD R26 , Y + 0
-00fd04 81b9     +LDD R27 , Y + 0 + 1
-00fd05 9614     +ADIW R26 , 4
-00fd06 93ec     +ST X , R30
+00fc9b 81a8     +LDD R26 , Y + 0
+00fc9c 81b9     +LDD R27 , Y + 0 + 1
+00fc9d 9614     +ADIW R26 , 4
+00fc9e 93ec     +ST X , R30
                  	__PUTB1SNS 0,4
                  ; 0003 0086 }
-00fd07 c016      	RJMP _0x2000009
+00fc9f c015      	RJMP _0x2000009
                  ; .FEND
                  ;
                  ;void SD_sendIfCond(unsigned char *res)
@@ -3796,24 +3790,24 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _SD_sendIfCond
                  ; 0003 008A     // assert chip select
                  ; 0003 008B     SPI_transfer(0xFF);
-00fd08 d1ea      	RCALL SUBOPT_0x1D
+00fca0 d1da      	RCALL SUBOPT_0x1F
                  ;	*res -> Y+0
                  ; 0003 008C     CS_ENABLE();
                  ; 0003 008D     //SPI_transfer(0xFF);
                  ; 0003 008E 
                  ; 0003 008F     // send CMD8
                  ; 0003 0090     res[0]=SD_command(CMD8, CMD8_ARG, CMD8_CRC);
-00fd09 e0e8      	LDI  R30,LOW(8)
-00fd0a 93ea      	ST   -Y,R30
+00fca1 e0e8      	LDI  R30,LOW(8)
+00fca2 93ea      	ST   -Y,R30
                 +
-00fd0b eaea     +LDI R30 , LOW ( 0x1AA )
-00fd0c e0f1     +LDI R31 , HIGH ( 0x1AA )
-00fd0d e060     +LDI R22 , BYTE3 ( 0x1AA )
-00fd0e e070     +LDI R23 , BYTE4 ( 0x1AA )
+00fca3 eaea     +LDI R30 , LOW ( 0x1AA )
+00fca4 e0f1     +LDI R31 , HIGH ( 0x1AA )
+00fca5 e060     +LDI R22 , BYTE3 ( 0x1AA )
+00fca6 e070     +LDI R23 , BYTE4 ( 0x1AA )
                  	__GETD1N 0x1AA
-00fd0f 940e ffcb 	CALL __PUTPARD1
-00fd11 e8a6      	LDI  R26,LOW(134)
-00fd12 c005      	RJMP _0x2000008
+00fca7 d2c9      	RCALL __PUTPARD1
+00fca8 e8a6      	LDI  R26,LOW(134)
+00fca9 c005      	RJMP _0x2000008
                  ; 0003 0091 
                  ; 0003 0092     // read response
                  ; 0003 0093     SD_readRes7(res);
@@ -3848,37 +3842,37 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; .FSTART _SD_readOCR
                  ; 0003 00AE     // assert chip select
                  ; 0003 00AF     SPI_transfer(0xFF);
-00fd13 d1df      	RCALL SUBOPT_0x1D
+00fcaa d1d0      	RCALL SUBOPT_0x1F
                  ;	*res -> Y+0
                  ; 0003 00B0     CS_ENABLE();
                  ; 0003 00B1     //SPI_transfer(0xFF);
                  ; 0003 00B2 
                  ; 0003 00B3     // send CMD58
                  ; 0003 00B4     res[0] = SD_command(CMD58, CMD58_ARG, CMD58_CRC);
-00fd14 e3ea      	LDI  R30,LOW(58)
-00fd15 93ea      	ST   -Y,R30
-00fd16 d0da      	RCALL SUBOPT_0x1
-00fd17 e0a0      	LDI  R26,LOW(0)
+00fcab e3ea      	LDI  R30,LOW(58)
+00fcac 93ea      	ST   -Y,R30
+00fcad d0d5      	RCALL SUBOPT_0x2
+00fcae e0a0      	LDI  R26,LOW(0)
                  _0x2000008:
-00fd18 df92      	RCALL _SD_command
-00fd19 81a8      	LD   R26,Y
-00fd1a 81b9      	LDD  R27,Y+1
-00fd1b 93ec      	ST   X,R30
+00fcaf df98      	RCALL _SD_command
+00fcb0 81a8      	LD   R26,Y
+00fcb1 81b9      	LDD  R27,Y+1
+00fcb2 93ec      	ST   X,R30
                  ; 0003 00B5 
                  ; 0003 00B6     // read response
                  ; 0003 00B7     //SD_readRes3_7(res);
                  ; 0003 00B8     SD_readRes7(res);
-00fd1c dfcb      	RCALL _SD_readRes7
+00fcb3 dfcc      	RCALL _SD_readRes7
                  ; 0003 00B9 
                  ; 0003 00BA     // deassert chip select
                  ; 0003 00BB     SPI_transfer(0xFF);
-00fd1d d1db      	RCALL SUBOPT_0x1E
+00fcb4 d1cc      	RCALL SUBOPT_0x20
                  ; 0003 00BC     CS_DISABLE();
                  ; 0003 00BD     SPI_transfer(0xFF);
                  ; 0003 00BE }
                  _0x2000009:
-00fd1e 9622      	ADIW R28,2
-00fd1f 9508      	RET
+00fcb5 9622      	ADIW R28,2
+00fcb6 9508      	RET
                  ; .FEND
                  ;
                  ;unsigned char SD_sendApp()
@@ -3888,22 +3882,22 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 00C2     unsigned char res1;
                  ; 0003 00C3     // assert chip select
                  ; 0003 00C4     SPI_transfer(0xFF);
-00fd20 d1cd      	RCALL SUBOPT_0x1C
+00fcb7 d1be      	RCALL SUBOPT_0x1E
                  ;	res1 -> R17
                  ; 0003 00C5     CS_ENABLE();
                  ; 0003 00C6     //SPI_transfer(0xFF);
                  ; 0003 00C7 
                  ; 0003 00C8     // send CMD0
                  ; 0003 00C9     res1 = SD_command(CMD55, CMD55_ARG, CMD55_CRC);
-00fd21 e3e7      	LDI  R30,LOW(55)
-00fd22 93ea      	ST   -Y,R30
+00fcb8 e3e7      	LDI  R30,LOW(55)
+00fcb9 93ea      	ST   -Y,R30
                 +
-00fd23 e0e0     +LDI R30 , LOW ( 0x0 )
-00fd24 e0f0     +LDI R31 , HIGH ( 0x0 )
-00fd25 e060     +LDI R22 , BYTE3 ( 0x0 )
-00fd26 e070     +LDI R23 , BYTE4 ( 0x0 )
+00fcba e0e0     +LDI R30 , LOW ( 0x0 )
+00fcbb e0f0     +LDI R31 , HIGH ( 0x0 )
+00fcbc e060     +LDI R22 , BYTE3 ( 0x0 )
+00fcbd e070     +LDI R23 , BYTE4 ( 0x0 )
                  	__GETD1N 0x0
-00fd27 c007      	RJMP _0x2000005
+00fcbe c007      	RJMP _0x2000005
                  ; 0003 00CA 
                  ; 0003 00CB     // read response
                  ; 0003 00CC     //res1 = SD_readRes1();
@@ -3924,42 +3918,42 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 00D8     unsigned char res1;
                  ; 0003 00D9     // assert chip select
                  ; 0003 00DA     SPI_transfer(0xFF);
-00fd28 d1c5      	RCALL SUBOPT_0x1C
+00fcbf d1b6      	RCALL SUBOPT_0x1E
                  ;	res1 -> R17
                  ; 0003 00DB     CS_ENABLE();
                  ; 0003 00DC     //SPI_transfer(0xFF);
                  ; 0003 00DD 
                  ; 0003 00DE     // send CMD0
                  ; 0003 00DF     res1 =  SD_command(ACMD41, ACMD41_ARG, ACMD41_CRC);
-00fd29 e2e9      	LDI  R30,LOW(41)
-00fd2a 93ea      	ST   -Y,R30
+00fcc0 e2e9      	LDI  R30,LOW(41)
+00fcc1 93ea      	ST   -Y,R30
                 +
-00fd2b e0e0     +LDI R30 , LOW ( 0x40000000 )
-00fd2c e0f0     +LDI R31 , HIGH ( 0x40000000 )
-00fd2d e060     +LDI R22 , BYTE3 ( 0x40000000 )
-00fd2e e470     +LDI R23 , BYTE4 ( 0x40000000 )
+00fcc2 e0e0     +LDI R30 , LOW ( 0x40000000 )
+00fcc3 e0f0     +LDI R31 , HIGH ( 0x40000000 )
+00fcc4 e060     +LDI R22 , BYTE3 ( 0x40000000 )
+00fcc5 e470     +LDI R23 , BYTE4 ( 0x40000000 )
                  	__GETD1N 0x40000000
                  _0x2000005:
-00fd2f 940e ffcb 	CALL __PUTPARD1
-00fd31 e0a0      	LDI  R26,LOW(0)
+00fcc6 d2aa      	RCALL __PUTPARD1
+00fcc7 e0a0      	LDI  R26,LOW(0)
                  _0x2000006:
-00fd32 df78      	RCALL _SD_command
-00fd33 2f1e      	MOV  R17,R30
+00fcc8 df7f      	RCALL _SD_command
+00fcc9 2f1e      	MOV  R17,R30
                  ; 0003 00E0 
                  ; 0003 00E1     // read response
                  ; 0003 00E2     //res1 = SD_readRes1();
                  ; 0003 00E3 
                  ; 0003 00E4     // deassert chip select
                  ; 0003 00E5     SPI_transfer(0xFF);
-00fd34 d1c4      	RCALL SUBOPT_0x1E
+00fcca d1b6      	RCALL SUBOPT_0x20
                  ; 0003 00E6     CS_DISABLE();
                  ; 0003 00E7     SPI_transfer(0xFF);
                  ; 0003 00E8 
                  ; 0003 00E9     return res1;
-00fd35 2fe1      	MOV  R30,R17
+00fccb 2fe1      	MOV  R30,R17
                  _0x2000007:
-00fd36 9119      	LD   R17,Y+
-00fd37 9508      	RET
+00fccc 9119      	LD   R17,Y+
+00fccd 9508      	RET
                  ; 0003 00EA }
                  ; .FEND
                  ;
@@ -3970,132 +3964,132 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 00EE     unsigned char res[5], cmdAttempts = 0;
                  ; 0003 00EF 
                  ; 0003 00F0     SD_powerUpSeq();
-00fd38 9725      	SBIW R28,5
-00fd39 931a      	ST   -Y,R17
+00fcce 9725      	SBIW R28,5
+00fccf 931a      	ST   -Y,R17
                  ;	res -> Y+1
                  ;	cmdAttempts -> R17
-00fd3a e010      	LDI  R17,0
-00fd3b df5f      	RCALL _SD_powerUpSeq
+00fcd0 e010      	LDI  R17,0
+00fcd1 df65      	RCALL _SD_powerUpSeq
                  ; 0003 00F1 
                  ; 0003 00F2     // command card to idle
                  ; 0003 00F3     while((res[0] = SD_goIdleState()) != 0x01)
                  _0x6000E:
-00fd3c dfa5      	RCALL _SD_goIdleState
-00fd3d 83e9      	STD  Y+1,R30
-00fd3e 30e1      	CPI  R30,LOW(0x1)
-00fd3f f031      	BREQ _0x60010
+00fcd2 dfa7      	RCALL _SD_goIdleState
+00fcd3 83e9      	STD  Y+1,R30
+00fcd4 30e1      	CPI  R30,LOW(0x1)
+00fcd5 f031      	BREQ _0x60010
                  ; 0003 00F4     {
                  ; 0003 00F5         cmdAttempts++;
-00fd40 5f1f      	SUBI R17,-1
+00fcd6 5f1f      	SUBI R17,-1
                  ; 0003 00F6         if(cmdAttempts > 100) return SD_ERROR;
-00fd41 3615      	CPI  R17,101
-00fd42 f010      	BRLO _0x60011
-00fd43 e0e1      	LDI  R30,LOW(1)
-00fd44 c02e      	RJMP _0x2000003
+00fcd7 3615      	CPI  R17,101
+00fcd8 f010      	BRLO _0x60011
+00fcd9 e0e1      	LDI  R30,LOW(1)
+00fcda c02d      	RJMP _0x2000003
                  ; 0003 00F7     }
                  _0x60011:
-00fd45 cff6      	RJMP _0x6000E
+00fcdb cff6      	RJMP _0x6000E
                  _0x60010:
                  ; 0003 00F8 
                  ; 0003 00F9     // send interface conditions
                  ; 0003 00FA     SD_sendIfCond(res);
-00fd46 01de      	MOVW R26,R28
-00fd47 9611      	ADIW R26,1
-00fd48 dfbf      	RCALL _SD_sendIfCond
+00fcdc 01de      	MOVW R26,R28
+00fcdd 9611      	ADIW R26,1
+00fcde dfc1      	RCALL _SD_sendIfCond
                  ; 0003 00FB     if(res[0] != 0x01)
-00fd49 81a9      	LDD  R26,Y+1
-00fd4a 30a1      	CPI  R26,LOW(0x1)
-00fd4b f011      	BREQ _0x60012
+00fcdf 81a9      	LDD  R26,Y+1
+00fce0 30a1      	CPI  R26,LOW(0x1)
+00fce1 f011      	BREQ _0x60012
                  ; 0003 00FC     {
                  ; 0003 00FD         return SD_ERROR;
-00fd4c e0e1      	LDI  R30,LOW(1)
-00fd4d c025      	RJMP _0x2000003
+00fce2 e0e1      	LDI  R30,LOW(1)
+00fce3 c024      	RJMP _0x2000003
                  ; 0003 00FE     }
                  ; 0003 00FF 
                  ; 0003 0100     // check echo pattern
                  ; 0003 0101     if(res[4] != 0xAA)
                  _0x60012:
-00fd4e 81ad      	LDD  R26,Y+5
-00fd4f 3aaa      	CPI  R26,LOW(0xAA)
-00fd50 f011      	BREQ _0x60013
+00fce4 81ad      	LDD  R26,Y+5
+00fce5 3aaa      	CPI  R26,LOW(0xAA)
+00fce6 f011      	BREQ _0x60013
                  ; 0003 0102     {
                  ; 0003 0103         return SD_ERROR;
-00fd51 e0e1      	LDI  R30,LOW(1)
-00fd52 c020      	RJMP _0x2000003
+00fce7 e0e1      	LDI  R30,LOW(1)
+00fce8 c01f      	RJMP _0x2000003
                  ; 0003 0104     }
                  ; 0003 0105 
                  ; 0003 0106     // attempt to initialize card
                  ; 0003 0107     cmdAttempts = 0;
                  _0x60013:
-00fd53 e010      	LDI  R17,LOW(0)
+00fce9 e010      	LDI  R17,LOW(0)
                  ; 0003 0108     do
                  _0x60015:
                  ; 0003 0109     {
                  ; 0003 010A         if(cmdAttempts > 100) return SD_ERROR;
-00fd54 3615      	CPI  R17,101
-00fd55 f010      	BRLO _0x60017
-00fd56 e0e1      	LDI  R30,LOW(1)
-00fd57 c01b      	RJMP _0x2000003
+00fcea 3615      	CPI  R17,101
+00fceb f010      	BRLO _0x60017
+00fcec e0e1      	LDI  R30,LOW(1)
+00fced c01a      	RJMP _0x2000003
                  ; 0003 010B 
                  ; 0003 010C         // send app cmd
                  ; 0003 010D         res[0] = SD_sendApp();
                  _0x60017:
-00fd58 dfc7      	RCALL _SD_sendApp
-00fd59 83e9      	STD  Y+1,R30
+00fcee dfc8      	RCALL _SD_sendApp
+00fcef 83e9      	STD  Y+1,R30
                  ; 0003 010E 
                  ; 0003 010F         // if no error in response
                  ; 0003 0110         if(res[0] < 2)
-00fd5a 81a9      	LDD  R26,Y+1
-00fd5b 30a2      	CPI  R26,LOW(0x2)
-00fd5c f410      	BRSH _0x60018
+00fcf0 81a9      	LDD  R26,Y+1
+00fcf1 30a2      	CPI  R26,LOW(0x2)
+00fcf2 f410      	BRSH _0x60018
                  ; 0003 0111         {
                  ; 0003 0112             res[0] = SD_sendOpCond();
-00fd5d dfca      	RCALL _SD_sendOpCond
-00fd5e 83e9      	STD  Y+1,R30
+00fcf3 dfcb      	RCALL _SD_sendOpCond
+00fcf4 83e9      	STD  Y+1,R30
                  ; 0003 0113         }
                  ; 0003 0114 
                  ; 0003 0115         // wait
                  ; 0003 0116         if(res[0] != SD_READY)
                  _0x60018:
-00fd5f 81e9      	LDD  R30,Y+1
-00fd60 30e0      	CPI  R30,0
-00fd61 f021      	BREQ _0x60019
+00fcf5 81e9      	LDD  R30,Y+1
+00fcf6 30e0      	CPI  R30,0
+00fcf7 f019      	BREQ _0x60019
                  ; 0003 0117             delay_ms(10);
-00fd62 e0aa      	LDI  R26,LOW(10)
-00fd63 e0b0      	LDI  R27,0
-00fd64 940e ff28 	CALL _delay_ms
+00fcf8 e0aa      	LDI  R26,LOW(10)
+00fcf9 e0b0      	LDI  R27,0
+00fcfa d289      	RCALL _delay_ms
                  ; 0003 0118 
                  ; 0003 0119         cmdAttempts++;
                  _0x60019:
-00fd66 5f1f      	SUBI R17,-1
+00fcfb 5f1f      	SUBI R17,-1
                  ; 0003 011A     }
                  ; 0003 011B     while(res[0] != SD_READY);
-00fd67 81e9      	LDD  R30,Y+1
-00fd68 30e0      	CPI  R30,0
-00fd69 f751      	BRNE _0x60015
+00fcfc 81e9      	LDD  R30,Y+1
+00fcfd 30e0      	CPI  R30,0
+00fcfe f759      	BRNE _0x60015
                  ; 0003 011C 
                  ; 0003 011D     // read OCR
                  ; 0003 011E     SD_readOCR(res);
-00fd6a 01de      	MOVW R26,R28
-00fd6b 9611      	ADIW R26,1
-00fd6c dfa6      	RCALL _SD_readOCR
+00fcff 01de      	MOVW R26,R28
+00fd00 9611      	ADIW R26,1
+00fd01 dfa8      	RCALL _SD_readOCR
                  ; 0003 011F 
                  ; 0003 0120     // check card is ready
                  ; 0003 0121     if(!(res[1] & 0x80)) return SD_ERROR;
-00fd6d 81ea      	LDD  R30,Y+2
-00fd6e 78e0      	ANDI R30,LOW(0x80)
-00fd6f f411      	BRNE _0x6001A
-00fd70 e0e1      	LDI  R30,LOW(1)
-00fd71 c001      	RJMP _0x2000003
+00fd02 81ea      	LDD  R30,Y+2
+00fd03 78e0      	ANDI R30,LOW(0x80)
+00fd04 f411      	BRNE _0x6001A
+00fd05 e0e1      	LDI  R30,LOW(1)
+00fd06 c001      	RJMP _0x2000003
                  ; 0003 0122 
                  ; 0003 0123     return SD_SUCCESS;
                  _0x6001A:
-00fd72 e0e0      	LDI  R30,LOW(0)
+00fd07 e0e0      	LDI  R30,LOW(0)
                  _0x2000003:
-00fd73 8118      	LDD  R17,Y+0
+00fd08 8118      	LDD  R17,Y+0
                  _0x2000004:
-00fd74 9626      	ADIW R28,6
-00fd75 9508      	RET
+00fd09 9626      	ADIW R28,6
+00fd0a 9508      	RET
                  ; 0003 0124 }
                  ; .FEND
                  ;
@@ -4116,7 +4110,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0132     unsigned char res1, read;
                  ; 0003 0133     unsigned int i, readAttempts;
                  ; 0003 0134     addr*=512UL;
-00fd76 d185      	RCALL SUBOPT_0x1F
+00fd0b d17a      	RCALL SUBOPT_0x21
                  ;	addr -> Y+10
                  ;	*buf -> Y+8
                  ;	*token -> Y+6
@@ -4134,107 +4128,104 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 013C 
                  ; 0003 013D     // send CMD17
                  ; 0003 013E     res1 = SD_command(CMD17, addr, CMD17_CRC);
-00fd77 e1e1      	LDI  R30,LOW(17)
-00fd78 d19d      	RCALL SUBOPT_0x20
+00fd0c e1e1      	LDI  R30,LOW(17)
+00fd0d d190      	RCALL SUBOPT_0x22
                  ; 0003 013F 
                  ; 0003 0140     // read R1
                  ; 0003 0141     //res1 = SD_readRes1();
                  ; 0003 0142 
                  ; 0003 0143     // if response received from card
                  ; 0003 0144     if(res1 != 0xFF)
-00fd79 3f1f      	CPI  R17,255
-00fd7a f169      	BREQ _0x6001B
+00fd0e 3f1f      	CPI  R17,255
+00fd0f f151      	BREQ _0x6001B
                  ; 0003 0145     {
                  ; 0003 0146         // wait for a response token (timeout = 100ms)
                  ; 0003 0147         readAttempts = 0;
                 +
-00fd7b e040     +LDI R20 , LOW ( 0 )
-00fd7c e050     +LDI R21 , HIGH ( 0 )
+00fd10 e040     +LDI R20 , LOW ( 0 )
+00fd11 e050     +LDI R21 , HIGH ( 0 )
                  	__GETWRN 20,21,0
                  ; 0003 0148         while(++readAttempts != SD_MAX_READ_ATTEMPTS)
                  _0x6001C:
-00fd7d 01fa      	MOVW R30,R20
-00fd7e 9631      	ADIW R30,1
-00fd7f 01af      	MOVW R20,R30
-00fd80 31eb      	CPI  R30,LOW(0x61B)
-00fd81 e0a6      	LDI  R26,HIGH(0x61B)
-00fd82 07fa      	CPC  R31,R26
-00fd83 f029      	BREQ _0x6001E
+00fd12 01fa      	MOVW R30,R20
+00fd13 9631      	ADIW R30,1
+00fd14 01af      	MOVW R20,R30
+00fd15 31eb      	CPI  R30,LOW(0x61B)
+00fd16 e0a6      	LDI  R26,HIGH(0x61B)
+00fd17 07fa      	CPC  R31,R26
+00fd18 f011      	BREQ _0x6001E
                  ; 0003 0149             if((read = SPI_transfer(0xFF)) != 0xFF) break;
-00fd84 efaf      	LDI  R26,LOW(255)
-00fd85 df0d      	RCALL _SPI_transfer
-00fd86 2f0e      	MOV  R16,R30
-00fd87 3fef      	CPI  R30,LOW(0xFF)
-00fd88 f3a1      	BREQ _0x6001C
+00fd19 d18e      	RCALL SUBOPT_0x23
+00fd1a f3b9      	BREQ _0x6001C
                  ; 0003 014A 
                  ; 0003 014B         // if response token is 0xFE
                  ; 0003 014C         if(read == 0xFE)
                  _0x6001E:
-00fd89 3f0e      	CPI  R16,254
-00fd8a f4d1      	BRNE _0x60020
+00fd1b 3f0e      	CPI  R16,254
+00fd1c f4d1      	BRNE _0x60020
                  ; 0003 014D         {
                  ; 0003 014E             // read 512 byte block
                  ; 0003 014F             for(i = 0; i < 512; i++) *buf++ = SPI_transfer(0xFF);
                 +
-00fd8b e020     +LDI R18 , LOW ( 0 )
-00fd8c e030     +LDI R19 , HIGH ( 0 )
+00fd1d e020     +LDI R18 , LOW ( 0 )
+00fd1e e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x60022:
                 +
-00fd8d 3020     +CPI R18 , LOW ( 512 )
-00fd8e e0e2     +LDI R30 , HIGH ( 512 )
-00fd8f 073e     +CPC R19 , R30
+00fd1f 3020     +CPI R18 , LOW ( 512 )
+00fd20 e0e2     +LDI R30 , HIGH ( 512 )
+00fd21 073e     +CPC R19 , R30
                  	__CPWRN 18,19,512
-00fd90 f480      	BRSH _0x60023
-00fd91 85e8      	LDD  R30,Y+8
-00fd92 85f9      	LDD  R31,Y+8+1
-00fd93 9631      	ADIW R30,1
-00fd94 87e8      	STD  Y+8,R30
-00fd95 87f9      	STD  Y+8+1,R31
-00fd96 9731      	SBIW R30,1
-00fd97 93ff      	PUSH R31
-00fd98 93ef      	PUSH R30
-00fd99 efaf      	LDI  R26,LOW(255)
-00fd9a def8      	RCALL _SPI_transfer
-00fd9b 91af      	POP  R26
-00fd9c 91bf      	POP  R27
-00fd9d 93ec      	ST   X,R30
+00fd22 f480      	BRSH _0x60023
+00fd23 85e8      	LDD  R30,Y+8
+00fd24 85f9      	LDD  R31,Y+8+1
+00fd25 9631      	ADIW R30,1
+00fd26 87e8      	STD  Y+8,R30
+00fd27 87f9      	STD  Y+8+1,R31
+00fd28 9731      	SBIW R30,1
+00fd29 93ff      	PUSH R31
+00fd2a 93ef      	PUSH R30
+00fd2b efaf      	LDI  R26,LOW(255)
+00fd2c df02      	RCALL _SPI_transfer
+00fd2d 91af      	POP  R26
+00fd2e 91bf      	POP  R27
+00fd2f 93ec      	ST   X,R30
                 +
-00fd9e 5f2f     +SUBI R18 , LOW ( - 1 )
-00fd9f 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fd30 5f2f     +SUBI R18 , LOW ( - 1 )
+00fd31 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fda0 cfec      	RJMP _0x60022
+00fd32 cfec      	RJMP _0x60022
                  _0x60023:
                  ; 0003 0152 SPI_transfer(0xFF);
-00fda1 efaf      	LDI  R26,LOW(255)
-00fda2 def0      	RCALL _SPI_transfer
+00fd33 efaf      	LDI  R26,LOW(255)
+00fd34 defa      	RCALL _SPI_transfer
                  ; 0003 0153             SPI_transfer(0xFF);
-00fda3 efaf      	LDI  R26,LOW(255)
-00fda4 deee      	RCALL _SPI_transfer
+00fd35 efaf      	LDI  R26,LOW(255)
+00fd36 def8      	RCALL _SPI_transfer
                  ; 0003 0154         }
                  ; 0003 0155 
                  ; 0003 0156         // set token to card response
                  ; 0003 0157         *token = read;
                  _0x60020:
-00fda5 81ae      	LDD  R26,Y+6
-00fda6 81bf      	LDD  R27,Y+6+1
-00fda7 930c      	ST   X,R16
+00fd37 81ae      	LDD  R26,Y+6
+00fd38 81bf      	LDD  R27,Y+6+1
+00fd39 930c      	ST   X,R16
                  ; 0003 0158     }
                  ; 0003 0159 
                  ; 0003 015A     // deassert chip select
                  ; 0003 015B     SPI_transfer(0xFF);
                  _0x6001B:
-00fda8 d150      	RCALL SUBOPT_0x1E
+00fd3a d146      	RCALL SUBOPT_0x20
                  ; 0003 015C     CS_DISABLE();
                  ; 0003 015D     SPI_transfer(0xFF);
                  ; 0003 015E     if(read==0xFE)
-00fda9 3f0e      	CPI  R16,254
-00fdaa f1f1      	BREQ _0x2000002
+00fd3b 3f0e      	CPI  R16,254
+00fd3c f1d9      	BREQ _0x2000002
                  ; 0003 015F         return res1;
                  ; 0003 0160     else
                  ; 0003 0161         return SD_ERROR;
-00fdab e0e1      	LDI  R30,LOW(1)
-00fdac c03d      	RJMP _0x2000001
+00fd3d e0e1      	LDI  R30,LOW(1)
+00fd3e c03a      	RJMP _0x2000001
                  ; 0003 0162 }
                  ; .FEND
                  ;
@@ -4258,7 +4249,7 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 0173     unsigned char res1, read;
                  ; 0003 0174     unsigned int i, readAttempts;
                  ; 0003 0175     addr*=512UL;
-00fdad d14e      	RCALL SUBOPT_0x1F
+00fd3f d146      	RCALL SUBOPT_0x21
                  ;	addr -> Y+10
                  ;	*buf -> Y+8
                  ;	*token -> Y+6
@@ -4273,114 +4264,111 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 017A     SPI_transfer(0xFF);
                  ; 0003 017B     CS_ENABLE();
                  ; 0003 017C     SPI_transfer(0xFF);
-00fdae efaf      	LDI  R26,LOW(255)
-00fdaf dee3      	RCALL _SPI_transfer
+00fd40 efaf      	LDI  R26,LOW(255)
+00fd41 deed      	RCALL _SPI_transfer
                  ; 0003 017D 
                  ; 0003 017E     // send CMD24
                  ; 0003 017F     res1=SD_command(CMD24, addr, CMD24_CRC);
-00fdb0 e1e8      	LDI  R30,LOW(24)
-00fdb1 d164      	RCALL SUBOPT_0x20
+00fd42 e1e8      	LDI  R30,LOW(24)
+00fd43 d15a      	RCALL SUBOPT_0x22
                  ; 0003 0180 
                  ; 0003 0181     // read response
                  ; 0003 0182     //res1 = SD_readRes1();
                  ; 0003 0183 
                  ; 0003 0184     // if no error
                  ; 0003 0185     if(res1 == SD_READY)
-00fdb2 3010      	CPI  R17,0
-00fdb3 f5a1      	BRNE _0x60026
+00fd44 3010      	CPI  R17,0
+00fd45 f589      	BRNE _0x60026
                  ; 0003 0186     {
                  ; 0003 0187         // send start token
                  ; 0003 0188         SPI_transfer(SD_START_TOKEN);
-00fdb4 efae      	LDI  R26,LOW(254)
-00fdb5 dedd      	RCALL _SPI_transfer
+00fd46 efae      	LDI  R26,LOW(254)
+00fd47 dee7      	RCALL _SPI_transfer
                  ; 0003 0189 
                  ; 0003 018A         // write buffer to card
                  ; 0003 018B         for(i = 0; i < SD_BLOCK_LEN; i++) SPI_transfer(buf[i]);
                 +
-00fdb6 e020     +LDI R18 , LOW ( 0 )
-00fdb7 e030     +LDI R19 , HIGH ( 0 )
+00fd48 e020     +LDI R18 , LOW ( 0 )
+00fd49 e030     +LDI R19 , HIGH ( 0 )
                  	__GETWRN 18,19,0
                  _0x60028:
                 +
-00fdb8 3020     +CPI R18 , LOW ( 512 )
-00fdb9 e0e2     +LDI R30 , HIGH ( 512 )
-00fdba 073e     +CPC R19 , R30
+00fd4a 3020     +CPI R18 , LOW ( 512 )
+00fd4b e0e2     +LDI R30 , HIGH ( 512 )
+00fd4c 073e     +CPC R19 , R30
                  	__CPWRN 18,19,512
-00fdbb f438      	BRSH _0x60029
-00fdbc 01f9      	MOVW R30,R18
-00fdbd d03f      	RCALL SUBOPT_0x3
-00fdbe 91ac      	LD   R26,X
-00fdbf ded3      	RCALL _SPI_transfer
+00fd4d f438      	BRSH _0x60029
+00fd4e 01f9      	MOVW R30,R18
+00fd4f d03e      	RCALL SUBOPT_0x4
+00fd50 91ac      	LD   R26,X
+00fd51 dedd      	RCALL _SPI_transfer
                 +
-00fdc0 5f2f     +SUBI R18 , LOW ( - 1 )
-00fdc1 4f3f     +SBCI R19 , HIGH ( - 1 )
+00fd52 5f2f     +SUBI R18 , LOW ( - 1 )
+00fd53 4f3f     +SBCI R19 , HIGH ( - 1 )
                  	__ADDWRN 18,19,1
-00fdc2 cff5      	RJMP _0x60028
+00fd54 cff5      	RJMP _0x60028
                  _0x60029:
                  ; 0003 018E readAttempts = 0;
                 +
-00fdc3 e040     +LDI R20 , LOW ( 0 )
-00fdc4 e050     +LDI R21 , HIGH ( 0 )
+00fd55 e040     +LDI R20 , LOW ( 0 )
+00fd56 e050     +LDI R21 , HIGH ( 0 )
                  	__GETWRN 20,21,0
                  ; 0003 018F         while(++readAttempts != SD_MAX_WRITE_ATTEMPTS)
                  _0x6002A:
-00fdc5 d15b      	RCALL SUBOPT_0x21
-00fdc6 f059      	BREQ _0x6002C
+00fd57 d155      	RCALL SUBOPT_0x24
+00fd58 f041      	BREQ _0x6002C
                  ; 0003 0190             if((read = SPI_transfer(0xFF)) != 0xFF) { *token = 0xFF; break; }
-00fdc7 efaf      	LDI  R26,LOW(255)
-00fdc8 deca      	RCALL _SPI_transfer
-00fdc9 2f0e      	MOV  R16,R30
-00fdca 3fef      	CPI  R30,LOW(0xFF)
-00fdcb f029      	BREQ _0x6002D
-00fdcc 81ae      	LDD  R26,Y+6
-00fdcd 81bf      	LDD  R27,Y+6+1
-00fdce efef      	LDI  R30,LOW(255)
-00fdcf 93ec      	ST   X,R30
-00fdd0 c001      	RJMP _0x6002C
+00fd59 d14e      	RCALL SUBOPT_0x23
+00fd5a f029      	BREQ _0x6002D
+00fd5b 81ae      	LDD  R26,Y+6
+00fd5c 81bf      	LDD  R27,Y+6+1
+00fd5d efef      	LDI  R30,LOW(255)
+00fd5e 93ec      	ST   X,R30
+00fd5f c001      	RJMP _0x6002C
                  ; 0003 0191 
                  ; 0003 0192         // if data accepted
                  ; 0003 0193         if((read & 0x1F) == 0x05)
                  _0x6002D:
-00fdd1 cff3      	RJMP _0x6002A
+00fd60 cff6      	RJMP _0x6002A
                  _0x6002C:
-00fdd2 2fe0      	MOV  R30,R16
-00fdd3 71ef      	ANDI R30,LOW(0x1F)
-00fdd4 30e5      	CPI  R30,LOW(0x5)
-00fdd5 f491      	BRNE _0x6002E
+00fd61 2fe0      	MOV  R30,R16
+00fd62 71ef      	ANDI R30,LOW(0x1F)
+00fd63 30e5      	CPI  R30,LOW(0x5)
+00fd64 f491      	BRNE _0x6002E
                  ; 0003 0194         {
                  ; 0003 0195             // set token to data accepted
                  ; 0003 0196             *token = 0x05;
-00fdd6 81ae      	LDD  R26,Y+6
-00fdd7 81bf      	LDD  R27,Y+6+1
-00fdd8 e0e5      	LDI  R30,LOW(5)
-00fdd9 93ec      	ST   X,R30
+00fd65 81ae      	LDD  R26,Y+6
+00fd66 81bf      	LDD  R27,Y+6+1
+00fd67 e0e5      	LDI  R30,LOW(5)
+00fd68 93ec      	ST   X,R30
                  ; 0003 0197 
                  ; 0003 0198             // wait for write to finish (timeout = 250ms)
                  ; 0003 0199             readAttempts = 0;
                 +
-00fdda e040     +LDI R20 , LOW ( 0 )
-00fddb e050     +LDI R21 , HIGH ( 0 )
+00fd69 e040     +LDI R20 , LOW ( 0 )
+00fd6a e050     +LDI R21 , HIGH ( 0 )
                  	__GETWRN 20,21,0
                  ; 0003 019A             while(SPI_transfer(0xFF) == 0x00){
                  _0x6002F:
-00fddc efaf      	LDI  R26,LOW(255)
-00fddd deb5      	RCALL _SPI_transfer
-00fdde 30e0      	CPI  R30,0
-00fddf f441      	BRNE _0x60031
+00fd6b efaf      	LDI  R26,LOW(255)
+00fd6c dec2      	RCALL _SPI_transfer
+00fd6d 30e0      	CPI  R30,0
+00fd6e f441      	BRNE _0x60031
                  ; 0003 019B                 if(++readAttempts == SD_MAX_WRITE_ATTEMPTS){
-00fde0 d140      	RCALL SUBOPT_0x21
-00fde1 f429      	BRNE _0x60032
+00fd6f d13d      	RCALL SUBOPT_0x24
+00fd70 f429      	BRNE _0x60032
                  ; 0003 019C                     *token = 0x00;
-00fde2 81ae      	LDD  R26,Y+6
-00fde3 81bf      	LDD  R27,Y+6+1
-00fde4 e0e0      	LDI  R30,LOW(0)
-00fde5 93ec      	ST   X,R30
+00fd71 81ae      	LDD  R26,Y+6
+00fd72 81bf      	LDD  R27,Y+6+1
+00fd73 e0e0      	LDI  R30,LOW(0)
+00fd74 93ec      	ST   X,R30
                  ; 0003 019D                     break;
-00fde6 c001      	RJMP _0x60031
+00fd75 c001      	RJMP _0x60031
                  ; 0003 019E                 }
                  ; 0003 019F             }
                  _0x60032:
-00fde7 cff4      	RJMP _0x6002F
+00fd76 cff4      	RJMP _0x6002F
                  _0x60031:
                  ; 0003 01A0         }
                  ; 0003 01A1     }
@@ -4389,17 +4377,17 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
                  ; 0003 01A3     // deassert chip select
                  ; 0003 01A4     SPI_transfer(0xFF);
                  _0x60026:
-00fde8 d110      	RCALL SUBOPT_0x1E
+00fd77 d109      	RCALL SUBOPT_0x20
                  ; 0003 01A5     CS_DISABLE();
                  ; 0003 01A6     SPI_transfer(0xFF);
                  ; 0003 01A7 
                  ; 0003 01A8     return res1;
                  _0x2000002:
-00fde9 2fe1      	MOV  R30,R17
+00fd78 2fe1      	MOV  R30,R17
                  _0x2000001:
-00fdea 940e ffe5 	CALL __LOADLOCR6
-00fdec 962e      	ADIW R28,14
-00fded 9508      	RET
+00fd79 d141      	RCALL __LOADLOCR6
+00fd7a 962e      	ADIW R28,14
+00fd7b 9508      	RET
                  ; 0003 01A9 }
                  ; .FEND
                  
@@ -4438,660 +4426,713 @@ F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m1
 000c4a           	.BYTE 0x2
                  
                  	.CSEG
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
                  SUBOPT_0x0:
-00fdee 940e ffbc 	CALL __GETD1S0
-00fdf0 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:9 WORDS
-                 SUBOPT_0x1:
-                +
-00fdf1 e0e0     +LDI R30 , LOW ( 0x0 )
-00fdf2 e0f0     +LDI R31 , HIGH ( 0x0 )
-00fdf3 e060     +LDI R22 , BYTE3 ( 0x0 )
-00fdf4 e070     +LDI R23 , BYTE4 ( 0x0 )
-                 	__GETD1N 0x0
-00fdf5 940e ffcb 	CALL __PUTPARD1
-00fdf7 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x2:
-                +
-00fdf8 e0a0     +LDI R26 , LOW ( 0x1EF00 )
-00fdf9 eebf     +LDI R27 , HIGH ( 0x1EF00 )
-00fdfa e081     +LDI R24 , BYTE3 ( 0x1EF00 )
-00fdfb e090     +LDI R25 , BYTE4 ( 0x1EF00 )
-                 	__GETD2N 0x1EF00
-00fdfc 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x3:
-00fdfd 85a8      	LDD  R26,Y+8
-00fdfe 85b9      	LDD  R27,Y+8+1
-00fdff 0fae      	ADD  R26,R30
-00fe00 1fbf      	ADC  R27,R31
-00fe01 9508      	RET
+00fd7c d1e5      	RCALL __GETD1S0
+00fd7d 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x1:
+                +
+00fd7e 81ae     +LDD R26 , Y + 6
+00fd7f 81bf     +LDD R27 , Y + 6 + 1
+00fd80 8588     +LDD R24 , Y + 6 + 2
+00fd81 8599     +LDD R25 , Y + 6 + 3
+                 	__GETD2S 6
+00fd82 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:10 WORDS
+                 SUBOPT_0x2:
+                +
+00fd83 e0e0     +LDI R30 , LOW ( 0x0 )
+00fd84 e0f0     +LDI R31 , HIGH ( 0x0 )
+00fd85 e060     +LDI R22 , BYTE3 ( 0x0 )
+00fd86 e070     +LDI R23 , BYTE4 ( 0x0 )
+                 	__GETD1N 0x0
+00fd87 d1e9      	RCALL __PUTPARD1
+00fd88 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+                 SUBOPT_0x3:
+                +
+00fd89 e0a0     +LDI R26 , LOW ( 0x1EF00 )
+00fd8a eebf     +LDI R27 , HIGH ( 0x1EF00 )
+00fd8b e081     +LDI R24 , BYTE3 ( 0x1EF00 )
+00fd8c e090     +LDI R25 , BYTE4 ( 0x1EF00 )
+                 	__GETD2N 0x1EF00
+00fd8d 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
                  SUBOPT_0x4:
-00fe02 940e ffd0 	CALL __PUTPARD2
-00fe04 940e ffc1 	CALL __GETD2S0
-00fe06 9508      	RET
+00fd8e 85a8      	LDD  R26,Y+8
+00fd8f 85b9      	LDD  R27,Y+8+1
+00fd90 0fae      	ADD  R26,R30
+00fd91 1fbf      	ADC  R27,R31
+00fd92 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
                  SUBOPT_0x5:
-00fe07 940e ffc1 	CALL __GETD2S0
-00fe09 9508      	RET
+00fd93 d1e2      	RCALL __PUTPARD2
+00fd94 d1d2      	RCALL __GETD2S0
+00fd95 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:37 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
                  SUBOPT_0x6:
-00fe0a e2e0      	LDI  R30,LOW(_sdBuf)
-00fe0b e0f9      	LDI  R31,HIGH(_sdBuf)
-00fe0c 93fa      	ST   -Y,R31
-00fe0d 93ea      	ST   -Y,R30
-00fe0e e0a9      	LDI  R26,LOW(9)
-00fe0f e0b0      	LDI  R27,HIGH(9)
-00fe10 df65      	RCALL _SD_readSingleBlock
-00fe11 93e0 091b 	STS  _result,R30
-00fe13 9508      	RET
+00fd96 d1d0      	RCALL __GETD2S0
+00fd97 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:38 WORDS
                  SUBOPT_0x7:
-00fe14 93fa      	ST   -Y,R31
-00fe15 93ea      	ST   -Y,R30
-00fe16 e0a4      	LDI  R26,LOW(4)
-00fe17 ce4c      	RJMP _buf2num
+00fd98 e2e0      	LDI  R30,LOW(_sdBuf)
+00fd99 e0f9      	LDI  R31,HIGH(_sdBuf)
+00fd9a 93fa      	ST   -Y,R31
+00fd9b 93ea      	ST   -Y,R30
+00fd9c e0a9      	LDI  R26,LOW(9)
+00fd9d e0b0      	LDI  R27,HIGH(9)
+00fd9e df6c      	RCALL _SD_readSingleBlock
+00fd9f 93e0 091b 	STS  _result,R30
+00fda1 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
                  SUBOPT_0x8:
-00fe18 93e0 0c24 	STS  _adr,R30
-00fe1a 93f0 0c25 	STS  _adr+1,R31
-00fe1c 9360 0c26 	STS  _adr+2,R22
-00fe1e 9370 0c27 	STS  _adr+3,R23
-00fe20 9508      	RET
+00fda2 93fa      	ST   -Y,R31
+00fda3 93ea      	ST   -Y,R30
+00fda4 e0a4      	LDI  R26,LOW(4)
+00fda5 ce5e      	RJMP _buf2num
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:27 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
                  SUBOPT_0x9:
-00fe21 91e0 0c24 	LDS  R30,_adr
-00fe23 91f0 0c25 	LDS  R31,_adr+1
-00fe25 9160 0c26 	LDS  R22,_adr+2
-00fe27 9170 0c27 	LDS  R23,_adr+3
-00fe29 940e ffcb 	CALL __PUTPARD1
-00fe2b cfde      	RJMP SUBOPT_0x6
+00fda6 93e0 0c24 	STS  _adr,R30
+00fda8 93f0 0c25 	STS  _adr+1,R31
+00fdaa 9360 0c26 	STS  _adr+2,R22
+00fdac 9370 0c27 	STS  _adr+3,R23
+00fdae 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:25 WORDS
                  SUBOPT_0xA:
-00fe2c 2de8      	MOV  R30,R8
-00fe2d 01d8      	MOVW R26,R16
-00fe2e e0f0      	LDI  R31,0
-00fe2f 17ae      	CP   R26,R30
-00fe30 07bf      	CPC  R27,R31
-00fe31 9508      	RET
+00fdaf 91e0 0c24 	LDS  R30,_adr
+00fdb1 91f0 0c25 	LDS  R31,_adr+1
+00fdb3 9160 0c26 	LDS  R22,_adr+2
+00fdb5 9170 0c27 	LDS  R23,_adr+3
+00fdb7 d1b9      	RCALL __PUTPARD1
+00fdb8 cfdf      	RJMP SUBOPT_0x7
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:10 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:6 WORDS
                  SUBOPT_0xB:
-00fe32 93fa      	ST   -Y,R31
-00fe33 93ea      	ST   -Y,R30
-                +
-00fe34 e2a0     +LDI R26 , 32
-00fe35 9fa2     +MUL R26 , R18
-00fe36 01f0     +MOVW R30 , R0
-00fe37 9fa3     +MUL R26 , R19
-00fe38 0df0     +ADD R31 , R0
-                 	__MULBNWRU 18,19,32
-00fe39 5ee0      	SUBI R30,LOW(-_sdBuf)
-00fe3a 4ff6      	SBCI R31,HIGH(-_sdBuf)
-00fe3b 01df      	MOVW R26,R30
-00fe3c de11      	RCALL _compbuf
-                +
-00fe3d 93e0 091c+STS _result + ( 1 ) , R30
-                 	__PUTB1MN _result,1
-00fe3f 30e0      	CPI  R30,0
-00fe40 9508      	RET
+00fdb9 2de8      	MOV  R30,R8
+00fdba 01d8      	MOVW R26,R16
+00fdbb e0f0      	LDI  R31,0
+00fdbc 17ae      	CP   R26,R30
+00fdbd 07bf      	CPC  R27,R31
+00fdbe 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 8 TIMES, CODE SIZE REDUCTION:18 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:11 WORDS
                  SUBOPT_0xC:
+00fdbf 93fa      	ST   -Y,R31
+00fdc0 93ea      	ST   -Y,R30
                 +
-00fe41 e2a0     +LDI R26 , 32
-00fe42 9fa2     +MUL R26 , R18
-00fe43 01f0     +MOVW R30 , R0
-00fe44 9fa3     +MUL R26 , R19
-00fe45 0df0     +ADD R31 , R0
+00fdc1 e2a0     +LDI R26 , 32
+00fdc2 9fa2     +MUL R26 , R18
+00fdc3 01f0     +MOVW R30 , R0
+00fdc4 9fa3     +MUL R26 , R19
+00fdc5 0df0     +ADD R31 , R0
                  	__MULBNWRU 18,19,32
-00fe46 9508      	RET
+00fdc6 5ee0      	SUBI R30,LOW(-_sdBuf)
+00fdc7 4ff6      	SBCI R31,HIGH(-_sdBuf)
+00fdc8 01df      	MOVW R26,R30
+00fdc9 de24      	RCALL _compbuf
+                +
+00fdca 93e0 091c+STS _result + ( 1 ) , R30
+                 	__PUTB1MN _result,1
+00fdcc 30e0      	CPI  R30,0
+00fdcd 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:13 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 8 TIMES, CODE SIZE REDUCTION:26 WORDS
                  SUBOPT_0xD:
                 +
-00fe47 5cec     +SUBI R30 , LOW ( - _sdBuf - ( 20 ) )
-00fe48 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 20 ) )
-                 	__ADDW1MN _sdBuf,20
-00fe49 81e0      	LD   R30,Z
-00fe4a e0f0      	LDI  R31,0
-00fe4b 940e ff6c 	CALL __CWD1
-00fe4d 940e ff67 	CALL __LSLD16
-00fe4f 93e0 0c34 	STS  _fat_file_adr,R30
-00fe51 93f0 0c35 	STS  _fat_file_adr+1,R31
-00fe53 9360 0c36 	STS  _fat_file_adr+2,R22
-00fe55 9370 0c37 	STS  _fat_file_adr+3,R23
-00fe57 cfe9      	RJMP SUBOPT_0xC
+00fdce e2a0     +LDI R26 , 32
+00fdcf 9fa2     +MUL R26 , R18
+00fdd0 01f0     +MOVW R30 , R0
+00fdd1 9fa3     +MUL R26 , R19
+00fdd2 0df0     +ADD R31 , R0
+                 	__MULBNWRU 18,19,32
+00fdd3 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:19 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:13 WORDS
                  SUBOPT_0xE:
                 +
-00fe58 5ce6     +SUBI R30 , LOW ( - _sdBuf - ( 26 ) )
-00fe59 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 26 ) )
-                 	__ADDW1MN _sdBuf,26
-00fe5a 81e0      	LD   R30,Z
-00fe5b e0f0      	LDI  R31,0
-00fe5c 940e ff6c 	CALL __CWD1
-00fe5e 91a0 0c34 	LDS  R26,_fat_file_adr
-00fe60 91b0 0c35 	LDS  R27,_fat_file_adr+1
-00fe62 9180 0c36 	LDS  R24,_fat_file_adr+2
-00fe64 9190 0c37 	LDS  R25,_fat_file_adr+3
-00fe66 940e ff3c 	CALL __ORD12
-00fe68 93e0 0c34 	STS  _fat_file_adr,R30
-00fe6a 93f0 0c35 	STS  _fat_file_adr+1,R31
-00fe6c 9360 0c36 	STS  _fat_file_adr+2,R22
-00fe6e 9370 0c37 	STS  _fat_file_adr+3,R23
-00fe70 9508      	RET
+00fdd4 5cec     +SUBI R30 , LOW ( - _sdBuf - ( 20 ) )
+00fdd5 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 20 ) )
+                 	__ADDW1MN _sdBuf,20
+00fdd6 81e0      	LD   R30,Z
+00fdd7 e0f0      	LDI  R31,0
+00fdd8 d139      	RCALL __CWD1
+00fdd9 d133      	RCALL __LSLD16
+00fdda 93e0 0c34 	STS  _fat_file_adr,R30
+00fddc 93f0 0c35 	STS  _fat_file_adr+1,R31
+00fdde 9360 0c36 	STS  _fat_file_adr+2,R22
+00fde0 9370 0c37 	STS  _fat_file_adr+3,R23
+00fde2 cfeb      	RJMP SUBOPT_0xD
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:13 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:20 WORDS
                  SUBOPT_0xF:
-00fe71 e2a4      	LDI  R26,LOW(_adr)
-00fe72 e0bc      	LDI  R27,HIGH(_adr)
-00fe73 940e ffb2 	CALL __GETD1P_INC
                 +
-00fe75 5fef     +SUBI R30 , LOW ( - 1 )
-00fe76 4fff     +SBCI R31 , HIGH ( - 1 )
-00fe77 4f6f     +SBCI R22 , BYTE3 ( - 1 )
-00fe78 4f7f     +SBCI R23 , BYTE4 ( - 1 )
-                 	__SUBD1N -1
-00fe79 940e ffb7 	CALL __PUTDP1_DEC
-00fe7b 9508      	RET
+00fde3 5ce6     +SUBI R30 , LOW ( - _sdBuf - ( 26 ) )
+00fde4 4ff6     +SBCI R31 , HIGH ( - _sdBuf - ( 26 ) )
+                 	__ADDW1MN _sdBuf,26
+00fde5 81e0      	LD   R30,Z
+00fde6 e0f0      	LDI  R31,0
+00fde7 d12a      	RCALL __CWD1
+00fde8 91a0 0c34 	LDS  R26,_fat_file_adr
+00fdea 91b0 0c35 	LDS  R27,_fat_file_adr+1
+00fdec 9180 0c36 	LDS  R24,_fat_file_adr+2
+00fdee 9190 0c37 	LDS  R25,_fat_file_adr+3
+00fdf0 d0db      	RCALL __ORD12
+00fdf1 93e0 0c34 	STS  _fat_file_adr,R30
+00fdf3 93f0 0c35 	STS  _fat_file_adr+1,R31
+00fdf5 9360 0c36 	STS  _fat_file_adr+2,R22
+00fdf7 9370 0c37 	STS  _fat_file_adr+3,R23
+00fdf9 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:29 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:12 WORDS
                  SUBOPT_0x10:
-00fe7c 91e0 0c34 	LDS  R30,_fat_file_adr
-00fe7e 91f0 0c35 	LDS  R31,_fat_file_adr+1
-00fe80 9160 0c36 	LDS  R22,_fat_file_adr+2
-00fe82 9170 0c37 	LDS  R23,_fat_file_adr+3
+00fdfa e2a4      	LDI  R26,LOW(_adr)
+00fdfb e0bc      	LDI  R27,HIGH(_adr)
+00fdfc d15b      	RCALL __GETD1P_INC
                 +
-00fe84 50e2     +SUBI R30 , LOW ( 2 )
-00fe85 40f0     +SBCI R31 , HIGH ( 2 )
-00fe86 4060     +SBCI R22 , BYTE3 ( 2 )
-00fe87 4070     +SBCI R23 , BYTE4 ( 2 )
-                 	__SUBD1N 2
-00fe88 01df      	MOVW R26,R30
-00fe89 01cb      	MOVW R24,R22
-00fe8a 2de8      	MOV  R30,R8
-00fe8b e0f0      	LDI  R31,0
-00fe8c 940e ff6c 	CALL __CWD1
-00fe8e 940e ff79 	CALL __MULD12U
-00fe90 91a0 0c30 	LDS  R26,_cluster_begin_lba
-00fe92 91b0 0c31 	LDS  R27,_cluster_begin_lba+1
-00fe94 9180 0c32 	LDS  R24,_cluster_begin_lba+2
-00fe96 9190 0c33 	LDS  R25,_cluster_begin_lba+3
-00fe98 940e ff32 	CALL __ADDD12
-00fe9a df7d      	RCALL SUBOPT_0x8
-                +
-00fe9b e000     +LDI R16 , LOW ( 0 )
-00fe9c e010     +LDI R17 , HIGH ( 0 )
-                 	__GETWRN 16,17,0
-00fe9d 9508      	RET
+00fdfd 5fef     +SUBI R30 , LOW ( - 1 )
+00fdfe 4fff     +SBCI R31 , HIGH ( - 1 )
+00fdff 4f6f     +SBCI R22 , BYTE3 ( - 1 )
+00fe00 4f7f     +SBCI R23 , BYTE4 ( - 1 )
+                 	__SUBD1N -1
+00fe01 d15b      	RCALL __PUTDP1_DEC
+00fe02 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:28 WORDS
                  SUBOPT_0x11:
+00fe03 91e0 0c34 	LDS  R30,_fat_file_adr
+00fe05 91f0 0c35 	LDS  R31,_fat_file_adr+1
+00fe07 9160 0c36 	LDS  R22,_fat_file_adr+2
+00fe09 9170 0c37 	LDS  R23,_fat_file_adr+3
                 +
-00fe9e 3faf     +CPI R26 , LOW ( 0xFFFFFFF )
-00fe9f efef     +LDI R30 , HIGH ( 0xFFFFFFF )
-00fea0 07be     +CPC R27 , R30
-00fea1 efef     +LDI R30 , BYTE3 ( 0xFFFFFFF )
-00fea2 078e     +CPC R24 , R30
-00fea3 e0ef     +LDI R30 , BYTE4 ( 0xFFFFFFF )
-00fea4 079e     +CPC R25 , R30
-                 	__CPD2N 0xFFFFFFF
-00fea5 9508      	RET
+00fe0b 50e2     +SUBI R30 , LOW ( 2 )
+00fe0c 40f0     +SBCI R31 , HIGH ( 2 )
+00fe0d 4060     +SBCI R22 , BYTE3 ( 2 )
+00fe0e 4070     +SBCI R23 , BYTE4 ( 2 )
+                 	__SUBD1N 2
+00fe0f 01df      	MOVW R26,R30
+00fe10 01cb      	MOVW R24,R22
+00fe11 2de8      	MOV  R30,R8
+00fe12 e0f0      	LDI  R31,0
+00fe13 d0fe      	RCALL __CWD1
+00fe14 d10a      	RCALL __MULD12U
+00fe15 91a0 0c30 	LDS  R26,_cluster_begin_lba
+00fe17 91b0 0c31 	LDS  R27,_cluster_begin_lba+1
+00fe19 9180 0c32 	LDS  R24,_cluster_begin_lba+2
+00fe1b 9190 0c33 	LDS  R25,_cluster_begin_lba+3
+00fe1d d0a4      	RCALL __ADDD12
+00fe1e df87      	RCALL SUBOPT_0x9
+                +
+00fe1f e000     +LDI R16 , LOW ( 0 )
+00fe20 e010     +LDI R17 , HIGH ( 0 )
+                 	__GETWRN 16,17,0
+00fe21 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:4 WORDS
                  SUBOPT_0x12:
-00fea6 91a0 0c40 	LDS  R26,_readbytes
-00fea8 91b0 0c41 	LDS  R27,_readbytes+1
-00feaa 9180 0c42 	LDS  R24,_readbytes+2
-00feac 9190 0c43 	LDS  R25,_readbytes+3
-00feae 9508      	RET
+                +
+00fe22 3faf     +CPI R26 , LOW ( 0xFFFFFFF )
+00fe23 efef     +LDI R30 , HIGH ( 0xFFFFFFF )
+00fe24 07be     +CPC R27 , R30
+00fe25 efef     +LDI R30 , BYTE3 ( 0xFFFFFFF )
+00fe26 078e     +CPC R24 , R30
+00fe27 e0ef     +LDI R30 , BYTE4 ( 0xFFFFFFF )
+00fe28 079e     +CPC R25 , R30
+                 	__CPD2N 0xFFFFFFF
+00fe29 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
+                 SUBOPT_0x13:
+00fe2a 91a0 0c40 	LDS  R26,_readbytes
+00fe2c 91b0 0c41 	LDS  R27,_readbytes+1
+00fe2e 9180 0c42 	LDS  R24,_readbytes+2
+00fe30 9190 0c43 	LDS  R25,_readbytes+3
+00fe32 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
-                 SUBOPT_0x13:
-00feaf 91ec      	LD   R30,X
-00feb0 1fee      	ROL  R30
-00feb1 e0e0      	LDI  R30,0
-00feb2 1fee      	ROL  R30
-00feb3 29e0      	OR   R30,R0
-00feb4 01db      	MOVW R26,R22
-00feb5 93ec      	ST   X,R30
-00feb6 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:1 WORDS
                  SUBOPT_0x14:
-00feb7 e2a0      	LDI  R26,LOW(_sdBuf)
-00feb8 e0b9      	LDI  R27,HIGH(_sdBuf)
-00feb9 0fa2      	ADD  R26,R18
-00feba 1fb3      	ADC  R27,R19
-00febb 9508      	RET
+00fe33 e2a0      	LDI  R26,LOW(_sdBuf)
+00fe34 e0b9      	LDI  R27,HIGH(_sdBuf)
+00fe35 0fa4      	ADD  R26,R20
+00fe36 1fb5      	ADC  R27,R21
+00fe37 91ec      	LD   R30,X
+00fe38 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
                  SUBOPT_0x15:
-00febc 91e0 0c20 	LDS  R30,_appStartAdr
-00febe 91f0 0c21 	LDS  R31,_appStartAdr+1
-00fec0 9160 0c22 	LDS  R22,_appStartAdr+2
-00fec2 9170 0c23 	LDS  R23,_appStartAdr+3
-00fec4 9508      	RET
+00fe39 1fee      	ROL  R30
+00fe3a e0e0      	LDI  R30,0
+00fe3b 1fee      	ROL  R30
+00fe3c 29e0      	OR   R30,R0
+00fe3d 01db      	MOVW R26,R22
+00fe3e 93ec      	ST   X,R30
+00fe3f 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:6 WORDS
                  SUBOPT_0x16:
-00fec5 efa4      	LDI  R26,LOW(500)
-00fec6 e0b1      	LDI  R27,HIGH(500)
-00fec7 940c ff28 	JMP  _delay_ms
+00fe40 e2a0      	LDI  R26,LOW(_sdBuf)
+00fe41 e0b9      	LDI  R27,HIGH(_sdBuf)
+00fe42 0fa2      	ADD  R26,R18
+00fe43 1fb3      	ADC  R27,R19
+00fe44 91ec      	LD   R30,X
+00fe45 9508      	RET
                  
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:15 WORDS
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:5 WORDS
                  SUBOPT_0x17:
-00fec9 93e0 0c20 	STS  _appStartAdr,R30
-00fecb 93f0 0c21 	STS  _appStartAdr+1,R31
-00fecd 9360 0c22 	STS  _appStartAdr+2,R22
-00fecf 9370 0c23 	STS  _appStartAdr+3,R23
-00fed1 9508      	RET
+00fe46 91e0 0c20 	LDS  R30,_appStartAdr
+00fe48 91f0 0c21 	LDS  R31,_appStartAdr+1
+00fe4a 9160 0c22 	LDS  R22,_appStartAdr+2
+00fe4c 9170 0c23 	LDS  R23,_appStartAdr+3
+00fe4e 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:19 WORDS
+                 SUBOPT_0x18:
+00fe4f 93e0 0c20 	STS  _appStartAdr,R30
+00fe51 93f0 0c21 	STS  _appStartAdr+1,R31
+00fe53 9360 0c22 	STS  _appStartAdr+2,R22
+00fe55 9370 0c23 	STS  _appStartAdr+3,R23
+00fe57 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:7 WORDS
-                 SUBOPT_0x18:
-00fed2 91a0 0c20 	LDS  R26,_appStartAdr
-00fed4 91b0 0c21 	LDS  R27,_appStartAdr+1
-00fed6 9180 0c22 	LDS  R24,_appStartAdr+2
-00fed8 9190 0c23 	LDS  R25,_appStartAdr+3
-00feda 940e ff3c 	CALL __ORD12
-00fedc cfec      	RJMP SUBOPT_0x17
+                 SUBOPT_0x19:
+00fe58 91a0 0c20 	LDS  R26,_appStartAdr
+00fe5a 91b0 0c21 	LDS  R27,_appStartAdr+1
+00fe5c 9180 0c22 	LDS  R24,_appStartAdr+2
+00fe5e 9190 0c23 	LDS  R25,_appStartAdr+3
+00fe60 d06b      	RCALL __ORD12
+00fe61 cfed      	RJMP SUBOPT_0x18
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x19:
-                +
-00fedd e0e0     +LDI R30 , LOW ( 0x1EF00 )
-00fede eeff     +LDI R31 , HIGH ( 0x1EF00 )
-00fedf e061     +LDI R22 , BYTE3 ( 0x1EF00 )
-00fee0 e070     +LDI R23 , BYTE4 ( 0x1EF00 )
-                 	__GETD1N 0x1EF00
-00fee1 940e ffcb 	CALL __PUTPARD1
-00fee3 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:5 WORDS
                  SUBOPT_0x1A:
-00fee4 9ac0      	SBI  0x18,0
-00fee5 efaf      	LDI  R26,LOW(255)
-00fee6 cdac      	RJMP _SPI_transfer
+00fe62 93e0 0c44 	STS  _bytesChecksum,R30
+00fe64 93f0 0c45 	STS  _bytesChecksum+1,R31
+00fe66 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
                  SUBOPT_0x1B:
-00fee7 2fae      	MOV  R26,R30
-00fee8 ddaa      	RCALL _SPI_transfer
                 +
-00fee9 81ab     +LDD R26 , Y + 3
-00feea 81bc     +LDD R27 , Y + 3 + 1
-00feeb 818d     +LDD R24 , Y + 3 + 2
-00feec 819e     +LDD R25 , Y + 3 + 3
-                 	__GETD2S 3
-00feed 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:3 WORDS
-                 SUBOPT_0x1C:
-00feee 931a      	ST   -Y,R17
-00feef efaf      	LDI  R26,LOW(255)
-00fef0 dda2      	RCALL _SPI_transfer
-00fef1 98c0      	CBI  0x18,0
-00fef2 9508      	RET
+00fe67 e0e0     +LDI R30 , LOW ( 0x1EF00 )
+00fe68 eeff     +LDI R31 , HIGH ( 0x1EF00 )
+00fe69 e061     +LDI R22 , BYTE3 ( 0x1EF00 )
+00fe6a e070     +LDI R23 , BYTE4 ( 0x1EF00 )
+                 	__GETD1N 0x1EF00
+00fe6b d105      	RCALL __PUTPARD1
+00fe6c 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
+                 SUBOPT_0x1C:
+00fe6d d0fe      	RCALL __PUTD1S0
+00fe6e 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
                  SUBOPT_0x1D:
-00fef3 93ba      	ST   -Y,R27
-00fef4 93aa      	ST   -Y,R26
-00fef5 efaf      	LDI  R26,LOW(255)
-00fef6 dd9c      	RCALL _SPI_transfer
-00fef7 98c0      	CBI  0x18,0
-00fef8 9508      	RET
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:6 WORDS
-                 SUBOPT_0x1E:
-00fef9 efaf      	LDI  R26,LOW(255)
-00fefa dd98      	RCALL _SPI_transfer
-00fefb cfe8      	RJMP SUBOPT_0x1A
-                 
-                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:21 WORDS
-                 SUBOPT_0x1F:
-00fefc 93ba      	ST   -Y,R27
-00fefd 93aa      	ST   -Y,R26
-00fefe 940e ffde 	CALL __SAVELOCR6
+00fe6f 2fae      	MOV  R26,R30
+00fe70 ddbe      	RCALL _SPI_transfer
                 +
-00ff00 85ea     +LDD R30 , Y + 10
-00ff01 85fb     +LDD R31 , Y + 10 + 1
-00ff02 856c     +LDD R22 , Y + 10 + 2
-00ff03 857d     +LDD R23 , Y + 10 + 3
+00fe71 81ab     +LDD R26 , Y + 3
+00fe72 81bc     +LDD R27 , Y + 3 + 1
+00fe73 818d     +LDD R24 , Y + 3 + 2
+00fe74 819e     +LDD R25 , Y + 3 + 3
+                 	__GETD2S 3
+00fe75 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 3 TIMES, CODE SIZE REDUCTION:4 WORDS
+                 SUBOPT_0x1E:
+00fe76 931a      	ST   -Y,R17
+00fe77 efaf      	LDI  R26,LOW(255)
+00fe78 ddb6      	RCALL _SPI_transfer
+00fe79 98c0      	CBI  0x18,0
+00fe7a 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+                 SUBOPT_0x1F:
+00fe7b 93ba      	ST   -Y,R27
+00fe7c 93aa      	ST   -Y,R26
+00fe7d efaf      	LDI  R26,LOW(255)
+00fe7e ddb0      	RCALL _SPI_transfer
+00fe7f 98c0      	CBI  0x18,0
+00fe80 9508      	RET
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:10 WORDS
+                 SUBOPT_0x20:
+00fe81 efaf      	LDI  R26,LOW(255)
+00fe82 ddac      	RCALL _SPI_transfer
+00fe83 9ac0      	SBI  0x18,0
+00fe84 efaf      	LDI  R26,LOW(255)
+00fe85 cda9      	RJMP _SPI_transfer
+                 
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:20 WORDS
+                 SUBOPT_0x21:
+00fe86 93ba      	ST   -Y,R27
+00fe87 93aa      	ST   -Y,R26
+00fe88 d02b      	RCALL __SAVELOCR6
+                +
+00fe89 85ea     +LDD R30 , Y + 10
+00fe8a 85fb     +LDD R31 , Y + 10 + 1
+00fe8b 856c     +LDD R22 , Y + 10 + 2
+00fe8c 857d     +LDD R23 , Y + 10 + 3
                  	__GETD1S 10
                 +
-00ff04 e0a0     +LDI R26 , LOW ( 0x200 )
-00ff05 e0b2     +LDI R27 , HIGH ( 0x200 )
-00ff06 e080     +LDI R24 , BYTE3 ( 0x200 )
-00ff07 e090     +LDI R25 , BYTE4 ( 0x200 )
+00fe8d e0a0     +LDI R26 , LOW ( 0x200 )
+00fe8e e0b2     +LDI R27 , HIGH ( 0x200 )
+00fe8f e080     +LDI R24 , BYTE3 ( 0x200 )
+00fe90 e090     +LDI R25 , BYTE4 ( 0x200 )
                  	__GETD2N 0x200
-00ff08 940e ff79 	CALL __MULD12U
+00fe91 d08d      	RCALL __MULD12U
                 +
-00ff0a 87ea     +STD Y + 10 , R30
-00ff0b 87fb     +STD Y + 10 + 1 , R31
-00ff0c 876c     +STD Y + 10 + 2 , R22
-00ff0d 877d     +STD Y + 10 + 3 , R23
+00fe92 87ea     +STD Y + 10 , R30
+00fe93 87fb     +STD Y + 10 + 1 , R31
+00fe94 876c     +STD Y + 10 + 2 , R22
+00fe95 877d     +STD Y + 10 + 3 , R23
                  	__PUTD1S 10
-00ff0e 81ae      	LDD  R26,Y+6
-00ff0f 81bf      	LDD  R27,Y+6+1
-00ff10 efef      	LDI  R30,LOW(255)
-00ff11 93ec      	ST   X,R30
-00ff12 efaf      	LDI  R26,LOW(255)
-00ff13 dd7f      	RCALL _SPI_transfer
-00ff14 98c0      	CBI  0x18,0
-00ff15 9508      	RET
+00fe96 81ae      	LDD  R26,Y+6
+00fe97 81bf      	LDD  R27,Y+6+1
+00fe98 efef      	LDI  R30,LOW(255)
+00fe99 93ec      	ST   X,R30
+00fe9a efaf      	LDI  R26,LOW(255)
+00fe9b dd93      	RCALL _SPI_transfer
+00fe9c 98c0      	CBI  0x18,0
+00fe9d 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:6 WORDS
-                 SUBOPT_0x20:
-00ff16 93ea      	ST   -Y,R30
+                 SUBOPT_0x22:
+00fe9e 93ea      	ST   -Y,R30
                 +
-00ff17 85eb     +LDD R30 , Y + 11
-00ff18 85fc     +LDD R31 , Y + 11 + 1
-00ff19 856d     +LDD R22 , Y + 11 + 2
-00ff1a 857e     +LDD R23 , Y + 11 + 3
+00fe9f 85eb     +LDD R30 , Y + 11
+00fea0 85fc     +LDD R31 , Y + 11 + 1
+00fea1 856d     +LDD R22 , Y + 11 + 2
+00fea2 857e     +LDD R23 , Y + 11 + 3
                  	__GETD1S 11
-00ff1b 940e ffcb 	CALL __PUTPARD1
-00ff1d e0a0      	LDI  R26,LOW(0)
-00ff1e dd8c      	RCALL _SD_command
-00ff1f 2f1e      	MOV  R17,R30
-00ff20 9508      	RET
+00fea3 d0cd      	RCALL __PUTPARD1
+00fea4 e0a0      	LDI  R26,LOW(0)
+00fea5 dda2      	RCALL _SD_command
+00fea6 2f1e      	MOV  R17,R30
+00fea7 9508      	RET
                  
                  ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:1 WORDS
-                 SUBOPT_0x21:
-00ff21 01fa      	MOVW R30,R20
-00ff22 9631      	ADIW R30,1
-00ff23 01af      	MOVW R20,R30
-00ff24 34e3      	CPI  R30,LOW(0xF43)
-00ff25 e0af      	LDI  R26,HIGH(0xF43)
-00ff26 07fa      	CPC  R31,R26
-00ff27 9508      	RET
+                 SUBOPT_0x23:
+00fea8 efaf      	LDI  R26,LOW(255)
+00fea9 dd85      	RCALL _SPI_transfer
+00feaa 2f0e      	MOV  R16,R30
+00feab 3fef      	CPI  R30,LOW(0xFF)
+00feac 9508      	RET
                  
+                 ;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+                 SUBOPT_0x24:
+00fead 01fa      	MOVW R30,R20
+00feae 9631      	ADIW R30,1
+00feaf 01af      	MOVW R20,R30
+00feb0 34e3      	CPI  R30,LOW(0xF43)
+00feb1 e0af      	LDI  R26,HIGH(0xF43)
+00feb2 07fa      	CPC  R31,R26
+00feb3 9508      	RET
+                 
+                 ;RUNTIME LIBRARY
                  
                  	.CSEG
-                 _delay_ms:
-00ff28 9610      	adiw r26,0
-00ff29 f039      	breq __delay_ms1
-                 __delay_ms0:
-                +
-00ff2a ee88     +LDI R24 , LOW ( 0x3E8 )
-00ff2b e093     +LDI R25 , HIGH ( 0x3E8 )
-                +__DELAY_USW_LOOP :
-00ff2c 9701     +SBIW R24 , 1
-00ff2d f7f1     +BRNE __DELAY_USW_LOOP
-                 	__DELAY_USW 0x3E8
-00ff2e 95a8      	wdr
-00ff2f 9711      	sbiw r26,1
-00ff30 f7c9      	brne __delay_ms0
-                 __delay_ms1:
-00ff31 9508      	ret
-                 
-                 __ADDD12:
-00ff32 0fea      	ADD  R30,R26
-00ff33 1ffb      	ADC  R31,R27
-00ff34 1f68      	ADC  R22,R24
-00ff35 1f79      	ADC  R23,R25
-00ff36 9508      	RET
-                 
-                 __ADDD21:
-00ff37 0fae      	ADD  R26,R30
-00ff38 1fbf      	ADC  R27,R31
-00ff39 1f86      	ADC  R24,R22
-00ff3a 1f97      	ADC  R25,R23
-00ff3b 9508      	RET
-                 
-                 __ORD12:
-00ff3c 2bea      	OR   R30,R26
-00ff3d 2bfb      	OR   R31,R27
-00ff3e 2b68      	OR   R22,R24
-00ff3f 2b79      	OR   R23,R25
-00ff40 9508      	RET
-                 
-                 __ANEGW1:
-00ff41 95f1      	NEG  R31
-00ff42 95e1      	NEG  R30
-00ff43 40f0      	SBCI R31,0
-00ff44 9508      	RET
-                 
-                 __LSLD12:
-00ff45 23ee      	TST  R30
-00ff46 2e0e      	MOV  R0,R30
-00ff47 01fd      	MOVW R30,R26
-00ff48 01bc      	MOVW R22,R24
-00ff49 f031      	BREQ __LSLD12R
-                 __LSLD12L:
-00ff4a 0fee      	LSL  R30
-00ff4b 1fff      	ROL  R31
-00ff4c 1f66      	ROL  R22
-00ff4d 1f77      	ROL  R23
-00ff4e 940a      	DEC  R0
-00ff4f f7d1      	BRNE __LSLD12L
-                 __LSLD12R:
-00ff50 9508      	RET
-                 
-                 __LSRD12:
-00ff51 23ee      	TST  R30
-00ff52 2e0e      	MOV  R0,R30
-00ff53 01fd      	MOVW R30,R26
-00ff54 01bc      	MOVW R22,R24
-00ff55 f031      	BREQ __LSRD12R
-                 __LSRD12L:
-00ff56 9576      	LSR  R23
-00ff57 9567      	ROR  R22
-00ff58 95f7      	ROR  R31
-00ff59 95e7      	ROR  R30
-00ff5a 940a      	DEC  R0
-00ff5b f7d1      	BRNE __LSRD12L
-                 __LSRD12R:
-00ff5c 9508      	RET
-                 
-                 __LSLD1:
-00ff5d 0fee      	LSL  R30
-00ff5e 1fff      	ROL  R31
-00ff5f 1f66      	ROL  R22
-00ff60 1f77      	ROL  R23
-00ff61 9508      	RET
-                 
-                 __LSRD16:
-00ff62 2fe6      	MOV  R30,R22
-00ff63 2ff7      	MOV  R31,R23
-00ff64 e060      	LDI  R22,0
-00ff65 e070      	LDI  R23,0
-00ff66 9508      	RET
-                 
-                 __LSLD16:
-00ff67 2f6e      	MOV  R22,R30
-00ff68 2f7f      	MOV  R23,R31
-00ff69 e0e0      	LDI  R30,0
-00ff6a e0f0      	LDI  R31,0
-00ff6b 9508      	RET
-                 
-                 __CWD1:
-00ff6c 2f6f      	MOV  R22,R31
-00ff6d 0f66      	ADD  R22,R22
-00ff6e 0b66      	SBC  R22,R22
-00ff6f 2f76      	MOV  R23,R22
-00ff70 9508      	RET
-                 
-                 __MULW12U:
-00ff71 9ffa      	MUL  R31,R26
-00ff72 2df0      	MOV  R31,R0
-00ff73 9feb      	MUL  R30,R27
-00ff74 0df0      	ADD  R31,R0
-00ff75 9fea      	MUL  R30,R26
-00ff76 2de0      	MOV  R30,R0
-00ff77 0df1      	ADD  R31,R1
-00ff78 9508      	RET
-                 
-                 __MULD12U:
-00ff79 9f7a      	MUL  R23,R26
-00ff7a 2d70      	MOV  R23,R0
-00ff7b 9f6b      	MUL  R22,R27
-00ff7c 0d70      	ADD  R23,R0
-00ff7d 9ff8      	MUL  R31,R24
-00ff7e 0d70      	ADD  R23,R0
-00ff7f 9fe9      	MUL  R30,R25
-00ff80 0d70      	ADD  R23,R0
-00ff81 9f6a      	MUL  R22,R26
-00ff82 2d60      	MOV  R22,R0
-00ff83 0d71      	ADD  R23,R1
-00ff84 9ffb      	MUL  R31,R27
-00ff85 0d60      	ADD  R22,R0
-00ff86 1d71      	ADC  R23,R1
-00ff87 9fe8      	MUL  R30,R24
-00ff88 0d60      	ADD  R22,R0
-00ff89 1d71      	ADC  R23,R1
-00ff8a 2788      	CLR  R24
-00ff8b 9ffa      	MUL  R31,R26
-00ff8c 2df0      	MOV  R31,R0
-00ff8d 0d61      	ADD  R22,R1
-00ff8e 1f78      	ADC  R23,R24
-00ff8f 9feb      	MUL  R30,R27
-00ff90 0df0      	ADD  R31,R0
-00ff91 1d61      	ADC  R22,R1
-00ff92 1f78      	ADC  R23,R24
-00ff93 9fea      	MUL  R30,R26
-00ff94 2de0      	MOV  R30,R0
-00ff95 0df1      	ADD  R31,R1
-00ff96 1f68      	ADC  R22,R24
-00ff97 1f78      	ADC  R23,R24
-00ff98 9508      	RET
-                 
-                 __MULB1W2U:
-00ff99 2f6e      	MOV  R22,R30
-00ff9a 9f6a      	MUL  R22,R26
-00ff9b 01f0      	MOVW R30,R0
-00ff9c 9f6b      	MUL  R22,R27
-00ff9d 0df0      	ADD  R31,R0
-00ff9e 9508      	RET
-                 
-                 __MULW12:
-00ff9f d004      	RCALL __CHKSIGNW
-00ffa0 dfd0      	RCALL __MULW12U
-00ffa1 f40e      	BRTC __MULW121
-00ffa2 df9e      	RCALL __ANEGW1
-                 __MULW121:
-00ffa3 9508      	RET
-                 
-                 __CHKSIGNW:
-00ffa4 94e8      	CLT
-00ffa5 fff7      	SBRS R31,7
-00ffa6 c002      	RJMP __CHKSW1
-00ffa7 df99      	RCALL __ANEGW1
-00ffa8 9468      	SET
-                 __CHKSW1:
-00ffa9 ffb7      	SBRS R27,7
-00ffaa c006      	RJMP __CHKSW2
-00ffab 95a0      	COM  R26
-00ffac 95b0      	COM  R27
-00ffad 9611      	ADIW R26,1
-00ffae f800      	BLD  R0,0
-00ffaf 9403      	INC  R0
-00ffb0 fa00      	BST  R0,0
-                 __CHKSW2:
-00ffb1 9508      	RET
-                 
-                 __GETD1P_INC:
-00ffb2 91ed      	LD   R30,X+
-00ffb3 91fd      	LD   R31,X+
-00ffb4 916d      	LD   R22,X+
-00ffb5 917d      	LD   R23,X+
-00ffb6 9508      	RET
-                 
-                 __PUTDP1_DEC:
-00ffb7 937e      	ST   -X,R23
-00ffb8 936e      	ST   -X,R22
-00ffb9 93fe      	ST   -X,R31
-00ffba 93ee      	ST   -X,R30
-00ffbb 9508      	RET
-                 
-                 __GETD1S0:
-00ffbc 81e8      	LD   R30,Y
-00ffbd 81f9      	LDD  R31,Y+1
-00ffbe 816a      	LDD  R22,Y+2
-00ffbf 817b      	LDD  R23,Y+3
-00ffc0 9508      	RET
-                 
-                 __GETD2S0:
-00ffc1 81a8      	LD   R26,Y
-00ffc2 81b9      	LDD  R27,Y+1
-00ffc3 818a      	LDD  R24,Y+2
-00ffc4 819b      	LDD  R25,Y+3
-00ffc5 9508      	RET
-                 
-                 __PUTD1S0:
-00ffc6 83e8      	ST   Y,R30
-00ffc7 83f9      	STD  Y+1,R31
-00ffc8 836a      	STD  Y+2,R22
-00ffc9 837b      	STD  Y+3,R23
-00ffca 9508      	RET
-                 
-                 __PUTPARD1:
-00ffcb 937a      	ST   -Y,R23
-00ffcc 936a      	ST   -Y,R22
-00ffcd 93fa      	ST   -Y,R31
-00ffce 93ea      	ST   -Y,R30
-00ffcf 9508      	RET
-                 
-                 __PUTPARD2:
-00ffd0 939a      	ST   -Y,R25
-00ffd1 938a      	ST   -Y,R24
-00ffd2 93ba      	ST   -Y,R27
-00ffd3 93aa      	ST   -Y,R26
-00ffd4 9508      	RET
-                 
-                 __CPD20:
-00ffd5 9710      	SBIW R26,0
-00ffd6 4080      	SBCI R24,0
-00ffd7 4090      	SBCI R25,0
-00ffd8 9508      	RET
-                 
-                 __CPD21:
-00ffd9 17ae      	CP   R26,R30
-00ffda 07bf      	CPC  R27,R31
-00ffdb 0786      	CPC  R24,R22
-00ffdc 0797      	CPC  R25,R23
-00ffdd 9508      	RET
-                 
                  __SAVELOCR6:
-00ffde 935a      	ST   -Y,R21
+00feb4 935a      	ST   -Y,R21
                  __SAVELOCR5:
-00ffdf 934a      	ST   -Y,R20
+00feb5 934a      	ST   -Y,R20
                  __SAVELOCR4:
-00ffe0 933a      	ST   -Y,R19
+00feb6 933a      	ST   -Y,R19
                  __SAVELOCR3:
-00ffe1 932a      	ST   -Y,R18
+00feb7 932a      	ST   -Y,R18
                  __SAVELOCR2:
-00ffe2 931a      	ST   -Y,R17
-00ffe3 930a      	ST   -Y,R16
-00ffe4 9508      	RET
+00feb8 931a      	ST   -Y,R17
+00feb9 930a      	ST   -Y,R16
+00feba 9508      	RET
                  
                  __LOADLOCR6:
-00ffe5 815d      	LDD  R21,Y+5
+00febb 815d      	LDD  R21,Y+5
                  __LOADLOCR5:
-00ffe6 814c      	LDD  R20,Y+4
+00febc 814c      	LDD  R20,Y+4
                  __LOADLOCR4:
-00ffe7 813b      	LDD  R19,Y+3
+00febd 813b      	LDD  R19,Y+3
                  __LOADLOCR3:
-00ffe8 812a      	LDD  R18,Y+2
+00febe 812a      	LDD  R18,Y+2
                  __LOADLOCR2:
-00ffe9 8119      	LDD  R17,Y+1
-00ffea 8108      	LD   R16,Y
-00ffeb 9508      	RET
+00febf 8119      	LDD  R17,Y+1
+00fec0 8108      	LD   R16,Y
+00fec1 9508      	RET
+                 
+                 __ADDD12:
+00fec2 0fea      	ADD  R30,R26
+00fec3 1ffb      	ADC  R31,R27
+00fec4 1f68      	ADC  R22,R24
+00fec5 1f79      	ADC  R23,R25
+00fec6 9508      	RET
+                 
+                 __ADDD21:
+00fec7 0fae      	ADD  R26,R30
+00fec8 1fbf      	ADC  R27,R31
+00fec9 1f86      	ADC  R24,R22
+00feca 1f97      	ADC  R25,R23
+00fecb 9508      	RET
+                 
+                 __ORD12:
+00fecc 2bea      	OR   R30,R26
+00fecd 2bfb      	OR   R31,R27
+00fece 2b68      	OR   R22,R24
+00fecf 2b79      	OR   R23,R25
+00fed0 9508      	RET
+                 
+                 __ANEGW1:
+00fed1 95f1      	NEG  R31
+00fed2 95e1      	NEG  R30
+00fed3 40f0      	SBCI R31,0
+00fed4 9508      	RET
+                 
+                 __LSLD12:
+00fed5 23ee      	TST  R30
+00fed6 2e0e      	MOV  R0,R30
+00fed7 e0e8      	LDI  R30,8
+00fed8 2e1e      	MOV  R1,R30
+00fed9 01fd      	MOVW R30,R26
+00feda 01bc      	MOVW R22,R24
+00fedb f079      	BREQ __LSLD12R
+                 __LSLD12S8:
+00fedc 1401      	CP   R0,R1
+00fedd f038      	BRLO __LSLD12L
+00fede 2f76      	MOV  R23,R22
+00fedf 2f6f      	MOV  R22,R31
+00fee0 2ffe      	MOV  R31,R30
+00fee1 e0e0      	LDI  R30,0
+00fee2 1801      	SUB  R0,R1
+00fee3 f7c1      	BRNE __LSLD12S8
+00fee4 9508      	RET
+                 __LSLD12L:
+00fee5 0fee      	LSL  R30
+00fee6 1fff      	ROL  R31
+00fee7 1f66      	ROL  R22
+00fee8 1f77      	ROL  R23
+00fee9 940a      	DEC  R0
+00feea f7d1      	BRNE __LSLD12L
+                 __LSLD12R:
+00feeb 9508      	RET
+                 
+                 __LSRD12:
+00feec 23ee      	TST  R30
+00feed 2e0e      	MOV  R0,R30
+00feee e0e8      	LDI  R30,8
+00feef 2e1e      	MOV  R1,R30
+00fef0 01fd      	MOVW R30,R26
+00fef1 01bc      	MOVW R22,R24
+00fef2 f079      	BREQ __LSRD12R
+                 __LSRD12S8:
+00fef3 1401      	CP   R0,R1
+00fef4 f038      	BRLO __LSRD12L
+00fef5 2fef      	MOV  R30,R31
+00fef6 2ff6      	MOV  R31,R22
+00fef7 2f67      	MOV  R22,R23
+00fef8 e070      	LDI  R23,0
+00fef9 1801      	SUB  R0,R1
+00fefa f7c1      	BRNE __LSRD12S8
+00fefb 9508      	RET
+                 __LSRD12L:
+00fefc 9576      	LSR  R23
+00fefd 9567      	ROR  R22
+00fefe 95f7      	ROR  R31
+00feff 95e7      	ROR  R30
+00ff00 940a      	DEC  R0
+00ff01 f7d1      	BRNE __LSRD12L
+                 __LSRD12R:
+00ff02 9508      	RET
+                 
+                 __LSLD1:
+00ff03 0fee      	LSL  R30
+00ff04 1fff      	ROL  R31
+00ff05 1f66      	ROL  R22
+00ff06 1f77      	ROL  R23
+00ff07 9508      	RET
+                 
+                 __LSRD16:
+00ff08 2fe6      	MOV  R30,R22
+00ff09 2ff7      	MOV  R31,R23
+00ff0a e060      	LDI  R22,0
+00ff0b e070      	LDI  R23,0
+00ff0c 9508      	RET
+                 
+                 __LSLD16:
+00ff0d 2f6e      	MOV  R22,R30
+00ff0e 2f7f      	MOV  R23,R31
+00ff0f e0e0      	LDI  R30,0
+00ff10 e0f0      	LDI  R31,0
+00ff11 9508      	RET
+                 
+                 __CWD1:
+00ff12 2f6f      	MOV  R22,R31
+00ff13 0f66      	ADD  R22,R22
+00ff14 0b66      	SBC  R22,R22
+00ff15 2f76      	MOV  R23,R22
+00ff16 9508      	RET
+                 
+                 __MULW12U:
+00ff17 9ffa      	MUL  R31,R26
+00ff18 2df0      	MOV  R31,R0
+00ff19 9feb      	MUL  R30,R27
+00ff1a 0df0      	ADD  R31,R0
+00ff1b 9fea      	MUL  R30,R26
+00ff1c 2de0      	MOV  R30,R0
+00ff1d 0df1      	ADD  R31,R1
+00ff1e 9508      	RET
+                 
+                 __MULD12U:
+00ff1f 9f7a      	MUL  R23,R26
+00ff20 2d70      	MOV  R23,R0
+00ff21 9f6b      	MUL  R22,R27
+00ff22 0d70      	ADD  R23,R0
+00ff23 9ff8      	MUL  R31,R24
+00ff24 0d70      	ADD  R23,R0
+00ff25 9fe9      	MUL  R30,R25
+00ff26 0d70      	ADD  R23,R0
+00ff27 9f6a      	MUL  R22,R26
+00ff28 2d60      	MOV  R22,R0
+00ff29 0d71      	ADD  R23,R1
+00ff2a 9ffb      	MUL  R31,R27
+00ff2b 0d60      	ADD  R22,R0
+00ff2c 1d71      	ADC  R23,R1
+00ff2d 9fe8      	MUL  R30,R24
+00ff2e 0d60      	ADD  R22,R0
+00ff2f 1d71      	ADC  R23,R1
+00ff30 2788      	CLR  R24
+00ff31 9ffa      	MUL  R31,R26
+00ff32 2df0      	MOV  R31,R0
+00ff33 0d61      	ADD  R22,R1
+00ff34 1f78      	ADC  R23,R24
+00ff35 9feb      	MUL  R30,R27
+00ff36 0df0      	ADD  R31,R0
+00ff37 1d61      	ADC  R22,R1
+00ff38 1f78      	ADC  R23,R24
+00ff39 9fea      	MUL  R30,R26
+00ff3a 2de0      	MOV  R30,R0
+00ff3b 0df1      	ADD  R31,R1
+00ff3c 1f68      	ADC  R22,R24
+00ff3d 1f78      	ADC  R23,R24
+00ff3e 9508      	RET
+                 
+                 __MULB1W2U:
+00ff3f 2f6e      	MOV  R22,R30
+00ff40 9f6a      	MUL  R22,R26
+00ff41 01f0      	MOVW R30,R0
+00ff42 9f6b      	MUL  R22,R27
+00ff43 0df0      	ADD  R31,R0
+00ff44 9508      	RET
+                 
+                 __MULW12:
+00ff45 d004      	RCALL __CHKSIGNW
+00ff46 dfd0      	RCALL __MULW12U
+00ff47 f40e      	BRTC __MULW121
+00ff48 df88      	RCALL __ANEGW1
+                 __MULW121:
+00ff49 9508      	RET
+                 
+                 __CHKSIGNW:
+00ff4a 94e8      	CLT
+00ff4b fff7      	SBRS R31,7
+00ff4c c002      	RJMP __CHKSW1
+00ff4d df83      	RCALL __ANEGW1
+00ff4e 9468      	SET
+                 __CHKSW1:
+00ff4f ffb7      	SBRS R27,7
+00ff50 c006      	RJMP __CHKSW2
+00ff51 95b1      	NEG  R27
+00ff52 95a1      	NEG  R26
+00ff53 40b0      	SBCI R27,0
+00ff54 f800      	BLD  R0,0
+00ff55 9403      	INC  R0
+00ff56 fa00      	BST  R0,0
+                 __CHKSW2:
+00ff57 9508      	RET
+                 
+                 __GETD1P_INC:
+00ff58 91ed      	LD   R30,X+
+00ff59 91fd      	LD   R31,X+
+00ff5a 916d      	LD   R22,X+
+00ff5b 917d      	LD   R23,X+
+00ff5c 9508      	RET
+                 
+                 __PUTDP1_DEC:
+00ff5d 937e      	ST   -X,R23
+00ff5e 936e      	ST   -X,R22
+00ff5f 93fe      	ST   -X,R31
+00ff60 93ee      	ST   -X,R30
+00ff61 9508      	RET
+                 
+                 __GETD1S0:
+00ff62 81e8      	LD   R30,Y
+00ff63 81f9      	LDD  R31,Y+1
+00ff64 816a      	LDD  R22,Y+2
+00ff65 817b      	LDD  R23,Y+3
+00ff66 9508      	RET
+                 
+                 __GETD2S0:
+00ff67 81a8      	LD   R26,Y
+00ff68 81b9      	LDD  R27,Y+1
+00ff69 818a      	LDD  R24,Y+2
+00ff6a 819b      	LDD  R25,Y+3
+00ff6b 9508      	RET
+                 
+                 __PUTD1S0:
+00ff6c 83e8      	ST   Y,R30
+00ff6d 83f9      	STD  Y+1,R31
+00ff6e 836a      	STD  Y+2,R22
+00ff6f 837b      	STD  Y+3,R23
+00ff70 9508      	RET
+                 
+                 __PUTPARD1:
+00ff71 937a      	ST   -Y,R23
+00ff72 936a      	ST   -Y,R22
+00ff73 93fa      	ST   -Y,R31
+00ff74 93ea      	ST   -Y,R30
+00ff75 9508      	RET
+                 
+                 __PUTPARD2:
+00ff76 939a      	ST   -Y,R25
+00ff77 938a      	ST   -Y,R24
+00ff78 93ba      	ST   -Y,R27
+00ff79 93aa      	ST   -Y,R26
+00ff7a 9508      	RET
+                 
+                 __CPD20:
+00ff7b 9710      	SBIW R26,0
+00ff7c 4080      	SBCI R24,0
+00ff7d 4090      	SBCI R25,0
+00ff7e 9508      	RET
+                 
+                 __CPD21:
+00ff7f 17ae      	CP   R26,R30
+00ff80 07bf      	CPC  R27,R31
+00ff81 0786      	CPC  R24,R22
+00ff82 0797      	CPC  R25,R23
+00ff83 9508      	RET
+                 
+                 _delay_ms:
+00ff84 9610      	adiw r26,0
+00ff85 f039      	breq __delay_ms1
+                 __delay_ms0:
+00ff86 95a8      	wdr
+                +
+00ff87 ee88     +LDI R24 , LOW ( 0x3E8 )
+00ff88 e093     +LDI R25 , HIGH ( 0x3E8 )
+                +__DELAY_USW_LOOP :
+00ff89 9701     +SBIW R24 , 1
+00ff8a f7f1     +BRNE __DELAY_USW_LOOP
+                 	__DELAY_USW 0x3E8
+00ff8b 9711      	sbiw r26,1
+00ff8c f7c9      	brne __delay_ms0
+                 __delay_ms1:
+00ff8d 9508      	ret
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -5112,40 +5153,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 ATmega128 register use summary:
-r0 :  45 r1 :  10 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
+r0 :  49 r1 :  16 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
 r8 :   3 r9 :   0 r10:   0 r11:   4 r12:   5 r13:   2 r14:   0 r15:   0 
-r16:  29 r17:  40 r18:  34 r19:  29 r20:  16 r21:  11 r22: 106 r23:  65 
-r24:  46 r25:  30 r26: 181 r27:  90 r28:  20 r29:   5 r30: 427 r31: 139 
-x  :  39 y  : 194 z  :  16 
+r16:  28 r17:  40 r18:  34 r19:  29 r20:  15 r21:  10 r22: 110 r23:  68 
+r24:  45 r25:  29 r26: 180 r27:  91 r28:  20 r29:   5 r30: 429 r31: 142 
+x  :  37 y  : 190 z  :  16 
 Registers used: 25 out of 35 (71.4%)
 
 ATmega128 instruction use summary:
-.lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :  23 add   :  27 
-adiw  :  22 and   :   0 andi  :  22 asr   :   0 bclr  :   0 bld   :   1 
-brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :  28 
-brge  :   0 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   9 
-brlt  :   0 brmi  :   0 brne  :  38 brpl  :   0 brsh  :  18 brtc  :   1 
-brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   1 call  : 116 
+.lds  :   0 .lds.l:   0 .sts  :   0 .sts.l:   0 adc   :  22 add   :  26 
+adiw  :  21 and   :   0 andi  :  22 asr   :   0 bclr  :   0 bld   :   1 
+brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :  29 
+brge  :   0 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :  10 
+brlt  :   0 brmi  :   0 brne  :  39 brpl  :   0 brsh  :  19 brtc  :   1 
+brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   1 call  :   1 
 cbi   :  10 cbr   :   0 clc   :   0 clh   :   0 cli   :   2 cln   :   0 
-clr   :  15 cls   :   0 clt   :   1 clv   :   0 clz   :   0 com   :   2 
-cp    :   6 cpc   :  33 cpi   :  49 cpse  :   0 dec   :   3 des   :   0 
+clr   :  15 cls   :   0 clt   :   1 clv   :   0 clz   :   0 com   :   0 
+cp    :   8 cpc   :  33 cpi   :  48 cpse  :   0 dec   :   3 des   :   0 
 elpm  :  10 eor   :   2 fmul  :   0 fmuls :   0 fmulsu:   0 icall :   1 
-ijmp  :   0 in    :   5 inc   :   2 jmp   :  47 ld    :  28 ldd   : 105 
-ldi   : 248 lds   : 106 lpm   :   0 lsl   :   4 lsr   :   1 mov   :  37 
-movw  :  44 mul   :  19 muls  :   0 mulsu :   0 neg   :   2 nop   :   0 
-or    :  11 ori   :   2 out   :  17 pop   :   4 push  :   4 rcall :  95 
-ret   :  68 reti  :   0 rjmp  :  65 rol   :   8 ror   :   3 sbc   :   1 
-sbci  :  39 sbi   :   5 sbic  :   1 sbis  :   1 sbiw  :  12 sbr   :   0 
+ijmp  :   0 in    :   5 inc   :   2 jmp   :  46 ld    :  26 ldd   : 101 
+ldi   : 256 lds   : 106 lpm   :   0 lsl   :   4 lsr   :   1 mov   :  44 
+movw  :  44 mul   :  19 muls  :   0 mulsu :   0 neg   :   4 nop   :   0 
+or    :  11 ori   :   2 out   :  17 pop   :   4 push  :   4 rcall : 218 
+ret   :  75 reti  :   0 rjmp  :  62 rol   :   8 ror   :   3 sbc   :   1 
+sbci  :  40 sbi   :   6 sbic  :   1 sbis  :   1 sbiw  :  12 sbr   :   0 
 sbrc  :   0 sbrs  :   2 sec   :   0 seh   :   0 sei   :   1 sen   :   0 
 ser   :   0 ses   :   0 set   :   1 sev   :   0 sez   :   0 sleep :   0 
-spm   :  18 st    :  83 std   :  23 sts   :  74 sub   :   0 subi  :  32 
+spm   :  18 st    :  83 std   :  23 sts   :  72 sub   :   2 subi  :  32 
 swap  :   0 tst   :   2 wdr   :   1 
 Instructions used: 63 out of 117 (53.8%)
 
 ATmega128 memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x01f000 0x01ffd8   3990     66   4056  131072   3.1%
+[.cseg] 0x01f000 0x01ff1c   3802     66   3868  131072   3.0%
 [.dseg] 0x000100 0x000c4c      0    844    844    4096  20.6%
 [.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 

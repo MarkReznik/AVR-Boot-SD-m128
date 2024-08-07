@@ -31,6 +31,7 @@
 *
 *****************************************************************************/
 //#include <ioavr.h>
+#include "integer.h"
 
 #ifndef __SELF_PROGRAMMING_H
 #define __SELF_PROGRAMMING_H
@@ -138,8 +139,11 @@ typedef unsigned int  __flash* MyFlashIntPointer;
 ******************************************************************************/
 
 #define FLASH_BUFFER_FULL_ID  0xAA
-#define TRUE 1
-#define FALSE 0
+//#define TRUE 1
+//#define FALSE 0
+//#ifndef FALSE
+//typedef enum { FALSE = 0, TRUE } BOOL;
+//#endif
 
 /******************************************************************************
 * Function prototypes

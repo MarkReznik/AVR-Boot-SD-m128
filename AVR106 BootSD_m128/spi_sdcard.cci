@@ -1,6 +1,6 @@
 VERSION:3 SOURCE_TIMESTAMP:58F46BF1
 NODE:I LEVEL:0 LINE:1 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\spi_sdcard.h"
-NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:2 "F:\MyProjects\cvavr_portable\cvavr_portable\cvavr332\inc\delay.h"
 NODE:F LEVEL:0 LINE:6 "SPI_init(void)"
 NODE:F LEVEL:0 LINE:20 "SPI_transfer(unsigned char data)"
 NODE:F LEVEL:0 LINE:33 "SD_powerUpSeq(void)"

@@ -138,8 +138,11 @@ typedef unsigned int  __flash* MyFlashIntPointer;
 ******************************************************************************/
 
 #define FLASH_BUFFER_FULL_ID  0xAA
-#define TRUE 1
-#define FALSE 0
+//#define TRUE 1
+//#define FALSE 0
+#ifndef FALSE
+typedef enum { FALSE = 0, TRUE } BOOL;
+#endif
 
 /******************************************************************************
 * Function prototypes
@@ -157,6 +160,7 @@ unsigned char RecoverFlash();
 unsigned char eepromBackup(unsigned long flashStartAdr, unsigned int length, unsigned char *data);
 unsigned char VerifyFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage);
 unsigned char WriteFlashBytes(MyAddressType flashAdr, unsigned char *data, unsigned int length);
+unsigned char ReadFlashBytes(MyAddressType flashStartAdr, unsigned char *dataPage, unsigned int length);
 
 /* Functions used by user functions */
 unsigned char AddressCheck(MyAddressType flashAdr);
