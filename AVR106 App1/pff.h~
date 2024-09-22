@@ -36,7 +36,7 @@
 
 #define _FS_FAT32	1	/* 0:Supports FAT12/16 only, 1:Enable FAT32 supprt */
 
-// U.S.
+
 #define	_CODE_PAGE	437
 /* Defines which code page is used for path name. Supported code pages are:
 /  932, 936, 949, 950, 437, 720, 737, 775, 850, 852, 855, 857, 858, 862, 866,

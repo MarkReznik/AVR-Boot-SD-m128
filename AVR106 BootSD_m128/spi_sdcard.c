@@ -305,6 +305,7 @@ unsigned char SD_readSingleBlock(unsigned long addr, unsigned char *buf, unsigne
 {
     unsigned char res1, read;
     unsigned int i, readAttempts;
+    #asm("wdr")
     addr*=512UL;
     // set token to none
     *token = 0xFF;
@@ -370,6 +371,7 @@ unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsign
 {
     unsigned char res1, read;
     unsigned int i, readAttempts;
+    #asm("wdr")
     addr*=512UL;
     // set token to none
     *token = 0xFF;

@@ -723,7 +723,7 @@
 ;PCODE: $00000185 VOL: 0
 ; 0003 0132     unsigned char res1, read;
 ; 0003 0133     unsigned int i, readAttempts;
-; 0003 0134     addr*=512UL;
+; 0003 0134     #asm("wdr")
 ;PCODE: $00000186 VOL: 0
 ;PCODE: $00000187 VOL: 0
 ;	addr -> Y+10
@@ -734,75 +734,77 @@
 ;	i -> R18,R19
 ;	readAttempts -> R20,R21
 ;PCODE: $00000188 VOL: 0
+	wdr
 ;PCODE: $00000189 VOL: 0
+; 0003 0135     addr*=512UL;
 ;PCODE: $0000018A VOL: 0
 ;PCODE: $0000018B VOL: 0
-; 0003 0135     // set token to none
-; 0003 0136     *token = 0xFF;
 ;PCODE: $0000018C VOL: 0
 ;PCODE: $0000018D VOL: 0
+; 0003 0136     // set token to none
+; 0003 0137     *token = 0xFF;
 ;PCODE: $0000018E VOL: 0
-; 0003 0137 
-; 0003 0138     // assert chip select
-; 0003 0139     SPI_transfer(0xFF);
 ;PCODE: $0000018F VOL: 0
 ;PCODE: $00000190 VOL: 0
-; 0003 013A     CS_ENABLE();
+; 0003 0138 
+; 0003 0139     // assert chip select
+; 0003 013A     SPI_transfer(0xFF);
 ;PCODE: $00000191 VOL: 0
 ;PCODE: $00000192 VOL: 0
-; 0003 013B     //SPI_transfer(0xFF);
-; 0003 013C 
-; 0003 013D     // send CMD17
-; 0003 013E     res1 = SD_command(CMD17, addr, CMD17_CRC);
+; 0003 013B     CS_ENABLE();
 ;PCODE: $00000193 VOL: 0
 ;PCODE: $00000194 VOL: 0
+; 0003 013C     //SPI_transfer(0xFF);
+; 0003 013D 
+; 0003 013E     // send CMD17
+; 0003 013F     res1 = SD_command(CMD17, addr, CMD17_CRC);
 ;PCODE: $00000195 VOL: 0
 ;PCODE: $00000196 VOL: 0
 ;PCODE: $00000197 VOL: 0
 ;PCODE: $00000198 VOL: 0
 ;PCODE: $00000199 VOL: 0
-; 0003 013F 
-; 0003 0140     // read R1
-; 0003 0141     //res1 = SD_readRes1();
-; 0003 0142 
-; 0003 0143     // if response received from card
-; 0003 0144     if(res1 != 0xFF)
 ;PCODE: $0000019A VOL: 0
 ;PCODE: $0000019B VOL: 0
+; 0003 0140 
+; 0003 0141     // read R1
+; 0003 0142     //res1 = SD_readRes1();
+; 0003 0143 
+; 0003 0144     // if response received from card
+; 0003 0145     if(res1 != 0xFF)
 ;PCODE: $0000019C VOL: 0
-; 0003 0145     {
-; 0003 0146         // wait for a response token (timeout = 100ms)
-; 0003 0147         readAttempts = 0;
 ;PCODE: $0000019D VOL: 0
 ;PCODE: $0000019E VOL: 0
-; 0003 0148         while(++readAttempts != SD_MAX_READ_ATTEMPTS)
+; 0003 0146     {
+; 0003 0147         // wait for a response token (timeout = 100ms)
+; 0003 0148         readAttempts = 0;
 ;PCODE: $0000019F VOL: 0
 ;PCODE: $000001A0 VOL: 0
+; 0003 0149         while(++readAttempts != SD_MAX_READ_ATTEMPTS)
 ;PCODE: $000001A1 VOL: 0
 ;PCODE: $000001A2 VOL: 0
 ;PCODE: $000001A3 VOL: 0
 ;PCODE: $000001A4 VOL: 0
-; 0003 0149             if((read = SPI_transfer(0xFF)) != 0xFF) break;
 ;PCODE: $000001A5 VOL: 0
 ;PCODE: $000001A6 VOL: 0
+; 0003 014A             if((read = SPI_transfer(0xFF)) != 0xFF) break;
 ;PCODE: $000001A7 VOL: 0
 ;PCODE: $000001A8 VOL: 0
 ;PCODE: $000001A9 VOL: 0
 ;PCODE: $000001AA VOL: 0
-; 0003 014A 
-; 0003 014B         // if response token is 0xFE
-; 0003 014C         if(read == 0xFE)
 ;PCODE: $000001AB VOL: 0
 ;PCODE: $000001AC VOL: 0
+; 0003 014B 
+; 0003 014C         // if response token is 0xFE
+; 0003 014D         if(read == 0xFE)
 ;PCODE: $000001AD VOL: 0
 ;PCODE: $000001AE VOL: 0
 ;PCODE: $000001AF VOL: 0
 ;PCODE: $000001B0 VOL: 0
-; 0003 014D         {
-; 0003 014E             // read 512 byte block
-; 0003 014F             for(i = 0; i < 512; i++) *buf++ = SPI_transfer(0xFF);
 ;PCODE: $000001B1 VOL: 0
 ;PCODE: $000001B2 VOL: 0
+; 0003 014E         {
+; 0003 014F             // read 512 byte block
+; 0003 0150             for(i = 0; i < 512; i++) *buf++ = SPI_transfer(0xFF);
 ;PCODE: $000001B3 VOL: 0
 ;PCODE: $000001B4 VOL: 0
 ;PCODE: $000001B5 VOL: 0
@@ -824,54 +826,56 @@
 ;PCODE: $000001C5 VOL: 0
 ;PCODE: $000001C6 VOL: 0
 ;PCODE: $000001C7 VOL: 0
-; 0003 0152 SPI_transfer(0xFF);
 ;PCODE: $000001C8 VOL: 0
 ;PCODE: $000001C9 VOL: 0
-; 0003 0153             SPI_transfer(0xFF);
+; 0003 0153 SPI_transfer(0xFF);
 ;PCODE: $000001CA VOL: 0
 ;PCODE: $000001CB VOL: 0
-; 0003 0154         }
-; 0003 0155 
-; 0003 0156         // set token to card response
-; 0003 0157         *token = read;
+; 0003 0154             SPI_transfer(0xFF);
 ;PCODE: $000001CC VOL: 0
 ;PCODE: $000001CD VOL: 0
+; 0003 0155         }
+; 0003 0156 
+; 0003 0157         // set token to card response
+; 0003 0158         *token = read;
 ;PCODE: $000001CE VOL: 0
-; 0003 0158     }
-; 0003 0159 
-; 0003 015A     // deassert chip select
-; 0003 015B     SPI_transfer(0xFF);
 ;PCODE: $000001CF VOL: 0
 ;PCODE: $000001D0 VOL: 0
+; 0003 0159     }
+; 0003 015A 
+; 0003 015B     // deassert chip select
+; 0003 015C     SPI_transfer(0xFF);
 ;PCODE: $000001D1 VOL: 0
-; 0003 015C     CS_DISABLE();
 ;PCODE: $000001D2 VOL: 0
 ;PCODE: $000001D3 VOL: 0
-; 0003 015D     SPI_transfer(0xFF);
+; 0003 015D     CS_DISABLE();
 ;PCODE: $000001D4 VOL: 0
 ;PCODE: $000001D5 VOL: 0
-; 0003 015E     if(read==0xFE)
+; 0003 015E     SPI_transfer(0xFF);
 ;PCODE: $000001D6 VOL: 0
 ;PCODE: $000001D7 VOL: 0
+; 0003 015F     if(read==0xFE)
 ;PCODE: $000001D8 VOL: 0
-; 0003 015F         return res1;
 ;PCODE: $000001D9 VOL: 0
 ;PCODE: $000001DA VOL: 0
+; 0003 0160         return res1;
 ;PCODE: $000001DB VOL: 0
 ;PCODE: $000001DC VOL: 0
-; 0003 0160     else
 ;PCODE: $000001DD VOL: 0
-; 0003 0161         return SD_ERROR;
 ;PCODE: $000001DE VOL: 0
+; 0003 0161     else
 ;PCODE: $000001DF VOL: 0
+; 0003 0162         return SD_ERROR;
 ;PCODE: $000001E0 VOL: 0
 ;PCODE: $000001E1 VOL: 0
-; 0003 0162 }
 ;PCODE: $000001E2 VOL: 0
 ;PCODE: $000001E3 VOL: 0
+; 0003 0163 }
 ;PCODE: $000001E4 VOL: 0
 ;PCODE: $000001E5 VOL: 0
 ;PCODE: $000001E6 VOL: 0
+;PCODE: $000001E7 VOL: 0
+;PCODE: $000001E8 VOL: 0
 ;
 ;#define SD_BLOCK_LEN            512
 ;#define SD_START_TOKEN          0xFE
@@ -887,14 +891,14 @@
 ;*******************************************************************************/
 ;
 ;unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsigned char *token)
-; 0003 0172 {
-;PCODE: $000001E7 VOL: 0
-;PCODE: $000001E8 VOL: 0
-; 0003 0173     unsigned char res1, read;
-; 0003 0174     unsigned int i, readAttempts;
-; 0003 0175     addr*=512UL;
+; 0003 0173 {
 ;PCODE: $000001E9 VOL: 0
 ;PCODE: $000001EA VOL: 0
+; 0003 0174     unsigned char res1, read;
+; 0003 0175     unsigned int i, readAttempts;
+; 0003 0176     #asm("wdr")
+;PCODE: $000001EB VOL: 0
+;PCODE: $000001EC VOL: 0
 ;	addr -> Y+10
 ;	*buf -> Y+8
 ;	*token -> Y+6
@@ -902,56 +906,56 @@
 ;	read -> R16
 ;	i -> R18,R19
 ;	readAttempts -> R20,R21
-;PCODE: $000001EB VOL: 0
-;PCODE: $000001EC VOL: 0
 ;PCODE: $000001ED VOL: 0
+	wdr
 ;PCODE: $000001EE VOL: 0
-; 0003 0176     // set token to none
-; 0003 0177     *token = 0xFF;
+; 0003 0177     addr*=512UL;
 ;PCODE: $000001EF VOL: 0
 ;PCODE: $000001F0 VOL: 0
 ;PCODE: $000001F1 VOL: 0
-; 0003 0178 
-; 0003 0179     // assert chip select
-; 0003 017A     SPI_transfer(0xFF);
 ;PCODE: $000001F2 VOL: 0
+; 0003 0178     // set token to none
+; 0003 0179     *token = 0xFF;
 ;PCODE: $000001F3 VOL: 0
-; 0003 017B     CS_ENABLE();
 ;PCODE: $000001F4 VOL: 0
 ;PCODE: $000001F5 VOL: 0
+; 0003 017A 
+; 0003 017B     // assert chip select
 ; 0003 017C     SPI_transfer(0xFF);
 ;PCODE: $000001F6 VOL: 0
 ;PCODE: $000001F7 VOL: 0
-; 0003 017D 
-; 0003 017E     // send CMD24
-; 0003 017F     res1=SD_command(CMD24, addr, CMD24_CRC);
+; 0003 017D     CS_ENABLE();
 ;PCODE: $000001F8 VOL: 0
 ;PCODE: $000001F9 VOL: 0
+; 0003 017E     SPI_transfer(0xFF);
 ;PCODE: $000001FA VOL: 0
 ;PCODE: $000001FB VOL: 0
+; 0003 017F 
+; 0003 0180     // send CMD24
+; 0003 0181     res1=SD_command(CMD24, addr, CMD24_CRC);
 ;PCODE: $000001FC VOL: 0
 ;PCODE: $000001FD VOL: 0
 ;PCODE: $000001FE VOL: 0
-; 0003 0180 
-; 0003 0181     // read response
-; 0003 0182     //res1 = SD_readRes1();
-; 0003 0183 
-; 0003 0184     // if no error
-; 0003 0185     if(res1 == SD_READY)
 ;PCODE: $000001FF VOL: 0
 ;PCODE: $00000200 VOL: 0
-; 0003 0186     {
-; 0003 0187         // send start token
-; 0003 0188         SPI_transfer(SD_START_TOKEN);
 ;PCODE: $00000201 VOL: 0
 ;PCODE: $00000202 VOL: 0
-; 0003 0189 
-; 0003 018A         // write buffer to card
-; 0003 018B         for(i = 0; i < SD_BLOCK_LEN; i++) SPI_transfer(buf[i]);
+; 0003 0182 
+; 0003 0183     // read response
+; 0003 0184     //res1 = SD_readRes1();
+; 0003 0185 
+; 0003 0186     // if no error
+; 0003 0187     if(res1 == SD_READY)
 ;PCODE: $00000203 VOL: 0
 ;PCODE: $00000204 VOL: 0
+; 0003 0188     {
+; 0003 0189         // send start token
+; 0003 018A         SPI_transfer(SD_START_TOKEN);
 ;PCODE: $00000205 VOL: 0
 ;PCODE: $00000206 VOL: 0
+; 0003 018B 
+; 0003 018C         // write buffer to card
+; 0003 018D         for(i = 0; i < SD_BLOCK_LEN; i++) SPI_transfer(buf[i]);
 ;PCODE: $00000207 VOL: 0
 ;PCODE: $00000208 VOL: 0
 ;PCODE: $00000209 VOL: 0
@@ -967,90 +971,94 @@
 ;PCODE: $00000213 VOL: 0
 ;PCODE: $00000214 VOL: 0
 ;PCODE: $00000215 VOL: 0
-; 0003 018E readAttempts = 0;
 ;PCODE: $00000216 VOL: 0
 ;PCODE: $00000217 VOL: 0
-; 0003 018F         while(++readAttempts != SD_MAX_WRITE_ATTEMPTS)
 ;PCODE: $00000218 VOL: 0
 ;PCODE: $00000219 VOL: 0
+; 0003 0190 readAttempts = 0;
 ;PCODE: $0000021A VOL: 0
 ;PCODE: $0000021B VOL: 0
+; 0003 0191         while(++readAttempts != SD_MAX_WRITE_ATTEMPTS)
 ;PCODE: $0000021C VOL: 0
 ;PCODE: $0000021D VOL: 0
-; 0003 0190             if((read = SPI_transfer(0xFF)) != 0xFF) { *token = 0xFF; break; }
 ;PCODE: $0000021E VOL: 0
 ;PCODE: $0000021F VOL: 0
 ;PCODE: $00000220 VOL: 0
 ;PCODE: $00000221 VOL: 0
+; 0003 0192             if((read = SPI_transfer(0xFF)) != 0xFF) { *token = 0xFF; break; }
 ;PCODE: $00000222 VOL: 0
 ;PCODE: $00000223 VOL: 0
 ;PCODE: $00000224 VOL: 0
 ;PCODE: $00000225 VOL: 0
 ;PCODE: $00000226 VOL: 0
-; 0003 0191 
-; 0003 0192         // if data accepted
-; 0003 0193         if((read & 0x1F) == 0x05)
 ;PCODE: $00000227 VOL: 0
 ;PCODE: $00000228 VOL: 0
 ;PCODE: $00000229 VOL: 0
 ;PCODE: $0000022A VOL: 0
+; 0003 0193 
+; 0003 0194         // if data accepted
+; 0003 0195         if((read & 0x1F) == 0x05)
 ;PCODE: $0000022B VOL: 0
 ;PCODE: $0000022C VOL: 0
 ;PCODE: $0000022D VOL: 0
-; 0003 0194         {
-; 0003 0195             // set token to data accepted
-; 0003 0196             *token = 0x05;
 ;PCODE: $0000022E VOL: 0
 ;PCODE: $0000022F VOL: 0
 ;PCODE: $00000230 VOL: 0
-; 0003 0197 
-; 0003 0198             // wait for write to finish (timeout = 250ms)
-; 0003 0199             readAttempts = 0;
 ;PCODE: $00000231 VOL: 0
+; 0003 0196         {
+; 0003 0197             // set token to data accepted
+; 0003 0198             *token = 0x05;
 ;PCODE: $00000232 VOL: 0
-; 0003 019A             while(SPI_transfer(0xFF) == 0x00){
 ;PCODE: $00000233 VOL: 0
 ;PCODE: $00000234 VOL: 0
+; 0003 0199 
+; 0003 019A             // wait for write to finish (timeout = 250ms)
+; 0003 019B             readAttempts = 0;
 ;PCODE: $00000235 VOL: 0
 ;PCODE: $00000236 VOL: 0
+; 0003 019C             while(SPI_transfer(0xFF) == 0x00){
 ;PCODE: $00000237 VOL: 0
-; 0003 019B                 if(++readAttempts == SD_MAX_WRITE_ATTEMPTS){
 ;PCODE: $00000238 VOL: 0
 ;PCODE: $00000239 VOL: 0
 ;PCODE: $0000023A VOL: 0
 ;PCODE: $0000023B VOL: 0
+; 0003 019D                 if(++readAttempts == SD_MAX_WRITE_ATTEMPTS){
 ;PCODE: $0000023C VOL: 0
-; 0003 019C                     *token = 0x00;
 ;PCODE: $0000023D VOL: 0
 ;PCODE: $0000023E VOL: 0
 ;PCODE: $0000023F VOL: 0
-; 0003 019D                     break;
 ;PCODE: $00000240 VOL: 0
-; 0003 019E                 }
-; 0003 019F             }
+; 0003 019E                     *token = 0x00;
 ;PCODE: $00000241 VOL: 0
 ;PCODE: $00000242 VOL: 0
 ;PCODE: $00000243 VOL: 0
-; 0003 01A0         }
-; 0003 01A1     }
+; 0003 019F                     break;
 ;PCODE: $00000244 VOL: 0
-; 0003 01A2 
-; 0003 01A3     // deassert chip select
-; 0003 01A4     SPI_transfer(0xFF);
+; 0003 01A0                 }
+; 0003 01A1             }
 ;PCODE: $00000245 VOL: 0
 ;PCODE: $00000246 VOL: 0
 ;PCODE: $00000247 VOL: 0
-; 0003 01A5     CS_DISABLE();
+; 0003 01A2         }
+; 0003 01A3     }
 ;PCODE: $00000248 VOL: 0
-;PCODE: $00000249 VOL: 0
+; 0003 01A4 
+; 0003 01A5     // deassert chip select
 ; 0003 01A6     SPI_transfer(0xFF);
+;PCODE: $00000249 VOL: 0
 ;PCODE: $0000024A VOL: 0
 ;PCODE: $0000024B VOL: 0
-; 0003 01A7 
-; 0003 01A8     return res1;
+; 0003 01A7     CS_DISABLE();
 ;PCODE: $0000024C VOL: 0
 ;PCODE: $0000024D VOL: 0
+; 0003 01A8     SPI_transfer(0xFF);
 ;PCODE: $0000024E VOL: 0
 ;PCODE: $0000024F VOL: 0
-; 0003 01A9 }
+; 0003 01A9 
+; 0003 01AA     return res1;
 ;PCODE: $00000250 VOL: 0
+;PCODE: $00000251 VOL: 0
+;PCODE: $00000252 VOL: 0
+;PCODE: $00000253 VOL: 0
+; 0003 01AB }
+;PCODE: $00000254 VOL: 0

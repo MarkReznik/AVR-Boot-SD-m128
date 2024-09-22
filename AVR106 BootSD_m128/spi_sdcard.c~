@@ -380,10 +380,10 @@ unsigned char SD_writeSingleBlock(unsigned long addr, unsigned char *buf, unsign
     SPI_transfer(0xFF);
 
     // send CMD24
-    SD_command(CMD24, addr, CMD24_CRC);
+    res1=SD_command(CMD24, addr, CMD24_CRC);
 
     // read response
-    res1 = SD_readRes1();
+    //res1 = SD_readRes1();
 
     // if no error
     if(res1 == SD_READY)

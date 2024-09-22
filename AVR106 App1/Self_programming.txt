@@ -1,0 +1,7 @@
+This is unit test application for SD card functions on Atmega128 LCD:
+Petit fat for SD card fat access
+
+1. Test rename function
+2. Test update function
+3. Test WriteData function
+4. Test ReadData function
