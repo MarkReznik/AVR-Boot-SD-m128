@@ -947,6 +947,7 @@
 ;PCODE: $00000283 VOL: 0
 ; 0002 010A }
 ;PCODE: $00000284 VOL: 0
+;
 ;#endif
 ;
 ;
@@ -961,17 +962,17 @@
 ;
 ;static
 ;FRESULT create_name (
-; 0002 0119 	DIR *dj,			/* Pointer to the directory object */
-; 0002 011A 	const char **path	/* Pointer to pointer to the segment in the path string */
-; 0002 011B )
-; 0002 011C {
+; 0002 011A 	DIR *dj,			/* Pointer to the directory object */
+; 0002 011B 	const char **path	/* Pointer to pointer to the segment in the path string */
+; 0002 011C )
+; 0002 011D {
 ;PCODE: $00000285 VOL: 0
 ;PCODE: $00000286 VOL: 0
-; 0002 011D 	BYTE c, d, ni, si, i, *sfn;
-; 0002 011E 	const char *p;
-; 0002 011F 
-; 0002 0120 	/* Create file name in directory form */
-; 0002 0121 	sfn = dj->fn;
+; 0002 011E 	BYTE c, d, ni, si, i, *sfn;
+; 0002 011F 	const char *p;
+; 0002 0120 
+; 0002 0121 	/* Create file name in directory form */
+; 0002 0122 	sfn = dj->fn;
 ;PCODE: $00000287 VOL: 0
 ;PCODE: $00000288 VOL: 0
 ;PCODE: $00000289 VOL: 0
@@ -988,7 +989,7 @@
 ;PCODE: $0000028B VOL: 0
 ;PCODE: $0000028C VOL: 0
 ;PCODE: $0000028D VOL: 0
-; 0002 0122 	mem_set(sfn, ' ', 11);
+; 0002 0123 	mem_set(sfn, ' ', 11);
 ;PCODE: $0000028E VOL: 0
 ;PCODE: $0000028F VOL: 0
 ;PCODE: $00000290 VOL: 0
@@ -996,20 +997,20 @@
 ;PCODE: $00000292 VOL: 0
 ;PCODE: $00000293 VOL: 0
 ;PCODE: $00000294 VOL: 0
-; 0002 0123 	si = i = 0; ni = 8;
+; 0002 0124 	si = i = 0; ni = 8;
 ;PCODE: $00000295 VOL: 0
 ;PCODE: $00000296 VOL: 0
 ;PCODE: $00000297 VOL: 0
 ;PCODE: $00000298 VOL: 0
 ;PCODE: $00000299 VOL: 0
-; 0002 0124 	p = *path;
+; 0002 0125 	p = *path;
 ;PCODE: $0000029A VOL: 0
 ;PCODE: $0000029B VOL: 0
 ;PCODE: $0000029C VOL: 0
-; 0002 0125 	for (;;) {
+; 0002 0126 	for (;;) {
 ;PCODE: $0000029D VOL: 0
 ;PCODE: $0000029E VOL: 0
-; 0002 0126 		c = p[si++];
+; 0002 0127 		c = p[si++];
 ;PCODE: $0000029F VOL: 0
 ;PCODE: $000002A0 VOL: 0
 ;PCODE: $000002A1 VOL: 0
@@ -1017,7 +1018,7 @@
 ;PCODE: $000002A3 VOL: 0
 ;PCODE: $000002A4 VOL: 0
 ;PCODE: $000002A5 VOL: 0
-; 0002 0127 		if (c <= ' ' || c == '/') break;	/* Break on end of segment */
+; 0002 0128 		if (c <= ' ' || c == '/') break;	/* Break on end of segment */
 ;PCODE: $000002A6 VOL: 0
 ;PCODE: $000002A7 VOL: 0
 ;PCODE: $000002A8 VOL: 0
@@ -1027,7 +1028,7 @@
 ;PCODE: $000002AC VOL: 0
 ;PCODE: $000002AD VOL: 0
 ;PCODE: $000002AE VOL: 0
-; 0002 0128 		if (c == '.' || i >= ni) {
+; 0002 0129 		if (c == '.' || i >= ni) {
 ;PCODE: $000002AF VOL: 0
 ;PCODE: $000002B0 VOL: 0
 ;PCODE: $000002B1 VOL: 0
@@ -1037,7 +1038,7 @@
 ;PCODE: $000002B5 VOL: 0
 ;PCODE: $000002B6 VOL: 0
 ;PCODE: $000002B7 VOL: 0
-; 0002 0129 			if (ni != 8 || c != '.') break;
+; 0002 012A 			if (ni != 8 || c != '.') break;
 ;PCODE: $000002B8 VOL: 0
 ;PCODE: $000002B9 VOL: 0
 ;PCODE: $000002BA VOL: 0
@@ -1047,30 +1048,30 @@
 ;PCODE: $000002BE VOL: 0
 ;PCODE: $000002BF VOL: 0
 ;PCODE: $000002C0 VOL: 0
-; 0002 012A 			i = 8; ni = 11;
+; 0002 012B 			i = 8; ni = 11;
 ;PCODE: $000002C1 VOL: 0
 ;PCODE: $000002C2 VOL: 0
 ;PCODE: $000002C3 VOL: 0
 ;PCODE: $000002C4 VOL: 0
 ;PCODE: $000002C5 VOL: 0
-; 0002 012B 			continue;
+; 0002 012C 			continue;
 ;PCODE: $000002C6 VOL: 0
-; 0002 012C 		}
-; 0002 012D #ifdef _EXCVT
-; 0002 012E 		if (c >= 0x80)					/* To upper extended char (SBCS) */
+; 0002 012D 		}
+; 0002 012E #ifdef _EXCVT
+; 0002 012F 		if (c >= 0x80)					/* To upper extended char (SBCS) */
 ;PCODE: $000002C7 VOL: 0
 ;PCODE: $000002C8 VOL: 0
 ;PCODE: $000002C9 VOL: 0
 ;PCODE: $000002CA VOL: 0
-; 0002 012F 			c = cvt[c - 0x80];
+; 0002 0130 			c = cvt[c - 0x80];
 ;PCODE: $000002CB VOL: 0
 ;PCODE: $000002CC VOL: 0
 ;PCODE: $000002CD VOL: 0
 ;PCODE: $000002CE VOL: 0
 ;PCODE: $000002CF VOL: 0
 ;PCODE: $000002D0 VOL: 0
-; 0002 0130 #endif
-; 0002 0131 		if (IsDBCS1(c) && i >= ni - 1) {	/* DBC 1st byte? */
+; 0002 0131 #endif
+; 0002 0132 		if (IsDBCS1(c) && i >= ni - 1) {	/* DBC 1st byte? */
 ;PCODE: $000002D1 VOL: 0
 ;PCODE: $000002D2 VOL: 0
 ;PCODE: $000002D3 VOL: 0
@@ -1086,7 +1087,7 @@
 ;PCODE: $000002DD VOL: 0
 ;PCODE: $000002DE VOL: 0
 ;PCODE: $000002DF VOL: 0
-; 0002 0132 			d = p[si++];					/* Get 2nd byte */
+; 0002 0133 			d = p[si++];					/* Get 2nd byte */
 ;PCODE: $000002E0 VOL: 0
 ;PCODE: $000002E1 VOL: 0
 ;PCODE: $000002E2 VOL: 0
@@ -1094,7 +1095,7 @@
 ;PCODE: $000002E4 VOL: 0
 ;PCODE: $000002E5 VOL: 0
 ;PCODE: $000002E6 VOL: 0
-; 0002 0133 			sfn[i++] = c;
+; 0002 0134 			sfn[i++] = c;
 ;PCODE: $000002E7 VOL: 0
 ;PCODE: $000002E8 VOL: 0
 ;PCODE: $000002E9 VOL: 0
@@ -1102,7 +1103,7 @@
 ;PCODE: $000002EB VOL: 0
 ;PCODE: $000002EC VOL: 0
 ;PCODE: $000002ED VOL: 0
-; 0002 0134 			sfn[i++] = d;
+; 0002 0135 			sfn[i++] = d;
 ;PCODE: $000002EE VOL: 0
 ;PCODE: $000002EF VOL: 0
 ;PCODE: $000002F0 VOL: 0
@@ -1110,10 +1111,10 @@
 ;PCODE: $000002F2 VOL: 0
 ;PCODE: $000002F3 VOL: 0
 ;PCODE: $000002F4 VOL: 0
-; 0002 0135 		} else {						/* Single byte code */
+; 0002 0136 		} else {						/* Single byte code */
 ;PCODE: $000002F5 VOL: 0
 ;PCODE: $000002F6 VOL: 0
-; 0002 0136 			if (IsLower(c)) c -= 0x20;	/* toupper */
+; 0002 0137 			if (IsLower(c)) c -= 0x20;	/* toupper */
 ;PCODE: $000002F7 VOL: 0
 ;PCODE: $000002F8 VOL: 0
 ;PCODE: $000002F9 VOL: 0
@@ -1126,7 +1127,7 @@
 ;PCODE: $00000300 VOL: 0
 ;PCODE: $00000301 VOL: 0
 ;PCODE: $00000302 VOL: 0
-; 0002 0137 			sfn[i++] = c;
+; 0002 0138 			sfn[i++] = c;
 ;PCODE: $00000303 VOL: 0
 ;PCODE: $00000304 VOL: 0
 ;PCODE: $00000305 VOL: 0
@@ -1135,21 +1136,21 @@
 ;PCODE: $00000308 VOL: 0
 ;PCODE: $00000309 VOL: 0
 ;PCODE: $0000030A VOL: 0
-; 0002 0138 		}
+; 0002 0139 		}
 ;PCODE: $0000030B VOL: 0
-; 0002 0139 	}
+; 0002 013A 	}
 ;PCODE: $0000030C VOL: 0
 ;PCODE: $0000030D VOL: 0
 ;PCODE: $0000030E VOL: 0
-; 0002 013A 	*path = &p[si];						/* Rerurn pointer to the next segment */
+; 0002 013B 	*path = &p[si];						/* Rerurn pointer to the next segment */
 ;PCODE: $0000030F VOL: 0
 ;PCODE: $00000310 VOL: 0
 ;PCODE: $00000311 VOL: 0
 ;PCODE: $00000312 VOL: 0
 ;PCODE: $00000313 VOL: 0
 ;PCODE: $00000314 VOL: 0
-; 0002 013B 
-; 0002 013C 	sfn[11] = (c <= ' ') ? 1 : 0;		/* Set last segment flag if end of path */
+; 0002 013C 
+; 0002 013D 	sfn[11] = (c <= ' ') ? 1 : 0;		/* Set last segment flag if end of path */
 ;PCODE: $00000315 VOL: 0
 ;PCODE: $00000316 VOL: 0
 ;PCODE: $00000317 VOL: 0
@@ -1161,13 +1162,13 @@
 ;PCODE: $0000031D VOL: 0
 ;PCODE: $0000031E VOL: 0
 ;PCODE: $0000031F VOL: 0
-; 0002 013D 
-; 0002 013E 	return FR_OK;
+; 0002 013E 
+; 0002 013F 	return FR_OK;
 ;PCODE: $00000320 VOL: 0
 ;PCODE: $00000321 VOL: 0
 ;PCODE: $00000322 VOL: 0
 ;PCODE: $00000323 VOL: 0
-; 0002 013F }
+; 0002 0140 }
 ;PCODE: $00000324 VOL: 0
 ;
 ;
@@ -1179,17 +1180,17 @@
 ;#if _USE_DIR
 ;static
 ;void get_fileinfo (		/* No return code */
-; 0002 014A 	DIR *dj,			/* Pointer to the directory object */
-; 0002 014B 	FILINFO *fno	 	/* Pointer to store the file information */
-; 0002 014C )
-; 0002 014D {
+; 0002 014B 	DIR *dj,			/* Pointer to the directory object */
+; 0002 014C 	FILINFO *fno	 	/* Pointer to store the file information */
+; 0002 014D )
+; 0002 014E {
 ;PCODE: $00000325 VOL: 0
 ;PCODE: $00000326 VOL: 0
-; 0002 014E 	BYTE i, c, *dir;
-; 0002 014F 	char *p;
-; 0002 0150 
+; 0002 014F 	BYTE i, c, *dir;
+; 0002 0150 	char *p;
 ; 0002 0151 
-; 0002 0152 	p = fno->fname;
+; 0002 0152 
+; 0002 0153 	p = fno->fname;
 ;PCODE: $00000327 VOL: 0
 ;PCODE: $00000328 VOL: 0
 ;	*dj -> Y+8
@@ -1201,17 +1202,17 @@
 ;PCODE: $00000329 VOL: 0
 ;PCODE: $0000032A VOL: 0
 ;PCODE: $0000032B VOL: 0
-; 0002 0153 	if (dj->sect) {
+; 0002 0154 	if (dj->sect) {
 ;PCODE: $0000032C VOL: 0
 ;PCODE: $0000032D VOL: 0
 ;PCODE: $0000032E VOL: 0
 ;PCODE: $0000032F VOL: 0
 ;PCODE: $00000330 VOL: 0
-; 0002 0154 		dir = FatFs->buf;
+; 0002 0155 		dir = FatFs->buf;
 ;PCODE: $00000331 VOL: 0
 ;PCODE: $00000332 VOL: 0
 ;PCODE: $00000333 VOL: 0
-; 0002 0155 		for (i = 0; i < 8; i++) {	/* Copy file name body */
+; 0002 0156 		for (i = 0; i < 8; i++) {	/* Copy file name body */
 ;PCODE: $00000334 VOL: 0
 ;PCODE: $00000335 VOL: 0
 ;PCODE: $00000336 VOL: 0
@@ -1221,23 +1222,23 @@
 ;PCODE: $0000033A VOL: 0
 ;PCODE: $0000033B VOL: 0
 ;PCODE: $0000033C VOL: 0
-; 0002 0156 			c = dir[i];
+; 0002 0157 			c = dir[i];
 ;PCODE: $0000033D VOL: 0
 ;PCODE: $0000033E VOL: 0
 ;PCODE: $0000033F VOL: 0
-; 0002 0157 			if (c == ' ') break;
+; 0002 0158 			if (c == ' ') break;
 ;PCODE: $00000340 VOL: 0
 ;PCODE: $00000341 VOL: 0
 ;PCODE: $00000342 VOL: 0
 ;PCODE: $00000343 VOL: 0
-; 0002 0158 			if (c == 0x05) c = 0xE5;
+; 0002 0159 			if (c == 0x05) c = 0xE5;
 ;PCODE: $00000344 VOL: 0
 ;PCODE: $00000345 VOL: 0
 ;PCODE: $00000346 VOL: 0
 ;PCODE: $00000347 VOL: 0
 ;PCODE: $00000348 VOL: 0
 ;PCODE: $00000349 VOL: 0
-; 0002 0159 			*p++ = c;
+; 0002 015A 			*p++ = c;
 ;PCODE: $0000034A VOL: 0
 ;PCODE: $0000034B VOL: 0
 ;PCODE: $0000034C VOL: 0
@@ -1245,24 +1246,24 @@
 ;PCODE: $0000034E VOL: 0
 ;PCODE: $0000034F VOL: 0
 ;PCODE: $00000350 VOL: 0
-; 0002 015A 		}
+; 0002 015B 		}
 ;PCODE: $00000351 VOL: 0
 ;PCODE: $00000352 VOL: 0
 ;PCODE: $00000353 VOL: 0
 ;PCODE: $00000354 VOL: 0
 ;PCODE: $00000355 VOL: 0
-; 0002 015B 		if (dir[8] != ' ') {		/* Copy file name extension */
+; 0002 015C 		if (dir[8] != ' ') {		/* Copy file name extension */
 ;PCODE: $00000356 VOL: 0
 ;PCODE: $00000357 VOL: 0
 ;PCODE: $00000358 VOL: 0
 ;PCODE: $00000359 VOL: 0
-; 0002 015C 			*p++ = '.';
+; 0002 015D 			*p++ = '.';
 ;PCODE: $0000035A VOL: 0
 ;PCODE: $0000035B VOL: 0
 ;PCODE: $0000035C VOL: 0
 ;PCODE: $0000035D VOL: 0
 ;PCODE: $0000035E VOL: 0
-; 0002 015D 			for (i = 8; i < 11; i++) {
+; 0002 015E 			for (i = 8; i < 11; i++) {
 ;PCODE: $0000035F VOL: 0
 ;PCODE: $00000360 VOL: 0
 ;PCODE: $00000361 VOL: 0
@@ -1272,16 +1273,16 @@
 ;PCODE: $00000365 VOL: 0
 ;PCODE: $00000366 VOL: 0
 ;PCODE: $00000367 VOL: 0
-; 0002 015E 				c = dir[i];
+; 0002 015F 				c = dir[i];
 ;PCODE: $00000368 VOL: 0
 ;PCODE: $00000369 VOL: 0
 ;PCODE: $0000036A VOL: 0
-; 0002 015F 				if (c == ' ') break;
+; 0002 0160 				if (c == ' ') break;
 ;PCODE: $0000036B VOL: 0
 ;PCODE: $0000036C VOL: 0
 ;PCODE: $0000036D VOL: 0
 ;PCODE: $0000036E VOL: 0
-; 0002 0160 				*p++ = c;
+; 0002 0161 				*p++ = c;
 ;PCODE: $0000036F VOL: 0
 ;PCODE: $00000370 VOL: 0
 ;PCODE: $00000371 VOL: 0
@@ -1289,44 +1290,44 @@
 ;PCODE: $00000373 VOL: 0
 ;PCODE: $00000374 VOL: 0
 ;PCODE: $00000375 VOL: 0
-; 0002 0161 			}
+; 0002 0162 			}
 ;PCODE: $00000376 VOL: 0
 ;PCODE: $00000377 VOL: 0
 ;PCODE: $00000378 VOL: 0
 ;PCODE: $00000379 VOL: 0
 ;PCODE: $0000037A VOL: 0
-; 0002 0162 		}
-; 0002 0163 		fno->fattrib = dir[DIR_Attr];				/* Attribute */
+; 0002 0163 		}
+; 0002 0164 		fno->fattrib = dir[DIR_Attr];				/* Attribute */
 ;PCODE: $0000037B VOL: 0
 ;PCODE: $0000037C VOL: 0
 ;PCODE: $0000037D VOL: 0
 ;PCODE: $0000037E VOL: 0
 ;PCODE: $0000037F VOL: 0
-; 0002 0164 		fno->fsize = LD_DWORD(dir+DIR_FileSize);	/* Size */
+; 0002 0165 		fno->fsize = LD_DWORD(dir+DIR_FileSize);	/* Size */
 ;PCODE: $00000380 VOL: 0
 ;PCODE: $00000381 VOL: 0
 ;PCODE: $00000382 VOL: 0
 ;PCODE: $00000383 VOL: 0
 ;PCODE: $00000384 VOL: 0
-; 0002 0165 		fno->fdate = LD_WORD(dir+DIR_WrtDate);		/* Date */
+; 0002 0166 		fno->fdate = LD_WORD(dir+DIR_WrtDate);		/* Date */
 ;PCODE: $00000385 VOL: 0
 ;PCODE: $00000386 VOL: 0
 ;PCODE: $00000387 VOL: 0
 ;PCODE: $00000388 VOL: 0
 ;PCODE: $00000389 VOL: 0
-; 0002 0166 		fno->ftime = LD_WORD(dir+DIR_WrtTime);		/* Time */
+; 0002 0167 		fno->ftime = LD_WORD(dir+DIR_WrtTime);		/* Time */
 ;PCODE: $0000038A VOL: 0
 ;PCODE: $0000038B VOL: 0
 ;PCODE: $0000038C VOL: 0
 ;PCODE: $0000038D VOL: 0
 ;PCODE: $0000038E VOL: 0
-; 0002 0167 	}
-; 0002 0168 	*p = 0;
+; 0002 0168 	}
+; 0002 0169 	*p = 0;
 ;PCODE: $0000038F VOL: 0
 ;PCODE: $00000390 VOL: 0
 ;PCODE: $00000391 VOL: 0
 ;PCODE: $00000392 VOL: 0
-; 0002 0169 }
+; 0002 016A }
 ;PCODE: $00000393 VOL: 0
 ;PCODE: $00000394 VOL: 0
 ;PCODE: $00000395 VOL: 0
@@ -1341,17 +1342,17 @@
 ;
 ;static
 ;FRESULT follow_path (	/* FR_OK(0): successful, !=0: error code */
-; 0002 0174 	DIR *dj,			/* Directory object to return last directory and found object */
-; 0002 0175 	const char *path	/* Full-path string to find a file or directory */
-; 0002 0176 )
-; 0002 0177 {
+; 0002 0175 	DIR *dj,			/* Directory object to return last directory and found object */
+; 0002 0176 	const char *path	/* Full-path string to find a file or directory */
+; 0002 0177 )
+; 0002 0178 {
 ;PCODE: $00000397 VOL: 0
 ;PCODE: $00000398 VOL: 0
-; 0002 0178 	FRESULT res;
-; 0002 0179 	BYTE *dir;
-; 0002 017A 
+; 0002 0179 	FRESULT res;
+; 0002 017A 	BYTE *dir;
 ; 0002 017B 
-; 0002 017C 	while (*path == ' ') path++;		/* Skip leading spaces */
+; 0002 017C 
+; 0002 017D 	while (*path == ' ') path++;		/* Skip leading spaces */
 ;PCODE: $00000399 VOL: 0
 ;PCODE: $0000039A VOL: 0
 ;	*dj -> Y+6
@@ -1368,7 +1369,7 @@
 ;PCODE: $000003A2 VOL: 0
 ;PCODE: $000003A3 VOL: 0
 ;PCODE: $000003A4 VOL: 0
-; 0002 017D if (*path == '/') path++;
+; 0002 017E if (*path == '/') path++;
 ;PCODE: $000003A5 VOL: 0
 ;PCODE: $000003A6 VOL: 0
 ;PCODE: $000003A7 VOL: 0
@@ -1376,53 +1377,53 @@
 ;PCODE: $000003A9 VOL: 0
 ;PCODE: $000003AA VOL: 0
 ;PCODE: $000003AB VOL: 0
-; 0002 017E 	dj->sclust = 0;						/* Set start directory (always root dir) */
+; 0002 017F 	dj->sclust = 0;						/* Set start directory (always root dir) */
 ;PCODE: $000003AC VOL: 0
 ;PCODE: $000003AD VOL: 0
 ;PCODE: $000003AE VOL: 0
 ;PCODE: $000003AF VOL: 0
 ;PCODE: $000003B0 VOL: 0
-; 0002 017F 
-; 0002 0180 	if ((BYTE)*path <= ' ') {			/* Null path means the root directory */
+; 0002 0180 
+; 0002 0181 	if ((BYTE)*path <= ' ') {			/* Null path means the root directory */
 ;PCODE: $000003B1 VOL: 0
 ;PCODE: $000003B2 VOL: 0
 ;PCODE: $000003B3 VOL: 0
 ;PCODE: $000003B4 VOL: 0
-; 0002 0181 		res = dir_rewind(dj);
+; 0002 0182 		res = dir_rewind(dj);
 ;PCODE: $000003B5 VOL: 0
 ;PCODE: $000003B6 VOL: 0
 ;PCODE: $000003B7 VOL: 0
-; 0002 0182 		FatFs->buf[0] = 0;
+; 0002 0183 		FatFs->buf[0] = 0;
 ;PCODE: $000003B8 VOL: 0
 ;PCODE: $000003B9 VOL: 0
 ;PCODE: $000003BA VOL: 0
 ;PCODE: $000003BB VOL: 0
-; 0002 0183 
-; 0002 0184 	} else {							/* Follow path */
+; 0002 0184 
+; 0002 0185 	} else {							/* Follow path */
 ;PCODE: $000003BC VOL: 0
 ;PCODE: $000003BD VOL: 0
-; 0002 0185 		for (;;) {
+; 0002 0186 		for (;;) {
 ;PCODE: $000003BE VOL: 0
 ;PCODE: $000003BF VOL: 0
-; 0002 0186 			res = create_name(dj, &path);	/* Get a segment */
+; 0002 0187 			res = create_name(dj, &path);	/* Get a segment */
 ;PCODE: $000003C0 VOL: 0
 ;PCODE: $000003C1 VOL: 0
 ;PCODE: $000003C2 VOL: 0
 ;PCODE: $000003C3 VOL: 0
 ;PCODE: $000003C4 VOL: 0
-; 0002 0187 			if (res != FR_OK) break;
+; 0002 0188 			if (res != FR_OK) break;
 ;PCODE: $000003C5 VOL: 0
 ;PCODE: $000003C6 VOL: 0
 ;PCODE: $000003C7 VOL: 0
-; 0002 0188 			res = dir_find(dj);				/* Find it */
+; 0002 0189 			res = dir_find(dj);				/* Find it */
 ;PCODE: $000003C8 VOL: 0
 ;PCODE: $000003C9 VOL: 0
 ;PCODE: $000003CA VOL: 0
 ;PCODE: $000003CB VOL: 0
-; 0002 0189 			if (res != FR_OK) {				/* Could not find the object */
+; 0002 018A 			if (res != FR_OK) {				/* Could not find the object */
 ;PCODE: $000003CC VOL: 0
 ;PCODE: $000003CD VOL: 0
-; 0002 018A 				if (res == FR_NO_FILE && !*(dj->fn+11))
+; 0002 018B 				if (res == FR_NO_FILE && !*(dj->fn+11))
 ;PCODE: $000003CE VOL: 0
 ;PCODE: $000003CF VOL: 0
 ;PCODE: $000003D0 VOL: 0
@@ -1436,14 +1437,14 @@
 ;PCODE: $000003D8 VOL: 0
 ;PCODE: $000003D9 VOL: 0
 ;PCODE: $000003DA VOL: 0
-; 0002 018B 					res = FR_NO_PATH;
+; 0002 018C 					res = FR_NO_PATH;
 ;PCODE: $000003DB VOL: 0
 ;PCODE: $000003DC VOL: 0
-; 0002 018C 				break;
+; 0002 018D 				break;
 ;PCODE: $000003DD VOL: 0
 ;PCODE: $000003DE VOL: 0
-; 0002 018D 			}
-; 0002 018E 			if (*(dj->fn+11)) break;		/* Last segment match. Function completed. */
+; 0002 018E 			}
+; 0002 018F 			if (*(dj->fn+11)) break;		/* Last segment match. Function completed. */
 ;PCODE: $000003DF VOL: 0
 ;PCODE: $000003E0 VOL: 0
 ;PCODE: $000003E1 VOL: 0
@@ -1452,27 +1453,27 @@
 ;PCODE: $000003E4 VOL: 0
 ;PCODE: $000003E5 VOL: 0
 ;PCODE: $000003E6 VOL: 0
-; 0002 018F 			dir = FatFs->buf;				/* There is next segment. Follow the sub directory */
+; 0002 0190 			dir = FatFs->buf;				/* There is next segment. Follow the sub directory */
 ;PCODE: $000003E7 VOL: 0
 ;PCODE: $000003E8 VOL: 0
 ;PCODE: $000003E9 VOL: 0
 ;PCODE: $000003EA VOL: 0
-; 0002 0190 			if (!(dir[DIR_Attr] & AM_DIR)) { /* Cannot follow because it is a file */
+; 0002 0191 			if (!(dir[DIR_Attr] & AM_DIR)) { /* Cannot follow because it is a file */
 ;PCODE: $000003EB VOL: 0
 ;PCODE: $000003EC VOL: 0
 ;PCODE: $000003ED VOL: 0
 ;PCODE: $000003EE VOL: 0
-; 0002 0191 				res = FR_NO_PATH; break;
+; 0002 0192 				res = FR_NO_PATH; break;
 ;PCODE: $000003EF VOL: 0
 ;PCODE: $000003F0 VOL: 0
 ;PCODE: $000003F1 VOL: 0
-; 0002 0192 			}
-; 0002 0193 			dj->sclust =
+; 0002 0193 			}
+; 0002 0194 			dj->sclust =
 ;PCODE: $000003F2 VOL: 0
-; 0002 0194 #if _FS_FAT32
-; 0002 0195 				((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
-; 0002 0196 #endif
-; 0002 0197 				LD_WORD(dir+DIR_FstClusLO);
+; 0002 0195 #if _FS_FAT32
+; 0002 0196 				((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
+; 0002 0197 #endif
+; 0002 0198 				LD_WORD(dir+DIR_FstClusLO);
 ;PCODE: $000003F3 VOL: 0
 ;PCODE: $000003F4 VOL: 0
 ;PCODE: $000003F5 VOL: 0
@@ -1487,19 +1488,19 @@
 ;PCODE: $000003FE VOL: 0
 ;PCODE: $000003FF VOL: 0
 ;PCODE: $00000400 VOL: 0
-; 0002 0198 		}
+; 0002 0199 		}
 ;PCODE: $00000401 VOL: 0
 ;PCODE: $00000402 VOL: 0
 ;PCODE: $00000403 VOL: 0
-; 0002 0199 	}
+; 0002 019A 	}
 ;PCODE: $00000404 VOL: 0
-; 0002 019A 
-; 0002 019B 	return res;
+; 0002 019B 
+; 0002 019C 	return res;
 ;PCODE: $00000405 VOL: 0
 ;PCODE: $00000406 VOL: 0
 ;PCODE: $00000407 VOL: 0
 ;PCODE: $00000408 VOL: 0
-; 0002 019C }
+; 0002 019D }
 ;PCODE: $00000409 VOL: 0
 ;
 ;
@@ -1511,13 +1512,13 @@
 ;
 ;static
 ;BYTE check_fs (	/* 0:The FAT boot record, 1:Valid boot record but not an FAT, 2:Not a boot record, 3:Error */
-; 0002 01A7 	BYTE *buf,	/* Working buffer */
-; 0002 01A8 	DWORD sect	/* Sector# (lba) to check if it is an FAT boot record or not */
-; 0002 01A9 )
-; 0002 01AA {
+; 0002 01A8 	BYTE *buf,	/* Working buffer */
+; 0002 01A9 	DWORD sect	/* Sector# (lba) to check if it is an FAT boot record or not */
+; 0002 01AA )
+; 0002 01AB {
 ;PCODE: $0000040A VOL: 0
 ;PCODE: $0000040B VOL: 0
-; 0002 01AB 	if (disk_readp(buf, sect, 510, 2))		/* Read the boot sector */
+; 0002 01AC 	if (disk_readp(buf, sect, 510, 2))		/* Read the boot sector */
 ;PCODE: $0000040C VOL: 0
 ;	*buf -> Y+4
 ;	sect -> Y+0
@@ -1532,22 +1533,22 @@
 ;PCODE: $00000415 VOL: 0
 ;PCODE: $00000416 VOL: 0
 ;PCODE: $00000417 VOL: 0
-; 0002 01AC 		return 3;
+; 0002 01AD 		return 3;
 ;PCODE: $00000418 VOL: 0
 ;PCODE: $00000419 VOL: 0
 ;PCODE: $0000041A VOL: 0
-; 0002 01AD 	if (LD_WORD(buf) != 0xAA55)				/* Check record signature */
+; 0002 01AE 	if (LD_WORD(buf) != 0xAA55)				/* Check record signature */
 ;PCODE: $0000041B VOL: 0
 ;PCODE: $0000041C VOL: 0
 ;PCODE: $0000041D VOL: 0
 ;PCODE: $0000041E VOL: 0
 ;PCODE: $0000041F VOL: 0
-; 0002 01AE 		return 2;
+; 0002 01AF 		return 2;
 ;PCODE: $00000420 VOL: 0
 ;PCODE: $00000421 VOL: 0
 ;PCODE: $00000422 VOL: 0
-; 0002 01AF 
-; 0002 01B0 	if (!disk_readp(buf, sect, BS_FilSysType, 2) && LD_WORD(buf) == 0x4146)	/* Check FAT12/16 */
+; 0002 01B0 
+; 0002 01B1 	if (!disk_readp(buf, sect, BS_FilSysType, 2) && LD_WORD(buf) == 0x4146)	/* Check FAT12/16 */
 ;PCODE: $00000423 VOL: 0
 ;PCODE: $00000424 VOL: 0
 ;PCODE: $00000425 VOL: 0
@@ -1568,12 +1569,12 @@
 ;PCODE: $00000434 VOL: 0
 ;PCODE: $00000435 VOL: 0
 ;PCODE: $00000436 VOL: 0
-; 0002 01B1 		return 0;
+; 0002 01B2 		return 0;
 ;PCODE: $00000437 VOL: 0
 ;PCODE: $00000438 VOL: 0
 ;PCODE: $00000439 VOL: 0
-; 0002 01B2 #if _FS_FAT32
-; 0002 01B3 	if (!disk_readp(buf, sect, BS_FilSysType32, 2) && LD_WORD(buf) == 0x4146)	/* Check FAT32 */
+; 0002 01B3 #if _FS_FAT32
+; 0002 01B4 	if (!disk_readp(buf, sect, BS_FilSysType32, 2) && LD_WORD(buf) == 0x4146)	/* Check FAT32 */
 ;PCODE: $0000043A VOL: 0
 ;PCODE: $0000043B VOL: 0
 ;PCODE: $0000043C VOL: 0
@@ -1594,17 +1595,17 @@
 ;PCODE: $0000044B VOL: 0
 ;PCODE: $0000044C VOL: 0
 ;PCODE: $0000044D VOL: 0
-; 0002 01B4 		return 0;
+; 0002 01B5 		return 0;
 ;PCODE: $0000044E VOL: 0
 ;PCODE: $0000044F VOL: 0
 ;PCODE: $00000450 VOL: 0
-; 0002 01B5 #endif
-; 0002 01B6 	return 1;
+; 0002 01B6 #endif
+; 0002 01B7 	return 1;
 ;PCODE: $00000451 VOL: 0
 ;PCODE: $00000452 VOL: 0
 ;PCODE: $00000453 VOL: 0
 ;PCODE: $00000454 VOL: 0
-; 0002 01B7 }
+; 0002 01B8 }
 ;PCODE: $00000455 VOL: 0
 ;
 ;
@@ -1623,16 +1624,16 @@
 ;/*-----------------------------------------------------------------------*/
 ;
 ;FRESULT pf_mount (
-; 0002 01C9 	FATFS *fs		/* Pointer to new file system object (NULL: Unmount) */
-; 0002 01CA )
-; 0002 01CB {
+; 0002 01CA 	FATFS *fs		/* Pointer to new file system object (NULL: Unmount) */
+; 0002 01CB )
+; 0002 01CC {
 ;PCODE: $00000456 VOL: 0
 ;PCODE: $00000457 VOL: 0
-; 0002 01CC 	BYTE fmt, buf[36];
-; 0002 01CD 	DWORD bsect, fsize, tsect, mclst;
-; 0002 01CE 
+; 0002 01CD 	BYTE fmt, buf[36];
+; 0002 01CE 	DWORD bsect, fsize, tsect, mclst;
 ; 0002 01CF 
-; 0002 01D0 	FatFs = 0;
+; 0002 01D0 
+; 0002 01D1 	FatFs = 0;
 ;PCODE: $00000458 VOL: 0
 ;PCODE: $00000459 VOL: 0
 ;PCODE: $0000045A VOL: 0
@@ -1645,7 +1646,7 @@
 ;	mclst -> Y+1
 ;PCODE: $0000045B VOL: 0
 ;PCODE: $0000045C VOL: 0
-; 0002 01D1 	if (!fs) return FR_OK;				/* Unregister fs object */
+; 0002 01D2 	if (!fs) return FR_OK;				/* Unregister fs object */
 ;PCODE: $0000045D VOL: 0
 ;PCODE: $0000045E VOL: 0
 ;PCODE: $0000045F VOL: 0
@@ -1654,36 +1655,36 @@
 ;PCODE: $00000462 VOL: 0
 ;PCODE: $00000463 VOL: 0
 ;PCODE: $00000464 VOL: 0
-; 0002 01D2 
-; 0002 01D3 	if (disk_initialize() & STA_NOINIT)	/* Check if the drive is ready or not */
+; 0002 01D3 
+; 0002 01D4 	if (disk_initialize() & STA_NOINIT)	/* Check if the drive is ready or not */
 ;PCODE: $00000465 VOL: 0
 ;PCODE: $00000466 VOL: 0
 ;PCODE: $00000467 VOL: 0
 ;PCODE: $00000468 VOL: 0
-; 0002 01D4 		return FR_NOT_READY;
+; 0002 01D5 		return FR_NOT_READY;
 ;PCODE: $00000469 VOL: 0
 ;PCODE: $0000046A VOL: 0
 ;PCODE: $0000046B VOL: 0
 ;PCODE: $0000046C VOL: 0
 ;PCODE: $0000046D VOL: 0
-; 0002 01D5 
-; 0002 01D6 	/* Search FAT partition on the drive */
-; 0002 01D7 	bsect = 0;
+; 0002 01D6 
+; 0002 01D7 	/* Search FAT partition on the drive */
+; 0002 01D8 	bsect = 0;
 ;PCODE: $0000046E VOL: 0
 ;PCODE: $0000046F VOL: 0
 ;PCODE: $00000470 VOL: 0
-; 0002 01D8 	fmt = check_fs(buf, bsect);			/* Check sector 0 as an SFD format */
+; 0002 01D9 	fmt = check_fs(buf, bsect);			/* Check sector 0 as an SFD format */
 ;PCODE: $00000471 VOL: 0
 ;PCODE: $00000472 VOL: 0
 ;PCODE: $00000473 VOL: 0
 ;PCODE: $00000474 VOL: 0
 ;PCODE: $00000475 VOL: 0
-; 0002 01D9 	if (fmt == 1) {						/* Not an FAT boot record, it may be FDISK format */
+; 0002 01DA 	if (fmt == 1) {						/* Not an FAT boot record, it may be FDISK format */
 ;PCODE: $00000476 VOL: 0
 ;PCODE: $00000477 VOL: 0
 ;PCODE: $00000478 VOL: 0
-; 0002 01DA 		/* Check a partition listed in top of the partition table */
-; 0002 01DB 		if (disk_readp(buf, bsect, MBR_Table, 16)) {	/* 1st partition entry */
+; 0002 01DB 		/* Check a partition listed in top of the partition table */
+; 0002 01DC 		if (disk_readp(buf, bsect, MBR_Table, 16)) {	/* 1st partition entry */
 ;PCODE: $00000479 VOL: 0
 ;PCODE: $0000047A VOL: 0
 ;PCODE: $0000047B VOL: 0
@@ -1695,31 +1696,31 @@
 ;PCODE: $00000481 VOL: 0
 ;PCODE: $00000482 VOL: 0
 ;PCODE: $00000483 VOL: 0
-; 0002 01DC 			fmt = 3;
+; 0002 01DD 			fmt = 3;
 ;PCODE: $00000484 VOL: 0
 ;PCODE: $00000485 VOL: 0
-; 0002 01DD 		} else {
+; 0002 01DE 		} else {
 ;PCODE: $00000486 VOL: 0
 ;PCODE: $00000487 VOL: 0
-; 0002 01DE 			if (buf[4]) {					/* Is the partition existing? */
+; 0002 01DF 			if (buf[4]) {					/* Is the partition existing? */
 ;PCODE: $00000488 VOL: 0
 ;PCODE: $00000489 VOL: 0
 ;PCODE: $0000048A VOL: 0
-; 0002 01DF 				bsect = LD_DWORD(&buf[8]);	/* Partition offset in LBA */
+; 0002 01E0 				bsect = LD_DWORD(&buf[8]);	/* Partition offset in LBA */
 ;PCODE: $0000048B VOL: 0
 ;PCODE: $0000048C VOL: 0
-; 0002 01E0 				fmt = check_fs(buf, bsect);	/* Check the partition */
+; 0002 01E1 				fmt = check_fs(buf, bsect);	/* Check the partition */
 ;PCODE: $0000048D VOL: 0
 ;PCODE: $0000048E VOL: 0
 ;PCODE: $0000048F VOL: 0
 ;PCODE: $00000490 VOL: 0
 ;PCODE: $00000491 VOL: 0
-; 0002 01E1 			}
-; 0002 01E2 		}
+; 0002 01E2 			}
+; 0002 01E3 		}
 ;PCODE: $00000492 VOL: 0
 ;PCODE: $00000493 VOL: 0
-; 0002 01E3 	}
-; 0002 01E4 	if (fmt == 3) return FR_DISK_ERR;
+; 0002 01E4 	}
+; 0002 01E5 	if (fmt == 3) return FR_DISK_ERR;
 ;PCODE: $00000494 VOL: 0
 ;PCODE: $00000495 VOL: 0
 ;PCODE: $00000496 VOL: 0
@@ -1729,7 +1730,7 @@
 ;PCODE: $0000049A VOL: 0
 ;PCODE: $0000049B VOL: 0
 ;PCODE: $0000049C VOL: 0
-; 0002 01E5 	if (fmt) return FR_NO_FILESYSTEM;	/* No valid FAT patition is found */
+; 0002 01E6 	if (fmt) return FR_NO_FILESYSTEM;	/* No valid FAT patition is found */
 ;PCODE: $0000049D VOL: 0
 ;PCODE: $0000049E VOL: 0
 ;PCODE: $0000049F VOL: 0
@@ -1738,9 +1739,9 @@
 ;PCODE: $000004A2 VOL: 0
 ;PCODE: $000004A3 VOL: 0
 ;PCODE: $000004A4 VOL: 0
-; 0002 01E6 
-; 0002 01E7 	/* Initialize the file system object */
-; 0002 01E8 	if (disk_readp(buf, bsect, 13, sizeof(buf))) return FR_DISK_ERR;
+; 0002 01E7 
+; 0002 01E8 	/* Initialize the file system object */
+; 0002 01E9 	if (disk_readp(buf, bsect, 13, sizeof(buf))) return FR_DISK_ERR;
 ;PCODE: $000004A5 VOL: 0
 ;PCODE: $000004A6 VOL: 0
 ;PCODE: $000004A7 VOL: 0
@@ -1758,8 +1759,8 @@
 ;PCODE: $000004B3 VOL: 0
 ;PCODE: $000004B4 VOL: 0
 ;PCODE: $000004B5 VOL: 0
-; 0002 01E9 
-; 0002 01EA 	fsize = LD_WORD(buf+BPB_FATSz16-13);				/* Number of sectors per FAT */
+; 0002 01EA 
+; 0002 01EB 	fsize = LD_WORD(buf+BPB_FATSz16-13);				/* Number of sectors per FAT */
 ;PCODE: $000004B6 VOL: 0
 ;PCODE: $000004B7 VOL: 0
 ;PCODE: $000004B8 VOL: 0
@@ -1767,7 +1768,7 @@
 ;PCODE: $000004BA VOL: 0
 ;PCODE: $000004BB VOL: 0
 ;PCODE: $000004BC VOL: 0
-; 0002 01EB 	if (!fsize) fsize = LD_DWORD(buf+BPB_FATSz32-13);
+; 0002 01EC 	if (!fsize) fsize = LD_DWORD(buf+BPB_FATSz32-13);
 ;PCODE: $000004BD VOL: 0
 ;PCODE: $000004BE VOL: 0
 ;PCODE: $000004BF VOL: 0
@@ -1776,8 +1777,8 @@
 ;PCODE: $000004C2 VOL: 0
 ;PCODE: $000004C3 VOL: 0
 ;PCODE: $000004C4 VOL: 0
-; 0002 01EC 
-; 0002 01ED 	fsize *= buf[BPB_NumFATs-13];						/* Number of sectors in FAT area */
+; 0002 01ED 
+; 0002 01EE 	fsize *= buf[BPB_NumFATs-13];						/* Number of sectors in FAT area */
 ;PCODE: $000004C5 VOL: 0
 ;PCODE: $000004C6 VOL: 0
 ;PCODE: $000004C7 VOL: 0
@@ -1785,7 +1786,7 @@
 ;PCODE: $000004C9 VOL: 0
 ;PCODE: $000004CA VOL: 0
 ;PCODE: $000004CB VOL: 0
-; 0002 01EE 	fs->fatbase = bsect + LD_WORD(buf+BPB_RsvdSecCnt-13); /* FAT start sector (lba) */
+; 0002 01EF 	fs->fatbase = bsect + LD_WORD(buf+BPB_RsvdSecCnt-13); /* FAT start sector (lba) */
 ;PCODE: $000004CC VOL: 0
 ;PCODE: $000004CD VOL: 0
 ;PCODE: $000004CE VOL: 0
@@ -1795,25 +1796,25 @@
 ;PCODE: $000004D2 VOL: 0
 ;PCODE: $000004D3 VOL: 0
 ;PCODE: $000004D4 VOL: 0
-; 0002 01EF 	fs->csize = buf[BPB_SecPerClus-13];					/* Number of sectors per cluster */
+; 0002 01F0 	fs->csize = buf[BPB_SecPerClus-13];					/* Number of sectors per cluster */
 ;PCODE: $000004D5 VOL: 0
 ;PCODE: $000004D6 VOL: 0
 ;PCODE: $000004D7 VOL: 0
-; 0002 01F0 	fs->n_rootdir = LD_WORD(buf+BPB_RootEntCnt-13);		/* Nmuber of root directory entries */
+; 0002 01F1 	fs->n_rootdir = LD_WORD(buf+BPB_RootEntCnt-13);		/* Nmuber of root directory entries */
 ;PCODE: $000004D8 VOL: 0
 ;PCODE: $000004D9 VOL: 0
 ;PCODE: $000004DA VOL: 0
 ;PCODE: $000004DB VOL: 0
 ;PCODE: $000004DC VOL: 0
 ;PCODE: $000004DD VOL: 0
-; 0002 01F1 	tsect = LD_WORD(buf+BPB_TotSec16-13);				/* Number of sectors on the file system */
+; 0002 01F2 	tsect = LD_WORD(buf+BPB_TotSec16-13);				/* Number of sectors on the file system */
 ;PCODE: $000004DE VOL: 0
 ;PCODE: $000004DF VOL: 0
 ;PCODE: $000004E0 VOL: 0
 ;PCODE: $000004E1 VOL: 0
 ;PCODE: $000004E2 VOL: 0
 ;PCODE: $000004E3 VOL: 0
-; 0002 01F2 	if (!tsect) tsect = LD_DWORD(buf+BPB_TotSec32-13);
+; 0002 01F3 	if (!tsect) tsect = LD_DWORD(buf+BPB_TotSec32-13);
 ;PCODE: $000004E4 VOL: 0
 ;PCODE: $000004E5 VOL: 0
 ;PCODE: $000004E6 VOL: 0
@@ -1822,10 +1823,10 @@
 ;PCODE: $000004E9 VOL: 0
 ;PCODE: $000004EA VOL: 0
 ;PCODE: $000004EB VOL: 0
-; 0002 01F3 	mclst = (tsect						/* Last cluster# + 1 */
+; 0002 01F4 	mclst = (tsect						/* Last cluster# + 1 */
 ;PCODE: $000004EC VOL: 0
-; 0002 01F4 		- LD_WORD(buf+BPB_RsvdSecCnt-13) - fsize - fs->n_rootdir / 16
-; 0002 01F5 		) / fs->csize + 2;
+; 0002 01F5 		- LD_WORD(buf+BPB_RsvdSecCnt-13) - fsize - fs->n_rootdir / 16
+; 0002 01F6 		) / fs->csize + 2;
 ;PCODE: $000004ED VOL: 0
 ;PCODE: $000004EE VOL: 0
 ;PCODE: $000004EF VOL: 0
@@ -1851,58 +1852,58 @@
 ;PCODE: $00000503 VOL: 0
 ;PCODE: $00000504 VOL: 0
 ;PCODE: $00000505 VOL: 0
-; 0002 01F6 	fs->max_clust = (CLUST)mclst;
+; 0002 01F7 	fs->max_clust = (CLUST)mclst;
 ;PCODE: $00000506 VOL: 0
 ;PCODE: $00000507 VOL: 0
 ;PCODE: $00000508 VOL: 0
-; 0002 01F7 
-; 0002 01F8 	fmt = FS_FAT12;							/* Determine the FAT sub type */
+; 0002 01F8 
+; 0002 01F9 	fmt = FS_FAT12;							/* Determine the FAT sub type */
 ;PCODE: $00000509 VOL: 0
 ;PCODE: $0000050A VOL: 0
-; 0002 01F9 	if (mclst >= 0xFF7) fmt = FS_FAT16;		/* Number of clusters >= 0xFF5 */
+; 0002 01FA 	if (mclst >= 0xFF7) fmt = FS_FAT16;		/* Number of clusters >= 0xFF5 */
 ;PCODE: $0000050B VOL: 0
 ;PCODE: $0000050C VOL: 0
 ;PCODE: $0000050D VOL: 0
 ;PCODE: $0000050E VOL: 0
 ;PCODE: $0000050F VOL: 0
-; 0002 01FA 	if (mclst >= 0xFFF7)					/* Number of clusters >= 0xFFF5 */
+; 0002 01FB 	if (mclst >= 0xFFF7)					/* Number of clusters >= 0xFFF5 */
 ;PCODE: $00000510 VOL: 0
 ;PCODE: $00000511 VOL: 0
 ;PCODE: $00000512 VOL: 0
 ;PCODE: $00000513 VOL: 0
-; 0002 01FB #if _FS_FAT32
-; 0002 01FC 		fmt = FS_FAT32;
+; 0002 01FC #if _FS_FAT32
+; 0002 01FD 		fmt = FS_FAT32;
 ;PCODE: $00000514 VOL: 0
 ;PCODE: $00000515 VOL: 0
-; 0002 01FD #else
-; 0002 01FE 		return FR_NO_FILESYSTEM;
-; 0002 01FF #endif
-; 0002 0200 
-; 0002 0201 	fs->fs_type = fmt;		/* FAT sub-type */
+; 0002 01FE #else
+; 0002 01FF 		return FR_NO_FILESYSTEM;
+; 0002 0200 #endif
+; 0002 0201 
+; 0002 0202 	fs->fs_type = fmt;		/* FAT sub-type */
 ;PCODE: $00000516 VOL: 0
 ;PCODE: $00000517 VOL: 0
 ;PCODE: $00000518 VOL: 0
-; 0002 0202 #if _FS_FAT32
-; 0002 0203 	if (fmt == FS_FAT32)
+; 0002 0203 #if _FS_FAT32
+; 0002 0204 	if (fmt == FS_FAT32)
 ;PCODE: $00000519 VOL: 0
 ;PCODE: $0000051A VOL: 0
 ;PCODE: $0000051B VOL: 0
-; 0002 0204 		fs->dirbase = LD_DWORD(buf+(BPB_RootClus-13));	/* Root directory start cluster */
+; 0002 0205 		fs->dirbase = LD_DWORD(buf+(BPB_RootClus-13));	/* Root directory start cluster */
 ;PCODE: $0000051C VOL: 0
 ;PCODE: $0000051D VOL: 0
 ;PCODE: $0000051E VOL: 0
-; 0002 0205 	else
+; 0002 0206 	else
 ;PCODE: $0000051F VOL: 0
 ;PCODE: $00000520 VOL: 0
-; 0002 0206 #endif
-; 0002 0207 		fs->dirbase = fs->fatbase + fsize;				/* Root directory start sector (lba) */
+; 0002 0207 #endif
+; 0002 0208 		fs->dirbase = fs->fatbase + fsize;				/* Root directory start sector (lba) */
 ;PCODE: $00000521 VOL: 0
 ;PCODE: $00000522 VOL: 0
 ;PCODE: $00000523 VOL: 0
 ;PCODE: $00000524 VOL: 0
 ;PCODE: $00000525 VOL: 0
 ;PCODE: $00000526 VOL: 0
-; 0002 0208 	fs->database = fs->fatbase + fsize + fs->n_rootdir / 16;	/* Data start sector (lba) */
+; 0002 0209 	fs->database = fs->fatbase + fsize + fs->n_rootdir / 16;	/* Data start sector (lba) */
 ;PCODE: $00000527 VOL: 0
 ;PCODE: $00000528 VOL: 0
 ;PCODE: $00000529 VOL: 0
@@ -1918,23 +1919,23 @@
 ;PCODE: $00000533 VOL: 0
 ;PCODE: $00000534 VOL: 0
 ;PCODE: $00000535 VOL: 0
-; 0002 0209 
-; 0002 020A 	fs->flag = 0;
+; 0002 020A 
+; 0002 020B 	fs->flag = 0;
 ;PCODE: $00000536 VOL: 0
 ;PCODE: $00000537 VOL: 0
 ;PCODE: $00000538 VOL: 0
 ;PCODE: $00000539 VOL: 0
-; 0002 020B 	FatFs = fs;
+; 0002 020C 	FatFs = fs;
 ;PCODE: $0000053A VOL: 0
 ;PCODE: $0000053B VOL: 0
-; 0002 020C 
-; 0002 020D 	return FR_OK;
+; 0002 020D 
+; 0002 020E 	return FR_OK;
 ;PCODE: $0000053C VOL: 0
 ;PCODE: $0000053D VOL: 0
 ;PCODE: $0000053E VOL: 0
 ;PCODE: $0000053F VOL: 0
 ;PCODE: $00000540 VOL: 0
-; 0002 020E }
+; 0002 020F }
 ;PCODE: $00000541 VOL: 0
 ;
 ;
@@ -1945,18 +1946,18 @@
 ;/*-----------------------------------------------------------------------*/
 ;
 ;FRESULT pf_open (
-; 0002 0218 	const char *path	/* Pointer to the file name */
-; 0002 0219 )
-; 0002 021A {
+; 0002 0219 	const char *path	/* Pointer to the file name */
+; 0002 021A )
+; 0002 021B {
 ;PCODE: $00000542 VOL: 0
 ;PCODE: $00000543 VOL: 0
-; 0002 021B 	FRESULT res;
-; 0002 021C 	DIR dj;
-; 0002 021D 	BYTE sp[12], dir[32];
-; 0002 021E 	FATFS *fs = FatFs;
-; 0002 021F 
+; 0002 021C 	FRESULT res;
+; 0002 021D 	DIR dj;
+; 0002 021E 	BYTE sp[12], dir[32];
+; 0002 021F 	FATFS *fs = FatFs;
 ; 0002 0220 
-; 0002 0221 	if (!fs)						/* Check file system */
+; 0002 0221 
+; 0002 0222 	if (!fs)						/* Check file system */
 ;PCODE: $00000544 VOL: 0
 ;PCODE: $00000545 VOL: 0
 ;PCODE: $00000546 VOL: 0
@@ -1970,39 +1971,39 @@
 ;PCODE: $00000548 VOL: 0
 ;PCODE: $00000549 VOL: 0
 ;PCODE: $0000054A VOL: 0
-; 0002 0222 		return FR_NOT_ENABLED;
+; 0002 0223 		return FR_NOT_ENABLED;
 ;PCODE: $0000054B VOL: 0
 ;PCODE: $0000054C VOL: 0
 ;PCODE: $0000054D VOL: 0
 ;PCODE: $0000054E VOL: 0
-; 0002 0223 
-; 0002 0224 	fs->flag = 0;
+; 0002 0224 
+; 0002 0225 	fs->flag = 0;
 ;PCODE: $0000054F VOL: 0
 ;PCODE: $00000550 VOL: 0
 ;PCODE: $00000551 VOL: 0
 ;PCODE: $00000552 VOL: 0
 ;PCODE: $00000553 VOL: 0
-; 0002 0225 	fs->buf = dir;
+; 0002 0226 	fs->buf = dir;
 ;PCODE: $00000554 VOL: 0
 ;PCODE: $00000555 VOL: 0
 ;PCODE: $00000556 VOL: 0
-; 0002 0226 	dj.fn = sp;
+; 0002 0227 	dj.fn = sp;
 ;PCODE: $00000557 VOL: 0
 ;PCODE: $00000558 VOL: 0
-; 0002 0227 	res = follow_path(&dj, path);	/* Follow the file path */
+; 0002 0228 	res = follow_path(&dj, path);	/* Follow the file path */
 ;PCODE: $00000559 VOL: 0
 ;PCODE: $0000055A VOL: 0
 ;PCODE: $0000055B VOL: 0
 ;PCODE: $0000055C VOL: 0
 ;PCODE: $0000055D VOL: 0
-; 0002 0228 	if (res != FR_OK) return res;	/* Follow failed */
+; 0002 0229 	if (res != FR_OK) return res;	/* Follow failed */
 ;PCODE: $0000055E VOL: 0
 ;PCODE: $0000055F VOL: 0
 ;PCODE: $00000560 VOL: 0
 ;PCODE: $00000561 VOL: 0
 ;PCODE: $00000562 VOL: 0
 ;PCODE: $00000563 VOL: 0
-; 0002 0229 	if (!dir[0] || (dir[DIR_Attr] & AM_DIR))	/* It is a directory */
+; 0002 022A 	if (!dir[0] || (dir[DIR_Attr] & AM_DIR))	/* It is a directory */
 ;PCODE: $00000564 VOL: 0
 ;PCODE: $00000565 VOL: 0
 ;PCODE: $00000566 VOL: 0
@@ -2012,18 +2013,18 @@
 ;PCODE: $0000056A VOL: 0
 ;PCODE: $0000056B VOL: 0
 ;PCODE: $0000056C VOL: 0
-; 0002 022A 		return FR_NO_FILE;
+; 0002 022B 		return FR_NO_FILE;
 ;PCODE: $0000056D VOL: 0
 ;PCODE: $0000056E VOL: 0
 ;PCODE: $0000056F VOL: 0
 ;PCODE: $00000570 VOL: 0
-; 0002 022B 
-; 0002 022C 	fs->org_clust =						/* File start cluster */
+; 0002 022C 
+; 0002 022D 	fs->org_clust =						/* File start cluster */
 ;PCODE: $00000571 VOL: 0
-; 0002 022D #if _FS_FAT32
-; 0002 022E 		((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
-; 0002 022F #endif
-; 0002 0230 		LD_WORD(dir+DIR_FstClusLO);
+; 0002 022E #if _FS_FAT32
+; 0002 022F 		((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
+; 0002 0230 #endif
+; 0002 0231 		LD_WORD(dir+DIR_FstClusLO);
 ;PCODE: $00000572 VOL: 0
 ;PCODE: $00000573 VOL: 0
 ;PCODE: $00000574 VOL: 0
@@ -2033,27 +2034,27 @@
 ;PCODE: $00000578 VOL: 0
 ;PCODE: $00000579 VOL: 0
 ;PCODE: $0000057A VOL: 0
-; 0002 0231 	fs->fsize = LD_DWORD(dir+DIR_FileSize);	/* File size */
+; 0002 0232 	fs->fsize = LD_DWORD(dir+DIR_FileSize);	/* File size */
 ;PCODE: $0000057B VOL: 0
 ;PCODE: $0000057C VOL: 0
 ;PCODE: $0000057D VOL: 0
-; 0002 0232 	fs->fptr = 0;						/* File pointer */
+; 0002 0233 	fs->fptr = 0;						/* File pointer */
 ;PCODE: $0000057E VOL: 0
 ;PCODE: $0000057F VOL: 0
 ;PCODE: $00000580 VOL: 0
 ;PCODE: $00000581 VOL: 0
-; 0002 0233 	fs->flag = FA_OPENED;
+; 0002 0234 	fs->flag = FA_OPENED;
 ;PCODE: $00000582 VOL: 0
 ;PCODE: $00000583 VOL: 0
 ;PCODE: $00000584 VOL: 0
 ;PCODE: $00000585 VOL: 0
-; 0002 0234 
-; 0002 0235 	return FR_OK;
+; 0002 0235 
+; 0002 0236 	return FR_OK;
 ;PCODE: $00000586 VOL: 0
 ;PCODE: $00000587 VOL: 0
 ;PCODE: $00000588 VOL: 0
 ;PCODE: $00000589 VOL: 0
-; 0002 0236 }
+; 0002 0237 }
 ;PCODE: $0000058A VOL: 0
 ;
 ;
@@ -2065,22 +2066,22 @@
 ;#if _USE_READ
 ;
 ;FRESULT pf_read (
-; 0002 0241 	void* buff,		/* Pointer to the read buffer (NULL:Forward data to the stream)*/
-; 0002 0242 	WORD btr,		/* Number of bytes to read */
-; 0002 0243 	WORD* br		/* Pointer to number of bytes read */
-; 0002 0244 )
-; 0002 0245 {
+; 0002 0242 	void* buff,		/* Pointer to the read buffer (NULL:Forward data to the stream)*/
+; 0002 0243 	WORD btr,		/* Number of bytes to read */
+; 0002 0244 	WORD* br		/* Pointer to number of bytes read */
+; 0002 0245 )
+; 0002 0246 {
 ;PCODE: $0000058B VOL: 0
 ;PCODE: $0000058C VOL: 0
-; 0002 0246 	DRESULT dr;
-; 0002 0247 	CLUST clst;
-; 0002 0248 	DWORD sect, remain;
-; 0002 0249 	BYTE *rbuff = buff;
-; 0002 024A 	WORD rcnt;
-; 0002 024B 	FATFS *fs = FatFs;
-; 0002 024C 
+; 0002 0247 	DRESULT dr;
+; 0002 0248 	CLUST clst;
+; 0002 0249 	DWORD sect, remain;
+; 0002 024A 	BYTE *rbuff = buff;
+; 0002 024B 	WORD rcnt;
+; 0002 024C 	FATFS *fs = FatFs;
 ; 0002 024D 
-; 0002 024E 	*br = 0;
+; 0002 024E 
+; 0002 024F 	*br = 0;
 ;PCODE: $0000058D VOL: 0
 ;PCODE: $0000058E VOL: 0
 ;PCODE: $0000058F VOL: 0
@@ -2101,7 +2102,7 @@
 ;PCODE: $00000594 VOL: 0
 ;PCODE: $00000595 VOL: 0
 ;PCODE: $00000596 VOL: 0
-; 0002 024F 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
+; 0002 0250 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
 ;PCODE: $00000597 VOL: 0
 ;PCODE: $00000598 VOL: 0
 ;PCODE: $00000599 VOL: 0
@@ -2109,19 +2110,19 @@
 ;PCODE: $0000059B VOL: 0
 ;PCODE: $0000059C VOL: 0
 ;PCODE: $0000059D VOL: 0
-; 0002 0250 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
+; 0002 0251 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
 ;PCODE: $0000059E VOL: 0
 ;PCODE: $0000059F VOL: 0
 ;PCODE: $000005A0 VOL: 0
 ;PCODE: $000005A1 VOL: 0
 ;PCODE: $000005A2 VOL: 0
-; 0002 0251 		return FR_NOT_OPENED;
+; 0002 0252 		return FR_NOT_OPENED;
 ;PCODE: $000005A3 VOL: 0
 ;PCODE: $000005A4 VOL: 0
 ;PCODE: $000005A5 VOL: 0
 ;PCODE: $000005A6 VOL: 0
-; 0002 0252 
-; 0002 0253 	remain = fs->fsize - fs->fptr;
+; 0002 0253 
+; 0002 0254 	remain = fs->fsize - fs->fptr;
 ;PCODE: $000005A7 VOL: 0
 ;PCODE: $000005A8 VOL: 0
 ;PCODE: $000005A9 VOL: 0
@@ -2131,7 +2132,7 @@
 ;PCODE: $000005AD VOL: 0
 ;PCODE: $000005AE VOL: 0
 ;PCODE: $000005AF VOL: 0
-; 0002 0254 	if (btr > remain) btr = (WORD)remain;			/* Truncate btr by remaining bytes */
+; 0002 0255 	if (btr > remain) btr = (WORD)remain;			/* Truncate btr by remaining bytes */
 ;PCODE: $000005B0 VOL: 0
 ;PCODE: $000005B1 VOL: 0
 ;PCODE: $000005B2 VOL: 0
@@ -2139,21 +2140,21 @@
 ;PCODE: $000005B4 VOL: 0
 ;PCODE: $000005B5 VOL: 0
 ;PCODE: $000005B6 VOL: 0
-; 0002 0255 
-; 0002 0256 	while (btr)	{									/* Repeat until all data transferred */
+; 0002 0256 
+; 0002 0257 	while (btr)	{									/* Repeat until all data transferred */
 ;PCODE: $000005B7 VOL: 0
 ;PCODE: $000005B8 VOL: 0
 ;PCODE: $000005B9 VOL: 0
 ;PCODE: $000005BA VOL: 0
 ;PCODE: $000005BB VOL: 0
-; 0002 0257 		if ((fs->fptr % 512) == 0) {				/* On the sector boundary? */
+; 0002 0258 		if ((fs->fptr % 512) == 0) {				/* On the sector boundary? */
 ;PCODE: $000005BC VOL: 0
 ;PCODE: $000005BD VOL: 0
 ;PCODE: $000005BE VOL: 0
 ;PCODE: $000005BF VOL: 0
 ;PCODE: $000005C0 VOL: 0
 ;PCODE: $000005C1 VOL: 0
-; 0002 0258 			if ((fs->fptr / 512 % fs->csize) == 0) {	/* On the cluster boundary? */
+; 0002 0259 			if ((fs->fptr / 512 % fs->csize) == 0) {	/* On the cluster boundary? */
 ;PCODE: $000005C2 VOL: 0
 ;PCODE: $000005C3 VOL: 0
 ;PCODE: $000005C4 VOL: 0
@@ -2166,8 +2167,8 @@
 ;PCODE: $000005CB VOL: 0
 ;PCODE: $000005CC VOL: 0
 ;PCODE: $000005CD VOL: 0
-; 0002 0259 				clst = (fs->fptr == 0) ?			/* On the top of the file? */
-; 0002 025A 					fs->org_clust : get_fat(fs->curr_clust);
+; 0002 025A 				clst = (fs->fptr == 0) ?			/* On the top of the file? */
+; 0002 025B 					fs->org_clust : get_fat(fs->curr_clust);
 ;PCODE: $000005CE VOL: 0
 ;PCODE: $000005CF VOL: 0
 ;PCODE: $000005D0 VOL: 0
@@ -2183,34 +2184,34 @@
 ;PCODE: $000005DA VOL: 0
 ;PCODE: $000005DB VOL: 0
 ;PCODE: $000005DC VOL: 0
-; 0002 025B 				if (clst <= 1) goto fr_abort;
+; 0002 025C 				if (clst <= 1) goto fr_abort;
 ;PCODE: $000005DD VOL: 0
 ;PCODE: $000005DE VOL: 0
 ;PCODE: $000005DF VOL: 0
 ;PCODE: $000005E0 VOL: 0
-; 0002 025C 				fs->curr_clust = clst;				/* Update current cluster */
+; 0002 025D 				fs->curr_clust = clst;				/* Update current cluster */
 ;PCODE: $000005E1 VOL: 0
 ;PCODE: $000005E2 VOL: 0
 ;PCODE: $000005E3 VOL: 0
 ;PCODE: $000005E4 VOL: 0
-; 0002 025D 				fs->csect = 0;						/* Reset sector offset in the cluster */
+; 0002 025E 				fs->csect = 0;						/* Reset sector offset in the cluster */
 ;PCODE: $000005E5 VOL: 0
 ;PCODE: $000005E6 VOL: 0
 ;PCODE: $000005E7 VOL: 0
 ;PCODE: $000005E8 VOL: 0
-; 0002 025E 			}
-; 0002 025F 			sect = clust2sect(fs->curr_clust);		/* Get current sector */
+; 0002 025F 			}
+; 0002 0260 			sect = clust2sect(fs->curr_clust);		/* Get current sector */
 ;PCODE: $000005E9 VOL: 0
 ;PCODE: $000005EA VOL: 0
 ;PCODE: $000005EB VOL: 0
 ;PCODE: $000005EC VOL: 0
 ;PCODE: $000005ED VOL: 0
-; 0002 0260 			if (!sect) goto fr_abort;
+; 0002 0261 			if (!sect) goto fr_abort;
 ;PCODE: $000005EE VOL: 0
 ;PCODE: $000005EF VOL: 0
 ;PCODE: $000005F0 VOL: 0
 ;PCODE: $000005F1 VOL: 0
-; 0002 0261 			fs->dsect = sect + fs->csect++;
+; 0002 0262 			fs->dsect = sect + fs->csect++;
 ;PCODE: $000005F2 VOL: 0
 ;PCODE: $000005F3 VOL: 0
 ;PCODE: $000005F4 VOL: 0
@@ -2224,8 +2225,8 @@
 ;PCODE: $000005FC VOL: 0
 ;PCODE: $000005FD VOL: 0
 ;PCODE: $000005FE VOL: 0
-; 0002 0262 		}
-; 0002 0263 		rcnt = 512 - ((WORD)fs->fptr % 512);		/* Get partial sector data from sector buffer */
+; 0002 0263 		}
+; 0002 0264 		rcnt = 512 - ((WORD)fs->fptr % 512);		/* Get partial sector data from sector buffer */
 ;PCODE: $000005FF VOL: 0
 ;PCODE: $00000600 VOL: 0
 ;PCODE: $00000601 VOL: 0
@@ -2234,13 +2235,13 @@
 ;PCODE: $00000604 VOL: 0
 ;PCODE: $00000605 VOL: 0
 ;PCODE: $00000606 VOL: 0
-; 0002 0264 		if (rcnt > btr) rcnt = btr;
+; 0002 0265 		if (rcnt > btr) rcnt = btr;
 ;PCODE: $00000607 VOL: 0
 ;PCODE: $00000608 VOL: 0
 ;PCODE: $00000609 VOL: 0
 ;PCODE: $0000060A VOL: 0
 ;PCODE: $0000060B VOL: 0
-; 0002 0265 		dr = disk_readp(!buff ? 0 : rbuff, fs->dsect, (WORD)(fs->fptr % 512), rcnt);
+; 0002 0266 		dr = disk_readp(!buff ? 0 : rbuff, fs->dsect, (WORD)(fs->fptr % 512), rcnt);
 ;PCODE: $0000060C VOL: 0
 ;PCODE: $0000060D VOL: 0
 ;PCODE: $0000060E VOL: 0
@@ -2263,11 +2264,11 @@
 ;PCODE: $0000061F VOL: 0
 ;PCODE: $00000620 VOL: 0
 ;PCODE: $00000621 VOL: 0
-; 0002 0266 		if (dr) goto fr_abort;
+; 0002 0267 		if (dr) goto fr_abort;
 ;PCODE: $00000622 VOL: 0
 ;PCODE: $00000623 VOL: 0
 ;PCODE: $00000624 VOL: 0
-; 0002 0267 		fs->fptr += rcnt; rbuff += rcnt;			/* Update pointers and counters */
+; 0002 0268 		fs->fptr += rcnt; rbuff += rcnt;			/* Update pointers and counters */
 ;PCODE: $00000625 VOL: 0
 ;PCODE: $00000626 VOL: 0
 ;PCODE: $00000627 VOL: 0
@@ -2282,7 +2283,7 @@
 ;PCODE: $00000630 VOL: 0
 ;PCODE: $00000631 VOL: 0
 ;PCODE: $00000632 VOL: 0
-; 0002 0268 		btr -= rcnt; *br += rcnt;
+; 0002 0269 		btr -= rcnt; *br += rcnt;
 ;PCODE: $00000633 VOL: 0
 ;PCODE: $00000634 VOL: 0
 ;PCODE: $00000635 VOL: 0
@@ -2290,29 +2291,29 @@
 ;PCODE: $00000637 VOL: 0
 ;PCODE: $00000638 VOL: 0
 ;PCODE: $00000639 VOL: 0
-; 0002 0269 	}
+; 0002 026A 	}
 ;PCODE: $0000063A VOL: 0
 ;PCODE: $0000063B VOL: 0
-; 0002 026A 
-; 0002 026B 	return FR_OK;
+; 0002 026B 
+; 0002 026C 	return FR_OK;
 ;PCODE: $0000063C VOL: 0
 ;PCODE: $0000063D VOL: 0
 ;PCODE: $0000063E VOL: 0
 ;PCODE: $0000063F VOL: 0
-; 0002 026C 
-; 0002 026D fr_abort:
+; 0002 026D 
+; 0002 026E fr_abort:
 ;PCODE: $00000640 VOL: 0
-; 0002 026E 	fs->flag = 0;
+; 0002 026F 	fs->flag = 0;
 ;PCODE: $00000641 VOL: 0
 ;PCODE: $00000642 VOL: 0
 ;PCODE: $00000643 VOL: 0
 ;PCODE: $00000644 VOL: 0
-; 0002 026F 	return FR_DISK_ERR;
+; 0002 0270 	return FR_DISK_ERR;
 ;PCODE: $00000645 VOL: 0
 ;PCODE: $00000646 VOL: 0
 ;PCODE: $00000647 VOL: 0
 ;PCODE: $00000648 VOL: 0
-; 0002 0270 }
+; 0002 0271 }
 ;PCODE: $00000649 VOL: 0
 ;#endif
 ;
@@ -2324,21 +2325,21 @@
 ;#if _USE_WRITE
 ;
 ;FRESULT pf_write (
-; 0002 027B 	const void* buff,	/* Pointer to the data to be written */
-; 0002 027C 	WORD btw,			/* Number of bytes to write (0:Finalize the current write operation) */
-; 0002 027D 	WORD* bw			/* Pointer to number of bytes written */
-; 0002 027E )
-; 0002 027F {
+; 0002 027C 	const void* buff,	/* Pointer to the data to be written */
+; 0002 027D 	WORD btw,			/* Number of bytes to write (0:Finalize the current write operation) */
+; 0002 027E 	WORD* bw			/* Pointer to number of bytes written */
+; 0002 027F )
+; 0002 0280 {
 ;PCODE: $0000064A VOL: 0
 ;PCODE: $0000064B VOL: 0
-; 0002 0280 	CLUST clst;
-; 0002 0281 	DWORD sect, remain;
-; 0002 0282 	const BYTE *p = buff;
-; 0002 0283 	WORD wcnt;
-; 0002 0284 	FATFS *fs = FatFs;
-; 0002 0285 
+; 0002 0281 	CLUST clst;
+; 0002 0282 	DWORD sect, remain;
+; 0002 0283 	const BYTE *p = buff;
+; 0002 0284 	WORD wcnt;
+; 0002 0285 	FATFS *fs = FatFs;
 ; 0002 0286 
-; 0002 0287 	*bw = 0;
+; 0002 0287 
+; 0002 0288 	*bw = 0;
 ;PCODE: $0000064C VOL: 0
 ;PCODE: $0000064D VOL: 0
 ;PCODE: $0000064E VOL: 0
@@ -2358,31 +2359,31 @@
 ;PCODE: $00000653 VOL: 0
 ;PCODE: $00000654 VOL: 0
 ;PCODE: $00000655 VOL: 0
-; 0002 0288 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
+; 0002 0289 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
 ;PCODE: $00000656 VOL: 0
 ;PCODE: $00000657 VOL: 0
 ;PCODE: $00000658 VOL: 0
 ;PCODE: $00000659 VOL: 0
 ;PCODE: $0000065A VOL: 0
 ;PCODE: $0000065B VOL: 0
-; 0002 0289 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
+; 0002 028A 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
 ;PCODE: $0000065C VOL: 0
 ;PCODE: $0000065D VOL: 0
 ;PCODE: $0000065E VOL: 0
 ;PCODE: $0000065F VOL: 0
 ;PCODE: $00000660 VOL: 0
-; 0002 028A 		return FR_NOT_OPENED;
+; 0002 028B 		return FR_NOT_OPENED;
 ;PCODE: $00000661 VOL: 0
 ;PCODE: $00000662 VOL: 0
 ;PCODE: $00000663 VOL: 0
 ;PCODE: $00000664 VOL: 0
-; 0002 028B 
-; 0002 028C 	if (!btw) {		/* Finalize request */
+; 0002 028C 
+; 0002 028D 	if (!btw) {		/* Finalize request */
 ;PCODE: $00000665 VOL: 0
 ;PCODE: $00000666 VOL: 0
 ;PCODE: $00000667 VOL: 0
 ;PCODE: $00000668 VOL: 0
-; 0002 028D 		if ((fs->flag & FA__WIP) && disk_writep(0, 0)) goto fw_abort;
+; 0002 028E 		if ((fs->flag & FA__WIP) && disk_writep(0, 0)) goto fw_abort;
 ;PCODE: $00000669 VOL: 0
 ;PCODE: $0000066A VOL: 0
 ;PCODE: $0000066B VOL: 0
@@ -2398,35 +2399,35 @@
 ;PCODE: $00000675 VOL: 0
 ;PCODE: $00000676 VOL: 0
 ;PCODE: $00000677 VOL: 0
-; 0002 028E 		fs->flag &= ~FA__WIP;
+; 0002 028F 		fs->flag &= ~FA__WIP;
 ;PCODE: $00000678 VOL: 0
 ;PCODE: $00000679 VOL: 0
 ;PCODE: $0000067A VOL: 0
 ;PCODE: $0000067B VOL: 0
 ;PCODE: $0000067C VOL: 0
 ;PCODE: $0000067D VOL: 0
-; 0002 028F 		return FR_OK;
+; 0002 0290 		return FR_OK;
 ;PCODE: $0000067E VOL: 0
 ;PCODE: $0000067F VOL: 0
 ;PCODE: $00000680 VOL: 0
 ;PCODE: $00000681 VOL: 0
-; 0002 0290 	} else {		/* Write data request */
+; 0002 0291 	} else {		/* Write data request */
 ;PCODE: $00000682 VOL: 0
-; 0002 0291 		if (!(fs->flag & FA__WIP))		/* Round down fptr to the sector boundary */
+; 0002 0292 		if (!(fs->flag & FA__WIP))		/* Round down fptr to the sector boundary */
 ;PCODE: $00000683 VOL: 0
 ;PCODE: $00000684 VOL: 0
 ;PCODE: $00000685 VOL: 0
 ;PCODE: $00000686 VOL: 0
-; 0002 0292 			fs->fptr &= 0xFFFFFE00;
+; 0002 0293 			fs->fptr &= 0xFFFFFE00;
 ;PCODE: $00000687 VOL: 0
 ;PCODE: $00000688 VOL: 0
 ;PCODE: $00000689 VOL: 0
 ;PCODE: $0000068A VOL: 0
 ;PCODE: $0000068B VOL: 0
-; 0002 0293 	}
+; 0002 0294 	}
 ;PCODE: $0000068C VOL: 0
 ;PCODE: $0000068D VOL: 0
-; 0002 0294 	remain = fs->fsize - fs->fptr;
+; 0002 0295 	remain = fs->fsize - fs->fptr;
 ;PCODE: $0000068E VOL: 0
 ;PCODE: $0000068F VOL: 0
 ;PCODE: $00000690 VOL: 0
@@ -2435,7 +2436,7 @@
 ;PCODE: $00000693 VOL: 0
 ;PCODE: $00000694 VOL: 0
 ;PCODE: $00000695 VOL: 0
-; 0002 0295 	if (btw > remain) btw = (WORD)remain;			/* Truncate btw by remaining bytes */
+; 0002 0296 	if (btw > remain) btw = (WORD)remain;			/* Truncate btw by remaining bytes */
 ;PCODE: $00000696 VOL: 0
 ;PCODE: $00000697 VOL: 0
 ;PCODE: $00000698 VOL: 0
@@ -2443,21 +2444,21 @@
 ;PCODE: $0000069A VOL: 0
 ;PCODE: $0000069B VOL: 0
 ;PCODE: $0000069C VOL: 0
-; 0002 0296 
-; 0002 0297 	while (btw)	{									/* Repeat until all data transferred */
+; 0002 0297 
+; 0002 0298 	while (btw)	{									/* Repeat until all data transferred */
 ;PCODE: $0000069D VOL: 0
 ;PCODE: $0000069E VOL: 0
 ;PCODE: $0000069F VOL: 0
 ;PCODE: $000006A0 VOL: 0
 ;PCODE: $000006A1 VOL: 0
-; 0002 0298 		if (((WORD)fs->fptr % 512) == 0) {				/* On the sector boundary? */
+; 0002 0299 		if (((WORD)fs->fptr % 512) == 0) {				/* On the sector boundary? */
 ;PCODE: $000006A2 VOL: 0
 ;PCODE: $000006A3 VOL: 0
 ;PCODE: $000006A4 VOL: 0
 ;PCODE: $000006A5 VOL: 0
 ;PCODE: $000006A6 VOL: 0
 ;PCODE: $000006A7 VOL: 0
-; 0002 0299 			if ((fs->fptr / 512 % fs->csize) == 0) {	/* On the cluster boundary? */
+; 0002 029A 			if ((fs->fptr / 512 % fs->csize) == 0) {	/* On the cluster boundary? */
 ;PCODE: $000006A8 VOL: 0
 ;PCODE: $000006A9 VOL: 0
 ;PCODE: $000006AA VOL: 0
@@ -2470,8 +2471,8 @@
 ;PCODE: $000006B1 VOL: 0
 ;PCODE: $000006B2 VOL: 0
 ;PCODE: $000006B3 VOL: 0
-; 0002 029A 				clst = (fs->fptr == 0) ?			/* On the top of the file? */
-; 0002 029B 					fs->org_clust : get_fat(fs->curr_clust);
+; 0002 029B 				clst = (fs->fptr == 0) ?			/* On the top of the file? */
+; 0002 029C 					fs->org_clust : get_fat(fs->curr_clust);
 ;PCODE: $000006B4 VOL: 0
 ;PCODE: $000006B5 VOL: 0
 ;PCODE: $000006B6 VOL: 0
@@ -2487,34 +2488,34 @@
 ;PCODE: $000006C0 VOL: 0
 ;PCODE: $000006C1 VOL: 0
 ;PCODE: $000006C2 VOL: 0
-; 0002 029C 				if (clst <= 1) goto fw_abort;
+; 0002 029D 				if (clst <= 1) goto fw_abort;
 ;PCODE: $000006C3 VOL: 0
 ;PCODE: $000006C4 VOL: 0
 ;PCODE: $000006C5 VOL: 0
 ;PCODE: $000006C6 VOL: 0
-; 0002 029D 				fs->curr_clust = clst;				/* Update current cluster */
+; 0002 029E 				fs->curr_clust = clst;				/* Update current cluster */
 ;PCODE: $000006C7 VOL: 0
 ;PCODE: $000006C8 VOL: 0
 ;PCODE: $000006C9 VOL: 0
 ;PCODE: $000006CA VOL: 0
-; 0002 029E 				fs->csect = 0;						/* Reset sector offset in the cluster */
+; 0002 029F 				fs->csect = 0;						/* Reset sector offset in the cluster */
 ;PCODE: $000006CB VOL: 0
 ;PCODE: $000006CC VOL: 0
 ;PCODE: $000006CD VOL: 0
 ;PCODE: $000006CE VOL: 0
-; 0002 029F 			}
-; 0002 02A0 			sect = clust2sect(fs->curr_clust);		/* Get current sector */
+; 0002 02A0 			}
+; 0002 02A1 			sect = clust2sect(fs->curr_clust);		/* Get current sector */
 ;PCODE: $000006CF VOL: 0
 ;PCODE: $000006D0 VOL: 0
 ;PCODE: $000006D1 VOL: 0
 ;PCODE: $000006D2 VOL: 0
 ;PCODE: $000006D3 VOL: 0
-; 0002 02A1 			if (!sect) goto fw_abort;
+; 0002 02A2 			if (!sect) goto fw_abort;
 ;PCODE: $000006D4 VOL: 0
 ;PCODE: $000006D5 VOL: 0
 ;PCODE: $000006D6 VOL: 0
 ;PCODE: $000006D7 VOL: 0
-; 0002 02A2 			fs->dsect = sect + fs->csect++;
+; 0002 02A3 			fs->dsect = sect + fs->csect++;
 ;PCODE: $000006D8 VOL: 0
 ;PCODE: $000006D9 VOL: 0
 ;PCODE: $000006DA VOL: 0
@@ -2528,7 +2529,7 @@
 ;PCODE: $000006E2 VOL: 0
 ;PCODE: $000006E3 VOL: 0
 ;PCODE: $000006E4 VOL: 0
-; 0002 02A3 			if (disk_writep(0, fs->dsect)) goto fw_abort;	/* Initiate a sector write operation */
+; 0002 02A4 			if (disk_writep(0, fs->dsect)) goto fw_abort;	/* Initiate a sector write operation */
 ;PCODE: $000006E5 VOL: 0
 ;PCODE: $000006E6 VOL: 0
 ;PCODE: $000006E7 VOL: 0
@@ -2537,15 +2538,15 @@
 ;PCODE: $000006EA VOL: 0
 ;PCODE: $000006EB VOL: 0
 ;PCODE: $000006EC VOL: 0
-; 0002 02A4 			fs->flag |= FA__WIP;
+; 0002 02A5 			fs->flag |= FA__WIP;
 ;PCODE: $000006ED VOL: 0
 ;PCODE: $000006EE VOL: 0
 ;PCODE: $000006EF VOL: 0
 ;PCODE: $000006F0 VOL: 0
 ;PCODE: $000006F1 VOL: 0
 ;PCODE: $000006F2 VOL: 0
-; 0002 02A5 		}
-; 0002 02A6 		wcnt = 512 - ((WORD)fs->fptr % 512);		/* Number of bytes to write to the sector */
+; 0002 02A6 		}
+; 0002 02A7 		wcnt = 512 - ((WORD)fs->fptr % 512);		/* Number of bytes to write to the sector */
 ;PCODE: $000006F3 VOL: 0
 ;PCODE: $000006F4 VOL: 0
 ;PCODE: $000006F5 VOL: 0
@@ -2554,13 +2555,13 @@
 ;PCODE: $000006F8 VOL: 0
 ;PCODE: $000006F9 VOL: 0
 ;PCODE: $000006FA VOL: 0
-; 0002 02A7 		if (wcnt > btw) wcnt = btw;
+; 0002 02A8 		if (wcnt > btw) wcnt = btw;
 ;PCODE: $000006FB VOL: 0
 ;PCODE: $000006FC VOL: 0
 ;PCODE: $000006FD VOL: 0
 ;PCODE: $000006FE VOL: 0
 ;PCODE: $000006FF VOL: 0
-; 0002 02A8 		if (disk_writep(p, wcnt)) goto fw_abort;	/* Send data to the sector */
+; 0002 02A9 		if (disk_writep(p, wcnt)) goto fw_abort;	/* Send data to the sector */
 ;PCODE: $00000700 VOL: 0
 ;PCODE: $00000701 VOL: 0
 ;PCODE: $00000702 VOL: 0
@@ -2569,7 +2570,7 @@
 ;PCODE: $00000705 VOL: 0
 ;PCODE: $00000706 VOL: 0
 ;PCODE: $00000707 VOL: 0
-; 0002 02A9 		fs->fptr += wcnt; p += wcnt;				/* Update pointers and counters */
+; 0002 02AA 		fs->fptr += wcnt; p += wcnt;				/* Update pointers and counters */
 ;PCODE: $00000708 VOL: 0
 ;PCODE: $00000709 VOL: 0
 ;PCODE: $0000070A VOL: 0
@@ -2584,7 +2585,7 @@
 ;PCODE: $00000713 VOL: 0
 ;PCODE: $00000714 VOL: 0
 ;PCODE: $00000715 VOL: 0
-; 0002 02AA 		btw -= wcnt; *bw += wcnt;
+; 0002 02AB 		btw -= wcnt; *bw += wcnt;
 ;PCODE: $00000716 VOL: 0
 ;PCODE: $00000717 VOL: 0
 ;PCODE: $00000718 VOL: 0
@@ -2592,14 +2593,14 @@
 ;PCODE: $0000071A VOL: 0
 ;PCODE: $0000071B VOL: 0
 ;PCODE: $0000071C VOL: 0
-; 0002 02AB 		if (((WORD)fs->fptr % 512) == 0) {
+; 0002 02AC 		if (((WORD)fs->fptr % 512) == 0) {
 ;PCODE: $0000071D VOL: 0
 ;PCODE: $0000071E VOL: 0
 ;PCODE: $0000071F VOL: 0
 ;PCODE: $00000720 VOL: 0
 ;PCODE: $00000721 VOL: 0
 ;PCODE: $00000722 VOL: 0
-; 0002 02AC 			if (disk_writep(0, 0)) goto fw_abort;	/* Finalize the currtent secter write operation */
+; 0002 02AD 			if (disk_writep(0, 0)) goto fw_abort;	/* Finalize the currtent secter write operation */
 ;PCODE: $00000723 VOL: 0
 ;PCODE: $00000724 VOL: 0
 ;PCODE: $00000725 VOL: 0
@@ -2607,38 +2608,38 @@
 ;PCODE: $00000727 VOL: 0
 ;PCODE: $00000728 VOL: 0
 ;PCODE: $00000729 VOL: 0
-; 0002 02AD 			fs->flag &= ~FA__WIP;
+; 0002 02AE 			fs->flag &= ~FA__WIP;
 ;PCODE: $0000072A VOL: 0
 ;PCODE: $0000072B VOL: 0
 ;PCODE: $0000072C VOL: 0
 ;PCODE: $0000072D VOL: 0
 ;PCODE: $0000072E VOL: 0
 ;PCODE: $0000072F VOL: 0
-; 0002 02AE 		}
-; 0002 02AF 	}
+; 0002 02AF 		}
+; 0002 02B0 	}
 ;PCODE: $00000730 VOL: 0
 ;PCODE: $00000731 VOL: 0
 ;PCODE: $00000732 VOL: 0
-; 0002 02B0 
-; 0002 02B1 	return FR_OK;
+; 0002 02B1 
+; 0002 02B2 	return FR_OK;
 ;PCODE: $00000733 VOL: 0
 ;PCODE: $00000734 VOL: 0
 ;PCODE: $00000735 VOL: 0
 ;PCODE: $00000736 VOL: 0
-; 0002 02B2 
-; 0002 02B3 fw_abort:
+; 0002 02B3 
+; 0002 02B4 fw_abort:
 ;PCODE: $00000737 VOL: 0
-; 0002 02B4 	fs->flag = 0;
+; 0002 02B5 	fs->flag = 0;
 ;PCODE: $00000738 VOL: 0
 ;PCODE: $00000739 VOL: 0
 ;PCODE: $0000073A VOL: 0
 ;PCODE: $0000073B VOL: 0
-; 0002 02B5 	return FR_DISK_ERR;
+; 0002 02B6 	return FR_DISK_ERR;
 ;PCODE: $0000073C VOL: 0
 ;PCODE: $0000073D VOL: 0
 ;PCODE: $0000073E VOL: 0
 ;PCODE: $0000073F VOL: 0
-; 0002 02B6 }
+; 0002 02B7 }
 ;PCODE: $00000740 VOL: 0
 ;#endif
 ;
@@ -2650,17 +2651,17 @@
 ;#if _USE_LSEEK
 ;
 ;FRESULT pf_lseek (
-; 0002 02C1 	DWORD ofs		/* File pointer from top of file */
-; 0002 02C2 )
-; 0002 02C3 {
+; 0002 02C2 	DWORD ofs		/* File pointer from top of file */
+; 0002 02C3 )
+; 0002 02C4 {
 ;PCODE: $00000741 VOL: 0
 ;PCODE: $00000742 VOL: 0
-; 0002 02C4 	CLUST clst;
-; 0002 02C5 	DWORD bcs, sect, ifptr;
-; 0002 02C6 	FATFS *fs = FatFs;
-; 0002 02C7 
+; 0002 02C5 	CLUST clst;
+; 0002 02C6 	DWORD bcs, sect, ifptr;
+; 0002 02C7 	FATFS *fs = FatFs;
 ; 0002 02C8 
-; 0002 02C9 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
+; 0002 02C9 
+; 0002 02CA 	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
 ;PCODE: $00000743 VOL: 0
 ;PCODE: $00000744 VOL: 0
 ;PCODE: $00000745 VOL: 0
@@ -2682,13 +2683,13 @@
 ;PCODE: $0000074F VOL: 0
 ;PCODE: $00000750 VOL: 0
 ;PCODE: $00000751 VOL: 0
-; 0002 02CA 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
+; 0002 02CB 	if (!(fs->flag & FA_OPENED))		/* Check if opened */
 ;PCODE: $00000752 VOL: 0
 ;PCODE: $00000753 VOL: 0
 ;PCODE: $00000754 VOL: 0
 ;PCODE: $00000755 VOL: 0
 ;PCODE: $00000756 VOL: 0
-; 0002 02CB 			return FR_NOT_OPENED;
+; 0002 02CC 			return FR_NOT_OPENED;
 ;PCODE: $00000757 VOL: 0
 ;PCODE: $00000758 VOL: 0
 ;PCODE: $00000759 VOL: 0
@@ -2696,8 +2697,8 @@
 ;PCODE: $0000075B VOL: 0
 ;PCODE: $0000075C VOL: 0
 ;PCODE: $0000075D VOL: 0
-; 0002 02CC 
-; 0002 02CD 	if (ofs > fs->fsize) ofs = fs->fsize;	/* Clip offset with the file size */
+; 0002 02CD 
+; 0002 02CE 	if (ofs > fs->fsize) ofs = fs->fsize;	/* Clip offset with the file size */
 ;PCODE: $0000075E VOL: 0
 ;PCODE: $0000075F VOL: 0
 ;PCODE: $00000760 VOL: 0
@@ -2709,22 +2710,22 @@
 ;PCODE: $00000766 VOL: 0
 ;PCODE: $00000767 VOL: 0
 ;PCODE: $00000768 VOL: 0
-; 0002 02CE 	ifptr = fs->fptr;
+; 0002 02CF 	ifptr = fs->fptr;
 ;PCODE: $00000769 VOL: 0
 ;PCODE: $0000076A VOL: 0
 ;PCODE: $0000076B VOL: 0
 ;PCODE: $0000076C VOL: 0
 ;PCODE: $0000076D VOL: 0
-; 0002 02CF 	fs->fptr = 0;
+; 0002 02D0 	fs->fptr = 0;
 ;PCODE: $0000076E VOL: 0
 ;PCODE: $0000076F VOL: 0
 ;PCODE: $00000770 VOL: 0
 ;PCODE: $00000771 VOL: 0
-; 0002 02D0 	if (ofs > 0) {
+; 0002 02D1 	if (ofs > 0) {
 ;PCODE: $00000772 VOL: 0
 ;PCODE: $00000773 VOL: 0
 ;PCODE: $00000774 VOL: 0
-; 0002 02D1 		bcs = (DWORD)fs->csize * 512;	/* Cluster size (byte) */
+; 0002 02D2 		bcs = (DWORD)fs->csize * 512;	/* Cluster size (byte) */
 ;PCODE: $00000775 VOL: 0
 ;PCODE: $00000776 VOL: 0
 ;PCODE: $00000777 VOL: 0
@@ -2732,8 +2733,8 @@
 ;PCODE: $00000779 VOL: 0
 ;PCODE: $0000077A VOL: 0
 ;PCODE: $0000077B VOL: 0
-; 0002 02D2 		if (ifptr > 0 &&
-; 0002 02D3 			(ofs - 1) / bcs >= (ifptr - 1) / bcs) {	/* When seek to same or following cluster, */
+; 0002 02D3 		if (ifptr > 0 &&
+; 0002 02D4 			(ofs - 1) / bcs >= (ifptr - 1) / bcs) {	/* When seek to same or following cluster, */
 ;PCODE: $0000077C VOL: 0
 ;PCODE: $0000077D VOL: 0
 ;PCODE: $0000077E VOL: 0
@@ -2755,7 +2756,7 @@
 ;PCODE: $0000078E VOL: 0
 ;PCODE: $0000078F VOL: 0
 ;PCODE: $00000790 VOL: 0
-; 0002 02D4 			fs->fptr = (ifptr - 1) & ~(bcs - 1);	/* start from the current cluster */
+; 0002 02D5 			fs->fptr = (ifptr - 1) & ~(bcs - 1);	/* start from the current cluster */
 ;PCODE: $00000791 VOL: 0
 ;PCODE: $00000792 VOL: 0
 ;PCODE: $00000793 VOL: 0
@@ -2765,43 +2766,43 @@
 ;PCODE: $00000797 VOL: 0
 ;PCODE: $00000798 VOL: 0
 ;PCODE: $00000799 VOL: 0
-; 0002 02D5 			ofs -= fs->fptr;
+; 0002 02D6 			ofs -= fs->fptr;
 ;PCODE: $0000079A VOL: 0
 ;PCODE: $0000079B VOL: 0
 ;PCODE: $0000079C VOL: 0
 ;PCODE: $0000079D VOL: 0
 ;PCODE: $0000079E VOL: 0
 ;PCODE: $0000079F VOL: 0
-; 0002 02D6 			clst = fs->curr_clust;
+; 0002 02D7 			clst = fs->curr_clust;
 ;PCODE: $000007A0 VOL: 0
 ;PCODE: $000007A1 VOL: 0
 ;PCODE: $000007A2 VOL: 0
 ;PCODE: $000007A3 VOL: 0
-; 0002 02D7 		} else {							/* When seek to back cluster, */
+; 0002 02D8 		} else {							/* When seek to back cluster, */
 ;PCODE: $000007A4 VOL: 0
 ;PCODE: $000007A5 VOL: 0
-; 0002 02D8 			clst = fs->org_clust;			/* start from the first cluster */
+; 0002 02D9 			clst = fs->org_clust;			/* start from the first cluster */
 ;PCODE: $000007A6 VOL: 0
 ;PCODE: $000007A7 VOL: 0
 ;PCODE: $000007A8 VOL: 0
 ;PCODE: $000007A9 VOL: 0
-; 0002 02D9 			fs->curr_clust = clst;
+; 0002 02DA 			fs->curr_clust = clst;
 ;PCODE: $000007AA VOL: 0
 ;PCODE: $000007AB VOL: 0
 ;PCODE: $000007AC VOL: 0
-; 0002 02DA 		}
+; 0002 02DB 		}
 ;PCODE: $000007AD VOL: 0
-; 0002 02DB 		while (ofs > bcs) {				/* Cluster following loop */
+; 0002 02DC 		while (ofs > bcs) {				/* Cluster following loop */
 ;PCODE: $000007AE VOL: 0
 ;PCODE: $000007AF VOL: 0
 ;PCODE: $000007B0 VOL: 0
 ;PCODE: $000007B1 VOL: 0
 ;PCODE: $000007B2 VOL: 0
-; 0002 02DC 			clst = get_fat(clst);		/* Follow cluster chain */
+; 0002 02DD 			clst = get_fat(clst);		/* Follow cluster chain */
 ;PCODE: $000007B3 VOL: 0
 ;PCODE: $000007B4 VOL: 0
 ;PCODE: $000007B5 VOL: 0
-; 0002 02DD 			if (clst <= 1 || clst >= fs->max_clust) goto fe_abort;
+; 0002 02DE 			if (clst <= 1 || clst >= fs->max_clust) goto fe_abort;
 ;PCODE: $000007B6 VOL: 0
 ;PCODE: $000007B7 VOL: 0
 ;PCODE: $000007B8 VOL: 0
@@ -2814,12 +2815,12 @@
 ;PCODE: $000007BF VOL: 0
 ;PCODE: $000007C0 VOL: 0
 ;PCODE: $000007C1 VOL: 0
-; 0002 02DE 			fs->curr_clust = clst;
+; 0002 02DF 			fs->curr_clust = clst;
 ;PCODE: $000007C2 VOL: 0
 ;PCODE: $000007C3 VOL: 0
 ;PCODE: $000007C4 VOL: 0
 ;PCODE: $000007C5 VOL: 0
-; 0002 02DF 			fs->fptr += bcs;
+; 0002 02E0 			fs->fptr += bcs;
 ;PCODE: $000007C6 VOL: 0
 ;PCODE: $000007C7 VOL: 0
 ;PCODE: $000007C8 VOL: 0
@@ -2829,15 +2830,15 @@
 ;PCODE: $000007CC VOL: 0
 ;PCODE: $000007CD VOL: 0
 ;PCODE: $000007CE VOL: 0
-; 0002 02E0 			ofs -= bcs;
+; 0002 02E1 			ofs -= bcs;
 ;PCODE: $000007CF VOL: 0
 ;PCODE: $000007D0 VOL: 0
 ;PCODE: $000007D1 VOL: 0
 ;PCODE: $000007D2 VOL: 0
-; 0002 02E1 		}
+; 0002 02E2 		}
 ;PCODE: $000007D3 VOL: 0
 ;PCODE: $000007D4 VOL: 0
-; 0002 02E2 		fs->fptr += ofs;
+; 0002 02E3 		fs->fptr += ofs;
 ;PCODE: $000007D5 VOL: 0
 ;PCODE: $000007D6 VOL: 0
 ;PCODE: $000007D7 VOL: 0
@@ -2847,28 +2848,28 @@
 ;PCODE: $000007DB VOL: 0
 ;PCODE: $000007DC VOL: 0
 ;PCODE: $000007DD VOL: 0
-; 0002 02E3 		sect = clust2sect(clst);		/* Current sector */
+; 0002 02E4 		sect = clust2sect(clst);		/* Current sector */
 ;PCODE: $000007DE VOL: 0
 ;PCODE: $000007DF VOL: 0
 ;PCODE: $000007E0 VOL: 0
-; 0002 02E4 		if (!sect) goto fe_abort;
+; 0002 02E5 		if (!sect) goto fe_abort;
 ;PCODE: $000007E1 VOL: 0
 ;PCODE: $000007E2 VOL: 0
 ;PCODE: $000007E3 VOL: 0
 ;PCODE: $000007E4 VOL: 0
-; 0002 02E5 		fs->csect = (BYTE)(ofs / 512);	/* Sector offset in the cluster */
+; 0002 02E6 		fs->csect = (BYTE)(ofs / 512);	/* Sector offset in the cluster */
 ;PCODE: $000007E5 VOL: 0
 ;PCODE: $000007E6 VOL: 0
 ;PCODE: $000007E7 VOL: 0
 ;PCODE: $000007E8 VOL: 0
 ;PCODE: $000007E9 VOL: 0
 ;PCODE: $000007EA VOL: 0
-; 0002 02E6 		if (ofs % 512)
+; 0002 02E7 		if (ofs % 512)
 ;PCODE: $000007EB VOL: 0
 ;PCODE: $000007EC VOL: 0
 ;PCODE: $000007ED VOL: 0
 ;PCODE: $000007EE VOL: 0
-; 0002 02E7 			fs->dsect = sect + fs->csect++;
+; 0002 02E8 			fs->dsect = sect + fs->csect++;
 ;PCODE: $000007EF VOL: 0
 ;PCODE: $000007F0 VOL: 0
 ;PCODE: $000007F1 VOL: 0
@@ -2881,10 +2882,10 @@
 ;PCODE: $000007F8 VOL: 0
 ;PCODE: $000007F9 VOL: 0
 ;PCODE: $000007FA VOL: 0
-; 0002 02E8 	}
+; 0002 02E9 	}
 ;PCODE: $000007FB VOL: 0
-; 0002 02E9 
-; 0002 02EA 	return FR_OK;
+; 0002 02EA 
+; 0002 02EB 	return FR_OK;
 ;PCODE: $000007FC VOL: 0
 ;PCODE: $000007FD VOL: 0
 ;PCODE: $000007FE VOL: 0
@@ -2893,15 +2894,15 @@
 ;PCODE: $00000801 VOL: 0
 ;PCODE: $00000802 VOL: 0
 ;PCODE: $00000803 VOL: 0
-; 0002 02EB 
-; 0002 02EC fe_abort:
+; 0002 02EC 
+; 0002 02ED fe_abort:
 ;PCODE: $00000804 VOL: 0
-; 0002 02ED 	fs->flag = 0;
+; 0002 02EE 	fs->flag = 0;
 ;PCODE: $00000805 VOL: 0
 ;PCODE: $00000806 VOL: 0
 ;PCODE: $00000807 VOL: 0
 ;PCODE: $00000808 VOL: 0
-; 0002 02EE 	return FR_DISK_ERR;
+; 0002 02EF 	return FR_DISK_ERR;
 ;PCODE: $00000809 VOL: 0
 ;PCODE: $0000080A VOL: 0
 ;PCODE: $0000080B VOL: 0
@@ -2909,7 +2910,7 @@
 ;PCODE: $0000080D VOL: 0
 ;PCODE: $0000080E VOL: 0
 ;PCODE: $0000080F VOL: 0
-; 0002 02EF }
+; 0002 02F0 }
 ;PCODE: $00000810 VOL: 0
 ;#endif
 ;
@@ -2921,18 +2922,18 @@
 ;#if _USE_DIR
 ;
 ;FRESULT pf_opendir (
-; 0002 02FA 	DIR *dj,			/* Pointer to directory object to create */
-; 0002 02FB 	const char *path	/* Pointer to the directory path */
-; 0002 02FC )
-; 0002 02FD {
+; 0002 02FB 	DIR *dj,			/* Pointer to directory object to create */
+; 0002 02FC 	const char *path	/* Pointer to the directory path */
+; 0002 02FD )
+; 0002 02FE {
 ;PCODE: $00000811 VOL: 0
 ;PCODE: $00000812 VOL: 0
-; 0002 02FE 	FRESULT res;
-; 0002 02FF 	BYTE sp[12], dir[32];
-; 0002 0300 	FATFS *fs = FatFs;
-; 0002 0301 
+; 0002 02FF 	FRESULT res;
+; 0002 0300 	BYTE sp[12], dir[32];
+; 0002 0301 	FATFS *fs = FatFs;
 ; 0002 0302 
-; 0002 0303 	if (!fs) {				/* Check file system */
+; 0002 0303 
+; 0002 0304 	if (!fs) {				/* Check file system */
 ;PCODE: $00000813 VOL: 0
 ;PCODE: $00000814 VOL: 0
 ;PCODE: $00000815 VOL: 0
@@ -2946,42 +2947,42 @@
 ;PCODE: $00000817 VOL: 0
 ;PCODE: $00000818 VOL: 0
 ;PCODE: $00000819 VOL: 0
-; 0002 0304 		res = FR_NOT_ENABLED;
+; 0002 0305 		res = FR_NOT_ENABLED;
 ;PCODE: $0000081A VOL: 0
 ;PCODE: $0000081B VOL: 0
-; 0002 0305 	} else {
+; 0002 0306 	} else {
 ;PCODE: $0000081C VOL: 0
 ;PCODE: $0000081D VOL: 0
-; 0002 0306 		fs->buf = dir;
+; 0002 0307 		fs->buf = dir;
 ;PCODE: $0000081E VOL: 0
 ;PCODE: $0000081F VOL: 0
 ;PCODE: $00000820 VOL: 0
-; 0002 0307 		dj->fn = sp;
+; 0002 0308 		dj->fn = sp;
 ;PCODE: $00000821 VOL: 0
 ;PCODE: $00000822 VOL: 0
 ;PCODE: $00000823 VOL: 0
-; 0002 0308 		res = follow_path(dj, path);			/* Follow the path to the directory */
+; 0002 0309 		res = follow_path(dj, path);			/* Follow the path to the directory */
 ;PCODE: $00000824 VOL: 0
 ;PCODE: $00000825 VOL: 0
 ;PCODE: $00000826 VOL: 0
 ;PCODE: $00000827 VOL: 0
 ;PCODE: $00000828 VOL: 0
-; 0002 0309 		if (res == FR_OK) {						/* Follow completed */
+; 0002 030A 		if (res == FR_OK) {						/* Follow completed */
 ;PCODE: $00000829 VOL: 0
 ;PCODE: $0000082A VOL: 0
-; 0002 030A 			if (dir[0]) {						/* It is not the root dir */
+; 0002 030B 			if (dir[0]) {						/* It is not the root dir */
 ;PCODE: $0000082B VOL: 0
 ;PCODE: $0000082C VOL: 0
 ;PCODE: $0000082D VOL: 0
-; 0002 030B 				if (dir[DIR_Attr] & AM_DIR) {	/* The object is a directory */
+; 0002 030C 				if (dir[DIR_Attr] & AM_DIR) {	/* The object is a directory */
 ;PCODE: $0000082E VOL: 0
 ;PCODE: $0000082F VOL: 0
 ;PCODE: $00000830 VOL: 0
-; 0002 030C 					dj->sclust =
-; 0002 030D #if _FS_FAT32
-; 0002 030E 					((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
-; 0002 030F #endif
-; 0002 0310 					LD_WORD(dir+DIR_FstClusLO);
+; 0002 030D 					dj->sclust =
+; 0002 030E #if _FS_FAT32
+; 0002 030F 					((DWORD)LD_WORD(dir+DIR_FstClusHI) << 16) |
+; 0002 0310 #endif
+; 0002 0311 					LD_WORD(dir+DIR_FstClusLO);
 ;PCODE: $00000831 VOL: 0
 ;PCODE: $00000832 VOL: 0
 ;PCODE: $00000833 VOL: 0
@@ -2991,42 +2992,42 @@
 ;PCODE: $00000837 VOL: 0
 ;PCODE: $00000838 VOL: 0
 ;PCODE: $00000839 VOL: 0
-; 0002 0311 				} else {						/* The object is not a directory */
+; 0002 0312 				} else {						/* The object is not a directory */
 ;PCODE: $0000083A VOL: 0
 ;PCODE: $0000083B VOL: 0
-; 0002 0312 					res = FR_NO_PATH;
+; 0002 0313 					res = FR_NO_PATH;
 ;PCODE: $0000083C VOL: 0
 ;PCODE: $0000083D VOL: 0
-; 0002 0313 				}
+; 0002 0314 				}
 ;PCODE: $0000083E VOL: 0
-; 0002 0314 			}
-; 0002 0315 			if (res == FR_OK)
+; 0002 0315 			}
+; 0002 0316 			if (res == FR_OK)
 ;PCODE: $0000083F VOL: 0
 ;PCODE: $00000840 VOL: 0
 ;PCODE: $00000841 VOL: 0
-; 0002 0316 				res = dir_rewind(dj);			/* Rewind dir */
+; 0002 0317 				res = dir_rewind(dj);			/* Rewind dir */
 ;PCODE: $00000842 VOL: 0
 ;PCODE: $00000843 VOL: 0
 ;PCODE: $00000844 VOL: 0
-; 0002 0317 		}
+; 0002 0318 		}
 ;PCODE: $00000845 VOL: 0
-; 0002 0318 		if (res == FR_NO_FILE) res = FR_NO_PATH;
+; 0002 0319 		if (res == FR_NO_FILE) res = FR_NO_PATH;
 ;PCODE: $00000846 VOL: 0
 ;PCODE: $00000847 VOL: 0
 ;PCODE: $00000848 VOL: 0
 ;PCODE: $00000849 VOL: 0
 ;PCODE: $0000084A VOL: 0
 ;PCODE: $0000084B VOL: 0
-; 0002 0319 	}
+; 0002 031A 	}
 ;PCODE: $0000084C VOL: 0
 ;PCODE: $0000084D VOL: 0
-; 0002 031A 
-; 0002 031B 	return res;
+; 0002 031B 
+; 0002 031C 	return res;
 ;PCODE: $0000084E VOL: 0
 ;PCODE: $0000084F VOL: 0
 ;PCODE: $00000850 VOL: 0
 ;PCODE: $00000851 VOL: 0
-; 0002 031C }
+; 0002 031D }
 ;PCODE: $00000852 VOL: 0
 ;
 ;
@@ -3037,18 +3038,18 @@
 ;/*-----------------------------------------------------------------------*/
 ;
 ;FRESULT pf_readdir (
-; 0002 0326 	DIR *dj,			/* Pointer to the open directory object */
-; 0002 0327 	FILINFO *fno		/* Pointer to file information to return */
-; 0002 0328 )
-; 0002 0329 {
+; 0002 0327 	DIR *dj,			/* Pointer to the open directory object */
+; 0002 0328 	FILINFO *fno		/* Pointer to file information to return */
+; 0002 0329 )
+; 0002 032A {
 ;PCODE: $00000853 VOL: 0
 ;PCODE: $00000854 VOL: 0
-; 0002 032A 	FRESULT res;
-; 0002 032B 	BYTE sp[12], dir[32];
-; 0002 032C 	FATFS *fs = FatFs;
-; 0002 032D 
+; 0002 032B 	FRESULT res;
+; 0002 032C 	BYTE sp[12], dir[32];
+; 0002 032D 	FATFS *fs = FatFs;
 ; 0002 032E 
-; 0002 032F 	if (!fs) {				/* Check file system */
+; 0002 032F 
+; 0002 0330 	if (!fs) {				/* Check file system */
 ;PCODE: $00000855 VOL: 0
 ;PCODE: $00000856 VOL: 0
 ;PCODE: $00000857 VOL: 0
@@ -3062,88 +3063,88 @@
 ;PCODE: $00000859 VOL: 0
 ;PCODE: $0000085A VOL: 0
 ;PCODE: $0000085B VOL: 0
-; 0002 0330 		res = FR_NOT_ENABLED;
+; 0002 0331 		res = FR_NOT_ENABLED;
 ;PCODE: $0000085C VOL: 0
 ;PCODE: $0000085D VOL: 0
-; 0002 0331 	} else {
+; 0002 0332 	} else {
 ;PCODE: $0000085E VOL: 0
 ;PCODE: $0000085F VOL: 0
-; 0002 0332 		fs->buf = dir;
+; 0002 0333 		fs->buf = dir;
 ;PCODE: $00000860 VOL: 0
 ;PCODE: $00000861 VOL: 0
 ;PCODE: $00000862 VOL: 0
-; 0002 0333 		dj->fn = sp;
+; 0002 0334 		dj->fn = sp;
 ;PCODE: $00000863 VOL: 0
 ;PCODE: $00000864 VOL: 0
 ;PCODE: $00000865 VOL: 0
-; 0002 0334 		if (!fno) {
+; 0002 0335 		if (!fno) {
 ;PCODE: $00000866 VOL: 0
 ;PCODE: $00000867 VOL: 0
 ;PCODE: $00000868 VOL: 0
-; 0002 0335 			res = dir_rewind(dj);
+; 0002 0336 			res = dir_rewind(dj);
 ;PCODE: $00000869 VOL: 0
 ;PCODE: $0000086A VOL: 0
 ;PCODE: $0000086B VOL: 0
-; 0002 0336 		} else {
+; 0002 0337 		} else {
 ;PCODE: $0000086C VOL: 0
 ;PCODE: $0000086D VOL: 0
-; 0002 0337 			res = dir_read(dj);
+; 0002 0338 			res = dir_read(dj);
 ;PCODE: $0000086E VOL: 0
 ;PCODE: $0000086F VOL: 0
 ;PCODE: $00000870 VOL: 0
-; 0002 0338 			if (res == FR_NO_FILE) {
+; 0002 0339 			if (res == FR_NO_FILE) {
 ;PCODE: $00000871 VOL: 0
 ;PCODE: $00000872 VOL: 0
 ;PCODE: $00000873 VOL: 0
-; 0002 0339 				dj->sect = 0;
+; 0002 033A 				dj->sect = 0;
 ;PCODE: $00000874 VOL: 0
 ;PCODE: $00000875 VOL: 0
 ;PCODE: $00000876 VOL: 0
 ;PCODE: $00000877 VOL: 0
-; 0002 033A 				res = FR_OK;
+; 0002 033B 				res = FR_OK;
 ;PCODE: $00000878 VOL: 0
 ;PCODE: $00000879 VOL: 0
-; 0002 033B 			}
-; 0002 033C 			if (res == FR_OK) {				/* A valid entry is found */
+; 0002 033C 			}
+; 0002 033D 			if (res == FR_OK) {				/* A valid entry is found */
 ;PCODE: $0000087A VOL: 0
 ;PCODE: $0000087B VOL: 0
 ;PCODE: $0000087C VOL: 0
-; 0002 033D 				get_fileinfo(dj, fno);		/* Get the object information */
+; 0002 033E 				get_fileinfo(dj, fno);		/* Get the object information */
 ;PCODE: $0000087D VOL: 0
 ;PCODE: $0000087E VOL: 0
 ;PCODE: $0000087F VOL: 0
 ;PCODE: $00000880 VOL: 0
-; 0002 033E 				res = dir_next(dj);			/* Increment index for next */
+; 0002 033F 				res = dir_next(dj);			/* Increment index for next */
 ;PCODE: $00000881 VOL: 0
 ;PCODE: $00000882 VOL: 0
 ;PCODE: $00000883 VOL: 0
-; 0002 033F 				if (res == FR_NO_FILE) {
+; 0002 0340 				if (res == FR_NO_FILE) {
 ;PCODE: $00000884 VOL: 0
 ;PCODE: $00000885 VOL: 0
 ;PCODE: $00000886 VOL: 0
-; 0002 0340 					dj->sect = 0;
+; 0002 0341 					dj->sect = 0;
 ;PCODE: $00000887 VOL: 0
 ;PCODE: $00000888 VOL: 0
 ;PCODE: $00000889 VOL: 0
 ;PCODE: $0000088A VOL: 0
-; 0002 0341 					res = FR_OK;
+; 0002 0342 					res = FR_OK;
 ;PCODE: $0000088B VOL: 0
 ;PCODE: $0000088C VOL: 0
-; 0002 0342 				}
-; 0002 0343 			}
+; 0002 0343 				}
+; 0002 0344 			}
 ;PCODE: $0000088D VOL: 0
-; 0002 0344 		}
+; 0002 0345 		}
 ;PCODE: $0000088E VOL: 0
 ;PCODE: $0000088F VOL: 0
-; 0002 0345 	}
+; 0002 0346 	}
 ;PCODE: $00000890 VOL: 0
-; 0002 0346 
-; 0002 0347 	return res;
+; 0002 0347 
+; 0002 0348 	return res;
 ;PCODE: $00000891 VOL: 0
 ;PCODE: $00000892 VOL: 0
 ;PCODE: $00000893 VOL: 0
 ;PCODE: $00000894 VOL: 0
-; 0002 0348 }
+; 0002 0349 }
 ;PCODE: $00000895 VOL: 0
 ;
 ;#endif /* _USE_DIR */

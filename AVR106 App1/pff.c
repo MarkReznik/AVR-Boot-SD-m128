@@ -264,6 +264,7 @@ FRESULT dir_read (
 
 	return res;
 }
+
 #endif
 
 

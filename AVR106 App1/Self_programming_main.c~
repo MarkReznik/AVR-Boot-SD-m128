@@ -30,7 +30,8 @@
 #include "Self_programming.h"
 /* FAT on MMC/SD/SD HC card support */
 //Petit fat api
-#include <pff.h>
+#include <pff_rn.h>
+#include "diskio.h"		/* Declarations of low level disk I/O functions */
 /* printf */
 #include <stdio.h>
 #include <stdlib.h>
@@ -87,10 +88,15 @@ void error(FRESULT res, unsigned char num)
     }
     itoa(num,strnum);
     do{
-    if ((res>=FR_DISK_ERR) && (res<=FR_NO_FILESYSTEM)){//FR_NO_FILESYSTEM  FR_TIMEOUT
+    if ((res>=0) && (res<=FR_NO_FILESYSTEM)){//FR_NO_FILESYSTEM  FR_TIMEOUT
        lcd_gotoxy(0,0);
        printf("ERROR: %p\r\n",error_msg[res]);
-       lcd_putsf("SD ERROR: ");
+       if(res==0){
+        lcd_putsf("SD OK: ");
+       }
+       else{
+        lcd_putsf("SD ERROR: "); 
+       }
        delay_ms(100);
        lcd_puts(strnum);
        lcd_putsf(",");
@@ -122,8 +128,50 @@ unsigned char RenameTest(){
    
 }
 
+FRESULT rename (const char* dirname, const char* oldname, char* newname)
+{
+    FRESULT res;
+    FILINFO fno;
+    DIR dir;
+    int i;
+    BYTE rwbuf[512];
+        
+    res = pf_opendir(&dir, path);
+    if (res == FR_OK) {
+        i = strlen(path);
+        for (;;) {
+            res = pf_readdir(&dir, &fno);
+            if (res != FR_OK || fno.fname[0] == 0) break;
+            if(fno.fname[0] == 'U'){
+               res = disk_readp(rwbuf,dir.sect,0,512);
+               if (res != FR_OK) break;
+               rwbuf[((dir.index-1)*32)+6]='5';
+               res = disk_writep(0,dir.sect);
+               if (res != FR_OK) break;
+               res = disk_writep(rwbuf,512);
+               if (res != FR_OK) break;
+               res = disk_writep(0,0);
+               break;
+            }
+            /*
+            if (fno.fattrib & AM_DIR) {
+                sprintf(&path[i], "/%s", fno.fname);
+                res = scan_files(path);
+                if (res != FR_OK) break;
+                path[i] = 0;
+            } else {
+                printf("%s/%s\n", path, fno.fname);
+            }
+            */
+        }
+    }
+
+    return res;
+}
+
 unsigned char UnitTest1(){
-    strcpy(path,"/0/unittest.txt");
+    
+    strcpy(path,"/0/UPDATE3.DAT");
     /* mount logical drive 0: */
     //if ((res=f_mount(0,&fat))==FR_OK)
     for(retry=0;retry<5;retry++){
@@ -140,9 +188,16 @@ unsigned char UnitTest1(){
     else
        /* an error occured, display it and stop */
        error(res,1);
-
-
+    //scan_files("/0");
+    
+    //res=pf_rename("/0","UPDATE","DONE001");
+    res=pf_rename("/0","DONE","UPDATE");
+    error(res,22);
+    
     printf("%s \r\n",path);
+    
+    
+    
     /*this line will remove READ_ONLY attribute*/
     //f_chmod(path, AM_ARC, AM_ARC|AM_RDO);
     /* create a new file in the root of drive 0:
@@ -248,7 +303,7 @@ void main( void ){
   lcd_clear();
   lcd_putsf("pff Test.");
   delay_ms(2000);
-  //UnitTest1();
+  UnitTest1();
   
   //RenameTest();
   //UpdateTest();
@@ -257,7 +312,7 @@ void main( void ){
   
   /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
-    lcd_putsf("Test1 done.");
+    lcd_putsf("Test2 done.");
   do
     {
       PORTC.0=0;

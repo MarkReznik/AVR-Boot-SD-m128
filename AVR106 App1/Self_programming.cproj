@@ -42,10 +42,10 @@
     <Compile Include="Self_programming.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="pff.c">
+    <Compile Include="mmc.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="mmc.c">
+    <Compile Include="pff_rn.c">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

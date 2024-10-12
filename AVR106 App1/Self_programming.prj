@@ -7,7 +7,7 @@ A=
 C=
 D=12/01/2020
 Files=4
-OpenedFiles=6
+OpenedFiles=9
 OF1=Self_programming.c
 Active1=0
 DebugOutputListFilesDirectory=Debug\List
@@ -36,44 +36,40 @@ PageIndex2=2
 OF3=Self_programming_main.c
 Active3=1
 EditorPanel3=0
-TimeStamp3=1496624708
+TimeStamp3=1498201767
 PageIndex3=3
-OF4=pff.h
+OF4=pff_rn.h
 Active4=0
 EditorPanel4=0
-TimeStamp4=1496561757
+TimeStamp4=1498198858
 PageIndex4=4
-TimeStamp0=1496562419
+TimeStamp0=1498201767
 OF5=mmc.c
 Active5=0
 EditorPanel5=0
 TimeStamp5=1493676727
 PageIndex5=5
-OF6=pff.c
+OF6=pff_rn.c
 Active6=0
 EditorPanel6=0
-TimeStamp6=1299596577
+TimeStamp6=1498201712
 PageIndex6=6
-OF7=pff.c
+OF7=Debug\List\Self_programming.map
 Active7=0
 EditorPanel7=0
-TimeStamp7=1299596577
+TimeStamp7=1497149872
 PageIndex7=7
-OF8=diskio.h
+OF8=mmc.h
 Active8=0
 EditorPanel8=0
-TimeStamp8=1299596576
+TimeStamp8=1493676943
 PageIndex8=8
-OF9=mmc.c
+OF9=diskio.h
 Active9=0
 EditorPanel9=0
-TimeStamp9=1493676727
+TimeStamp9=1299596576
 PageIndex9=9
 ActiveTab=3
-F1=Self_programming_main.c
-F2=Self_programming.c
-F3=pff.c
-F4=mmc.c
 OF10=C:\cvavr\inc\mega128.h
 Active10=0
 EditorPanel10=0
@@ -84,6 +80,10 @@ Active11=0
 EditorPanel11=0
 TimeStamp11=1493676943
 PageIndex11=11
+F1=Self_programming_main.c
+F2=Self_programming.c
+F3=mmc.c
+F4=pff_rn.c
 [CompilerDebug]
 Chip=ATmega128
 CPUClock=10000000
@@ -182,8 +182,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1496624710
-Build=204
+COFFileTimeStamp=1498201714
+Build=240
 GlobalVarAddr=2350
 EEPROMVarAddr=0
 [DefinedSymbolsDebug]
@@ -287,7 +287,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=204
+Build=240
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -470,7 +470,7 @@ LockBits=0
 BootLockBits0=0
 BootLockBits1=0
 BootLockBits2=0
-ProgramFuseBits=1
+ProgramFuseBits=0
 Fuse1=0
 Fuse2=0
 Fuse3=0
@@ -479,10 +479,10 @@ Fuse5=0
 Fuse6=0
 Fuse7=0
 Fuse8=0
-Fuse9=0
+Fuse9=1
 Fuse10=0
-Fuse11=0
-Fuse12=0
+Fuse11=1
+Fuse12=1
 Fuse13=0
 Fuse14=0
 Fuse15=0
@@ -520,7 +520,7 @@ Fuse46=0
 Fuse47=0
 Fuse48=0
 CheckSignature=1
-CheckErasure=1
+CheckErasure=0
 PreserveEEPROM=0
 VerifyProgramming=1
 ProgrammingCounter=0
@@ -552,29 +552,29 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 203
-L18=20702 line(s) compiled
+L17=Build: 239
+L18=20986 line(s) compiled
 L19=No errors
-L20=53 warning(s)
+L20=39 warning(s)
 L21=
 L22=Bit variables size: 0 byte(s)
 L23=
 L24=Data Stack area: 0x100 to 0x91F
 L25=Data Stack size: 2080 byte(s)
-L26=Estimated Data Stack usage: 558 byte(s)
+L26=Estimated Data Stack usage: 925 byte(s)
 L27=
-L28=RAM Global variables area: 0x920 to 0xAD9
-L29=RAM Global variables size: 442 byte(s)
+L28=RAM Global variables area: 0x920 to 0xAE9
+L29=RAM Global variables size: 458 byte(s)
 L30=
-L31=Hardware Stack area: 0xADA to 0x10FF
-L32=Hardware Stack size: 1574 byte(s)
+L31=Hardware Stack area: 0xAEA to 0x10FF
+L32=Hardware Stack size: 1558 byte(s)
 L33=
 L34=Heap size: 0 byte(s)
 Lines=38
 L35=
 L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L37=Program size: 1510 words (3020 bytes), 2.3% of FLASH
-L38=65 words (130 bytes), 4.1% reduced by Code Compression
+L37=Program size: 5754 words (11508 bytes), 8.8% of FLASH
+L38=442 words (884 bytes), 7.1% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=10
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
@@ -583,15 +583,15 @@ L3=
 L4=ATmega128 memory use summary [bytes]:
 L5=Segment   Begin    End      Code   Data   Used    Size   Use%
 L6=---------------------------------------------------------------
-L7=[.cseg] 0x000000 0x000bcc   2292    728   3020  131072   2.3%
-L8=[.dseg] 0x000100 0x000ada      0    442    442    4096  10.8%
+L7=[.cseg] 0x000000 0x002cf4  10718    790  11508  131072   8.8%
+L8=[.dseg] 0x000100 0x000aea      0    458    458    4096  11.2%
 L9=[.eseg] 0x000000 0x000111      0    263    263    4096   6.4%
 L10=
 L11=[.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 L12=
 L13=
 [BookmarksFoldedCode]
-Files=24
+Files=26
 F1=main.c
 F2=Self_programming.c
 F3=Self_programming.h
@@ -616,6 +616,8 @@ F21=C:\cvavr\inc\mega128.h
 F22=diskio.h
 F23=integer.h
 F24=pff.h
+F25=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff_rn.c
+F26=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff_rn.h
 [Bookmarks1]
 TimeStamp=1032480024
 Row=142
@@ -637,7 +639,7 @@ Row=1
 Column=32
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1496625964
+TimeStamp=1498201768
 [Bookmarks2]
 TimeStamp=1349762251
 Row=67
@@ -725,11 +727,11 @@ BK9=-1
 [FoldedCode1]
 Blocks=0
 [Bookmarks7]
-TimeStamp=1493677741
+TimeStamp=1497130486
 Row=0
 Column=0
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=1301
 BK0=-1
 BK1=-1
 BK2=-1
@@ -741,11 +743,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1496624708
-Row=27
-Column=1
+TimeStamp=1498201767
+Row=193
+Column=4
 ScrollPosX=0
-ScrollPosY=12
+ScrollPosY=168
 BK0=-1
 BK1=-1
 BK2=-1
@@ -789,7 +791,7 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks11]
-TimeStamp=1348163709
+TimeStamp=1498201714
 Row=0
 Column=0
 ScrollPosX=0
@@ -839,8 +841,6 @@ BK9=-1
 [FoldedCode12]
 Blocks=0
 [FoldedCode13]
-Blocks=0
-[FoldedCode11]
 Blocks=0
 [FoldedCode10]
 Blocks=0
@@ -921,11 +921,11 @@ BK9=-1
 [FoldedCode17]
 Blocks=0
 [Bookmarks18]
-TimeStamp=1299596577
-Row=534
-Column=8
+TimeStamp=1497147181
+Row=23
+Column=71
 ScrollPosX=0
-ScrollPosY=447
+ScrollPosY=9
 BK0=-1
 BK1=-1
 BK2=-1
@@ -938,10 +938,10 @@ BK8=-1
 BK9=-1
 [Bookmarks19]
 TimeStamp=1493676727
-Row=28
-Column=8
+Row=221
+Column=18
 ScrollPosX=0
-ScrollPosY=190
+ScrollPosY=83
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1018,10 +1018,10 @@ BK8=-1
 BK9=-1
 [Bookmarks24]
 TimeStamp=1496561757
-Row=38
-Column=7
+Row=97
+Column=36
 ScrollPosX=0
-ScrollPosY=32
+ScrollPosY=88
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1034,34 +1034,35 @@ BK8=-1
 BK9=-1
 [FoldedCode23]
 Blocks=0
-[FoldedCode22]
-Blocks=0
 [FoldedCode21]
 Blocks=0
-[FoldedCode20]
-Blocks=0
 [FoldedCode7]
+Blocks=0
+[FoldedCode18]
+Blocks=0
+[FoldedCode24]
 Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming_main.c
 F2=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming.c
-F3=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff.c
-F4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\mmc.c
+F3=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\mmc.c
+F4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff_rn.c
 [Header1]
-Files=12
+Files=13
 F1=C:\cvavr\inc\io.h
 F2=C:\cvavr\inc\mega128.h
 F3=C:\cvavr\inc\mega128_bits.h
 F4=C:\cvavr\inc\delay.h
 F5=Self_programming.h
 F6=integer.h
-F7=pff.h
-F8=C:\cvavr\inc\stdio.h
-F9=C:\cvavr\inc\stdarg.h
-F10=C:\cvavr\inc\stdlib.h
-F11=C:\cvavr\inc\string.h
-F12=C:\cvavr\inc\alcd.h
+F7=pff_rn.h
+F8=diskio.h
+F9=C:\cvavr\inc\stdio.h
+F10=C:\cvavr\inc\stdarg.h
+F11=C:\cvavr\inc\stdlib.h
+F12=C:\cvavr\inc\string.h
+F13=C:\cvavr\inc\alcd.h
 [Header2]
 Files=5
 F1=C:\cvavr\inc\io.h
@@ -1070,26 +1071,65 @@ F3=C:\cvavr\inc\mega128_bits.h
 F4=Self_programming.h
 F5=integer.h
 [Header3]
-Files=3
-F1=pff.h
-F2=integer.h
-F3=diskio.h
-[Header4]
 Files=5
 F1=diskio.h
 F2=integer.h
 F3=mmc.h
 F4=C:\cvavr\inc\mega128.h
 F5=C:\cvavr\inc\mega128_bits.h
+[Header4]
+Files=4
+F1=pff_rn.h
+F2=integer.h
+F3=diskio.h
+F4=C:\cvavr\inc\string.h
 [FoldedCode8]
 Blocks=0
 [FoldedCode2]
 Blocks=0
-[FoldedCode18]
-Blocks=0
 [FoldedCode19]
 Blocks=0
-[FoldedCode24]
+[Bookmarks25]
+TimeStamp=1498201712
+Row=896
+Column=42
+ScrollPosX=0
+ScrollPosY=876
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[FoldedCode25]
+Blocks=0
+[FoldedCode22]
+Blocks=0
+[FoldedCode20]
+Blocks=0
+[FoldedCode11]
+Blocks=0
+[Bookmarks26]
+TimeStamp=1498198858
+Row=124
+Column=11
+ScrollPosX=0
+ScrollPosY=90
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[FoldedCode26]
 Blocks=0
 [FoldedCode3]
 Blocks=0
