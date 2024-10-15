@@ -171,9 +171,11 @@ FRESULT rename (const char* dirname, const char* oldname, char* newname)
 
 unsigned char UnitTest1(){
     
+    BYTE testbuf[10]={'0','9','8','7','0','9','8','7','6','5'};
     strcpy(path,"/0/UPDATE3.DAT");
     /* mount logical drive 0: */
     //if ((res=f_mount(0,&fat))==FR_OK)
+    
     for(retry=0;retry<5;retry++){
         res=pf_mount(&fat);
         if (res==FR_OK){
@@ -183,6 +185,8 @@ unsigned char UnitTest1(){
           delay_ms(500);
         }
     }
+    
+    //res=pf_remount(&fat);
     if (res==FR_OK)
        printf("Logical drive 0: mounted OK\r\n");
     else
@@ -190,11 +194,12 @@ unsigned char UnitTest1(){
        error(res,1);
     //scan_files("/0");
     
-    //res=pf_rename("/0","UPDATE","DONE001");
-    res=pf_rename("/0","DONE","UPDATE");
-    error(res,22);
+    res=pf_rename("/0","UPDATE","DONE000");
+    //res=pf_rename("/0","DONE","UPDATE");
+    if(res)
+        error(res,22);
     
-    printf("%s \r\n",path);
+    
     
     
     
@@ -203,7 +208,7 @@ unsigned char UnitTest1(){
     /* create a new file in the root of drive 0:
        and set write access mode */
     //if ((res=f_open(&file,path,FA_CREATE_ALWAYS | FA_WRITE))==FR_OK)
-    if ((res=pf_open(path))==FR_OK)
+    if ((res=pf_open("data.txt"))==FR_OK)
        printf("File %s created OK\r\n",path);
     else{
        /* an error occured, display it and stop */
@@ -214,6 +219,11 @@ unsigned char UnitTest1(){
     /* write some text to the file,
        without the NULL string terminator sizeof(data)-1 */
     //if ((res=f_write(&file,text,sizeof(text)-1,&nbytes))==FR_OK)
+    if ((res=pf_write512(testbuf,510,sizeof(testbuf)-1,&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);
     if ((res=pf_write(text,sizeof(text)-1,&nbytes))==FR_OK)
        printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
     else
@@ -301,8 +311,8 @@ void main( void ){
   
   //disk_timerproc();
   lcd_clear();
-  lcd_putsf("pff Test.");
-  delay_ms(2000);
+  lcd_putsf("pff Test3.");
+  delay_ms(200);
   UnitTest1();
   
   //RenameTest();
@@ -312,7 +322,7 @@ void main( void ){
   
   /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
-    lcd_putsf("Test2 done.");
+    lcd_putsf("Test3 done.");
   do
     {
       PORTC.0=0;

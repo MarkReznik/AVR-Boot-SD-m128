@@ -427,7 +427,7 @@ BYTE check_fs (	/* 0:The FAT boot record, 1:Valid boot record but not an FAT, 2:
 	DWORD sect	/* Sector# (lba) to check if it is an FAT boot record or not */
 )
 {
-	if (disk_readp(buf, sect, 510, 2))		/* Read the boot sector */
+    if (disk_readp(buf, sect, 510, 2))		/* Read the boot sector */
 		return 3;
 	if (LD_WORD(buf) != 0xAA55)				/* Check record signature */
 		return 2;
@@ -695,6 +695,67 @@ FRESULT pf_write (
 fw_abort:
 	fs->flag = 0;
 	return FR_DISK_ERR;
+}
+
+FRESULT pf_write512 (
+	BYTE* buff,	/* Pointer to the data to be written */
+	WORD ofs,			//offset to fill data
+	WORD btw,           /* Number of bytes to write */
+    WORD* bw			/* Pointer to number of bytes written */
+)
+{
+     BYTE res;
+     WORD i=ofs%512,j=0;
+     BYTE buf512[512];
+     FATFS *fs = FatFs;   
+     
+     //WORD nbytes=0;
+     if((btw)>512){
+         return FR_DISK_ERR; //write bytes great than 512
+     }
+     res=pf_lseek((ofs/512)*512);
+     if(((ofs%512)+btw)>512){//read replace then write        
+        res=pf_read(buf512, 512, bw);
+        if(res!=FR_OK){
+            return res;
+        }
+        for(;i<512;i++,j++){
+            buf512[i]=buff[j];
+        }
+        res=pf_lseek(fs->fptr - 512);
+        //res=pf_lseek((ofs/512)*512);
+        res=pf_write(buf512, 512, bw);
+        if(res!=FR_OK){
+            return res;
+        }
+        i=0;
+         //return FR_DISK_ERR; //write bytes great than 512
+     }
+     {
+        
+        res=pf_read(buf512, 512, bw);
+        res=pf_lseek(fs->fptr - 512);
+        /*
+        if(j>0){
+            res=pf_lseek(((ofs/512)+1)*512);
+        }
+        else{
+            res=pf_lseek((ofs/512)*512);
+        }
+        */
+        if(res!=FR_OK){
+            return res;
+        }
+        for(;j<btw;i++,j++){
+            buf512[i]=buff[j];
+        }
+        
+        res=pf_write(buf512, 512, bw);
+        if(res!=FR_OK){
+            return res;
+        }
+     }
+     
 }
 #endif
 

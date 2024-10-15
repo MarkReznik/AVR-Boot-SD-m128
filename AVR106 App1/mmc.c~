@@ -6,6 +6,9 @@
 //#include "common.h"
 #include "diskio.h"
 #include "mmc.h"
+#include <mega128.h>
+#include <delay.h>
+
 // Definitions for MMC/SDC connection
 
 //#define SD_INS  6
@@ -44,7 +47,9 @@ void INIT_SPI(void) {
 
 	/*разрешение spi,старший бит вперед,мастер, режим 0*/
 	SPCR = (1 << SPE) | (0 << DORD) | (1 << MSTR) | (0 << CPOL) | (0 << CPHA) | (0 << SPR1) | (0 << SPR0);
-	SPSR = (1 << SPI2X);
+    SPSR = (1 << SPI2X); 
+    //SPCR |= (1 << SPR1) | (1 << SPR0);
+    //SPSR &= ~(1 << SPI2X);
 #else
 	PORTB |= (1<<SD_CS) | (1<<SD_DO) | (1<<SD_DI)/* | (1<<SD_WP) | (1<<SD_INS)*/;
 	DDRB |=(1<<SD_CS) | (1<<SD_DI) | (1<<SD_CLK);
@@ -169,47 +174,55 @@ DSTATUS disk_initialize (void)
 {
 	BYTE n, cmd, ty, ocr[4];
 	WORD tmr;
+    BYTE retry=0;
+    while(retry<5){
+        INIT_SPI();
 
+    //	if ((PINB&_BV(SD_INS))!=0x00) return STA_NOINIT;
 
-	INIT_SPI();
+    #if _WRITE_FUNC
+        //if (MMC_SEL) disk_writep(0, 0);		// Finalize write process if it is in progress
+    #endif
+        for (n = 100; n; n--) rcv_spi();	// Dummy clocks
 
-//	if ((PINB&_BV(SD_INS))!=0x00) return STA_NOINIT;
-
-#if _WRITE_FUNC
-	if (MMC_SEL) disk_writep(0, 0);		// Finalize write process if it is in progress
-#endif
-	for (n = 100; n; n--) rcv_spi();	// Dummy clocks
-
-	ty = 0;
-	if (send_cmd(CMD0, 0) == 1) {			// Enter Idle state
-		if (send_cmd(CMD8, 0x1AA) == 1) {	// SDv2
-			for (n = 0; n < 4; n++) ocr[n] = rcv_spi();		// Get trailing return value of R7 resp
-			if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				// The card can work at vdd range of 2.7-3.6V
-				for (tmr = 12000; tmr && send_cmd(ACMD41, 1UL << 30); tmr--) ;	// Wait for leaving idle state (ACMD41 with HCS bit)
-				if (tmr && send_cmd(CMD58, 0) == 0) {		// Check CCS bit in the OCR
-					for (n = 0; n < 4; n++) ocr[n] = rcv_spi();
-					ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	// SDv2 (HC or SC)
-				}
-			}
-		} else {							// SDv1 or MMCv3
-			if (send_cmd(ACMD41, 0) <= 1) 	{
-				ty = CT_SD1; cmd = ACMD41;	// SDv1
-			} else {
-				ty = CT_MMC; cmd = CMD1;	// MMCv3
-			}
-			for (tmr = 25000; tmr && send_cmd(cmd, 0); tmr--) ;	// Wait for leaving idle state
-			if (!tmr || send_cmd(CMD16, 512) != 0)			// Set R/W block length to 512
-				ty = 0;
-		}
-	}
-	CardType = ty;
-	release_spi();
-
+        ty = 0;
+        if (send_cmd(CMD0, 0) == 1) {			// Enter Idle state
+            if (send_cmd(CMD8, 0x1AA) == 1) {	// SDv2
+                for (n = 0; n < 4; n++) ocr[n] = rcv_spi();		// Get trailing return value of R7 resp
+                if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				// The card can work at vdd range of 2.7-3.6V
+                    for (tmr = 30000; tmr && send_cmd(ACMD41, 1UL << 30); tmr--) ;	// Wait for leaving idle state (ACMD41 with HCS bit)
+                    if (tmr && send_cmd(CMD58, 0) == 0) {		// Check CCS bit in the OCR
+                        for (n = 0; n < 4; n++) ocr[n] = rcv_spi();
+                        ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	// SDv2 (HC or SC)
+                    }
+                }
+            } else {							// SDv1 or MMCv3
+                if (send_cmd(ACMD41, 0) <= 1) 	{
+                    ty = CT_SD1; cmd = ACMD41;	// SDv1
+                } else {
+                    ty = CT_MMC; cmd = CMD1;	// MMCv3
+                }
+                for (tmr = 30000; tmr && send_cmd(cmd, 0); tmr--) ;	// Wait for leaving idle state
+                if (!tmr || send_cmd(CMD16, 512) != 0)			// Set R/W block length to 512
+                    ty = 0;
+            }
+        }
+        CardType = ty;
+        release_spi();
+        if(ty){
+           break;
+        }
+        retry++;
+        delay_ms(200);
+    }
 #ifdef hardware_spi
 	//для аппаратного SPI!!!--------------------------------------------
-	SPCR &= ~((1 << SPR1) | (1 << SPR0)); // убираем предделитель
-	SPSR |= (1 << SPI2X); // удваиваем частоту
-	//------------------------------------------------------------------
+    //INIT_SPI();
+    //SPCR &= ~((1 << SPR1) | (1 << SPR0)); // убираем предделитель
+	//SPSR |= (1 << SPI2X); // удваиваем частоту
+    
+#else	
+    //------------------------------------------------------------------
 #endif
 
 	return ty ? 0 : STA_NOINIT;

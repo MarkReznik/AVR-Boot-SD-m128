@@ -4,7 +4,7 @@ void INIT_SPI(void);
 // Port Controls (Platform dependent)
 #define SELECT()    PORTB &= ~(1<<SD_CS)        // MMC CS = L
 #define    DESELECT()    PORTB |=  (1<<SD_CS)        // MMC CS = H
-#define    MMC_SEL        !(PORTB & (1<<SD_CS))    // MMC CS status (true:selected)
+#define MMC_SEL        !(PORTB & (1<<SD_CS))    // MMC CS status (true:selected)
 #ifdef _MEGA64_INCLUDED_
 #define SD_DI   2
 #define SD_DO   3
