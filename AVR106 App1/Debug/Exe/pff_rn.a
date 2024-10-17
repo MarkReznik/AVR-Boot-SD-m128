@@ -3397,7 +3397,7 @@
 ; 0003 0397     DIR dir;
 ; 0003 0398     int i,j;
 ; 0003 0399     BYTE rwbuf[512];
-; 0003 039A 
+; 0003 039A     //open directory structure
 ; 0003 039B     res = pf_opendir(&dir, dirname);
 ;PCODE: $00000938 VOL: 0
 ;PCODE: $00000939 VOL: 0
@@ -3419,36 +3419,36 @@
 ; 0003 039C     if (res == FR_OK) {
 ;PCODE: $00000940 VOL: 0
 ;PCODE: $00000941 VOL: 0
-; 0003 039D         i = strlen(oldname);
+; 0003 039D         i = strlen(oldname);//save old flename length
 ;PCODE: $00000942 VOL: 0
 ;PCODE: $00000943 VOL: 0
 ;PCODE: $00000944 VOL: 0
-; 0003 039E         j = strlen(oldname);
+; 0003 039E         for (;;) {
 ;PCODE: $00000945 VOL: 0
 ;PCODE: $00000946 VOL: 0
+; 0003 039F             res = pf_readdir(&dir, &fno);
 ;PCODE: $00000947 VOL: 0
-; 0003 039F         if(i==6 || j==6){
 ;PCODE: $00000948 VOL: 0
 ;PCODE: $00000949 VOL: 0
 ;PCODE: $0000094A VOL: 0
 ;PCODE: $0000094B VOL: 0
+; 0003 03A0             if (res != FR_OK || fno.fname[0] == 0){
 ;PCODE: $0000094C VOL: 0
 ;PCODE: $0000094D VOL: 0
 ;PCODE: $0000094E VOL: 0
 ;PCODE: $0000094F VOL: 0
-; 0003 03A0 
-; 0003 03A1         }
-; 0003 03A2         for (;;) {
 ;PCODE: $00000950 VOL: 0
 ;PCODE: $00000951 VOL: 0
 ;PCODE: $00000952 VOL: 0
-; 0003 03A3             res = pf_readdir(&dir, &fno);
 ;PCODE: $00000953 VOL: 0
+; 0003 03A1                 res=FR_NO_FILE;
 ;PCODE: $00000954 VOL: 0
 ;PCODE: $00000955 VOL: 0
+; 0003 03A2                 break;
 ;PCODE: $00000956 VOL: 0
+; 0003 03A3             }
+; 0003 03A4             for(j=0;j<i;j++){//check compare the oldname chars to filename read from directory
 ;PCODE: $00000957 VOL: 0
-; 0003 03A4             if (res != FR_OK || fno.fname[0] == 0) break;
 ;PCODE: $00000958 VOL: 0
 ;PCODE: $00000959 VOL: 0
 ;PCODE: $0000095A VOL: 0
@@ -3458,7 +3458,7 @@
 ;PCODE: $0000095E VOL: 0
 ;PCODE: $0000095F VOL: 0
 ;PCODE: $00000960 VOL: 0
-; 0003 03A5             for(j=0;j<i;j++){
+; 0003 03A5                 if(fno.fname[j] != oldname[j]){
 ;PCODE: $00000961 VOL: 0
 ;PCODE: $00000962 VOL: 0
 ;PCODE: $00000963 VOL: 0
@@ -3469,65 +3469,68 @@
 ;PCODE: $00000968 VOL: 0
 ;PCODE: $00000969 VOL: 0
 ;PCODE: $0000096A VOL: 0
-; 0003 03A6                 if(fno.fname[j] != oldname[j]){
+; 0003 03A6                     res=FR_NO_FILE;
 ;PCODE: $0000096B VOL: 0
 ;PCODE: $0000096C VOL: 0
+; 0003 03A7                     break;//if not match -> read next filename in directory
 ;PCODE: $0000096D VOL: 0
+; 0003 03A8                 }
+; 0003 03A9             }
 ;PCODE: $0000096E VOL: 0
 ;PCODE: $0000096F VOL: 0
 ;PCODE: $00000970 VOL: 0
 ;PCODE: $00000971 VOL: 0
 ;PCODE: $00000972 VOL: 0
 ;PCODE: $00000973 VOL: 0
+; 0003 03AA             //on old filename part match, read the filenames sector to buffer[512] and replace the old filename with new ...
+; 0003 03AB             if(i==j){
 ;PCODE: $00000974 VOL: 0
-; 0003 03A7                     break;
 ;PCODE: $00000975 VOL: 0
-; 0003 03A8                 }
-; 0003 03A9             }
 ;PCODE: $00000976 VOL: 0
+; 0003 03AC                //read sector on found filename
+; 0003 03AD                res = disk_readp(rwbuf,dir.sect,0,512);
 ;PCODE: $00000977 VOL: 0
 ;PCODE: $00000978 VOL: 0
 ;PCODE: $00000979 VOL: 0
 ;PCODE: $0000097A VOL: 0
 ;PCODE: $0000097B VOL: 0
-; 0003 03AA             if(i==j){
 ;PCODE: $0000097C VOL: 0
 ;PCODE: $0000097D VOL: 0
 ;PCODE: $0000097E VOL: 0
-; 0003 03AB 
-; 0003 03AC                res = disk_readp(rwbuf,dir.sect,0,512);
 ;PCODE: $0000097F VOL: 0
 ;PCODE: $00000980 VOL: 0
 ;PCODE: $00000981 VOL: 0
 ;PCODE: $00000982 VOL: 0
+; 0003 03AE                if (res != FR_OK) break;
 ;PCODE: $00000983 VOL: 0
 ;PCODE: $00000984 VOL: 0
 ;PCODE: $00000985 VOL: 0
+; 0003 03AF                i = strlen(newname);//save new flename length
 ;PCODE: $00000986 VOL: 0
 ;PCODE: $00000987 VOL: 0
 ;PCODE: $00000988 VOL: 0
 ;PCODE: $00000989 VOL: 0
+; 0003 03B0                //replace the old name with new on accoding to index of filename in directory sector
+; 0003 03B1                for(j=0;j<11;j++){
 ;PCODE: $0000098A VOL: 0
-; 0003 03AD                if (res != FR_OK) break;
 ;PCODE: $0000098B VOL: 0
 ;PCODE: $0000098C VOL: 0
 ;PCODE: $0000098D VOL: 0
-; 0003 03AE                i = strlen(newname);
 ;PCODE: $0000098E VOL: 0
 ;PCODE: $0000098F VOL: 0
 ;PCODE: $00000990 VOL: 0
 ;PCODE: $00000991 VOL: 0
-; 0003 03AF                for(j=0;j<i;j++){
 ;PCODE: $00000992 VOL: 0
+; 0003 03B2                   if(j<i){
 ;PCODE: $00000993 VOL: 0
 ;PCODE: $00000994 VOL: 0
 ;PCODE: $00000995 VOL: 0
+; 0003 03B3                     rwbuf[((dir.index-1)*32)%512+j]=newname[j];
 ;PCODE: $00000996 VOL: 0
 ;PCODE: $00000997 VOL: 0
 ;PCODE: $00000998 VOL: 0
 ;PCODE: $00000999 VOL: 0
 ;PCODE: $0000099A VOL: 0
-; 0003 03B0                   rwbuf[((dir.index-1)*32)%512+j]=newname[j];
 ;PCODE: $0000099B VOL: 0
 ;PCODE: $0000099C VOL: 0
 ;PCODE: $0000099D VOL: 0
@@ -3538,146 +3541,182 @@
 ;PCODE: $000009A2 VOL: 0
 ;PCODE: $000009A3 VOL: 0
 ;PCODE: $000009A4 VOL: 0
+; 0003 03B4                   }
+; 0003 03B5                   else{
 ;PCODE: $000009A5 VOL: 0
 ;PCODE: $000009A6 VOL: 0
+; 0003 03B6                     rwbuf[((dir.index-1)*32)%512+j]=' ';//fill spaces rest of chars
 ;PCODE: $000009A7 VOL: 0
 ;PCODE: $000009A8 VOL: 0
 ;PCODE: $000009A9 VOL: 0
-; 0003 03B1                }
 ;PCODE: $000009AA VOL: 0
 ;PCODE: $000009AB VOL: 0
 ;PCODE: $000009AC VOL: 0
 ;PCODE: $000009AD VOL: 0
 ;PCODE: $000009AE VOL: 0
-; 0003 03B2                res = disk_writep(0,dir.sect);
 ;PCODE: $000009AF VOL: 0
 ;PCODE: $000009B0 VOL: 0
+; 0003 03B7                   }
 ;PCODE: $000009B1 VOL: 0
+; 0003 03B8                }
 ;PCODE: $000009B2 VOL: 0
 ;PCODE: $000009B3 VOL: 0
 ;PCODE: $000009B4 VOL: 0
 ;PCODE: $000009B5 VOL: 0
 ;PCODE: $000009B6 VOL: 0
+; 0003 03B9                //write the sector with new filename
+; 0003 03BA                res = disk_writep(0,dir.sect);
 ;PCODE: $000009B7 VOL: 0
-; 0003 03B3                if (res != FR_OK) break;
 ;PCODE: $000009B8 VOL: 0
 ;PCODE: $000009B9 VOL: 0
 ;PCODE: $000009BA VOL: 0
-; 0003 03B4                res = disk_writep(rwbuf,512);
 ;PCODE: $000009BB VOL: 0
 ;PCODE: $000009BC VOL: 0
 ;PCODE: $000009BD VOL: 0
 ;PCODE: $000009BE VOL: 0
 ;PCODE: $000009BF VOL: 0
+; 0003 03BB                if (res != FR_OK) break;
 ;PCODE: $000009C0 VOL: 0
-; 0003 03B5                if (res != FR_OK) break;
 ;PCODE: $000009C1 VOL: 0
 ;PCODE: $000009C2 VOL: 0
+; 0003 03BC                res = disk_writep(rwbuf,512);
 ;PCODE: $000009C3 VOL: 0
-; 0003 03B6                res = disk_writep(0,0);
 ;PCODE: $000009C4 VOL: 0
 ;PCODE: $000009C5 VOL: 0
 ;PCODE: $000009C6 VOL: 0
 ;PCODE: $000009C7 VOL: 0
 ;PCODE: $000009C8 VOL: 0
+; 0003 03BD                if (res != FR_OK) break;
 ;PCODE: $000009C9 VOL: 0
-; 0003 03B7                if (res != FR_OK) break;
 ;PCODE: $000009CA VOL: 0
 ;PCODE: $000009CB VOL: 0
+; 0003 03BE                res = disk_writep(0,0);
 ;PCODE: $000009CC VOL: 0
-; 0003 03B8                res = pf_opendir(&dir, dirname);
 ;PCODE: $000009CD VOL: 0
 ;PCODE: $000009CE VOL: 0
 ;PCODE: $000009CF VOL: 0
 ;PCODE: $000009D0 VOL: 0
 ;PCODE: $000009D1 VOL: 0
+; 0003 03BF                if (res != FR_OK) break;
 ;PCODE: $000009D2 VOL: 0
-; 0003 03B9                if (res != FR_OK) break;
 ;PCODE: $000009D3 VOL: 0
 ;PCODE: $000009D4 VOL: 0
+; 0003 03C0                break;//exit for loop
 ;PCODE: $000009D5 VOL: 0
-; 0003 03BA                res = pf_readdir(&dir, &fno);
 ;PCODE: $000009D6 VOL: 0
+; 0003 03C1             }
+; 0003 03C2             else{
 ;PCODE: $000009D7 VOL: 0
 ;PCODE: $000009D8 VOL: 0
+; 0003 03C3                res=FR_NO_FILE;
 ;PCODE: $000009D9 VOL: 0
 ;PCODE: $000009DA VOL: 0
+; 0003 03C4             }
 ;PCODE: $000009DB VOL: 0
-; 0003 03BB                if (res != FR_OK || fno.fname[0] == 0) break;
+; 0003 03C5         }
 ;PCODE: $000009DC VOL: 0
 ;PCODE: $000009DD VOL: 0
 ;PCODE: $000009DE VOL: 0
+; 0003 03C6        if (res != FR_OK) return res;
 ;PCODE: $000009DF VOL: 0
 ;PCODE: $000009E0 VOL: 0
 ;PCODE: $000009E1 VOL: 0
 ;PCODE: $000009E2 VOL: 0
 ;PCODE: $000009E3 VOL: 0
 ;PCODE: $000009E4 VOL: 0
-; 0003 03BC                for(j=0;j<i;j++){
+; 0003 03C7         //open the dir and read/check the new filename is found
+; 0003 03C8        res = pf_opendir(&dir, dirname);
 ;PCODE: $000009E5 VOL: 0
 ;PCODE: $000009E6 VOL: 0
 ;PCODE: $000009E7 VOL: 0
 ;PCODE: $000009E8 VOL: 0
 ;PCODE: $000009E9 VOL: 0
 ;PCODE: $000009EA VOL: 0
+; 0003 03C9        if (res != FR_OK) return res;//break;
 ;PCODE: $000009EB VOL: 0
 ;PCODE: $000009EC VOL: 0
 ;PCODE: $000009ED VOL: 0
 ;PCODE: $000009EE VOL: 0
-; 0003 03BD                     if(fno.fname[j] != newname[j]){
 ;PCODE: $000009EF VOL: 0
 ;PCODE: $000009F0 VOL: 0
+; 0003 03CA        //read filenames in directory and compare to new filename
+; 0003 03CB        for(;;){
 ;PCODE: $000009F1 VOL: 0
 ;PCODE: $000009F2 VOL: 0
 ;PCODE: $000009F3 VOL: 0
+; 0003 03CC            res = pf_readdir(&dir, &fno);
 ;PCODE: $000009F4 VOL: 0
 ;PCODE: $000009F5 VOL: 0
 ;PCODE: $000009F6 VOL: 0
 ;PCODE: $000009F7 VOL: 0
 ;PCODE: $000009F8 VOL: 0
-; 0003 03BE                         return FR_NO_FILE;
+; 0003 03CD            if (res != FR_OK || fno.fname[0] == 0) break;
 ;PCODE: $000009F9 VOL: 0
 ;PCODE: $000009FA VOL: 0
 ;PCODE: $000009FB VOL: 0
 ;PCODE: $000009FC VOL: 0
-; 0003 03BF                     }
-; 0003 03C0                }
 ;PCODE: $000009FD VOL: 0
 ;PCODE: $000009FE VOL: 0
 ;PCODE: $000009FF VOL: 0
 ;PCODE: $00000A00 VOL: 0
 ;PCODE: $00000A01 VOL: 0
+; 0003 03CE            for(j=0;j<i;j++){
 ;PCODE: $00000A02 VOL: 0
-; 0003 03C1                if(i==j){
 ;PCODE: $00000A03 VOL: 0
 ;PCODE: $00000A04 VOL: 0
 ;PCODE: $00000A05 VOL: 0
-; 0003 03C2                   break;
 ;PCODE: $00000A06 VOL: 0
-; 0003 03C3                }
-; 0003 03C4             }
 ;PCODE: $00000A07 VOL: 0
-; 0003 03C5             else{
 ;PCODE: $00000A08 VOL: 0
 ;PCODE: $00000A09 VOL: 0
-; 0003 03C6                res=FR_NO_FILE;
 ;PCODE: $00000A0A VOL: 0
 ;PCODE: $00000A0B VOL: 0
-; 0003 03C7             }
+; 0003 03CF                 if(fno.fname[j] != newname[j]){
 ;PCODE: $00000A0C VOL: 0
-; 0003 03C8         }
 ;PCODE: $00000A0D VOL: 0
 ;PCODE: $00000A0E VOL: 0
 ;PCODE: $00000A0F VOL: 0
-; 0003 03C9     }
-; 0003 03CA 
-; 0003 03CB     return res;
 ;PCODE: $00000A10 VOL: 0
 ;PCODE: $00000A11 VOL: 0
 ;PCODE: $00000A12 VOL: 0
 ;PCODE: $00000A13 VOL: 0
 ;PCODE: $00000A14 VOL: 0
-; 0003 03CC }
 ;PCODE: $00000A15 VOL: 0
+; 0003 03D0                     res = FR_NO_FILE;
+;PCODE: $00000A16 VOL: 0
+;PCODE: $00000A17 VOL: 0
+; 0003 03D1                     break;//read next filename if not match
+;PCODE: $00000A18 VOL: 0
+; 0003 03D2                     //return FR_NO_FILE;
+; 0003 03D3                 }
+; 0003 03D4            }
+;PCODE: $00000A19 VOL: 0
+;PCODE: $00000A1A VOL: 0
+;PCODE: $00000A1B VOL: 0
+;PCODE: $00000A1C VOL: 0
+;PCODE: $00000A1D VOL: 0
+;PCODE: $00000A1E VOL: 0
+; 0003 03D5            if(i==j){
+;PCODE: $00000A1F VOL: 0
+;PCODE: $00000A20 VOL: 0
+;PCODE: $00000A21 VOL: 0
+; 0003 03D6               break;//exit for loop on match read new filename
+;PCODE: $00000A22 VOL: 0
+; 0003 03D7            }
+; 0003 03D8        }
+;PCODE: $00000A23 VOL: 0
+;PCODE: $00000A24 VOL: 0
+;PCODE: $00000A25 VOL: 0
+;PCODE: $00000A26 VOL: 0
+; 0003 03D9     }
+; 0003 03DA 
+; 0003 03DB     return res;
+;PCODE: $00000A27 VOL: 0
+;PCODE: $00000A28 VOL: 0
+;PCODE: $00000A29 VOL: 0
+;PCODE: $00000A2A VOL: 0
+;PCODE: $00000A2B VOL: 0
+; 0003 03DC }
+;PCODE: $00000A2C VOL: 0
 ;#endif /* _USE_DIR */
 ;

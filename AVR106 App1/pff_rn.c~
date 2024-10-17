@@ -705,7 +705,7 @@ FRESULT pf_write512 (
 )
 {
      BYTE res;
-     WORD i=ofs,j=0;
+     WORD i=ofs%512,j=0;
      BYTE buf512[512];
      FATFS *fs = FatFs;   
      
@@ -919,53 +919,66 @@ FRESULT pf_rename (
     DIR dir;
     int i,j;
     BYTE rwbuf[512];
-        
+    //open directory structure    
     res = pf_opendir(&dir, dirname);
     if (res == FR_OK) {
-        i = strlen(oldname);
-        j = strlen(oldname);
-        if(i==6 || j==6){
-            
-        }
+        i = strlen(oldname);//save old flename length
         for (;;) {
             res = pf_readdir(&dir, &fno);
             if (res != FR_OK || fno.fname[0] == 0) break;
-            for(j=0;j<i;j++){
+            for(j=0;j<i;j++){//check compare the oldname chars to filename read from directory
                 if(fno.fname[j] != oldname[j]){
-                    break;
+                    res=FR_NO_FILE;
+                    break;//if not match -> read next filename in directory
                 }
             }
+            //on old filename part match, read the filenames sector to buffer[512] and replace the old filename with new then rewrite the buffer 
             if(i==j){
-               
+               //read sector on found filename
                res = disk_readp(rwbuf,dir.sect,0,512);
                if (res != FR_OK) break;
-               i = strlen(newname);
-               for(j=0;j<i;j++){
-                  rwbuf[((dir.index-1)*32)%512+j]=newname[j];
+               i = strlen(newname);//save new flename length
+               //replace the old name with new on accoding to index of filename in directory sector
+               for(j=0;j<11;j++){
+                  if(j<i){
+                    rwbuf[((dir.index-1)*32)%512+j]=newname[j];
+                  }
+                  else{
+                    rwbuf[((dir.index-1)*32)%512+j]=' ';//fill spaces rest of chars
+                  }
                }
+               //write the sector with new filename
                res = disk_writep(0,dir.sect);
                if (res != FR_OK) break;
                res = disk_writep(rwbuf,512);
                if (res != FR_OK) break;
                res = disk_writep(0,0);
                if (res != FR_OK) break;             
-               res = pf_opendir(&dir, dirname);
-               if (res != FR_OK) break;
-               res = pf_readdir(&dir, &fno);
-               if (res != FR_OK || fno.fname[0] == 0) break;
-               for(j=0;j<i;j++){
-                    if(fno.fname[j] != newname[j]){
-                        return FR_NO_FILE;                        
-                    }
-               }
-               if(i==j){
-                  break;
-               }
+               break;//exit for loop               
             }
             else{
                res=FR_NO_FILE;
             }
         }
+       if (res != FR_OK) return res; 
+        //open the dir and read/check the new filename is found
+       res = pf_opendir(&dir, dirname);
+       if (res != FR_OK) return res;//break;
+       //read filenames in directory and compare to new filename
+       for(;;){
+           res = pf_readdir(&dir, &fno);
+           if (res != FR_OK || fno.fname[0] == 0) break;
+           for(j=0;j<i;j++){
+                if(fno.fname[j] != newname[j]){
+                    res = FR_NO_FILE;
+                    break;//read next filename if not match
+                    //return FR_NO_FILE;                        
+                }
+           }
+           if(i==j){
+              break;//exit for loop on match read new filename 
+           }
+       }
     }
     
     return res;
