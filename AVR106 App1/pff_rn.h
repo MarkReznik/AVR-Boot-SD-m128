@@ -142,7 +142,7 @@ FRESULT pf_lseek (DWORD);						/* Move file pointer of the open file */
 FRESULT pf_opendir (DIR*, const char*);			/* Open a directory */
 FRESULT pf_readdir (DIR*, FILINFO*);			/* Read a directory item from the open directory */
 
-FRESULT pf_rename (const char*, const char*, const char*);	/* Rename file item from the open directory */
+FRESULT pf_rename11 (const char*, const char*, const char*);	/* Rename file item from the open directory */
 FRESULT pf_write512 (BYTE*, WORD, WORD, WORD*); // write bytes with offset 
 
 /*--------------------------------------------------------------*/

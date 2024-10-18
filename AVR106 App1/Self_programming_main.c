@@ -193,9 +193,9 @@ unsigned char UnitTest1(){
        /* an error occured, display it and stop */
        error(res,1);
     //scan_files("/0");
-    
-    res=pf_rename("/0","UPDATE","DONE000");
-    res=pf_rename("/0","DONE","UPDATE1 DAT");
+    res=pf_rename11("","UNIT","TUNY    TX");
+    res=pf_rename11("/0","UPDATE","DONE000");
+    res=pf_rename11("/0","DONE","UPDATE1 DAT");
     if(res)
         error(res,22);
     

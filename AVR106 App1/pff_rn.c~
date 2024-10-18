@@ -925,7 +925,10 @@ FRESULT pf_rename (
         i = strlen(oldname);//save old flename length
         for (;;) {
             res = pf_readdir(&dir, &fno);
-            if (res != FR_OK || fno.fname[0] == 0) break;
+            if (res != FR_OK || fno.fname[0] == 0){
+                res=FR_NO_FILE;
+                break;
+            }
             for(j=0;j<i;j++){//check compare the oldname chars to filename read from directory
                 if(fno.fname[j] != oldname[j]){
                     res=FR_NO_FILE;

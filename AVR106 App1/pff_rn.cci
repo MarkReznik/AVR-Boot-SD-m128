@@ -1,4 +1,4 @@
-VERSION:3 SOURCE_TIMESTAMP:59515C9C
+VERSION:3 SOURCE_TIMESTAMP:59527269
 NODE:I LEVEL:0 LINE:23 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff_rn.h"
 NODE:I LEVEL:0 LINE:24 "F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\diskio.h"
 NODE:I LEVEL:0 LINE:25 "C:\cvavr\inc\string.h"
@@ -39,4 +39,4 @@ NODE:F LEVEL:0 LINE:700 "pf_write512(BYTE * buff,WORD ofs,WORD btw,WORD * bw)"
 NODE:F LEVEL:0 LINE:769 "pf_lseek(DWORD ofs)"
 NODE:F LEVEL:0 LINE:826 "pf_opendir(struct DIR * dj,const unsigned char * path)"
 NODE:F LEVEL:0 LINE:870 "pf_readdir(struct DIR * dj,struct FILINFO * fno)"
-NODE:F LEVEL:0 LINE:911 "pf_rename(const unsigned char * dirname,const unsigned char * oldname,const unsigned char * newname)"
+NODE:F LEVEL:0 LINE:911 "pf_rename11(const unsigned char * dirname,const unsigned char * oldname,const unsigned char * newname)"

@@ -906,9 +906,9 @@ FRESULT pf_readdir (
 
 
 /*-----------------------------------------------------------------------*/
-/* Rename file inside provided directory                                      */
+/* Rename file inside provided directory to 11 chars filename 8+3.       */
 /*-----------------------------------------------------------------------*/
-FRESULT pf_rename (
+FRESULT pf_rename11 (
     const char* dirname, 
     const char* oldname, 
     const char* newname

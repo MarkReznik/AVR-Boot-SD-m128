@@ -1232,7 +1232,9 @@ _0x0:
 	.DB  0x6F,0x67,0x69,0x63,0x61,0x6C,0x20,0x64
 	.DB  0x72,0x69,0x76,0x65,0x20,0x30,0x3A,0x20
 	.DB  0x6D,0x6F,0x75,0x6E,0x74,0x65,0x64,0x20
-	.DB  0x4F,0x4B,0xD,0xA,0x0,0x2F,0x30,0x0
+	.DB  0x4F,0x4B,0xD,0xA,0x0,0x55,0x4E,0x49
+	.DB  0x54,0x0,0x54,0x55,0x4E,0x59,0x20,0x20
+	.DB  0x20,0x20,0x54,0x58,0x0,0x2F,0x30,0x0
 	.DB  0x55,0x50,0x44,0x41,0x54,0x45,0x0,0x44
 	.DB  0x4F,0x4E,0x45,0x30,0x30,0x30,0x0,0x44
 	.DB  0x4F,0x4E,0x45,0x0,0x55,0x50,0x44,0x41
@@ -1287,33 +1289,45 @@ __GLOBAL_INI_TBL:
 	.DW  _0x23
 	.DD  _0x0*2+256
 
-	.DW  0x03
+	.DW  0x01
 	.DW  _0x23+15
-	.DD  _0x0*2+301
-
-	.DW  0x07
-	.DW  _0x23+18
-	.DD  _0x0*2+304
-
-	.DW  0x08
-	.DW  _0x23+25
-	.DD  _0x0*2+311
-
-	.DW  0x03
-	.DW  _0x23+33
-	.DD  _0x0*2+301
+	.DD  _0x0*2
 
 	.DW  0x05
-	.DW  _0x23+36
-	.DD  _0x0*2+319
-
-	.DW  0x0C
-	.DW  _0x23+41
-	.DD  _0x0*2+324
+	.DW  _0x23+16
+	.DD  _0x0*2+301
 
 	.DW  0x0B
+	.DW  _0x23+21
+	.DD  _0x0*2+306
+
+	.DW  0x03
+	.DW  _0x23+32
+	.DD  _0x0*2+317
+
+	.DW  0x07
+	.DW  _0x23+35
+	.DD  _0x0*2+320
+
+	.DW  0x08
+	.DW  _0x23+42
+	.DD  _0x0*2+327
+
+	.DW  0x03
+	.DW  _0x23+50
+	.DD  _0x0*2+317
+
+	.DW  0x05
 	.DW  _0x23+53
-	.DD  _0x0*2+336
+	.DD  _0x0*2+335
+
+	.DW  0x0C
+	.DW  _0x23+58
+	.DD  _0x0*2+340
+
+	.DW  0x0B
+	.DW  _0x23+70
+	.DD  _0x0*2+352
 
 	.DW  0x02
 	.DW  ___AddrToZ24ByteToSPMCR_SPM_E
@@ -1761,27 +1775,36 @@ _0x24:
 	LDI  R26,LOW(1)
 	RCALL _error
 ; 0000 00C3     //scan_files("/0");
-; 0000 00C4 
-; 0000 00C5     res=pf_rename("/0","UPDATE","DONE000");
+; 0000 00C4     res=pf_rename11("","UNIT","TUNY    TX");
 _0x25:
 	__POINTW1MN _0x23,15
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW1MN _0x23,18
+	__POINTW1MN _0x23,16
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW2MN _0x23,25
-	CALL _pf_rename
+	__POINTW2MN _0x23,21
+	CALL _pf_rename11
 	MOV  R7,R30
-; 0000 00C6     res=pf_rename("/0","DONE","UPDATE1 DAT");
-	__POINTW1MN _0x23,33
+; 0000 00C5     res=pf_rename11("/0","UPDATE","DONE000");
+	__POINTW1MN _0x23,32
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW1MN _0x23,36
+	__POINTW1MN _0x23,35
 	ST   -Y,R31
 	ST   -Y,R30
-	__POINTW2MN _0x23,41
-	CALL _pf_rename
+	__POINTW2MN _0x23,42
+	CALL _pf_rename11
+	MOV  R7,R30
+; 0000 00C6     res=pf_rename11("/0","DONE","UPDATE1 DAT");
+	__POINTW1MN _0x23,50
+	ST   -Y,R31
+	ST   -Y,R30
+	__POINTW1MN _0x23,53
+	ST   -Y,R31
+	ST   -Y,R30
+	__POINTW2MN _0x23,58
+	CALL _pf_rename11
 	MOV  R7,R30
 ; 0000 00C7     if(res)
 	TST  R7
@@ -1802,13 +1825,13 @@ _0x25:
 ; 0000 00D2     //if ((res=f_open(&file,path,FA_CREATE_ALWAYS | FA_WRITE))==FR_OK)
 ; 0000 00D3     if ((res=pf_open("data4K.bin"))==FR_OK)
 _0x26:
-	__POINTW2MN _0x23,53
+	__POINTW2MN _0x23,70
 	CALL _pf_open
 	MOV  R7,R30
 	CPI  R30,0
 	BRNE _0x27
 ; 0000 00D4        printf("File %s created OK\r\n",path);
-	__POINTD1FN _0x0,347
+	__POINTD1FN _0x0,363
 	CALL SUBOPT_0x3
 ; 0000 00D5     else{
 	RJMP _0x28
@@ -1965,7 +1988,7 @@ _0x37:
 	CPI  R30,0
 	BRNE _0x38
 ; 0000 010F        printf("File %s opened OK\r\n",path);
-	__POINTD1FN _0x0,393
+	__POINTD1FN _0x0,409
 	CALL SUBOPT_0x3
 ; 0000 0110     else
 	RJMP _0x39
@@ -2000,7 +2023,7 @@ _0x39:
 	BRNE _0x3A
 ; 0000 011B        {
 ; 0000 011C        printf("%u bytes read\r\n",nbytes);
-	__POINTD1FN _0x0,413
+	__POINTD1FN _0x0,429
 	CALL __PUTPARD1
 	MOVW R30,R8
 	CLR  R22
@@ -2014,7 +2037,7 @@ _0x39:
 	STD  Z+0,R26
 ; 0000 011F        /* display the buffer contents */
 ; 0000 0120        printf("Read text: \"%s\"\r\n",buffer);
-	__POINTD1FN _0x0,429
+	__POINTD1FN _0x0,445
 	CALL __PUTPARD1
 	LDI  R30,LOW(_buffer)
 	LDI  R31,HIGH(_buffer)
@@ -2062,7 +2085,7 @@ _0x3B:
 
 	.DSEG
 _0x23:
-	.BYTE 0x40
+	.BYTE 0x51
 ;void main( void ){
 ; 0000 013E void main( void ){
 
@@ -2101,7 +2124,7 @@ _main:
 ; 0000 0152   lcd_clear();
 	CALL _lcd_clear
 ; 0000 0153   lcd_putsf("pff Test3.");
-	__POINTD2FN _0x0,447
+	__POINTD2FN _0x0,463
 	CALL _lcd_putsf
 ; 0000 0154   delay_ms(200);
 	LDI  R26,LOW(200)
@@ -2122,7 +2145,7 @@ _main:
 	LDI  R26,LOW(0)
 	CALL _lcd_gotoxy
 ; 0000 015E     lcd_putsf("Test3 done.");
-	__POINTD2FN _0x0,458
+	__POINTD2FN _0x0,474
 	CALL _lcd_putsf
 ; 0000 015F   do
 _0x3D:
@@ -7014,16 +7037,16 @@ _0x20C0005:
 ;
 ;
 ;/*-----------------------------------------------------------------------*/
-;/* Rename file inside provided directory                                      */
+;/* Rename file inside provided directory to 11 chars filename 8+3.       */
 ;/*-----------------------------------------------------------------------*/
-;FRESULT pf_rename (
+;FRESULT pf_rename11 (
 ; 0003 0390     const char* dirname,
 ; 0003 0391     const char* oldname,
 ; 0003 0392     const char* newname
 ; 0003 0393 )
 ; 0003 0394 {
-_pf_rename:
-; .FSTART _pf_rename
+_pf_rename11:
+; .FSTART _pf_rename11
 ; 0003 0395     FRESULT res;
 ; 0003 0396     FILINFO fno;
 ; 0003 0397     DIR dir;
@@ -8119,7 +8142,7 @@ SUBOPT_0x6:
 
 ;OPTIMIZER ADDED SUBROUTINE, CALLED 7 TIMES, CODE SIZE REDUCTION:111 WORDS
 SUBOPT_0x7:
-	__POINTD1FN _0x0,368
+	__POINTD1FN _0x0,384
 	CALL __PUTPARD1
 	MOVW R30,R8
 	CLR  R22

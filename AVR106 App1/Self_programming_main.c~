@@ -193,7 +193,7 @@ unsigned char UnitTest1(){
        /* an error occured, display it and stop */
        error(res,1);
     //scan_files("/0");
-    
+    res=pf_rename("","UNIT","TUNY    TX");
     res=pf_rename("/0","UPDATE","DONE000");
     res=pf_rename("/0","DONE","UPDATE1 DAT");
     if(res)
@@ -219,11 +219,36 @@ unsigned char UnitTest1(){
     /* write some text to the file,
        without the NULL string terminator sizeof(data)-1 */
     //if ((res=f_write(&file,text,sizeof(text)-1,&nbytes))==FR_OK)
-    if ((res=pf_write512(testbuf,520,sizeof(testbuf),&nbytes))==FR_OK)
+    if ((res=pf_write512(testbuf,0,sizeof(testbuf),&nbytes))==FR_OK)
        printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
     else
        ///* an error occured, display it and stop */
        error(res,93);
+    if ((res=pf_write512(testbuf,20,sizeof(testbuf),&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);   
+    if ((res=pf_write512(testbuf,510,sizeof(testbuf),&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);
+    if ((res=pf_write512(testbuf,521,sizeof(testbuf),&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);   
+    if ((res=pf_write512(testbuf,1020,sizeof(testbuf),&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);
+    if ((res=pf_write512(testbuf,1031,sizeof(testbuf),&nbytes))==FR_OK)
+       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+    else
+       ///* an error occured, display it and stop */
+       error(res,93);   
     if ((res=pf_write(text,sizeof(text)-1,&nbytes))==FR_OK)
        printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
     else
