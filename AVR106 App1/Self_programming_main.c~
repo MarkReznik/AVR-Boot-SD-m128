@@ -118,74 +118,54 @@ void error(FRESULT res, unsigned char num)
         }
       while(1);
 }
-unsigned char rn(char *newname, char *oldname){
-    strcpy(path,"/0/unittest.txt");
-    
-}
-unsigned char RenameTest(){
-   int retry;
-   strcpy(path,"/0/unittest.txt");
-   
-}
 
-FRESULT rename (const char* dirname, const char* oldname, char* newname)
+
+unsigned char FindFileName(char *path, char *filename, unsigned char u8_is_exact)
 {
+    //BRIEF
+    //open root dir, try find *filename  as partial filename 
     FRESULT res;
     FILINFO fno;
     DIR dir;
-    int i;
-    BYTE rwbuf[512];
-        
-    res = pf_opendir(&dir, path);
-    if (res == FR_OK) {
-        i = strlen(path);
-        for (;;) {
-            res = pf_readdir(&dir, &fno);
-            if (res != FR_OK || fno.fname[0] == 0) break;
-            if(fno.fname[0] == 'U'){
-               res = disk_readp(rwbuf,dir.sect,0,512);
-               if (res != FR_OK) break;
-               rwbuf[((dir.index-1)*32)+6]='5';
-               res = disk_writep(0,dir.sect);
-               if (res != FR_OK) break;
-               res = disk_writep(rwbuf,512);
-               if (res != FR_OK) break;
-               res = disk_writep(0,0);
-               break;
+    
+    res = pf_opendir(&dir, path);//open root or dir
+    if(res != FR_OK)
+        error(res,21);
+    for (;;) {
+        res = pf_readdir(&dir, &fno);
+        if (res != FR_OK || fno.fname[0] == 0) break;
+        if (fno.fattrib & AM_DIR) {
+            continue;
+        } else {
+            //printf("%s/%s\n", path, fno.fname);    
+            //check the filename begin with "UPDATE"
+            if(u8_is_exact)
+            {
+                if(strcmp(filename,fno.fname)==0)
+                {
+                    return 1;//filename found inside dir
+                }
             }
-            /*
-            if (fno.fattrib & AM_DIR) {
-                sprintf(&path[i], "/%s", fno.fname);
-                res = scan_files(path);
-                if (res != FR_OK) break;
-                path[i] = 0;
-            } else {
-                printf("%s/%s\n", path, fno.fname);
+            else if(strncmp(filename,fno.fname,6)==0)
+            {
+                return 1;//filename found inside dir
             }
-            */
         }
     }
-
-    return res;
+    return 0;//filename not found inside dir
 }
 
-unsigned char UnitTest1(){
+//check the "UPDATE" file exists and rename it to "BACKUP3". The "BACKUP" file renamed to "TEMPDATA"
+//Return 0(OK): "UPDATE" not exsts
+//Return 1(FAIL): only "UPDATE" exsts
+//Return 2(OK): only "UPDATE" and "BACKUP" exsts
+//Return 3(FAIL): "UPDATE" ,"BACKUP" and "TEMPDATA" exsts
+unsigned char CheckAppUpdateDone()
+{
+    unsigned char u8_update_file_flag = 0;
+    unsigned char u8_backup_file_flag = 0;
+    unsigned char u8_tempdata_file_flag = 0;
     
-    BYTE testbuf[10]={'5','5','A','A','6','6','B','B','C','C'};
-    strcpy(path,"/0/UPDATE3.DAT");
-    /* mount logical drive 0: */
-    //if ((res=f_mount(0,&fat))==FR_OK)
-    /*
-    for(retry=0;retry<5;retry++){
-        res=pf_mount(&fat);
-        if (res==FR_OK){
-            break;
-        }
-        else{
-          delay_ms(500);
-        }
-    }
-    */
     res=pf_mount(&fat);
     if (res==FR_OK)
        printf("Logical drive 0: mounted OK\r\n");
@@ -193,9 +173,116 @@ unsigned char UnitTest1(){
        /* an error occured, display it and stop */
        error(res,1);
     //scan_files("/0");
-    res=pf_rename("","UNIT","TUNY    TX");
-    res=pf_rename("/0","UPDATE","DONE000");
-    res=pf_rename("/0","DONE","UPDATE1 DAT");
+    
+    
+    u8_update_file_flag = FindFileName("", "UPDATE",0);
+    u8_backup_file_flag = FindFileName("", "BACKUP",0);
+    u8_tempdata_file_flag = FindFileName("", "TEMPDATA",0);
+    //in case "UPDATE" found check the "BACKUP" exists
+    if(u8_update_file_flag)
+    {
+       if(u8_backup_file_flag)//in case "BACKUP" found check the "TEMPDATA" exists by mistake
+       {
+          if(u8_tempdata_file_flag)//if on some reason tempdata filename exists, then rename it 
+          {              
+              res=pf_rename11("","TEMPDATA","TEMP    001");
+          }
+          //rename backup to tempdata, then rename update to backup3     
+          res=pf_rename11("","BACKUP","TEMPDATA");
+          res=pf_rename11("","UPDATE","BACKUP3");
+          if(u8_tempdata_file_flag)
+          {
+             return 3;//failed case if TEMDATA exists together with UPDATE
+          }
+          return 2;// OK after rename          
+       }
+       return 1;//FAIL - BACKUP not exists
+    }
+    //in case BACKUP and TEMPDATA files exists, then just correct the names if not exact BACKUP3 and TEMPDATA
+    else if((u8_backup_file_flag)&&(u8_tempdata_file_flag))
+    {
+       if(FindFileName("", "BACKUP3    ",1) == 0)
+            res=pf_rename11("","BACKUP","BACKUP3");
+       if(FindFileName("", "TEMPDATA   ",1) == 0)
+            res=pf_rename11("","TEMPDATA","TEMPDATA"); 
+       return 0;     
+    }
+    return 4; //FAIL : STOP and signal that BACKUP and TEMPDATA or UPDATE files missing 
+}
+#define COPY_BUFF_SIZE  64
+unsigned char CopyFile(char *path, char *srcfile, char *destfile)
+{
+    unsigned long u32_offset = 0;
+    unsigned int  nbytes;
+    unsigned char buffer[COPY_BUFF_SIZE];
+    unsigned char u8_eof_flag = 0;
+      
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       printf("Logical drive 0: mounted OK\r\n");
+    else
+       /* an error occured, display it and stop */
+       error(res,1);
+    
+    while(u8_eof_flag == 0)
+    {
+        if ((res=pf_open(srcfile))==FR_OK)
+           printf("File %s created OK\r\n",path);
+        else{
+           /* an error occured, display it and stop */
+           if(res!=3)
+                error(res,2);
+        }
+       
+       /* Move to offset of u32_offset from top of the file */
+       res = pf_lseek(u32_offset);
+       if ((res=pf_read(buffer,COPY_BUFF_SIZE,&nbytes))==FR_OK)
+       {
+            if(nbytes < COPY_BUFF_SIZE)
+               u8_eof_flag = 1; 
+            if ((res=pf_open(destfile))==FR_OK)
+                printf("File %s created OK\r\n",path);
+            else{
+               /* an error occured, display it and stop */
+               if(res!=3)
+                    error(res,2);
+            }
+            if ((res=pf_write512(buffer,u32_offset,nbytes,&nbytes))==FR_OK)
+               //printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
+               printf("write ok");
+            else
+               ///* an error occured, display it and stop */
+               error(res,93);
+            u32_offset += COPY_BUFF_SIZE;  
+       }
+       else
+           /* an error occured, display it and stop */
+           error(res,6);
+    }
+}
+
+unsigned char UnitTest1(){
+    
+    unsigned char u8_test_result;   
+    BYTE testbuf[10]={'5','5','A','A','6','6','B','B','C','C'};
+    strcpy(path,"/0/UPDATE3.DAT");
+    
+    /* mount logical drive 0: */
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       printf("Logical drive 0: mounted OK\r\n");
+    else
+       /* an error occured, display it and stop */
+       error(res,1);
+    
+    //check if UPDATE exists then change the names to BACKUP and the BACKUP name to TEMPDATA
+    u8_test_result = CheckAppUpdateDone();
+    
+    CopyFile("", "DEMODATA", "TEMPDATA");
+    
+    res=pf_rename11("","UNIT","TUNY    TX");
+    res=pf_rename11("/0","UPDATE","DONE000");
+    res=pf_rename11("/0","DONE","UPDATE1 DAT");
     if(res)
         error(res,22);
     
