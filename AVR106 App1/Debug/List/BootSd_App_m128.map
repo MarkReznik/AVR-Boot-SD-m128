@@ -1,0 +1,83 @@
+RAM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+u32_offset                                                                        0x0AC7       4
+fat                                                                               0x0ACB      44
+u8_Sd_File_Buffer                                                                 0x0AF7     512
+__AddrToZ24ByteToSPMCR_SPM_E                                                      0x0CF7       2
+__AddrToZ24ByteToSPMCR_SPM_EW                                                     0x0CF9       2
+CardType                                                                          0x0CFB       1
+wc                                                                                0x0CFC       2
+FatFs                                                                             0x0CFE       2
+_seed                                                                             0x0D00       4
+_base_y                                                                           0x0D04       4
+_lcd_y                                                                            0x0D08       1
+_lcd_maxx                                                                         0x0D09       1
+
+EEPROM Allocation [bytes]
+Variable                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+_EepromBackup                                                                     0x000A     263
+
+Register Allocation
+Variable                                                                          Register  Size
+------------------------------------------------------------------------------------------------
+retry                                                                             R4,R5        2
+res                                                                               R7           1
+nbytes                                                                            R8,R9        2
+__AddrToZ24WordToR1R0ByteToSPMCR_SPM_F                                            R10,R11      2
+__AddrToZ24ByteToSPMCR_SPM_W                                                      R12,R13      2
+_lcd_x                                                                            R6           1
+
+FLASH Allocation [words]
+Function                                                                          Address   Size
+------------------------------------------------------------------------------------------------
+DebugBlinkLed                                                                     0x00288     30
+error                                                                             0x002A6      2
+DebugPrintString                                                                  0x002A8      2
+FindFileName                                                                      0x002AA     67
+SdDataFileStatus                                                                  0x002ED     32
+SdUpdateStatus                                                                    0x0030D    209
+SdDataFileRead                                                                    0x003DE     61
+SdDataFileWrite                                                                   0x0041B     60
+SdDataErase                                                                       0x00457     80
+UnitTest1                                                                         0x004A7     59
+main                                                                              0x004E2     50
+INIT_SPI                                                                          0x00514     11
+xmit_spi                                                                          0x0051F      7
+release_spi_G002                                                                  0x0052F      2
+send_cmd_G002                                                                     0x00531     67
+disk_initialize                                                                   0x00574    152
+disk_readp                                                                        0x0060C     99
+disk_writep                                                                       0x0066F    117
+mem_set_G003                                                                      0x006E4     25
+mem_cmp_G003                                                                      0x006FD     38
+get_fat_G003                                                                      0x00723    193
+clust2sect_G003                                                                   0x007E4     61
+dir_rewind_G003                                                                   0x00821     80
+dir_next_G003                                                                     0x00871    118
+dir_find_G003                                                                     0x008E7     67
+dir_read_G003                                                                     0x0092A     66
+create_name_G003                                                                  0x0096C    120
+get_fileinfo_G003                                                                 0x009E4     97
+follow_path_G003                                                                  0x00A45    110
+check_fs_G003                                                                     0x00AB3     60
+pf_mount                                                                          0x00AEF    291
+pf_open                                                                           0x00C12     69
+pf_read                                                                           0x00C57    239
+pf_write                                                                          0x00D46    269
+pf_write512                                                                       0x00E53    123
+pf_lseek                                                                          0x00ECE    229
+pf_opendir                                                                        0x00FB3     48
+pf_readdir                                                                        0x00FE3     58
+pf_rename11                                                                       0x0101D    191
+strcmp                                                                            0x010DC     20
+strlen                                                                            0x010F0     12
+strncmp                                                                           0x010FC     25
+_lcd_write_nibble_G103                                                            0x01115     20
+_lcd_write_data                                                                   0x01129     12
+lcd_gotoxy                                                                        0x01135     15
+lcd_clear                                                                         0x01144     13
+lcd_putchar                                                                       0x01151     26
+lcd_putsf                                                                         0x0116B     26
+lcd_init                                                                          0x01185     47

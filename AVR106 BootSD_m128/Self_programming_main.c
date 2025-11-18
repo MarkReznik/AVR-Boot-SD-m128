@@ -26,12 +26,13 @@
 *
 *****************************************************************************/
 #include <io.h>
-#include <delay.h>
+//#include <delay.h>
 #include "flash.h"
 #include "Self_programming.h"
 #include "spi_sdcard.h"
-
-
+//#include "MyFat.h"
+#define SDBUF_SIZE  512
+#define PAGES_PER_SDBUF (SDBUF_SIZE/PAGESIZE)
 
 
 
@@ -41,6 +42,19 @@
 //(unsigned long)root_dir_first_cluster = BPB_RootClus;
 //void testWrite();
 
+unsigned char result[5], sdBuf[SDBUF_SIZE], testBuf[PAGESIZE], token, SectorsPerCluster, pagesCnt;
+unsigned long appStartAdr,adr,SectorsPerFat,fat_begin_lba;
+unsigned long cluster_begin_lba,root_dir_first_cluster,fat_file_adr,fat_file_next_adr,filesize,readbytes;
+unsigned int appPages,bytesChecksum,checksumCnt;
+unsigned int Number_of_Reserved_Sectors;
+
+//function prototypes
+unsigned char fat_init();//0=sucess, 1,2,3 errors
+unsigned char dir_open(const char *dirname); //0=sucess, 4 error
+unsigned char file_open_update(const char *filename); //0=sucess, 5,6 errors
+unsigned long buf2num(unsigned char *buf,unsigned char len);
+unsigned char compbuf(const unsigned char *src,unsigned char *dest);
+void (*app_pointer)(void) = (void(*)(void))0x0000;
 
 void main( void ){
   unsigned int i,j,k;
@@ -79,22 +93,30 @@ void main( void ){
 #endif    
     //fat init function
     //init SD
-    fat_init();
+    result[0]=fat_init();
     
     
-    //dir open function
-  dir_open("0       ");
-  
+  //dir open function
+  //result[0]=dir_open("0       ");
+  //result[0]=dir_open("");//open root
   
   //fat_file_adr is hold the files records cluster in found dir
   //file open func. read first cluster where data about filenames in dir
-  file_open_update("UPDATE");
-  
+  result[0]=file_open_update("UPDATE");
+  //in case "UPDATE" file don't exists - jump to app
+  if(result[0])
+    app_pointer();//go to app address 0
   
     
   //check FAT for chain of clusters to read
+    //FAT12	        FAT16	                FAT32                   Meaninig
+    //0x000	        0x0000	                0x00000000	            Free
+    //0x001	        0x0001	                0x00000001	            Reserved
+    //0x002 - 0xFF6	0x0002 - 0xFFF6	        0x00000002 - 0x0FFFFFF6	In use (value is link to next)
+    //0xFF7	        0xFFF7	                0x0FFFFFF7	            Bad cluster
+    //0xFF8 - 0xFFF	0xFFF8 - 0xFFFF	        0x0FFFFFF8 - 0x0FFFFFFF	In use (end of chain)
   readbytes=0;
-  while(fat_file_adr != 0x0FFFFFFFUL)
+  while(fat_file_adr < 0x0FFFFFF8UL)
   {
     //read where next cluster from FAT, check that not EOF
     //if((result[0]=SD_readSingleBlock(fat_begin_lba, sdBuf, &token))!=SD_SUCCESS){
@@ -253,7 +275,7 @@ void main( void ){
               delay_ms(500); 
             #endif
         }
-        if(fat_file_next_adr == 0x0FFFFFFFUL){
+        if(fat_file_next_adr >= 0x0FFFFFF8UL){
             
             
             if(readbytes >= filesize){
@@ -413,12 +435,15 @@ unsigned char fat_init(){
   cluster_begin_lba=fat_begin_lba+(2*SectorsPerFat);//number of sector where data begin
   //read root dir (sector 2 but always offset 2 too then 0) to find folder 0 FAT reference. and find Flash.dat sector
   //lba_addr = cluster_begin_lba + (cluster_number - 2) * sectors_per_cluster;
-  adr=cluster_begin_lba +(2-2)*SectorsPerCluster;
+  fat_file_adr = 2;
+  adr=cluster_begin_lba +(fat_file_adr - 2)*SectorsPerCluster;
+  
   //adr*=512UL;
   return 0;
 }
 
 //dir open function 0=sucess, 4 error
+/*
 unsigned char dir_open(const char *dirname){
   unsigned int i,j;
   result[1]=0;
@@ -442,8 +467,11 @@ unsigned char dir_open(const char *dirname){
       }
       if(result[1]!=0)
       {
-        fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-        fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
+        fat_file_adr = buf2num(&sdBuf[j*32+0x14],2);
+        fat_file_adr <<= 16;
+        fat_file_adr |= buf2num(&sdBuf[j*32+0x1A],2);
+        //fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
+        //fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
         break;
       }
       else
@@ -459,6 +487,7 @@ unsigned char dir_open(const char *dirname){
   #endif
   return 0; 
 }
+*/
 
 //file open function 0=sucess, 5,6 errors
 unsigned char file_open_update(const char *filename){ 
@@ -485,8 +514,11 @@ unsigned char file_open_update(const char *filename){
       if(result[1]!=0)
       {
         //read 1st number of cluster where data placed 
-        fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
-        fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
+        fat_file_adr = buf2num(&sdBuf[j*32+0x14],2);
+        fat_file_adr <<= 16;
+        fat_file_adr |= buf2num(&sdBuf[j*32+0x1A],2);
+        //fat_file_adr =(unsigned long)sdBuf[j*32+0x14]<<16;
+        //fat_file_adr|=(unsigned long)sdBuf[j*32+0x1A];
         filesize = buf2num(&sdBuf[j*32+0x1C],8);
         break;
       }

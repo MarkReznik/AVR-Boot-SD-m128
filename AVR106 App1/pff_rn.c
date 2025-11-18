@@ -914,6 +914,7 @@ FRESULT pf_rename11 (
     const char* newname
 )
 {
+    char a,b;
     FRESULT res;
     FILINFO fno;
     DIR dir;
@@ -970,9 +971,12 @@ FRESULT pf_rename11 (
        //read filenames in directory and compare to new filename
        for(;;){
            res = pf_readdir(&dir, &fno);
-           if (res != FR_OK || fno.fname[0] == 0) break;
+           if (res != FR_OK || fno.fname[0] == 0) 
+                break;
            for(j=0;j<i;j++){
-                if(fno.fname[j] != newname[j]){
+                a=fno.fname[j];
+                b=newname[j];
+                if(a != b){
                     res = FR_NO_FILE;
                     break;//read next filename if not match
                     //return FR_NO_FILE;                        

@@ -45,6 +45,8 @@ int retry;
 FRESULT res;
 /* number of bytes written/read to the file */
 unsigned int nbytes;
+/* offset to the file */
+unsigned long u32_offset;
 /* will hold the information for logical drive 0: */
 FATFS fat;
 /* will hold the file information */
@@ -52,11 +54,12 @@ FATFS fat;
 /* will hold file attributes, time stamp information */
 FILINFO finfo;
 /* root directory path */
-char path[64];//="/0/unittest.txt";
+char s_Sd_File_Path[64];//="/0/unittest.txt";
 /* text to be written to the file */
-char text[]="Unit Test 1";
+char s_Sd_File_Text[]="Unit Test 1";
 /* file read buffer */
-char buffer[256];
+#define COPY_BUFF_SIZE  512
+char u8_Sd_File_Buffer[COPY_BUFF_SIZE];
 
 /* error message list */
 flash char * flash error_msg[]=
@@ -79,9 +82,29 @@ flash char * flash error_msg[]=
 "FR_MKFS_ABORTED",
 "FR_TIMEOUT"
 };
+#define DEBUG_LED
+void DebugBlinkLed(unsigned char u8_led_0_7, unsigned char u8_blink_times)
+{
+#ifdef DEBUG_LED    
+    do
+    {
+      PORTC |= (1<<u8_led_0_7);
+      delay_ms(500);
+      PORTC &= ~(1<<u8_led_0_7);
+      delay_ms(500);
+      if(u8_blink_times == 1)
+        break;
+      else if(u8_blink_times)
+        u8_blink_times--;    
+    }
+    while(1); 
+#endif    
+}
+
 /* display error message and stop */
 void error(FRESULT res, unsigned char num)
 {
+#ifdef DEBUG_PRINT    
     char strnum[5];
     if(num>100){
        num=100;
@@ -90,7 +113,7 @@ void error(FRESULT res, unsigned char num)
     do{
     if ((res>=0) && (res<=FR_NO_FILESYSTEM)){//FR_NO_FILESYSTEM  FR_TIMEOUT
        lcd_gotoxy(0,0);
-       printf("ERROR: %p\r\n",error_msg[res]);
+       DebugPrintString("ERROR:","");//printf("ERROR: %p\r\n",error_msg[res]);
        if(res==0){
         lcd_putsf("SD OK: ");
        }
@@ -117,9 +140,22 @@ void error(FRESULT res, unsigned char num)
           PORTC=0xFC;
         }
       while(1);
+#endif      
 }
 
+void DebugPrintString(char *str1, char *str2)
+{
+#ifdef DEBUG_PRINT
+    printf(str1);
+#endif    
+}
 
+// This function get 3 parameters
+// 1. Path
+// 2. Filename
+// 3. Bool is exact filename to compare
+//Return 0: File not found
+//Return 1: File found
 unsigned char FindFileName(char *path, char *filename, unsigned char u8_is_exact)
 {
     //BRIEF
@@ -155,12 +191,36 @@ unsigned char FindFileName(char *path, char *filename, unsigned char u8_is_exact
     return 0;//filename not found inside dir
 }
 
-//check the "UPDATE" file exists and rename it to "BACKUP3". The "BACKUP" file renamed to "TEMPDATA"
-//Return 0(OK): "UPDATE" not exsts
-//Return 1(FAIL): only "UPDATE" exsts
-//Return 2(OK): only "UPDATE" and "BACKUP" exsts
-//Return 3(FAIL): "UPDATE" ,"BACKUP" and "TEMPDATA" exsts
-unsigned char CheckAppUpdateDone()
+//Check that file "DATA4K" is exist on SD card
+//Return 0: File OK
+//Return 1: Failed to find the file
+unsigned char SdDataFileStatus()
+{
+    unsigned char u8_data_file_flag = 0;
+    
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");
+    else
+       /* an error occured, display it and stop */
+       error(res,1);
+
+    u8_data_file_flag = FindFileName("", "DATA4K", 1);
+    if(u8_data_file_flag)
+        return 0;
+    else
+        return 1;
+}
+
+// BRIEF
+// Function: SdFilesDataUpdateStatus()
+// Description: This function validate SD card file names are as expected 
+// Check the "UPDATE" file exists and rename it to "BACKUP3". The "BACKUP" file renamed to "TEMPDATA"
+// Return 0(OK): "UPDATE[0-9]" not exsts,"BACKUP[0-3]" and "TEMPDATA" exsts. 
+// Return 1(FAIL): only "UPDATE[0-9]" exsts. 
+// Return 2(OK): only "UPDATE" and "BACKUP" exsts
+// Return 3(FAIL): "UPDATE" ,"BACKUP" and "TEMPDATA" exsts
+unsigned char SdUpdateStatus()
 {
     unsigned char u8_update_file_flag = 0;
     unsigned char u8_backup_file_flag = 0;
@@ -168,7 +228,7 @@ unsigned char CheckAppUpdateDone()
     
     res=pf_mount(&fat);
     if (res==FR_OK)
-       printf("Logical drive 0: mounted OK\r\n");
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");
     else
        /* an error occured, display it and stop */
        error(res,1);
@@ -188,33 +248,48 @@ unsigned char CheckAppUpdateDone()
               res=pf_rename11("","TEMPDATA","TEMP    001");
           }
           //rename backup to tempdata, then rename update to backup3     
-          res=pf_rename11("","BACKUP","TEMPDATA");
-          res=pf_rename11("","UPDATE","BACKUP3");
+          if(res=pf_rename11("","BACKUP","TEMPDATA"))
+            return 1;
+          if(res=pf_rename11("","UPDATE","BACKUP3"))
+            return 1;
           if(u8_tempdata_file_flag)
           {
              return 3;//failed case if TEMDATA exists together with UPDATE
           }
-          return 2;// OK after rename          
+          return 0;// OK after rename          
        }
-       return 1;//FAIL - BACKUP not exists
+       else if(u8_tempdata_file_flag)
+       {
+            //rename update to backup3     
+            if(res=pf_rename11("","UPDATE","BACKUP3"))
+                return 1;
+            //just correct the name if not exact TEMPDATA
+            if(FindFileName("", "TEMPDATA   ",1) != 0)
+                if(res=pf_rename11("","TEMPDATA","TEMPDATA"))
+                    return 1; 
+            return 0;
+       }
+       return 1;//FAIL - BACKUP and TEMPDATA not exists
     }
     //in case BACKUP and TEMPDATA files exists, then just correct the names if not exact BACKUP3 and TEMPDATA
     else if((u8_backup_file_flag)&&(u8_tempdata_file_flag))
     {
-       if(FindFileName("", "BACKUP3    ",1) == 0)
-            res=pf_rename11("","BACKUP","BACKUP3");
-       if(FindFileName("", "TEMPDATA   ",1) == 0)
-            res=pf_rename11("","TEMPDATA","TEMPDATA"); 
+       if(FindFileName("", "BACKUP3    ",1) != 0)
+            if(res=pf_rename11("","BACKUP","BACKUP3"))
+                return 1;;
+       if(FindFileName("", "TEMPDATA   ",1) != 0)
+            if(res=pf_rename11("","TEMPDATA","TEMPDATA"))
+                return 1; 
        return 0;     
     }
     return 4; //FAIL : STOP and signal that BACKUP and TEMPDATA or UPDATE files missing 
 }
-#define COPY_BUFF_SIZE  64
+
 unsigned char CopyFile(char *path, char *srcfile, char *destfile)
 {
-    unsigned long u32_offset = 0;
-    unsigned int  nbytes;
-    unsigned char buffer[COPY_BUFF_SIZE];
+    //unsigned long u32_offset = 0;
+    //unsigned int  nbytes;
+    //unsigned char buffer[COPY_BUFF_SIZE];
     unsigned char u8_eof_flag = 0;
       
     res=pf_mount(&fat);
@@ -227,32 +302,44 @@ unsigned char CopyFile(char *path, char *srcfile, char *destfile)
     while(u8_eof_flag == 0)
     {
         if ((res=pf_open(srcfile))==FR_OK)
-           printf("File %s created OK\r\n",path);
+           PORTC.0=0;//printf("File %s created OK\r\n",path);
         else{
            /* an error occured, display it and stop */
-           if(res!=3)
+           if(res)//FR_NO_FILE,			/* 3 */
                 error(res,2);
         }
        
        /* Move to offset of u32_offset from top of the file */
        res = pf_lseek(u32_offset);
-       if ((res=pf_read(buffer,COPY_BUFF_SIZE,&nbytes))==FR_OK)
+       if ((res=pf_read(u8_Sd_File_Buffer,COPY_BUFF_SIZE,&nbytes))==FR_OK)
        {
+            PORTC.0=1;
             if(nbytes < COPY_BUFF_SIZE)
-               u8_eof_flag = 1; 
+               if(nbytes == 0)
+                 return 0;
+               else  
+                 u8_eof_flag = 1; 
             if ((res=pf_open(destfile))==FR_OK)
-                printf("File %s created OK\r\n",path);
+                PORTC.0=0;//printf("File %s opened OK\r\n",path);
             else{
                /* an error occured, display it and stop */
-               if(res!=3)
+               if(res)//FR_NO_FILE,			/* 3 */
                     error(res,2);
             }
-            if ((res=pf_write512(buffer,u32_offset,nbytes,&nbytes))==FR_OK)
+            if ((res=pf_write512(u8_Sd_File_Buffer,u32_offset,nbytes,&nbytes))==FR_OK)
                //printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-               printf("write ok");
+               PORTC.0=1;//printf("write ok");
             else
                ///* an error occured, display it and stop */
                error(res,93);
+            res = pf_lseek(u32_offset);
+            if ((res=pf_read(u8_Sd_File_Buffer,COPY_BUFF_SIZE,&nbytes))==FR_OK)
+                PORTC.0=1;//printf("File %s read OK\r\n",path);
+            else{
+               /* an error occured, display it and stop */
+               if(res)//FR_NO_FILE,			/* 3 */
+                    error(res,2);
+            }
             u32_offset += COPY_BUFF_SIZE;  
        }
        else
@@ -262,146 +349,140 @@ unsigned char CopyFile(char *path, char *srcfile, char *destfile)
     return 0;
 }
 
-unsigned char UnitTest1(){
-    
-    unsigned char u8_test_result;   
-    BYTE testbuf[10]={'5','5','A','A','6','6','B','B','C','C'};
-    strcpy(path,"/0/UPDATE3.DAT");
-    
+// Function:    SdDataFileRead()  
+// Description: Read data from SD root file "/DATA4K" 
+// 3 argument:
+// 1. *p_u8_data_buffer - pointer to bytes buffer place data from SD data file
+// 2. u32_data_offset - SD data file offset in bytes
+// 3. data_length -  SD data file bytes to read to provided buffer
+// 4. *p_u16_read_bytes - pointer to u16 read data from SD data file
+unsigned char SdDataFileRead(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
+{
     /* mount logical drive 0: */
     res=pf_mount(&fat);
     if (res==FR_OK)
-       printf("Logical drive 0: mounted OK\r\n");
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");//printf("Logical drive 0: mounted OK\r\n");
     else
        /* an error occured, display it and stop */
        error(res,1);
     
-    //check if UPDATE exists then change the names to BACKUP and the BACKUP name to TEMPDATA
-    u8_test_result = CheckAppUpdateDone();
+    if ((res=pf_open("DATA4K"))==FR_OK)
+       DebugPrintString("File DATA4K opened OK\r\n","");//printf("File %s opened OK\r\n",s_Sd_File_Path);
+    else
+       ///* an error occured, display it and stop */
+       error(res,2);   
     
-    u8_test_result = CopyFile("", "DEMODATA", "TEMPDATA");
-    
-    res=pf_rename11("","UNIT","TUNY    TX");
-    res=pf_rename11("/0","UPDATE","DONE000");
-    res=pf_rename11("/0","DONE","UPDATE1 DAT");
-    if(res)
-        error(res,22);
-    
-    
-    
-    
-    
+    /* Move to offset of u32_offset from top of the file */
+       res = pf_lseek(u32_data_offset);
+    /* Read data to buffer */
+       if ((res=pf_read(p_u8_data_buffer,data_length,p_u16_read_bytes))==FR_OK)
+            DebugPrintString("Read DATA4K OK\r\n","");
+       else
+            error(res,3);     
+       
+    return 0;
+}
+
+// Function:    SdDataFileWrite()  
+// Description: Write data to SD root file "/DATA4K" 
+// 3 argument:
+// 1. *p_u8_data_buffer - pointer to bytes buffer place data from SD data file
+// 2. u32_data_offset - SD data file offset in bytes
+// 3. data_length -  SD data file bytes to write from provided buffer
+// 4. *p_u16_read_bytes - pointer to u16 writen data to SD data file
+unsigned char SdDataFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
+{
     /*this line will remove READ_ONLY attribute*/
     //f_chmod(path, AM_ARC, AM_ARC|AM_RDO);
     /* create a new file in the root of drive 0:
        and set write access mode */
     //if ((res=f_open(&file,path,FA_CREATE_ALWAYS | FA_WRITE))==FR_OK)
-    if ((res=pf_open("data4K.bin"))==FR_OK)
-       printf("File %s created OK\r\n",path);
-    else{
-       /* an error occured, display it and stop */
-       if(res!=3)
-            error(res,2);
-    }
-
-    /* write some text to the file,
-       without the NULL string terminator sizeof(data)-1 */
-    //if ((res=f_write(&file,text,sizeof(text)-1,&nbytes))==FR_OK)
-    if ((res=pf_write512(testbuf,0,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);
-    if ((res=pf_write512(testbuf,20,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);   
-    if ((res=pf_write512(testbuf,510,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);
-    if ((res=pf_write512(testbuf,521,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);   
-    if ((res=pf_write512(testbuf,1020,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);
-    if ((res=pf_write512(testbuf,1031,sizeof(testbuf),&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,93);   
-    if ((res=pf_write(text,sizeof(text)-1,&nbytes))==FR_OK)
-       printf("%u bytes written of %u\r\n",nbytes,sizeof(text)-1);
-    else
-       ///* an error occured, display it and stop */
-       error(res,3);
-
-        /* close the file */
-    /*
-    if ((res=f_close(&file))==FR_OK)
-       printf("File %s closed OK\r\n",path);
-    else
-       // an error occured, display it and stop 
-       error(res,4);
-    */
-
-    /* open the file in read mode */
     
-    //if ((res=f_open(&file,path,FA_READ|FA_WRITE))==FR_OK)
-    if ((res=pf_open(path))==FR_OK)
-       printf("File %s opened OK\r\n",path);
-    else
-       ///* an error occured, display it and stop */
-       error(res,7);
-
-
-
-    /* read and display the file's content.
-       make sure to leave space for a NULL terminator
-       in the buffer, so maximum sizeof(buffer)-1 bytes can be read */
-    //if ((res=f_read(&file,buffer,sizeof(buffer)-1,&nbytes))==FR_OK)
-    if ((res=pf_read(buffer,sizeof(buffer)-1,&nbytes))==FR_OK)
-       {
-       printf("%u bytes read\r\n",nbytes);
-       /* NULL terminate the char string in the buffer */
-       buffer[nbytes+1]=NULL;
-       /* display the buffer contents */
-       printf("Read text: \"%s\"\r\n",buffer);
-       }
+    /* mount logical drive 0: */
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");//printf("Logical drive 0: mounted OK\r\n");
     else
        /* an error occured, display it and stop */
-       error(res,6);
-
-
-    /* close the file */
-    /*
-    if ((res=f_close(&file))==FR_OK)
-       printf("File %s closed OK\r\n",path);
+       error(res,1);
+    
+    if ((res=pf_open("DATA4K"))==FR_OK)
+       DebugPrintString("File DATA4K opened OK\r\n","");//printf("File %s opened OK\r\n",s_Sd_File_Path);
     else
-       // an error occured, display it and stop 
-       error(res,6);
-    */
+       ///* an error occured, display it and stop */
+       error(res,2);   
 
-    /* display file's attribute, size and time stamp */
-    //display_status(path);
+    /* Write data from buffer to SD file */
+       if ((res=pf_write512(p_u8_data_buffer, u32_data_offset, data_length, p_u16_read_bytes))==FR_OK)
+            DebugPrintString("Write DATA4K OK\r\n","");
+       else
+            error(res,3);     
+       
+    return 0;
+}
 
+unsigned char SdDataErase(unsigned long u32_size_bytes, unsigned char u8_fill_value)
+{
+    unsigned long i;
+    
+    for(u32_offset = 0; u32_offset < COPY_BUFF_SIZE; u32_offset ++ )
+    {    
+        u8_Sd_File_Buffer[u32_offset] = u8_fill_value;
+                 
+    }
+    
+    for(u32_offset = 0; u32_offset < u32_size_bytes; u32_offset += COPY_BUFF_SIZE )
+    {
+        if(SdDataFileWrite(u8_Sd_File_Buffer, u32_offset, COPY_BUFF_SIZE, &nbytes))
+            return 1;
+        if(nbytes < COPY_BUFF_SIZE)
+            return 2;
+        
+    }
+    return 0;
+}
 
-    /* change file's attributes, set the file to be Read-Only */
-    /*
-    if ((res=f_chmod(path,AM_RDO,AM_RDO))==FR_OK)
-       printf("Read-Only attribute set OK\r\n",path);
-    else
-       // an error occured, display it and stop 
-       error(res,7);
-    */
-  return 1;
+unsigned char UnitTest1(){
+    
+    unsigned char u8_test_result;   
+    BYTE testbuf[10]={'5','5','A','A','6','6','B','B','C','C'};
+    //strcpy(path,"/0/UPDATE3.DAT");
+    
+    //1. check if UPDATE exists(means Boot copy the UPDATE3 to Flash App) then change the name to BACKUP3 and the BACKUP name to TEMPDATA
+    //Return 0: Files ready to get new Firmware Update data after Buckup file is ready. 
+    u8_test_result = SdUpdateStatus();
+    if(u8_test_result)
+        return 1;
+    //2. check the TEMPDATA file exists to get new Firmware Update data 
+    //Return 0: OK
+    u8_test_result = SdDataFileStatus();
+    if(u8_test_result)
+        return 2;
+    //3. Simulate copy Firmware Update data to TEMPDATA file
+    //u8_test_result = CopyFile("", "DEMODATA", "TEMPDATA");
+    
+    //4. change the TEMPDATA filename to UPDATE3 then reset or jump to Boot
+    //Return 0: OK
+    //u8_test_result = pf_rename11("","TEMPDATA","UPDATE3");
+    
+    //5. Erase data
+    //unsigned char SdDataErase(unsigned long u32_size_bytes, unsigned char u8_fill_value)
+    u8_test_result = SdDataErase(4096, ' ');
+    
+    //5. Write Data test
+    //unsigned char SdDataFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
+    if(u8_test_result = SdDataFileWrite(testbuf, 0, 5, &nbytes))
+       return 4;
+    
+    //6. Read Data test
+    //unsigned char SdDataFileRead(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
+    if(u8_test_result = SdDataFileRead(testbuf, 0, 5, &nbytes))
+       return 5;
+    
+    if(u8_test_result)
+        return 3;    
+    
+    return u8_test_result;
 }
 void main( void ){
   unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
@@ -409,7 +490,8 @@ void main( void ){
                                             // code stack
   static unsigned char testChar; // A warning will come saying that this var is set but never used. Ignore it.
   int index;       
-
+  unsigned char u8_test_result;
+  
   /* globally enable interrupts */
     #asm("sei")
    
@@ -426,7 +508,9 @@ void main( void ){
   lcd_clear();
   lcd_putsf("pff Test3.");
   delay_ms(200);
-  UnitTest1();
+  u8_test_result = UnitTest1();
+  
+  DebugBlinkLed(u8_test_result,0);
   
   //RenameTest();
   //UpdateTest();
@@ -436,6 +520,7 @@ void main( void ){
   /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
     lcd_putsf("Test3 done.");
+  //blink LEDS on Evaluation Bord PORTC LED-0,1,2,3,4,5,6,7
   do
     {
       PORTC.0=0;
@@ -447,37 +532,5 @@ void main( void ){
       PORTC=0xFC;
     }
   while(1); 
-  for(index=0; index<PAGESIZE; index++){
-    testBuffer1[index]=index;//(unsigned char)0xFF; // Fills testBuffer1 with values FF 
-  }
-  if(WriteFlashBytes(0x2, testBuffer1,PAGESIZE)){     // Writes testbuffer1 to Flash page 2
-    PORTC.2=0;
-  }                                            // Same as byte 4 on page 2
-  //MCUCR &= ~(1<<IVSEL);
-  ReadFlashBytes(0x2,&testChar,1);        // Reads back value from address 0x204
-  if(testChar==0x00)
-  {
-      ReadFlashBytes(0x3,&testChar,1);        // Reads back value from address 0x204
-      if(testChar==0x01)
-        ReadFlashBytes(0x100,&testChar,1);        // Reads back value from address 0x204
-        if(testChar==0xFE)
-            ReadFlashBytes(0x101,&testChar,1);        // Reads back value from address 0x204
-            if(testChar==0xFF)
-              while(1)
-              {
-                  PORTC.0=0;
-                  delay_ms(500);
-                  PORTC.0=1;
-                  delay_ms(500);
-              }
-  }                                          
-  
-  while(1)
-  {
-      PORTC.1=0;
-      delay_ms(500);
-      PORTC.1=1;
-      delay_ms(500);
-  }  
-  //}
 }
+

@@ -12,8 +12,10 @@
 /* string functions */
 #include <string.h>
 #include <alcd.h>
-
 #endif
+
+#include "MyFat.h"
+#include "Self_programming.h"
 
 unsigned char result[5], sdBuf[SDBUF_SIZE], testBuf[PAGESIZE], token, SectorsPerCluster, pagesCnt;
 unsigned long appStartAdr,adr,SectorsPerFat,fat_begin_lba;
