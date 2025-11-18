@@ -26,7 +26,7 @@ Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1534227174
+TimeStamp1=1534228294
 PageIndex1=1
 OF2=pff_rn.c
 Active2=0
@@ -183,7 +183,7 @@ UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
 COFFileTimeStamp=1534228297
-Build=317
+Build=318
 GlobalVarAddr=3218
 EEPROMVarAddr=0
 [DefinedSymbolsDebug]
@@ -287,7 +287,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=317
+Build=318
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -641,7 +641,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1534227283
+TimeStamp=1534228544
 [Bookmarks2]
 TimeStamp=1349760203
 Row=227
@@ -745,11 +745,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1534227174
-Row=429
-Column=36
+TimeStamp=1534228294
+Row=25
+Column=2
 ScrollPosX=0
-ScrollPosY=423
+ScrollPosY=0
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1120,16 +1120,6 @@ Blocks=0
 Blocks=0
 [FoldedCode11]
 Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode19]
-Blocks=0
-[FoldedCode27]
-Blocks=0
-[FoldedCode3]
-Blocks=0
-[FoldedCode28]
-Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming_main.c
@@ -1172,3 +1162,13 @@ F1=pff_rn.h
 F2=integer.h
 F3=diskio.h
 F4=C:\cvavr\inc\string.h
+[FoldedCode8]
+Blocks=0
+[FoldedCode19]
+Blocks=0
+[FoldedCode27]
+Blocks=0
+[FoldedCode3]
+Blocks=0
+[FoldedCode28]
+Blocks=0

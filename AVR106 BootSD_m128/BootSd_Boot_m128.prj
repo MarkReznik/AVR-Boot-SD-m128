@@ -202,7 +202,7 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1534225895
+COFFileTimeStamp=1534228554
 Build=483
 XminiBootLoader=0
 XminiBootEnd=0
@@ -591,7 +591,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 482
+L17=Build: 483
 L18=8768 line(s) compiled
 L19=No errors
 L20=24 warning(s)
@@ -1283,6 +1283,26 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
+[FoldedCode2]
+Blocks=0
+[FoldedCode6]
+Blocks=0
+[FoldedCode8]
+Blocks=0
+[FoldedCode28]
+Blocks=0
+[FoldedCode16]
+Blocks=0
+[FoldedCode33]
+Blocks=0
+[FoldedCode34]
+Blocks=0
+[FoldedCode29]
+Blocks=0
+[FoldedCode10]
+Blocks=0
+[FoldedCode3]
+Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.c
@@ -1318,23 +1338,3 @@ F2=C:\cvavr\inc\io.h
 F3=C:\cvavr\inc\mega128.h
 F4=C:\cvavr\inc\mega128_bits.h
 F5=C:\cvavr\inc\delay.h
-[FoldedCode2]
-Blocks=0
-[FoldedCode6]
-Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode28]
-Blocks=0
-[FoldedCode16]
-Blocks=0
-[FoldedCode33]
-Blocks=0
-[FoldedCode34]
-Blocks=0
-[FoldedCode29]
-Blocks=0
-[FoldedCode10]
-Blocks=0
-[FoldedCode3]
-Blocks=0
