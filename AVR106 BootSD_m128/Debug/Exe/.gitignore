@@ -1,0 +1,10 @@
+/Self_programming.hex
+/Self_programming.o
+/Self_programming.rom
+/Self_programming_main.a
+/Self_programming_main.o
+/flash.o
+/mmc.a
+/mmc.o
+/readFlash.hex
+/spi_sdcard.o

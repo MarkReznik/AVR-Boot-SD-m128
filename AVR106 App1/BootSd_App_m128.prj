@@ -182,7 +182,7 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1534227178
+COFFileTimeStamp=1534227855
 Build=312
 GlobalVarAddr=3218
 EEPROMVarAddr=0
@@ -552,7 +552,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 311
+L17=Build: 312
 L18=21269 line(s) compiled
 L19=No errors
 L20=53 warning(s)
@@ -1120,6 +1120,16 @@ Blocks=0
 Blocks=0
 [FoldedCode11]
 Blocks=0
+[FoldedCode8]
+Blocks=0
+[FoldedCode19]
+Blocks=0
+[FoldedCode27]
+Blocks=0
+[FoldedCode3]
+Blocks=0
+[FoldedCode28]
+Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming_main.c
@@ -1162,13 +1172,3 @@ F1=pff_rn.h
 F2=integer.h
 F3=diskio.h
 F4=C:\cvavr\inc\string.h
-[FoldedCode8]
-Blocks=0
-[FoldedCode19]
-Blocks=0
-[FoldedCode27]
-Blocks=0
-[FoldedCode3]
-Blocks=0
-[FoldedCode28]
-Blocks=0
