@@ -23,7 +23,7 @@
 *
 * $Revision: 2.0 $
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
-* Version: 0.0.0.9
+* Version: 0.0.0.10     1.Added TEMPDATA fill/rename functions
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -33,11 +33,11 @@
 #include <pff_rn.h>
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
 /* printf */
-#include <stdio.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <stdlib.h>
 /* string functions */
 #include <string.h>
-#include <alcd.h>
+//#include <alcd.h>
 
 /*Globals*/
 int retry;
@@ -52,16 +52,21 @@ FATFS fat;
 /* will hold the file information */
 //FIL file;
 /* will hold file attributes, time stamp information */
-FILINFO finfo;
+//FILINFO finfo;
 /* root directory path */
-char s_Sd_File_Path[64];//="/0/unittest.txt";
+//char s_Sd_File_Path[64];//="/0/unittest.txt";
 /* text to be written to the file */
-char s_Sd_File_Text[]="Unit Test 1";
+//char s_Sd_File_Text[]="Unit Test 1";
 /* file read buffer */
 #define COPY_BUFF_SIZE  512
 char u8_Sd_File_Buffer[COPY_BUFF_SIZE];
 
+#define DEBUG_LED
+//#define DEBUG_PRINT
+//#define DEBUG_LCD
+
 /* error message list */
+#ifdef DEBUG_PRINT
 flash char * flash error_msg[]=
 {
 "", /* not used */
@@ -82,7 +87,8 @@ flash char * flash error_msg[]=
 "FR_MKFS_ABORTED",
 "FR_TIMEOUT"
 };
-#define DEBUG_LED
+#endif
+
 void DebugBlinkLed(unsigned char u8_led_0_7, unsigned char u8_blink_times)
 {
 #ifdef DEBUG_LED    
@@ -294,7 +300,7 @@ unsigned char CopyFile(char *path, char *srcfile, char *destfile)
       
     res=pf_mount(&fat);
     if (res==FR_OK)
-       printf("Logical drive 0: mounted OK\r\n");
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");
     else
        /* an error occured, display it and stop */
        error(res,1);
@@ -356,6 +362,7 @@ unsigned char CopyFile(char *path, char *srcfile, char *destfile)
 // 2. u32_data_offset - SD data file offset in bytes
 // 3. data_length -  SD data file bytes to read to provided buffer
 // 4. *p_u16_read_bytes - pointer to u16 read data from SD data file
+// Return 0: OK
 unsigned char SdDataFileRead(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
 {
     /* mount logical drive 0: */
@@ -385,19 +392,13 @@ unsigned char SdDataFileRead(unsigned char *p_u8_data_buffer, unsigned long u32_
 
 // Function:    SdDataFileWrite()  
 // Description: Write data to SD root file "/DATA4K" 
-// 3 argument:
+// 4 argument:
 // 1. *p_u8_data_buffer - pointer to bytes buffer place data from SD data file
 // 2. u32_data_offset - SD data file offset in bytes
 // 3. data_length -  SD data file bytes to write from provided buffer
 // 4. *p_u16_read_bytes - pointer to u16 writen data to SD data file
 unsigned char SdDataFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
 {
-    /*this line will remove READ_ONLY attribute*/
-    //f_chmod(path, AM_ARC, AM_ARC|AM_RDO);
-    /* create a new file in the root of drive 0:
-       and set write access mode */
-    //if ((res=f_open(&file,path,FA_CREATE_ALWAYS | FA_WRITE))==FR_OK)
-    
     /* mount logical drive 0: */
     res=pf_mount(&fat);
     if (res==FR_OK)
@@ -418,6 +419,50 @@ unsigned char SdDataFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32
        else
             error(res,3);     
        
+    return 0;
+}
+
+// Function:    SdUpdateFileWrite()  
+// Description: Write data to SD root file "/TEMPDATA" 
+// 4 argument:
+// 1. *p_u8_data_buffer - pointer to bytes buffer place data from SD data file
+// 2. u32_data_offset - SD data file offset in bytes
+// 3. data_length -  SD data file bytes to write from provided buffer
+// 4. *p_u16_read_bytes - pointer to u16 writen data to SD data file
+// Return 0: OK
+unsigned char SdUpdateFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
+{
+    /* mount logical drive 0: */
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");//printf("Logical drive 0: mounted OK\r\n");
+    else
+       /* an error occured, display it and stop */
+       error(res,1);
+    
+    if ((res=pf_open("TEMPDATA"))==FR_OK)
+       DebugPrintString("File TEMPDATA opened OK\r\n","");//printf("File %s opened OK\r\n",s_Sd_File_Path);
+    else
+       ///* an error occured, display it and stop */
+       error(res,2);   
+
+    /* Write data from buffer to SD file */
+       if ((res=pf_write512(p_u8_data_buffer, u32_data_offset, data_length, p_u16_read_bytes))==FR_OK)
+            DebugPrintString("Write TEMPDATA OK\r\n","");
+       else
+            error(res,3);     
+       
+    return 0;
+}
+
+// Function:    SdUpdateFileComplete()  
+// Description: Rename SD root file "/TEMPDATA" to "/UPDATE3"
+// No arguments
+// Return 0: OK
+unsigned char SdUpdateFileComplete()
+{
+    if(res=pf_rename11("","TEMPDATA","UPDATE3"))
+        return res;        
     return 0;
 }
 
@@ -465,25 +510,30 @@ unsigned char UnitTest1(){
     //Return 0: OK
     //u8_test_result = pf_rename11("","TEMPDATA","UPDATE3");
     
+    //3. Fill "TEMPDATA" file with update file data
+    if(u8_test_result = SdUpdateFileWrite(testbuf, 0, 5, &nbytes))
+        return 3;
+    //4. Rename "TEMPDATA" to "UPDATE3"
+    if(u8_test_result = SdUpdateFileComplete())
+        return 4;
     //5. Erase data
     //unsigned char SdDataErase(unsigned long u32_size_bytes, unsigned char u8_fill_value)
-    u8_test_result = SdDataErase(4096, ' ');
+    if(u8_test_result = SdDataErase(4096, ' '))
+        return 5;
     
-    //5. Write Data test
+    //6. Write Data test
     //unsigned char SdDataFileWrite(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
     if(u8_test_result = SdDataFileWrite(testbuf, 0, 5, &nbytes))
-       return 4;
+       return 6;
     
-    //6. Read Data test
+    //7. Read Data test
     //unsigned char SdDataFileRead(unsigned char *p_u8_data_buffer, unsigned long u32_data_offset, unsigned int data_length, unsigned int *p_u16_read_bytes)
     if(u8_test_result = SdDataFileRead(testbuf, 0, 5, &nbytes))
-       return 5;
-    
-    if(u8_test_result)
-        return 3;    
-    
+       return 7;
+        
     return u8_test_result;
 }
+
 void main( void ){
   unsigned char testBuffer1[PAGESIZE];      // Declares variables for testing
   //unsigned char testBuffer2[PAGESIZE];      // Note. Each array uses PAGESIZE bytes of
@@ -498,6 +548,7 @@ void main( void ){
   DDRC=0xFF;
   PORTC=0xFF; 
   /* initialize the LCD for 2 lines & 16 columns */
+#ifdef DEBUG_LCD  
     lcd_init(16);
   /* switch to writing in Display RAM */
     //lcd_gotoxy(0,0);
@@ -506,7 +557,8 @@ void main( void ){
   
   //disk_timerproc();
   lcd_clear();
-  lcd_putsf("pff Test3.");
+  lcd_putsf("pff Test3."); 
+#endif  
   delay_ms(200);
   u8_test_result = UnitTest1();
   
@@ -518,11 +570,14 @@ void main( void ){
   //ReadDataTest();
   
   /* switch to writing in Display RAM */
+#ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
     lcd_putsf("Test3 done.");
+#endif    
   //blink LEDS on Evaluation Bord PORTC LED-0,1,2,3,4,5,6,7
   do
     {
+#ifdef DEBUG_LED      
       PORTC.0=0;
       PORTC.1=0;
       delay_ms(500);
@@ -530,6 +585,7 @@ void main( void ){
       PORTC.0=1;
       delay_ms(500);
       PORTC=0xFC;
+#endif      
     }
   while(1); 
 }
