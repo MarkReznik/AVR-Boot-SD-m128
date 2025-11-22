@@ -21,7 +21,7 @@ unsigned char SPI_transfer(unsigned char data)
 {
     // load data into register
     SPDR = data;
-
+    #asm("wdr")
     // Wait for transmission complete
     while(!(SPSR & (1 << SPIF)));
 

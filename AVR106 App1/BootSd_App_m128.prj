@@ -26,12 +26,12 @@ Active0=0
 EditorPanel0=0
 PageIndex0=0
 EditorPanel1=0
-TimeStamp1=1534228294
+TimeStamp1=1534443092
 PageIndex1=1
 OF2=pff_rn.c
 Active2=0
 EditorPanel2=0
-TimeStamp2=1534067185
+TimeStamp2=1534442574
 PageIndex2=2
 OF3=pff_rn.h
 Active3=0
@@ -47,7 +47,7 @@ TimeStamp0=1498201767
 OF5=mmc.c
 Active5=0
 EditorPanel5=0
-TimeStamp5=1498328020
+TimeStamp5=1534442589
 PageIndex5=5
 OF6=pff_rn.c
 Active6=0
@@ -182,8 +182,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1534233674
-Build=324
+COFFileTimeStamp=1534460148
+Build=338
 GlobalVarAddr=3218
 EEPROMVarAddr=0
 [DefinedSymbolsDebug]
@@ -287,7 +287,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=324
+Build=338
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -465,7 +465,7 @@ UserProgWorkDir=
 ProgrammChip=0
 MergeROMFile=0
 ROMFilePath=
-SCKFrequency=250000
+SCKFrequency=125000
 LockBits=0
 BootLockBits0=0
 BootLockBits1=0
@@ -479,9 +479,9 @@ Fuse5=0
 Fuse6=0
 Fuse7=0
 Fuse8=0
-Fuse9=1
+Fuse9=0
 Fuse10=0
-Fuse11=1
+Fuse11=0
 Fuse12=1
 Fuse13=0
 Fuse14=0
@@ -552,10 +552,10 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 324
-L18=12651 line(s) compiled
+L17=Build: 337
+L18=17320 line(s) compiled
 L19=No errors
-L20=53 warning(s)
+L20=52 warning(s)
 L21=
 L22=Bit variables size: 0 byte(s)
 L23=
@@ -563,18 +563,18 @@ L24=Data Stack area: 0x100 to 0x91F
 L25=Data Stack size: 2080 byte(s)
 L26=Estimated Data Stack usage: 942 byte(s)
 L27=
-L28=RAM Global variables area: 0x920 to 0xD88
-L29=RAM Global variables size: 1129 byte(s)
+L28=RAM Global variables area: 0x920 to 0xD9A
+L29=RAM Global variables size: 1147 byte(s)
 L30=
-L31=Hardware Stack area: 0xD89 to 0x10FF
-L32=Hardware Stack size: 887 byte(s)
+L31=Hardware Stack area: 0xD9B to 0x10FF
+L32=Hardware Stack size: 869 byte(s)
 L33=
 L34=Heap size: 0 byte(s)
 Lines=38
 L35=
 L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L37=Program size: 5413 words (10826 bytes), 8.3% of FLASH
-L38=528 words (1056 bytes), 8.9% reduced by Code Compression
+L37=Program size: 5939 words (11878 bytes), 9.1% of FLASH
+L38=519 words (1038 bytes), 8.0% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=10
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
@@ -583,8 +583,8 @@ L3=
 L4=ATmega128 memory use summary [bytes]:
 L5=Segment   Begin    End      Code   Data   Used    Size   Use%
 L6=---------------------------------------------------------------
-L7=[.cseg] 0x000000 0x002a4a   9916    910  10826  131072   8.3%
-L8=[.dseg] 0x000100 0x000d89      0   1129   1129    4096  27.6%
+L7=[.cseg] 0x000000 0x002e66  10516   1362  11878  131072   9.1%
+L8=[.dseg] 0x000100 0x000d9b      0   1147   1147    4096  28.0%
 L9=[.eseg] 0x000000 0x000111      0    263    263    4096   6.4%
 L10=
 L11=[.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
@@ -641,7 +641,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1534228544
+TimeStamp=1534460842
 [Bookmarks2]
 TimeStamp=1349760203
 Row=227
@@ -745,11 +745,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1534228294
-Row=25
-Column=2
+TimeStamp=1534443092
+Row=304
+Column=12
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=278
 BK0=-1
 BK1=-1
 BK2=-1
@@ -939,11 +939,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks19]
-TimeStamp=1498328020
-Row=0
-Column=0
+TimeStamp=1534442589
+Row=74
+Column=20
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=60
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1081,11 +1081,11 @@ BK9=-1
 [FoldedCode26]
 Blocks=0
 [Bookmarks27]
-TimeStamp=1534067185
-Row=974
-Column=16
+TimeStamp=1534442574
+Row=482
+Column=15
 ScrollPosX=0
-ScrollPosY=907
+ScrollPosY=479
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1120,16 +1120,9 @@ Blocks=0
 Blocks=0
 [FoldedCode11]
 Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode19]
-Blocks=0
-[FoldedCode27]
-Blocks=0
-[FoldedCode3]
-Blocks=0
-[FoldedCode28]
-Blocks=0
+[CompilerAdvanced]
+WDRDelayMS=1
+WDREEPROM=1
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\Self_programming_main.c
@@ -1137,7 +1130,7 @@ F2=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD
 F3=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\mmc.c
 F4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\pff_rn.c
 [Header1]
-Files=9
+Files=11
 F1=C:\cvavr\inc\io.h
 F2=C:\cvavr\inc\mega128.h
 F3=C:\cvavr\inc\mega128_bits.h
@@ -1146,7 +1139,9 @@ F5=Self_programming.h
 F6=integer.h
 F7=pff_rn.h
 F8=diskio.h
-F9=C:\cvavr\inc\string.h
+F9=C:\cvavr\inc\stdlib.h
+F10=C:\cvavr\inc\string.h
+F11=C:\cvavr\inc\alcd.h
 [Header2]
 Files=5
 F1=C:\cvavr\inc\io.h
@@ -1168,3 +1163,13 @@ F1=pff_rn.h
 F2=integer.h
 F3=diskio.h
 F4=C:\cvavr\inc\string.h
+[FoldedCode8]
+Blocks=0
+[FoldedCode19]
+Blocks=0
+[FoldedCode27]
+Blocks=0
+[FoldedCode3]
+Blocks=0
+[FoldedCode28]
+Blocks=0

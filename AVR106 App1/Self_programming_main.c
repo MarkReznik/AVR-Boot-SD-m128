@@ -32,12 +32,24 @@
 //Petit fat api
 #include <pff_rn.h>
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
+
 /* printf */
-//#include <stdio.h>
-//#include <stdlib.h>
+//#define DEBUG_PRINT
+#ifdef DEBUG_PRINT
+#include <stdio.h>
+#endif
+#include <stdlib.h>
+
 /* string functions */
 #include <string.h>
-//#include <alcd.h>
+
+
+//#define DEBUG_LED
+
+#define DEBUG_LCD
+#ifdef DEBUG_LCD
+#include <alcd.h>
+#endif
 
 /*Globals*/
 int retry;
@@ -61,12 +73,8 @@ FATFS fat;
 #define COPY_BUFF_SIZE  512
 char u8_Sd_File_Buffer[COPY_BUFF_SIZE];
 
-#define DEBUG_LED
-//#define DEBUG_PRINT
-//#define DEBUG_LCD
-
 /* error message list */
-#ifdef DEBUG_PRINT
+//#ifdef DEBUG_PRINT
 flash char * flash error_msg[]=
 {
 "", /* not used */
@@ -87,7 +95,7 @@ flash char * flash error_msg[]=
 "FR_MKFS_ABORTED",
 "FR_TIMEOUT"
 };
-#endif
+//#endif
 
 void DebugBlinkLed(unsigned char u8_led_0_7, unsigned char u8_blink_times)
 {
@@ -107,10 +115,17 @@ void DebugBlinkLed(unsigned char u8_led_0_7, unsigned char u8_blink_times)
 #endif    
 }
 
+void DebugPrintString(char *str1, char *str2)
+{
+#ifdef DEBUG_PRINT
+    printf(str1);
+#endif    
+}
+
 /* display error message and stop */
 void error(FRESULT res, unsigned char num)
 {
-#ifdef DEBUG_PRINT    
+#ifdef DEBUG_LCD    
     char strnum[5];
     if(num>100){
        num=100;
@@ -137,24 +152,20 @@ void error(FRESULT res, unsigned char num)
     /* stop here */
     //do
         //{
+#ifdef DEBUG_LED       
           PORTC.0=0;
           PORTC.1=0;
           delay_ms(150);
           PORTC.1=1;
           PORTC.0=1;
           delay_ms(150);
-          PORTC=0xFC;
+          PORTC=0xFC; 
+#endif          
         }
       while(1);
 #endif      
 }
 
-void DebugPrintString(char *str1, char *str2)
-{
-#ifdef DEBUG_PRINT
-    printf(str1);
-#endif    
-}
 
 // This function get 3 parameters
 // 1. Path
@@ -236,14 +247,38 @@ unsigned char SdUpdateStatus()
     if (res==FR_OK)
        DebugPrintString("Logical drive 0: mounted OK\r\n","");
     else
+    {
        /* an error occured, display it and stop */
-       error(res,1);
-    //scan_files("/0");
-    
+       error(res,1); 
+    }
     
     u8_update_file_flag = FindFileName("", "UPDATE",0);
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    if(u8_update_file_flag)
+        lcd_putsf("Update Yes.");
+    else
+        lcd_putsf("Update No.");
+    delay_ms(1000);        
+#endif
     u8_backup_file_flag = FindFileName("", "BACKUP",0);
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    if(u8_backup_file_flag)
+        lcd_putsf("Buckup Yes.");
+    else
+        lcd_putsf("Buckup No.");
+    delay_ms(1000);        
+#endif    
     u8_tempdata_file_flag = FindFileName("", "TEMPDATA",0);
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    if(u8_tempdata_file_flag)
+        lcd_putsf("Tempdata Yes.");
+    else
+        lcd_putsf("Tempdata No.");
+    delay_ms(1000);        
+#endif
     //in case "UPDATE" found check the "BACKUP" exists
     if(u8_update_file_flag)
     {
@@ -503,6 +538,7 @@ unsigned char UnitTest1(){
     u8_test_result = SdDataFileStatus();
     if(u8_test_result)
         return 2;
+    
     //3. Simulate copy Firmware Update data to TEMPDATA file
     //u8_test_result = CopyFile("", "DEMODATA", "TEMPDATA");
     
@@ -510,12 +546,15 @@ unsigned char UnitTest1(){
     //Return 0: OK
     //u8_test_result = pf_rename11("","TEMPDATA","UPDATE3");
     
+    /** Example to fill data to TEPMDATA file then rename it to UPDATE ****
     //3. Fill "TEMPDATA" file with update file data
     if(u8_test_result = SdUpdateFileWrite(testbuf, 0, 5, &nbytes))
         return 3;
     //4. Rename "TEMPDATA" to "UPDATE3"
     if(u8_test_result = SdUpdateFileComplete())
         return 4;
+    */
+    
     //5. Erase data
     //unsigned char SdDataErase(unsigned long u32_size_bytes, unsigned char u8_fill_value)
     if(u8_test_result = SdDataErase(4096, ' '))
@@ -544,9 +583,11 @@ void main( void ){
   
   /* globally enable interrupts */
     #asm("sei")
-   
+    #asm("wdr")
+#ifdef DEBUG_LED   
   DDRC=0xFF;
-  PORTC=0xFF; 
+  PORTC=0xFF;
+#endif   
   /* initialize the LCD for 2 lines & 16 columns */
 #ifdef DEBUG_LCD  
     lcd_init(16);
@@ -557,11 +598,19 @@ void main( void ){
   
   //disk_timerproc();
   lcd_clear();
-  lcd_putsf("pff Test3."); 
+  lcd_putsf("pff Test5."); 
 #endif  
-  delay_ms(200);
+  #asm("wdr")
   u8_test_result = UnitTest1();
-  
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_putsf("Result:");
+    testBuffer1[0]=u8_test_result+'0';
+    testBuffer1[1]=0;
+    lcd_puts(testBuffer1);
+    lcd_putsf("    ");
+    delay_ms(1500);
+#endif  
   DebugBlinkLed(u8_test_result,0);
   
   //RenameTest();

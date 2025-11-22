@@ -59,7 +59,8 @@ void INIT_SPI(void) {
 void xmit_spi(BYTE data) {		// Send a byte
 #ifdef hardware_spi
 	SPDR = data;
-	while (!(SPSR & (1 << SPIF)));
+	#asm("wdr")
+    while (!(SPSR & (1 << SPIF)));
 #else
 	BYTE i;
 
@@ -79,7 +80,8 @@ void xmit_spi(BYTE data) {		// Send a byte
 BYTE rcv_spi(void) {				// Send 0xFF and receive a byte
 #ifdef hardware_spi
 	unsigned char data;
-	SPDR = 0xFF;
+	#asm("wdr")
+    SPDR = 0xFF;
 	while (!(SPSR & (1 << SPIF)));
 	data = SPDR;
 	return data;
