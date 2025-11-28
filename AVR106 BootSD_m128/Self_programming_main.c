@@ -23,18 +23,22 @@
 *
 * $Revision: 2.0 $
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
-* Version: 0.0.0.9
+* Version: 0.0.0.11
+* Added #asm("wdr") in for loop rolling conversion 
 *****************************************************************************/
 #include <io.h>
-//#include <delay.h>
+#include <delay.h>
 #include "flash.h"
 #include "Self_programming.h"
 #include "spi_sdcard.h"
 //#include "MyFat.h"
 #define SDBUF_SIZE  512
 #define PAGES_PER_SDBUF (SDBUF_SIZE/PAGESIZE)
-
-
+//#define DEBUG_LCD
+#ifdef DEBUG_LCD
+#include <alcd.h>
+#include <stdlib.h>
+#endif
 
 //(unsigned long)fat_begin_lba = Partition_LBA_Begin + Number_of_Reserved_Sectors;
 //(unsigned long)cluster_begin_lba = Partition_LBA_Begin + Number_of_Reserved_Sectors + (Number_of_FATs * Sectors_Per_FAT);
@@ -56,6 +60,17 @@ unsigned long buf2num(unsigned char *buf,unsigned char len);
 unsigned char compbuf(const unsigned char *src,unsigned char *dest);
 void (*app_pointer)(void) = (void(*)(void))0x0000;
 
+//#define DEBUG_ERRSD
+#ifdef DEBUG_ERRSD
+void errorSD(unsigned char err);
+#endif
+
+//#define DEBUG_LCD_WRITE_TO_FLASH
+#define LCD_DELAY   0
+
+#ifdef DEBUG_LCD
+lcd_printhex(unsigned long num32, char size);
+#endif
 void main( void ){
   unsigned int i,j,k;
   unsigned char rollnum;
@@ -130,18 +145,18 @@ void main( void ){
     //next cluster address, of file data, read from current cluster record.each record 4 bytes (32bits)
     //fat_file_next_adr=buf2num(&sdBuf[fat_file_adr*4],4);
     fat_file_next_adr=buf2num(&sdBuf[(fat_file_adr*4)%512],4);
-    #ifdef DEBUG_LCD
+    #ifdef DEBUG_LCD_WRITE_TO_FLASH
       lcd_clear();
       lcd_putsf("beglba");
       lcd_printhex(fat_begin_lba,sizeof(fat_begin_lba));
-      delay_ms(1000);
+      delay_ms(LCD_DELAY);
       lcd_clear();
       lcd_putsf("curcls");
       lcd_printhex(fat_file_adr,sizeof(fat_file_adr));
       lcd_gotoxy(0,1);
       lcd_putsf("nxtcls");
       lcd_printhex(fat_file_next_adr,sizeof(fat_file_next_adr));
-      delay_ms(1000); 
+      delay_ms(LCD_DELAY); 
     #endif
     adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
     for(i=0;i<SectorsPerCluster;i++)
@@ -152,7 +167,7 @@ void main( void ){
             errorSD(8);
         #endif    
         }
-        #ifdef DEBUG_LCD
+        #ifdef DEBUG_LCD_WRITE_TO_FLASH
           lcd_clear();
           lcd_putsf("sector ");
           lcd_printhex(i,sizeof(i));
@@ -161,7 +176,7 @@ void main( void ){
           lcd_gotoxy(0,1);
           lcd_putsf("data0 ");
           lcd_printhex(sdBuf[0],sizeof(sdBuf[0]));
-          delay_ms(1000);
+          delay_ms(LCD_DELAY);
         //} 
         #endif
         //address 2000 = start adr flash app 3 bytes, flash pages 2 bytes, checksum 2 bytes
@@ -178,11 +193,11 @@ void main( void ){
                result[1]=compbuf("[settings]",&rollbuf[0]);
                if(result[1]!=0){
                     rollnum=j;
-                    #ifdef DEBUG_LCD
+                    #ifdef DEBUG_LCD_WRITE_TO_FLASH
                       lcd_clear();
                       lcd_putsf("roll ");
                       lcd_printhex(rollnum,sizeof(rollnum));
-                      delay_ms(1000); 
+                      delay_ms(LCD_DELAY); 
                     #endif
                     break;
                }
@@ -194,9 +209,9 @@ void main( void ){
                 //return;
             }
         }
-        
         for(j=0;j<512;j++)
         {
+            #asm("wdr")
             if(rollnum!=0){
                 sdBuf[j]=(sdBuf[j]<<1)|(sdBuf[j]>>7);  //ROL
                 sdBuf[j]^=rollnum;//0x88;  //XOR 
@@ -209,17 +224,16 @@ void main( void ){
         {
            for(pagesCnt=0;pagesCnt<PAGES_PER_SDBUF;pagesCnt++)
            {
-               #ifdef DEBUG_LCD
+               #ifdef DEBUG_LCD_WRITE_TO_FLASH
                   lcd_clear();
                   lcd_putsf("appage ");
                   lcd_printhex(appPages,sizeof(appPages));
-                  delay_ms(1000);
+                  delay_ms(LCD_DELAY);
                   lcd_clear();
                   lcd_putsf("apstrt ");
                   lcd_printhex(appStartAdr,sizeof(appStartAdr));
-                  delay_ms(1000); 
-                #endif
-               #asm("wdr")
+                  delay_ms(LCD_DELAY); 
+               #endif
                if(WriteFlashPage(appStartAdr, &sdBuf[pagesCnt*PAGESIZE])==0)
                {
                     //after error during flash write page. wait for watchdog to reset
@@ -268,11 +282,11 @@ void main( void ){
            bytesChecksum=(unsigned int)sdBuf[469]<<8;
            bytesChecksum|=(unsigned int)sdBuf[470];
            checksumCnt=0;
-           #ifdef DEBUG_LCD
+           #ifdef DEBUG_LCD_WRITE_TO_FLASH
               lcd_clear();
               lcd_putsf("appags ");
               lcd_printhex(appPages,sizeof(appPages));
-              delay_ms(500); 
+              delay_ms(LCD_DELAY); 
             #endif
         }
         if(fat_file_next_adr >= 0x0FFFFFF8UL){
@@ -339,6 +353,8 @@ void errorSD(unsigned char err)
     lcd_gotoxy(0,0);
     lcd_putsf("SD ERROR: ");
     lcd_puts(strnum);
+    do
+    #asm("wdr")
     while(1);
 #else    
     app_pointer();
@@ -368,6 +384,7 @@ unsigned long buf2num(unsigned char *buf,unsigned char len)
 
 #ifdef DEBUG_LCD
 lcd_printhex(unsigned long num32, char size){
+    #ifdef DEBUG_LCD_WRITE_TO_FLASH
     char i,nible;
     //num32>>=((4-size)*8);//0x12345678 >>24 -> 0x00000012 
     //lcd_putchar(size+'0');
@@ -381,7 +398,8 @@ lcd_printhex(unsigned long num32, char size){
           nible+='0';
         }
         lcd_putchar(nible);
-    }
+    } 
+    #endif
 }
 #endif
 

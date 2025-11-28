@@ -34,7 +34,7 @@
 //#include <inavr.h>
 #include "Self_programming.h"
 #include "flash.h"
-#include <delay.h>
+//#include <delay.h>
 
 
 void (*__AddrToZ24ByteToSPMCR_SPM_W_Test)(void flash *addr)= (void(*)(void flash *)) 0x0F9E0;
@@ -86,6 +86,7 @@ unsigned char ReadFlashPage(MyAddressType flashStartAdr, unsigned char *dataPage
   if(!(flashStartAdr & (PAGESIZE-1))){      // If input address is a page address
     for(index = 0; index < PAGESIZE; index++){
       dataPage[index] = ReadFlashByte(flashStartAdr + index);
+      #asm("wdr")
     }
     return TRUE;                            // Return TRUE if valid page address
   }
@@ -109,6 +110,7 @@ unsigned char WriteFlashByte(MyAddressType flashAddr, unsigned char data){
     
     sregSettings= SREG;
     #asm("cli");
+    #asm("wdr")
     pageAdr=flashAddr & ~(PAGESIZE-1);      // Gets Flash page address from byte address
 
     #ifdef __FLASH_RECOVER
@@ -162,7 +164,7 @@ unsigned char WriteFlashPage(MyAddressType flashStartAdr, unsigned char *dataPag
     
     sregSettings= SREG;
     #asm("cli");
-    
+    #asm("wdr")
     #ifdef __FLASH_RECOVER
     FlashBackup.status=0;                   // Inicate that Flash buffer does
                                             // not contain data for writing
@@ -177,6 +179,7 @@ unsigned char WriteFlashPage(MyAddressType flashStartAdr, unsigned char *dataPag
       //_WAIT_FOR_SPM();
       //MY_FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
       _FILL_TEMP_WORD(index, (unsigned int)dataPage[index]+((unsigned int)dataPage[index+1] << 8));
+      #asm("wdr")
     }
     
     WriteBufToFlash(ADR_FLASH_BUFFER);      // Writes to Flash recovery buffer
@@ -301,6 +304,7 @@ unsigned char AddressCheck(MyAddressType flashAdr){
 **/
 
 void WriteBufToFlash(MyAddressType flashStartAdr) {
+    #asm("wdr")
     //_WAIT_FOR_SPM();
     //MY_PAGE_ERASE( flashStartAdr );
     //_PAGE_ERASE( flashStartAdr );
@@ -342,6 +346,7 @@ void LpmReplaceSpm(MyAddressType flashAddr, unsigned char data){
     //_ENABLE_RWW_SECTION();
     
     for(index=0; index < PAGESIZE; index+=2){
+        #asm("wdr")
         if(index==pcWord){
           if(oddByte){
             //MY_FILL_TEMP_WORD( index, (*(MyFlashCharPointer)(flashAddr & ~1) | ((unsigned int)data<<8)) );

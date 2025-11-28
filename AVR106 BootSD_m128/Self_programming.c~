@@ -34,7 +34,7 @@
 //#include <inavr.h>
 #include "Self_programming.h"
 #include "flash.h"
-#include <delay.h>
+//#include <delay.h>
 
 
 void (*__AddrToZ24ByteToSPMCR_SPM_W_Test)(void flash *addr)= (void(*)(void flash *)) 0x0F9E0;
@@ -280,6 +280,7 @@ unsigned char AddressCheck(MyAddressType flashAdr){
     return TRUE;                            // Address is a valid page address
   else
   {
+    /*
     while(1)
     {
       PORTC.5=0;
@@ -287,6 +288,7 @@ unsigned char AddressCheck(MyAddressType flashAdr){
       PORTC.5=1;
       delay_ms(500);      
     }
+    */
     return FALSE;                           // Address is not a valid page address
   }
   #endif
