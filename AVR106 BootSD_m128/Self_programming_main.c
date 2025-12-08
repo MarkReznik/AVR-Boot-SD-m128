@@ -25,6 +25,8 @@
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
 * Version: 0.0.0.11
 * Added #asm("wdr") in for loop rolling conversion 
+* Version: 0.0.0.12
+* Change use BACKUP after UPDATE2
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -34,10 +36,11 @@
 //#include "MyFat.h"
 #define SDBUF_SIZE  512
 #define PAGES_PER_SDBUF (SDBUF_SIZE/PAGESIZE)
-//#define DEBUG_LCD
+#define DEBUG_LCD
 #ifdef DEBUG_LCD
 #include <alcd.h>
 #include <stdlib.h>
+#include <string.h>
 #endif
 
 //(unsigned long)fat_begin_lba = Partition_LBA_Begin + Number_of_Reserved_Sectors;
@@ -55,7 +58,7 @@ unsigned int Number_of_Reserved_Sectors;
 //function prototypes
 unsigned char fat_init();//0=sucess, 1,2,3 errors
 unsigned char dir_open(const char *dirname); //0=sucess, 4 error
-unsigned char file_open_update(const char *filename); //0=sucess, 5,6 errors
+unsigned char file_open_update(const char *filename, unsigned char u8_is_backup); //0=sucess, 5,6 errors
 unsigned long buf2num(unsigned char *buf,unsigned char len);
 unsigned char compbuf(const unsigned char *src,unsigned char *dest);
 void (*app_pointer)(void) = (void(*)(void))0x0000;
@@ -67,7 +70,8 @@ void errorSD(unsigned char err);
 
 //#define DEBUG_LCD_WRITE_TO_FLASH
 #define LCD_DELAY   0
-
+#define LCD_DELAY_MSG_MS   1000
+//#define DEBUG_LED
 #ifdef DEBUG_LCD
 lcd_printhex(unsigned long num32, char size);
 #endif
@@ -77,21 +81,24 @@ void main( void ){
   unsigned char rollbuf[11];
 /* globally enable interrupts */
 #asm("sei")
-#ifdef DEBUG_LCD
+
+#ifdef DEBUG_LED
     DDRC.0=1;
-    PORTC.0=1;
+    PORTC.0=1; 
+#endif    
+#ifdef DEBUG_LCD
     /* initialize the LCD for 2 lines & 16 columns */
     lcd_init(16);
     /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
     lcd_clear();
-    lcd_putsf("BootSdTest.");
+    lcd_putsf("0.BOOT");
     lcd_gotoxy(0,1);
-    lcd_putsf("0");
-    delay_ms(500); 
+    //lcd_putsf("0");
+    delay_ms(LCD_DELAY_MSG_MS); 
     //while(1);
 #endif
-#ifdef DEBUGLED
+#ifdef DEBUG_LED
   DDRC=0xFF;
   PORTC=0xFF;
     //do
@@ -117,12 +124,48 @@ void main( void ){
   
   //fat_file_adr is hold the files records cluster in found dir
   //file open func. read first cluster where data about filenames in dir
-  result[0]=file_open_update("UPDATE");
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("1.TRY UPDATE");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif  
+  result[0]=file_open_update("UPDATE", 0);
+  //1.If was UPDATE2 then rename to UPDATE1 (return=8)
+  //2.Find BACKUP and copy it to FLASH 
+  if(result[0]==8)
+  {
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("8.TRY BACKUP");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif  
+    //result[0]=fat_init();
+    result[0]=file_open_update("BACKUP", 1);
+  }
   //in case "UPDATE" file don't exists - jump to app
   if(result[0])
-    app_pointer();//go to app address 0
+  {
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("NO UPDATE");
+    lcd_gotoxy(0,1);
+    lcd_putsf("JUMP TO FW");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif    
+    app_pointer();//go to app address 0 
+  }
   
-    
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("UPDATING FW");
+    lcd_gotoxy(0,1);
+    lcd_putsf("PLEASE WAIT");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif    
   //check FAT for chain of clusters to read
     //FAT12	        FAT16	                FAT32                   Meaninig
     //0x000	        0x0000	                0x00000000	            Free
@@ -237,7 +280,7 @@ void main( void ){
                if(WriteFlashPage(appStartAdr, &sdBuf[pagesCnt*PAGESIZE])==0)
                {
                     //after error during flash write page. wait for watchdog to reset
-                    #ifdef DEBUGLED
+                    #ifdef DEBUG_LED
                     do
                     {
                       PORTC.6=0;
@@ -254,14 +297,14 @@ void main( void ){
                {
                     #ifdef DEBUG_LCD
                       lcd_clear();
-                      lcd_putsf("jump to app");
-                      delay_ms(2000); 
+                      lcd_putsf("GO TO FW");
+                      delay_ms(LCD_DELAY_MSG_MS); 
                     #endif
                     app_pointer();//go to app address 0
                     /*
                     do
                     {
-                      #ifdef DEBUGLED
+                      #ifdef DEBUG_LED
                       PORTC.5=0;
                       delay_ms(500);
                       PORTC.5=1;
@@ -299,12 +342,12 @@ void main( void ){
             {
                 /* 
                 if(  WriteFlashPage(0x1EF00, sdBuf)){//;     // Writes testbuffer1 to Flash page 2
-                    #ifdef DEBUGLED
+                    #ifdef DEBUG_LED
                     PORTC.5=0;
                     #endif
                 }                                          // Function returns TRUE
                 if(  ReadFlashPage (0x1EF00, testBuf)){//;      // Reads back Flash page 2 to TestBuffer2
-                    #ifdef DEBUGLED
+                    #ifdef DEBUG_LED
                     PORTC.6=0;
                     #endif
                 }
@@ -334,7 +377,7 @@ unsigned char compbuf(const unsigned char *src,unsigned char *dest)
 #ifdef DEBUG_ERRSD
 void errorSD(unsigned char err)
 {
-#ifdef DEBUGLED    
+#ifdef DEBUG_LED    
     unsigned int repeat=10;
     do{
        PORTC &= ~(1<<err);
@@ -412,10 +455,12 @@ unsigned char fat_init(){
     return 1; 
     //app_pointer();//jump to app 0 on error  
   }
-  #ifdef DEBUG_LCD
-  lcd_putsf("1");
-  delay_ms(500); 
-  #endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("INIT SDCARD OK ");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif
   // read MBR get FAT start sector
   if((result[0]=SD_readSingleBlock(0, sdBuf, &token))!=SD_SUCCESS){
 #ifdef DEBUG_ERRSD    
@@ -424,10 +469,12 @@ unsigned char fat_init(){
     return 2; 
     //app_pointer();//jump to app 0 on error   
   }  
-  #ifdef DEBUG_LCD
-  lcd_putsf("2");
-  delay_ms(500); 
-  #endif  
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("READ MBR   OK ");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif  
   adr=buf2num(&sdBuf[445+9],4);//FAT start sector. 1 sector = 512 bytes  
   
   //load and read FAT ID (1st) sector. Get FAT info. Secors per Cluster and etc..
@@ -438,10 +485,12 @@ unsigned char fat_init(){
     return 3;
     //app_pointer();//jump to app 0 on error   
   }  
-  #ifdef DEBUG_LCD
-  lcd_putsf("3");
-  delay_ms(500); 
-  #endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("READ FAT   OK ");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif 
   SectorsPerCluster=sdBuf[0x0D];// 8 sectors per cluster
   SectorsPerFat=buf2num(&sdBuf[0x24],4); // 0xF10 for test sdcard
   Number_of_Reserved_Sectors=buf2num(&sdBuf[0x0E],2); // 0x20 usually
@@ -508,8 +557,10 @@ unsigned char dir_open(const char *dirname){
 */
 
 //file open function 0=sucess, 5,6 errors
-unsigned char file_open_update(const char *filename){ 
+unsigned char file_open_update(const char *filename, unsigned char u8_is_backup){ 
   unsigned int i,j;
+  result[0]=fat_init();
+  
   adr=cluster_begin_lba +(fat_file_adr-2)*SectorsPerCluster;
   for(i=0;i<SectorsPerCluster;i++)
   {
@@ -551,34 +602,67 @@ unsigned char file_open_update(const char *filename){
     //app_pointer();//jump to app on error    
   }
   #ifdef DEBUG_LCD
-  lcd_putsf("5");//file found ok
-  delay_ms(500); 
+  if(u8_is_backup==0)
+    lcd_putchar(sdBuf[j*32+6]);
+  lcd_gotoxy(0,1);
+  lcd_putsf("FOUND OK");//file found ok
+  delay_ms(LCD_DELAY_MSG_MS); 
   #endif
-  
-  
-  //check UPDATE0 or UPDATE1...UPDATE9
-  if((sdBuf[j*32+6])=='0'){
-    //return 1;//error if update reach 0
-    #ifdef DEBUG_ERRSD    
-    errorSD(7);
-    #endif
-    #ifdef DEBUG_LCD
-    lcd_putsf("ret0");
-    delay_ms(500); 
-    #endif
-    return 7;  //if no more retry
-    //app_pointer();//jump to app if no more retry
+  //1. compare filname(SRAM) to "BACKUP" (Flash)
+  //2. 0=equal then skip deal UPDATE 5,4,3,2,1 
+  //This is not equal "BACKUP" condition
+  if(u8_is_backup==0)
+  {
+      //1. check if UPDATE is below 2 then return with error 7
+      //2. if UPDATE below 5 then decrement 1 and copy UPDATE to FLASH APP
+      //3. UPDATE is other numbers then set 5
+      if((sdBuf[j*32+6])<'2'){
+        //return 1;//error if update reach 0
+        #ifdef DEBUG_ERRSD    
+        errorSD(7);
+        #endif
+        #ifdef DEBUG_LCD
+        if((sdBuf[j*32+6])=='0')
+            lcd_putsf(" GO FW");
+        else
+            lcd_putsf(" ERROR");
+        delay_ms(LCD_DELAY_MSG_MS); 
+        #endif
+        return 7;  //if no more retry
+        //app_pointer();//jump to app if no more retry
+      }
+      else if((sdBuf[j*32+6])<='5'){ 
+        sdBuf[j*32+6]--;//decrement 1 retry.
+      }
+      else{
+        sdBuf[j*32+6]='5';
+      }
+      
+      //rename the filename to value after change
+      result[0]=SD_writeSingleBlock(adr, sdBuf, &token);//save new UPDATE(num) filename.
+      
+      //1. check UPDATE is 2,3,4 after decrement
+      //2. on UPDATE is below 2 return 8, to signal use/copy BACKUP file for APP FLASH
+      if(sdBuf[j*32+6]>'1')
+      {
+          #ifdef DEBUG_LCD
+          //lcd_putsf("7");
+          delay_ms(LCD_DELAY_MSG_MS); 
+          #endif
+          return 0;
+      }
+      else //try copy BACKUP to APP FLASH after return 8.
+      {
+          #ifdef DEBUG_LCD
+          lcd_putsf(" 8");
+          delay_ms(LCD_DELAY_MSG_MS); 
+          #endif
+          return 8;
+      }
   }
-  else if(((sdBuf[j*32+6])>'0')||((sdBuf[j*32+6])<='9')){ 
-    sdBuf[j*32+6]--;//decrement 1 retry.
-  }
-  else{
-    sdBuf[j*32+6]='9';
-  }
-  result[0]=SD_writeSingleBlock(adr, sdBuf, &token);//save new UPDATE(num) filename.
-  #ifdef DEBUG_LCD
-  lcd_putsf("7");
-  delay_ms(500); 
-  #endif
-  return 0;
+#ifdef DEBUG_LCD
+  lcd_putsf(" 0");
+  delay_ms(LCD_DELAY_MSG_MS); 
+#endif
+  return 0;    
 }  

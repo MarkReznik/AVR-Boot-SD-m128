@@ -24,6 +24,7 @@
 * $Revision: 2.0 $
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
 * Version: 0.0.0.10     1.Added TEMPDATA fill/rename functions
+* Version: 0.0.0.11     1.Updated UnitTest to check UPDATE 4,3,2
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -45,7 +46,7 @@
 
 
 //#define DEBUG_LED
-
+#define DEBUG_LCD_MSG_MS 1000
 #define DEBUG_LCD
 #ifdef DEBUG_LCD
 #include <alcd.h>
@@ -208,6 +209,48 @@ unsigned char FindFileName(char *path, char *filename, unsigned char u8_is_exact
     return 0;//filename not found inside dir
 }
 
+// This function get 3 parameters
+// 1. Path
+// 2. Filename
+// 3. Bool is exact filename to compare
+//Return 0: File not found or size 0
+//Return File found size
+unsigned long FindFileNameSize(char *path, char *filename, unsigned char u8_is_exact)
+{
+    //BRIEF
+    //open root dir, try find *filename  as partial filename 
+    FRESULT res;
+    FILINFO fno;
+    DIR dir;
+    
+    res = pf_opendir(&dir, path);//open root or dir
+    if(res != FR_OK)
+        error(res,21);
+    for (;;) {
+        res = pf_readdir(&dir, &fno);
+        if (res != FR_OK || fno.fname[0] == 0) break;
+        if (fno.fattrib & AM_DIR) {
+            continue;
+        } else {
+            //printf("%s/%s\n", path, fno.fname);    
+            //check the filename begin with "UPDATE"
+            if(u8_is_exact)
+            {
+                if(strcmp(filename,fno.fname)==0)
+                {
+                    return fno.fsize;
+                    //return 1;//filename found inside dir
+                }
+            }
+            else if(strncmp(filename,fno.fname,6)==0)
+            {
+                return fno.fsize;
+                //return 1;//filename found inside dir
+            }
+        }
+    }
+    return 0;//filename not found inside dir
+}
 //Check that file "DATA4K" is exist on SD card
 //Return 0: File OK
 //Return 1: Failed to find the file
@@ -251,33 +294,66 @@ unsigned char SdUpdateStatus()
        /* an error occured, display it and stop */
        error(res,1); 
     }
-    
-    u8_update_file_flag = FindFileName("", "UPDATE",0);
+
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
-    if(u8_update_file_flag)
-        lcd_putsf("Update Yes.");
-    else
-        lcd_putsf("Update No.");
+    lcd_putsf("FIND UPDATE");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif    
+#ifdef DEBUG_LCD
+    lcd_putsf("4");
     delay_ms(1000);        
+#endif    
+    if((u8_update_file_flag = FindFileName("", "UPDATE4",1))==0)
+    {
+#ifdef DEBUG_LCD
+    lcd_putsf("3");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif
+        if((u8_update_file_flag = FindFileName("", "UPDATE3",1))==0)
+        {
+#ifdef DEBUG_LCD
+    lcd_putsf("2");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif            
+            u8_update_file_flag = FindFileName("", "UPDATE2",1);
+        }
+    }
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    if(u8_update_file_flag)
+        lcd_putsf("FILE EXISTS");
+    else
+        lcd_putsf("FILE NOT EXIST");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_putsf("FIND BACKUP");
+    delay_ms(DEBUG_LCD_MSG_MS);        
 #endif
     u8_backup_file_flag = FindFileName("", "BACKUP",0);
 #ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
+    lcd_gotoxy(0,1);
     if(u8_backup_file_flag)
-        lcd_putsf("Buckup Yes.");
+        lcd_putsf("FILE EXISTS");
     else
-        lcd_putsf("Buckup No.");
-    delay_ms(1000);        
-#endif    
-    u8_tempdata_file_flag = FindFileName("", "TEMPDATA",0);
+        lcd_putsf("FILE NOT EXIST");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
+    lcd_putsf("FIND TEMPDATA");
+    delay_ms(DEBUG_LCD_MSG_MS);        
+#endif   
+    u8_tempdata_file_flag = FindFileName("", "TEMPDATA",0);
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
     if(u8_tempdata_file_flag)
-        lcd_putsf("Tempdata Yes.");
+        lcd_putsf("FILE EXISTS");
     else
-        lcd_putsf("Tempdata No.");
-    delay_ms(1000);        
+        lcd_putsf("FILE NOT EXIST");
+    delay_ms(DEBUG_LCD_MSG_MS);        
 #endif
     //in case "UPDATE" found check the "BACKUP" exists
     if(u8_update_file_flag)
@@ -291,7 +367,7 @@ unsigned char SdUpdateStatus()
           //rename backup to tempdata, then rename update to backup3     
           if(res=pf_rename11("","BACKUP","TEMPDATA"))
             return 1;
-          if(res=pf_rename11("","UPDATE","BACKUP3"))
+          if(res=pf_rename11("","UPDATE","BACKUP"))
             return 1;
           if(u8_tempdata_file_flag)
           {
@@ -302,7 +378,7 @@ unsigned char SdUpdateStatus()
        else if(u8_tempdata_file_flag)
        {
             //rename update to backup3     
-            if(res=pf_rename11("","UPDATE","BACKUP3"))
+            if(res=pf_rename11("","UPDATE","BACKUP"))
                 return 1;
             //just correct the name if not exact TEMPDATA
             if(FindFileName("", "TEMPDATA   ",1) != 0)
@@ -315,8 +391,8 @@ unsigned char SdUpdateStatus()
     //in case BACKUP and TEMPDATA files exists, then just correct the names if not exact BACKUP3 and TEMPDATA
     else if((u8_backup_file_flag)&&(u8_tempdata_file_flag))
     {
-       if(FindFileName("", "BACKUP3    ",1) != 0)
-            if(res=pf_rename11("","BACKUP","BACKUP3"))
+       if(FindFileName("", "BACKUP     ",1) != 0)
+            if(res=pf_rename11("","BACKUP","BACKUP"))
                 return 1;;
        if(FindFileName("", "TEMPDATA   ",1) != 0)
             if(res=pf_rename11("","TEMPDATA","TEMPDATA"))
@@ -496,7 +572,7 @@ unsigned char SdUpdateFileWrite(unsigned char *p_u8_data_buffer, unsigned long u
 // Return 0: OK
 unsigned char SdUpdateFileComplete()
 {
-    if(res=pf_rename11("","TEMPDATA","UPDATE3"))
+    if(res=pf_rename11("","TEMPDATA","UPDATE5"))
         return res;        
     return 0;
 }
@@ -598,7 +674,8 @@ void main( void ){
   
   //disk_timerproc();
   lcd_clear();
-  lcd_putsf("pff Test5."); 
+  lcd_putsf("pff UPDATE");
+  delay_ms(2000);
 #endif  
   #asm("wdr")
   u8_test_result = UnitTest1();
@@ -621,7 +698,7 @@ void main( void ){
   /* switch to writing in Display RAM */
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
-    lcd_putsf("Test3 done.");
+    lcd_putsf("Test done.");
 #endif    
   //blink LEDS on Evaluation Bord PORTC LED-0,1,2,3,4,5,6,7
   do
