@@ -23,6 +23,9 @@
 *
 * $Revision: 2.0 $
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
+* 
+* Project Name: Boot SD Boot part for Atmega128
+*
 * Version: 0.0.0.11
 * Added #asm("wdr") in for loop rolling conversion 
 * Version: 0.0.0.12
@@ -92,7 +95,7 @@ void main( void ){
     /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
     lcd_clear();
-    lcd_putsf("0.BOOT");
+    lcd_putsf("0.BOOT READ SD");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
     delay_ms(LCD_DELAY_MSG_MS); 
@@ -116,7 +119,24 @@ void main( void ){
     //fat init function
     //init SD
     result[0]=fat_init();
-    
+    if(result[0])
+    {
+#ifdef DEBUG_LCD
+        lcd_gotoxy(0,0);
+        lcd_clear();
+        lcd_putsf("SD INIT FAIL");
+        lcd_gotoxy(0,1);
+        lcd_putsf("JUMP TO FW");
+        delay_ms(LCD_DELAY_MSG_MS*2); 
+#endif    
+        app_pointer();//go to app address 0 
+    }
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("1.FIND UPDATE");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif    
     
   //dir open function
   //result[0]=dir_open("0       ");
@@ -127,7 +147,7 @@ void main( void ){
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
     lcd_clear();
-    lcd_putsf("1.TRY UPDATE");
+    lcd_putsf("1.FIND UPDATE");
     delay_ms(LCD_DELAY_MSG_MS); 
 #endif  
   result[0]=file_open_update("UPDATE", 0);
@@ -138,7 +158,7 @@ void main( void ){
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
     lcd_clear();
-    lcd_putsf("8.TRY BACKUP");
+    lcd_putsf("8.FIND BACKUP");
     delay_ms(LCD_DELAY_MSG_MS); 
 #endif  
     //result[0]=fat_init();
@@ -451,6 +471,12 @@ unsigned char fat_init(){
   if((result[0]=SD_init())!=SD_SUCCESS){
 #ifdef DEBUG_ERRSD    
     errorSD(1);
+#endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("INIT SD FAIL  ");
+    delay_ms(LCD_DELAY_MSG_MS); 
 #endif 
     return 1; 
     //app_pointer();//jump to app 0 on error  
@@ -465,6 +491,12 @@ unsigned char fat_init(){
   if((result[0]=SD_readSingleBlock(0, sdBuf, &token))!=SD_SUCCESS){
 #ifdef DEBUG_ERRSD    
     errorSD(2);
+#endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("READ MBR FAIL ");
+    delay_ms(LCD_DELAY_MSG_MS); 
 #endif
     return 2; 
     //app_pointer();//jump to app 0 on error   
@@ -481,7 +513,13 @@ unsigned char fat_init(){
   if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
     #ifdef DEBUG_ERRSD    
     errorSD(3);
-    #endif 
+    #endif
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,1);
+    //lcd_clear();
+    lcd_putsf("READ FAT FAIL ");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif     
     return 3;
     //app_pointer();//jump to app 0 on error   
   }  
@@ -602,10 +640,12 @@ unsigned char file_open_update(const char *filename, unsigned char u8_is_backup)
     //app_pointer();//jump to app on error    
   }
   #ifdef DEBUG_LCD
+  lcd_gotoxy(0,1);
+  lcd_putsf("FOUND OK     ");//file found ok
   if(u8_is_backup==0)
     lcd_putchar(sdBuf[j*32+6]);
-  lcd_gotoxy(0,1);
-  lcd_putsf("FOUND OK");//file found ok
+  else
+    lcd_putchar(' ');  
   delay_ms(LCD_DELAY_MSG_MS); 
   #endif
   //1. compare filname(SRAM) to "BACKUP" (Flash)
@@ -617,15 +657,16 @@ unsigned char file_open_update(const char *filename, unsigned char u8_is_backup)
       //2. if UPDATE below 5 then decrement 1 and copy UPDATE to FLASH APP
       //3. UPDATE is other numbers then set 5
       if((sdBuf[j*32+6])<'2'){
-        //return 1;//error if update reach 0
+        //return 1;//error if update reach 1 or 0
         #ifdef DEBUG_ERRSD    
         errorSD(7);
         #endif
         #ifdef DEBUG_LCD
+        lcd_gotoxy(0,1);
         if((sdBuf[j*32+6])=='0')
-            lcd_putsf(" GO FW");
+            lcd_putsf(" GO FIRMAWARE ");
         else
-            lcd_putsf(" ERROR");
+            lcd_putsf(" ERROR        ");
         delay_ms(LCD_DELAY_MSG_MS); 
         #endif
         return 7;  //if no more retry
