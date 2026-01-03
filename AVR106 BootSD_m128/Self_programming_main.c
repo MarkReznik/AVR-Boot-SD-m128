@@ -82,8 +82,6 @@ void main( void ){
   unsigned int i,j,k;
   unsigned char rollnum;
   unsigned char rollbuf[11];
-/* globally enable interrupts */
-#asm("sei")
 
 #ifdef DEBUG_LED
     DDRC.0=1;
@@ -91,10 +89,15 @@ void main( void ){
 #endif    
 #ifdef DEBUG_LCD
     /* initialize the LCD for 2 lines & 16 columns */
+    DDRC.0 = 1;
+    PORTC.0 = 0;
+    delay_ms(1000);
     lcd_init(16);
     /* switch to writing in Display RAM */
     lcd_gotoxy(0,0);
     lcd_clear();
+    PORTC.0=1;
+    delay_ms(10);
     lcd_putsf("0.BOOT READ SD");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
@@ -115,6 +118,8 @@ void main( void ){
       PORTC=0xFF;
     }
     //while(1);
+    /* globally enable interrupts */
+    #asm("sei")
 #endif    
     //fat init function
     //init SD

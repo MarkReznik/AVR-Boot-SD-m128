@@ -25,6 +25,8 @@
 * $Date: Wednesday, January 18, 2006 15:18:52 UTC $
 * Version: 0.0.0.10     1.Added TEMPDATA fill/rename functions
 * Version: 0.0.0.11     1.Updated UnitTest to check UPDATE 4,3,2
+* Version: 0.0.0.12     1.Added function SdRenameFile
+* Version: 0.0.0.13     1.Fixed LCD strings in Unittest
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -171,7 +173,7 @@ void error(FRESULT res, unsigned char num)
 // This function get 3 parameters
 // 1. Path
 // 2. Filename
-// 3. Bool is exact filename to compare
+// 3. Bool is exact filename to compare.
 //Return 0: File not found
 //Return 1: File found
 unsigned char FindFileName(char *path, char *filename, unsigned char u8_is_exact)
@@ -277,9 +279,9 @@ unsigned char SdDataFileStatus()
 // Description: This function validate SD card file names are as expected 
 // Check the "UPDATE" file exists and rename it to "BACKUP3". The "BACKUP" file renamed to "TEMPDATA"
 // Return 0(OK): "UPDATE[0-9]" not exsts,"BACKUP[0-3]" and "TEMPDATA" exsts. 
-// Return 1(FAIL): only "UPDATE[0-9]" exsts. 
-// Return 2(OK): only "UPDATE" and "BACKUP" exsts
-// Return 3(FAIL): "UPDATE" ,"BACKUP" and "TEMPDATA" exsts
+// Return 1(FAIL): only "UPDATE[0-9]" exists. 
+// Return 2(OK): only "UPDATE" and "BACKUP" exists
+// Return 3(FAIL): "UPDATE" ,"BACKUP" and "TEMPDATA" exists
 unsigned char SdUpdateStatus()
 {
     unsigned char u8_update_file_flag = 0;
@@ -296,7 +298,7 @@ unsigned char SdUpdateStatus()
     }
 
 #ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
+    lcd_clear();
     lcd_putsf("FIND UPDATE");
     delay_ms(DEBUG_LCD_MSG_MS);        
 #endif    
@@ -328,7 +330,7 @@ unsigned char SdUpdateStatus()
     delay_ms(DEBUG_LCD_MSG_MS);        
 #endif
 #ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
+    lcd_clear();
     lcd_putsf("FIND BACKUP");
     delay_ms(DEBUG_LCD_MSG_MS);        
 #endif
@@ -342,7 +344,7 @@ unsigned char SdUpdateStatus()
     delay_ms(DEBUG_LCD_MSG_MS);        
 #endif
 #ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
+    lcd_clear();
     lcd_putsf("FIND TEMPDATA");
     delay_ms(DEBUG_LCD_MSG_MS);        
 #endif   
@@ -566,17 +568,44 @@ unsigned char SdUpdateFileWrite(unsigned char *p_u8_data_buffer, unsigned long u
     return 0;
 }
 
+// Function:    SdRenameFile()  
+// Description: Rename SD root file "/NAME1" to "/NAME2"
+// No arguments
+// Return 0: OK
+unsigned char SdRenameFile(const char *from_name, const char *to_name)
+{
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");
+    else
+    {
+       /* an error occured, display it and stop */
+       error(res,1); 
+    }
+    if(res=pf_rename11("",from_name,to_name))
+        return res;        
+    return 0;
+}
+
 // Function:    SdUpdateFileComplete()  
 // Description: Rename SD root file "/TEMPDATA" to "/UPDATE3"
 // No arguments
 // Return 0: OK
 unsigned char SdUpdateFileComplete()
 {
+    res=pf_mount(&fat);
+    if (res==FR_OK)
+       DebugPrintString("Logical drive 0: mounted OK\r\n","");
+    else
+    {
+       /* an error occured, display it and stop */
+       error(res,1); 
+    }
     if(res=pf_rename11("","TEMPDATA","UPDATE5"))
         return res;        
     return 0;
 }
-
+    
 unsigned char SdDataErase(unsigned long u32_size_bytes, unsigned char u8_fill_value)
 {
     unsigned long i;
@@ -621,6 +650,11 @@ unsigned char UnitTest1(){
     //4. change the TEMPDATA filename to UPDATE3 then reset or jump to Boot
     //Return 0: OK
     //u8_test_result = pf_rename11("","TEMPDATA","UPDATE3");
+    
+    //4.1 Rename function example 
+    u8_test_result = SdRenameFile("NAME1", "NAME2");
+    if(u8_test_result)
+        return 3;
     
     /** Example to fill data to TEPMDATA file then rename it to UPDATE ****
     //3. Fill "TEMPDATA" file with update file data
@@ -674,19 +708,26 @@ void main( void ){
   
   //disk_timerproc();
   lcd_clear();
-  lcd_putsf("pff UPDATE");
+  lcd_putsf("TST UPDATE V13");
   delay_ms(2000);
 #endif  
   #asm("wdr")
   u8_test_result = UnitTest1();
 #ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
+    lcd_clear();
     lcd_putsf("Result:");
     testBuffer1[0]=u8_test_result+'0';
     testBuffer1[1]=0;
     lcd_puts(testBuffer1);
     lcd_putsf("    ");
-    delay_ms(1500);
+    if(u8_test_result)
+    {
+        lcd_gotoxy(0,1);
+        lcd_putsf("FAIL");
+        if(u8_test_result==3)
+            lcd_putsf(" RENAME");
+    }
+    delay_ms(2500);
 #endif  
   DebugBlinkLed(u8_test_result,0);
   
