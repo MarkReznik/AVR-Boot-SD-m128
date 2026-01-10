@@ -30,6 +30,9 @@
 * Added #asm("wdr") in for loop rolling conversion 
 * Version: 0.0.0.12
 * Change use BACKUP after UPDATE2
+* Version: 0.0.0.13
+* Reduced delay to 100ms
+* Added sderror func to jump fw
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -39,6 +42,7 @@
 //#include "MyFat.h"
 #define SDBUF_SIZE  512
 #define PAGES_PER_SDBUF (SDBUF_SIZE/PAGESIZE)
+
 #define DEBUG_LCD
 #ifdef DEBUG_LCD
 #include <alcd.h>
@@ -66,14 +70,15 @@ unsigned long buf2num(unsigned char *buf,unsigned char len);
 unsigned char compbuf(const unsigned char *src,unsigned char *dest);
 void (*app_pointer)(void) = (void(*)(void))0x0000;
 
-//#define DEBUG_ERRSD
+#define DEBUG_ERRSD
 #ifdef DEBUG_ERRSD
 void errorSD(unsigned char err);
 #endif
 
+//#define DEBUG_LCD_ERRSD
 //#define DEBUG_LCD_WRITE_TO_FLASH
-#define LCD_DELAY   0
-#define LCD_DELAY_MSG_MS   1000
+#define LCD_DELAY   300
+#define LCD_DELAY_MSG_MS   100
 //#define DEBUG_LED
 #ifdef DEBUG_LCD
 lcd_printhex(unsigned long num32, char size);
@@ -98,7 +103,7 @@ void main( void ){
     lcd_clear();
     PORTC.0=1;
     delay_ms(10);
-    lcd_putsf("0.BOOT READ SD");
+    lcd_putsf("BOOT SDREAD V13");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
     delay_ms(LCD_DELAY_MSG_MS); 
@@ -230,11 +235,13 @@ void main( void ){
     for(i=0;i<SectorsPerCluster;i++)
     {             
         //read data from next sector of file cluster
-        if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS){
+        if((result[0]=SD_readSingleBlock(adr, sdBuf, &token))!=SD_SUCCESS)
+        {
         #ifdef DEBUG_ERRSD    
             errorSD(8);
         #endif    
         }
+        
         #ifdef DEBUG_LCD_WRITE_TO_FLASH
           lcd_clear();
           lcd_putsf("sector ");
@@ -247,11 +254,21 @@ void main( void ){
           delay_ms(LCD_DELAY);
         //} 
         #endif
+        
         //address 2000 = start adr flash app 3 bytes, flash pages 2 bytes, checksum 2 bytes
         //app bytes starts from 2048, roll 0x88
         if(readbytes<512){
-            //j=0x99;
+            #ifdef DEBUG_LCD_WRITE_TO_FLASH
+              lcd_clear();
+              lcd_putsf("search roll");
+            #endif  
             for(j=0;j<256;j++){//find roll  0x00...0xFF
+              #asm("wdr")
+              #ifdef DEBUG_LCD_WRITE_TO_FLASH
+              lcd_gotoxy(0,1);
+              lcd_printhex(j,1);
+              delay_ms(1); 
+              #endif
                if(j>0){
                    for(k=0;k<10;k++){//[settings]
                         rollbuf[k]=(sdBuf[k]<<1)|(sdBuf[k]>>7);  //ROL
@@ -271,6 +288,11 @@ void main( void ){
                }
             }
             if(result[1]==0){//roll didn't found
+                #ifdef DEBUG_LCD_WRITE_TO_FLASH
+                lcd_clear();
+                lcd_putsf("roll fail");
+                delay_ms(LCD_DELAY);
+                #endif
                 #ifdef DEBUG_ERRSD    
                 errorSD(9);
                 #endif    
@@ -365,6 +387,9 @@ void main( void ){
             }
             else
             {
+                #ifdef DEBUG_ERRSD    
+                errorSD(10);
+                #endif
                 /* 
                 if(  WriteFlashPage(0x1EF00, sdBuf)){//;     // Writes testbuffer1 to Flash page 2
                     #ifdef DEBUG_LED
@@ -412,7 +437,7 @@ void errorSD(unsigned char err)
     }
     while(repeat--);
 #endif  
-#ifdef DEBUG_LCD
+#ifdef DEBUG_LCD_ERRSD
   char strnum[5];
     if(err>100){
        err=100;
@@ -421,11 +446,17 @@ void errorSD(unsigned char err)
     lcd_gotoxy(0,0);
     lcd_putsf("SD ERROR: ");
     lcd_puts(strnum);
-    do
-    #asm("wdr")
-    while(1);
-#else    
-    app_pointer();
+    delay_ms(LCD_DELAY_MSG_MS*3);
+    //do
+    //#asm("wdr")
+    //while(1);
+#else
+#ifdef DEBUG_LCD
+  lcd_clear();
+  lcd_putsf("SD FILE ERROR");
+  delay_ms(LCD_DELAY_MSG_MS*2); 
+#endif
+  app_pointer();
 #endif     
     //while(1);
 }
