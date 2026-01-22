@@ -33,6 +33,9 @@
 * Version: 0.0.0.13
 * Reduced delay to 100ms
 * Added sderror func to jump fw
+* Version: 0.0.0.14
+* New TRY counter to point if need UPDATE, BACKUP or FACTORY file to copy to FLASH 
+* Added SD FATAL ERROR the stop on TRY0 found
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -42,6 +45,11 @@
 //#include "MyFat.h"
 #define SDBUF_SIZE  512
 #define PAGES_PER_SDBUF (SDBUF_SIZE/PAGESIZE)
+
+#define FILE_TYPE_TRY       0
+#define FILE_TYPE_UPDATE    1
+#define FILE_TYPE_BACKUP    2
+#define FILE_TYPE_FACTORY   3
 
 #define DEBUG_LCD
 #ifdef DEBUG_LCD
@@ -103,7 +111,7 @@ void main( void ){
     lcd_clear();
     PORTC.0=1;
     delay_ms(10);
-    lcd_putsf("BOOT SDREAD V13");
+    lcd_putsf("BOOT SDREAD V14");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
     delay_ms(LCD_DELAY_MSG_MS); 
@@ -141,29 +149,30 @@ void main( void ){
 #endif    
         app_pointer();//go to app address 0 
     }
+
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
     lcd_clear();
-    lcd_putsf("1.FIND UPDATE");
-    delay_ms(LCD_DELAY_MSG_MS); 
-#endif    
-    
-  //dir open function
-  //result[0]=dir_open("0       ");
-  //result[0]=dir_open("");//open root
-  
-  //fat_file_adr is hold the files records cluster in found dir
-  //file open func. read first cluster where data about filenames in dir
-#ifdef DEBUG_LCD
-    lcd_gotoxy(0,0);
-    lcd_clear();
-    lcd_putsf("1.FIND UPDATE");
+    lcd_putsf("1.FIND TRY");
     delay_ms(LCD_DELAY_MSG_MS); 
 #endif  
-  result[0]=file_open_update("UPDATE", 0);
-  //1.If was UPDATE2 then rename to UPDATE1 (return=8)
+  result[0]=file_open_update("TRY", FILE_TYPE_TRY); 
+  //1.If was TRY5,4,3 then rename to TRY4,3,2 (return=0)
+  //2.Find UPDATE and copy it to FLASH 
+  if(result[0]==0)
+  {
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("0.FIND UPDATE");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif  
+    //result[0]=fat_init();
+    result[0]=file_open_update("UPDATE", FILE_TYPE_UPDATE);
+  }
+  //1.If was TRY2 then rename to TRY1 (return=8)
   //2.Find BACKUP and copy it to FLASH 
-  if(result[0]==8)
+  else if(result[0]==8)
   {
 #ifdef DEBUG_LCD
     lcd_gotoxy(0,0);
@@ -172,9 +181,22 @@ void main( void ){
     delay_ms(LCD_DELAY_MSG_MS); 
 #endif  
     //result[0]=fat_init();
-    result[0]=file_open_update("BACKUP", 1);
+    result[0]=file_open_update("BACKUP", FILE_TYPE_BACKUP);
   }
-  //in case "UPDATE" file don't exists - jump to app
+  //1.If was TRY1 then rename to TRY0 (return=9)
+  //2.Find FACTORY and copy it to FLASH 
+  else if(result[0]==9)
+  {
+#ifdef DEBUG_LCD
+    lcd_gotoxy(0,0);
+    lcd_clear();
+    lcd_putsf("9.FIND FACTORY");
+    delay_ms(LCD_DELAY_MSG_MS); 
+#endif  
+    //result[0]=fat_init();
+    result[0]=file_open_update("FACTORY", FILE_TYPE_FACTORY);
+  }
+  //in case "UPDATE/BACKUP/FACTORY" file don't exists - jump to app
   if(result[0])
   {
 #ifdef DEBUG_LCD
@@ -454,6 +476,8 @@ void errorSD(unsigned char err)
 #ifdef DEBUG_LCD
   lcd_clear();
   lcd_putsf("SD FILE ERROR");
+  lcd_gotoxy(0,1);
+  lcd_putsf("JUMP TO FW");
   delay_ms(LCD_DELAY_MSG_MS*2); 
 #endif
   app_pointer();
@@ -629,9 +653,10 @@ unsigned char dir_open(const char *dirname){
   return 0; 
 }
 */
-
+//TRY5,4,3,
+#define TRY_OFFSET  3
 //file open function 0=sucess, 5,6 errors
-unsigned char file_open_update(const char *filename, unsigned char u8_is_backup){ 
+unsigned char file_open_update(const char *filename, unsigned char u8_file_type){ 
   unsigned int i,j;
   result[0]=fat_init();
   
@@ -678,8 +703,8 @@ unsigned char file_open_update(const char *filename, unsigned char u8_is_backup)
   #ifdef DEBUG_LCD
   lcd_gotoxy(0,1);
   lcd_putsf("FOUND OK     ");//file found ok
-  if(u8_is_backup==0)
-    lcd_putchar(sdBuf[j*32+6]);
+  if(u8_file_type==FILE_TYPE_TRY)
+    lcd_putchar(sdBuf[j*32+TRY_OFFSET]);
   else
     lcd_putchar(' ');  
   delay_ms(LCD_DELAY_MSG_MS); 
@@ -687,40 +712,32 @@ unsigned char file_open_update(const char *filename, unsigned char u8_is_backup)
   //1. compare filname(SRAM) to "BACKUP" (Flash)
   //2. 0=equal then skip deal UPDATE 5,4,3,2,1 
   //This is not equal "BACKUP" condition
-  if(u8_is_backup==0)
+  if(u8_file_type==FILE_TYPE_TRY)
   {
-      //1. check if UPDATE is below 2 then return with error 7
-      //2. if UPDATE below 5 then decrement 1 and copy UPDATE to FLASH APP
+      //1. check if TRY is below 1 then stop in while loop
+      //2. if TRY below 5 then decrement 1 and copy UPDATE to FLASH APP
       //3. UPDATE is other numbers then set 5
-      if((sdBuf[j*32+6])<'2'){
-        //return 1;//error if update reach 1 or 0
-        #ifdef DEBUG_ERRSD    
-        errorSD(7);
-        #endif
+      if((sdBuf[j*32+TRY_OFFSET])=='0'){
+        //return 1;//error if update reach 0
         #ifdef DEBUG_LCD
-        lcd_gotoxy(0,1);
-        if((sdBuf[j*32+6])=='0')
-            lcd_putsf(" GO FIRMAWARE ");
-        else
-            lcd_putsf(" ERROR        ");
-        delay_ms(LCD_DELAY_MSG_MS); 
+        lcd_clear();
+        lcd_putsf("SD FATAL ERROR!");         
         #endif
-        return 7;  //if no more retry
-        //app_pointer();//jump to app if no more retry
+        while(1)
+            delay_ms(10);
       }
-      else if((sdBuf[j*32+6])<='5'){ 
-        sdBuf[j*32+6]--;//decrement 1 retry.
+      else if((sdBuf[j*32+TRY_OFFSET])<='5'){ 
+        sdBuf[j*32+TRY_OFFSET]--;//decrement 1 retry.
       }
       else{
-        sdBuf[j*32+6]='5';
+        sdBuf[j*32+TRY_OFFSET]='5';
       }
       
       //rename the filename to value after change
-      result[0]=SD_writeSingleBlock(adr, sdBuf, &token);//save new UPDATE(num) filename.
+      result[0]=SD_writeSingleBlock(adr, sdBuf, &token);//save new TRY(num) filename.
       
-      //1. check UPDATE is 2,3,4 after decrement
-      //2. on UPDATE is below 2 return 8, to signal use/copy BACKUP file for APP FLASH
-      if(sdBuf[j*32+6]>'1')
+      //1. check TRY is 2,3,4 after decrement and return 0; for signal to copy UPDATE to FLASH APP     
+      if(sdBuf[j*32+TRY_OFFSET]>'1')
       {
           #ifdef DEBUG_LCD
           //lcd_putsf("7");
@@ -728,13 +745,23 @@ unsigned char file_open_update(const char *filename, unsigned char u8_is_backup)
           #endif
           return 0;
       }
-      else //try copy BACKUP to APP FLASH after return 8.
+      //2. on TRY == 1 => return 8, to signal use/copy BACKUP file for APP FLASH
+      else if(sdBuf[j*32+TRY_OFFSET]=='1') //try copy BACKUP to APP FLASH after return 8.
       {
           #ifdef DEBUG_LCD
           lcd_putsf(" 8");
           delay_ms(LCD_DELAY_MSG_MS); 
           #endif
           return 8;
+      }
+      //3. on TRY == 0 => return 9, to signal use/copy FACTORY file for APP FLASH
+      else if(sdBuf[j*32+TRY_OFFSET]=='0') //try copy FACTORY to APP FLASH after return 9.
+      {
+          #ifdef DEBUG_LCD
+          lcd_putsf(" 9");
+          delay_ms(LCD_DELAY_MSG_MS); 
+          #endif
+          return 9;
       }
   }
 #ifdef DEBUG_LCD
