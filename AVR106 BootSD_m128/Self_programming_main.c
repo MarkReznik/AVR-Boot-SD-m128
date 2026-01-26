@@ -89,7 +89,7 @@ void errorSD(unsigned char err);
 #define LCD_DELAY_MSG_MS   100
 //#define DEBUG_LED
 #ifdef DEBUG_LCD
-lcd_printhex(unsigned long num32, char size);
+void lcd_printhex(unsigned long num32, char size);
 #endif
 void main( void ){
   unsigned int i,j,k;
@@ -111,7 +111,7 @@ void main( void ){
     lcd_clear();
     PORTC.0=1;
     delay_ms(10);
-    lcd_putsf("BOOT SDREAD V14");
+    lcd_putsf("BOOT SDREAD V15");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
     delay_ms(LCD_DELAY_MSG_MS); 
@@ -139,14 +139,21 @@ void main( void ){
     result[0]=fat_init();
     if(result[0])
     {
+    
 #ifdef DEBUG_LCD
         lcd_gotoxy(0,0);
         lcd_clear();
         lcd_putsf("SD INIT FAIL");
         lcd_gotoxy(0,1);
-        lcd_putsf("JUMP TO FW");
+        if(ReadFlashByte(0)==0xFF)
+             lcd_putsf("FLASH IS EMPTY");
+        else
+            lcd_putsf("JUMP TO FW");
         delay_ms(LCD_DELAY_MSG_MS*2); 
 #endif    
+        if(ReadFlashByte(0)==0xFF)
+            while(1)
+               #asm("wdr"); 
         app_pointer();//go to app address 0 
     }
 
@@ -204,9 +211,15 @@ void main( void ){
     lcd_clear();
     lcd_putsf("NO UPDATE");
     lcd_gotoxy(0,1);
-    lcd_putsf("JUMP TO FW");
-    delay_ms(LCD_DELAY_MSG_MS); 
+    if(ReadFlashByte(0)==0xFF)
+         lcd_putsf("FLASH IS EMPTY");
+    else
+         lcd_putsf("JUMP TO FW");
+    delay_ms(LCD_DELAY_MSG_MS*2); 
 #endif    
+    if(ReadFlashByte(0)==0xFF)
+        while(1)
+           #asm("wdr"); 
     app_pointer();//go to app address 0 
   }
   
@@ -365,10 +378,19 @@ void main( void ){
                if(appPages==0)
                {
                     #ifdef DEBUG_LCD
-                      lcd_clear();
-                      lcd_putsf("GO TO FW");
-                      delay_ms(LCD_DELAY_MSG_MS); 
-                    #endif
+                    lcd_clear();
+                    lcd_putsf("UPDATE FW DONE");
+                    delay_ms(LCD_DELAY_MSG_MS);
+                    lcd_gotoxy(0,1); 
+                    if(ReadFlashByte(0)==0xFF)
+                         lcd_putsf("FLASH IS EMPTY");
+                    else
+                        lcd_putsf("JUMP TO FW");
+                    delay_ms(LCD_DELAY_MSG_MS*2); 
+                    #endif    
+                    if(ReadFlashByte(0)==0xFF)
+                        while(1)
+                           #asm("wdr"); 
                     app_pointer();//go to app address 0
                     /*
                     do
@@ -474,13 +496,19 @@ void errorSD(unsigned char err)
     //while(1);
 #else
 #ifdef DEBUG_LCD
-  lcd_clear();
-  lcd_putsf("SD FILE ERROR");
-  lcd_gotoxy(0,1);
-  lcd_putsf("JUMP TO FW");
-  delay_ms(LCD_DELAY_MSG_MS*2); 
-#endif
-  app_pointer();
+    lcd_clear();
+    lcd_putsf("SD FILE ERROR");
+    lcd_gotoxy(0,1);
+    if(ReadFlashByte(0)==0xFF)
+         lcd_putsf("FLASH IS EMPTY");
+    else
+        lcd_putsf("JUMP TO FW");
+    delay_ms(LCD_DELAY_MSG_MS*2); 
+    #endif    
+    if(ReadFlashByte(0)==0xFF)
+        while(1)
+           #asm("wdr"); 
+    app_pointer();//go to app address 0
 #endif     
     //while(1);
 }
@@ -506,7 +534,7 @@ unsigned long buf2num(unsigned char *buf,unsigned char len)
 
 
 #ifdef DEBUG_LCD
-lcd_printhex(unsigned long num32, char size){
+void lcd_printhex(unsigned long num32, char size){
     #ifdef DEBUG_LCD_WRITE_TO_FLASH
     char i,nible;
     //num32>>=((4-size)*8);//0x12345678 >>24 -> 0x00000012 

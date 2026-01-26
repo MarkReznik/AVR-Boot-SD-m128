@@ -57,7 +57,7 @@ PageIndex6=6
 OF7=Debug\List\BootSd_App_m128.lst
 Active7=0
 EditorPanel7=0
-TimeStamp7=1545840940
+TimeStamp7=1546101377
 PageIndex7=7
 OF8=sdboot.h
 Active8=0
@@ -591,7 +591,7 @@ L11=[.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 L12=
 L13=
 [BookmarksFoldedCode]
-Files=33
+Files=35
 F1=main.c
 F2=Self_programming.c
 F3=Self_programming.h
@@ -625,6 +625,8 @@ F30=Debug\List\BootSd_App_m128.lst
 F31=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\sdboot_app.c
 F32=C:\cvavr - Copy\inc\mega128_bits.h
 F33=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 App1\sdboot.h
+F34=sdboot_app.c
+F35=sdboot.h
 [Bookmarks1]
 TimeStamp=1032480024
 Row=142
@@ -646,7 +648,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1546103971
+TimeStamp=1547349372
 [Bookmarks2]
 TimeStamp=1349760203
 Row=227
@@ -1220,10 +1222,6 @@ BK8=-1
 BK9=-1
 [FoldedCode31]
 Blocks=0
-[FoldedCode19]
-Blocks=0
-[FoldedCode27]
-Blocks=0
 [Bookmarks32]
 TimeStamp=982084387
 Row=48
@@ -1240,8 +1238,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode32]
-Blocks=0
 [Bookmarks33]
 TimeStamp=1546101372
 Row=3
@@ -1259,6 +1255,48 @@ BK7=-1
 BK8=-1
 BK9=-1
 [FoldedCode33]
+Blocks=0
+[Bookmarks34]
+TimeStamp=1546101353
+Row=0
+Column=0
+ScrollPosX=0
+ScrollPosY=0
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[Bookmarks35]
+TimeStamp=1546101372
+Row=0
+Column=0
+ScrollPosX=0
+ScrollPosY=0
+BK0=-1
+BK1=-1
+BK2=-1
+BK3=-1
+BK4=-1
+BK5=-1
+BK6=-1
+BK7=-1
+BK8=-1
+BK9=-1
+[FoldedCode34]
+Blocks=0
+[FoldedCode19]
+Blocks=0
+[FoldedCode27]
+Blocks=0
+[FoldedCode32]
+Blocks=0
+[FoldedCode35]
 Blocks=0
 [FoldedCode30]
 Blocks=0
