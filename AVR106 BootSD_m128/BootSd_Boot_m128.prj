@@ -202,7 +202,7 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1547352708
+COFFileTimeStamp=1547370977
 Build=588
 XminiBootLoader=0
 XminiBootEnd=0
@@ -591,7 +591,7 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 587
+L17=Build: 588
 L18=18066 line(s) compiled
 L19=No errors
 L20=28 warning(s)
@@ -1283,44 +1283,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[HeadersList]
-Files=4
-F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.c
-F2=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\flash.c
-F3=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming_main.c
-F4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\spi_sdcard.c
-[Header1]
-Files=5
-F1=C:\cvavr - Copy\inc\io.h
-F2=C:\cvavr - Copy\inc\mega128.h
-F3=C:\cvavr - Copy\inc\mega128_bits.h
-F4=Self_programming.h
-F5=flash.h
-[Header2]
-Files=4
-F1=C:\cvavr - Copy\inc\io.h
-F2=C:\cvavr - Copy\inc\mega128.h
-F3=C:\cvavr - Copy\inc\mega128_bits.h
-F4=flash.h
-[Header3]
-Files=10
-F1=C:\cvavr - Copy\inc\io.h
-F2=C:\cvavr - Copy\inc\mega128.h
-F3=C:\cvavr - Copy\inc\mega128_bits.h
-F4=C:\cvavr - Copy\inc\delay.h
-F5=flash.h
-F6=Self_programming.h
-F7=spi_sdcard.h
-F8=C:\cvavr - Copy\inc\alcd.h
-F9=C:\cvavr - Copy\inc\stdlib.h
-F10=C:\cvavr - Copy\inc\string.h
-[Header4]
-Files=5
-F1=spi_sdcard.h
-F2=C:\cvavr - Copy\inc\io.h
-F3=C:\cvavr - Copy\inc\mega128.h
-F4=C:\cvavr - Copy\inc\mega128_bits.h
-F5=C:\cvavr - Copy\inc\delay.h
 [FoldedCode2]
 Blocks=0
 [FoldedCode6]
@@ -1341,3 +1303,41 @@ Blocks=0
 Blocks=0
 [FoldedCode3]
 Blocks=0
+[HeadersList]
+Files=4
+F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.c
+F2=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\flash.c
+F3=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming_main.c
+F4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\spi_sdcard.c
+[Header1]
+Files=5
+F1=C:\cvavr\inc\io.h
+F2=C:\cvavr\inc\mega128.h
+F3=C:\cvavr\inc\mega128_bits.h
+F4=Self_programming.h
+F5=flash.h
+[Header2]
+Files=4
+F1=C:\cvavr\inc\io.h
+F2=C:\cvavr\inc\mega128.h
+F3=C:\cvavr\inc\mega128_bits.h
+F4=flash.h
+[Header3]
+Files=10
+F1=C:\cvavr\inc\io.h
+F2=C:\cvavr\inc\mega128.h
+F3=C:\cvavr\inc\mega128_bits.h
+F4=C:\cvavr\inc\delay.h
+F5=flash.h
+F6=Self_programming.h
+F7=spi_sdcard.h
+F8=C:\cvavr\inc\alcd.h
+F9=C:\cvavr\inc\stdlib.h
+F10=C:\cvavr\inc\string.h
+[Header4]
+Files=5
+F1=spi_sdcard.h
+F2=C:\cvavr\inc\io.h
+F3=C:\cvavr\inc\mega128.h
+F4=C:\cvavr\inc\mega128_bits.h
+F5=C:\cvavr\inc\delay.h
