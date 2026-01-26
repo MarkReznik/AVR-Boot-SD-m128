@@ -36,7 +36,7 @@ PageIndex2=3
 OF3=Self_programming_main.c
 Active3=1
 EditorPanel3=0
-TimeStamp3=1546895054
+TimeStamp3=1547352707
 PageIndex3=4
 OF4=flash.c
 Active4=0
@@ -203,7 +203,7 @@ UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
 COFFileTimeStamp=1547352708
-Build=587
+Build=588
 XminiBootLoader=0
 XminiBootEnd=0
 XminiAppEnd=0
@@ -313,7 +313,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=587
+Build=588
 IncludePath0=F:\MyProjects\cvavr_portable\cvavr_portable\cvavr332\inc
 IncludePath1=
 IncludePath2=
@@ -686,13 +686,13 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1547348566
+TimeStamp=1547370828
 [Bookmarks2]
 TimeStamp=1534872591
-Row=232
-Column=0
+Row=71
+Column=27
 ScrollPosX=0
-ScrollPosY=210
+ScrollPosY=59
 BK0=-1
 BK1=-1
 BK2=-1
@@ -790,11 +790,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1546895054
-Row=752
-Column=37
+TimeStamp=1547352707
+Row=500
+Column=4
 ScrollPosX=0
-ScrollPosY=721
+ScrollPosY=474
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1283,26 +1283,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode2]
-Blocks=0
-[FoldedCode6]
-Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode28]
-Blocks=0
-[FoldedCode16]
-Blocks=0
-[FoldedCode33]
-Blocks=0
-[FoldedCode34]
-Blocks=0
-[FoldedCode29]
-Blocks=0
-[FoldedCode10]
-Blocks=0
-[FoldedCode3]
-Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.c
@@ -1341,3 +1321,23 @@ F2=C:\cvavr - Copy\inc\io.h
 F3=C:\cvavr - Copy\inc\mega128.h
 F4=C:\cvavr - Copy\inc\mega128_bits.h
 F5=C:\cvavr - Copy\inc\delay.h
+[FoldedCode2]
+Blocks=0
+[FoldedCode6]
+Blocks=0
+[FoldedCode8]
+Blocks=0
+[FoldedCode28]
+Blocks=0
+[FoldedCode16]
+Blocks=0
+[FoldedCode33]
+Blocks=0
+[FoldedCode34]
+Blocks=0
+[FoldedCode29]
+Blocks=0
+[FoldedCode10]
+Blocks=0
+[FoldedCode3]
+Blocks=0
