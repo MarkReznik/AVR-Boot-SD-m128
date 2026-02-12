@@ -1,0 +1,15 @@
+#define   ModeTone  0x10 
+#define   M_BTone   0x20    
+#define   T_PTone   0x40 
+#define   UpTone    0x80   
+
+extern unsigned char  SecondTone, TimePauseTone,TimePausePul; 
+
+void ToTelephonePuls(void);
+void SendTelephone(char Number);
+void ToneDialer(void);
+//void SendPulseTone(char qData);
+void SendToneOut(void);
+//void StopDialing(void);
+void DisConectPuls(void);
+void DelayTone(char Time);

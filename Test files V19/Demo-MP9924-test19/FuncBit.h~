@@ -1,0 +1,5 @@
+unsigned char GetBit(unsigned char Index); // return bit in place Index
+unsigned char GetFirstBit(unsigned char Word);//return number of first bit
+void ClearBit(char* str,char bit);
+void cpyBit(char* str1,char Bit1,char* str2,char Bit2);
+//unsigned char ClearFirstBit(unsigned char Key);  //clear first bit from byte

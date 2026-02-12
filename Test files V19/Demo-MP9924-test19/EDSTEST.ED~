@@ -1,0 +1,32 @@
+[Base Project]
+Name=C:\cvavr\MyProject\LCD_Coder\He_LCD_Mast\L_CoderAsafPls128\EDSTEST.PPM
+Relative Name=EDSTEST.PPM
+
+[Pre Erase Fuses]
+Enabled=1
+Item 0 Value=1 - UNPROGRAMMED
+Item 1 Value=0 - PROGRAMMED
+Item 2 Value=0 - PROGRAMMED
+Item 3 Value=0 - PROGRAMMED
+Item 4 Value=0 - PROGRAMMED
+Item 5 Value=1 - UNPROGRAMMED
+Item 6 Value=1 - UNPROGRAMMED
+Item 7 Value=1 - UNPROGRAMMED
+Item 8 Value=1 - UNPROGRAMMED
+Item 9 Value=0 - PROGRAMMED
+Item 10 Value=0 - PROGRAMMED
+Item 11 Value=1 - UNPROGRAMMED
+Item 12 Value=1 - UNPROGRAMMED
+Item 13 Value=0 - PROGRAMMED
+Item 14 Value=1 - UNPROGRAMMED
+Item 15 Value=1 - UNPROGRAMMED
+Item 16 Value=0 - PROGRAMMED
+
+[Lock Bytes]
+Enabled=1
+
+[Flash]
+File=C:\cvavr\MyProject\LCD_Coder\He_LCD_Mast\L_CoderAsafPls128\Elegant.eep
+
+[Eeprom]
+File=

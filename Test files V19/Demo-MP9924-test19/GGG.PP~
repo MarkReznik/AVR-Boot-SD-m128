@@ -1,0 +1,240 @@
+[History]
+Created=17/09/03 11:10:08
+CreatedFloat=37881.4653721065
+EQTools Version=2.1.0.422
+
+[Project Header]
+Unique Id=GGG
+Unique Id Hint=GGG
+File Version=1.0.0.0
+Target Prog=EPSILON5
+Creation Date=37881.4632175926
+
+[Config Structure]
+Verify Buffer Voltage=1
+ExternalOscillator=0
+Internal Oscillator Index=0
+Write Calib to Flash=1
+Calib Location=131070
+TargetOscillatorFreq=1000000
+DataDelay=3.33
+SpiDelay=3.33
+MediumDataDelay=2
+MediumSpiDelay=2
+Erase Device=1
+
+[JTAG]
+Fast frequency=0
+Slow frequency=416667
+
+[EEPROM]
+MaxEepromWriteTime=15
+ExtraEepromDelay=0
+Erase To=4095
+Polling=1
+
+[tsOptions Notes]
+Count=0
+
+[tsHeader Notes]
+Count=0
+
+[tsTargetProg Notes]
+Count=0
+
+[Pre Erase Fuses]
+Item 0 Value=1 - UNPROGRAMMED
+Item 1 Value=0 - PROGRAMMED
+Item 2 Value=0 - PROGRAMMED
+Item 3 Value=0 - PROGRAMMED
+Item 4 Value=0 - PROGRAMMED
+Item 5 Value=1 - UNPROGRAMMED
+Item 6 Value=1 - UNPROGRAMMED
+Item 7 Value=1 - UNPROGRAMMED
+Item 8 Value=1 - UNPROGRAMMED
+Item 9 Value=0 - PROGRAMMED
+Item 10 Value=0 - PROGRAMMED
+Item 11 Value=1 - UNPROGRAMMED
+Item 12 Value=1 - UNPROGRAMMED
+Item 13 Value=0 - PROGRAMMED
+Item 14 Value=1 - UNPROGRAMMED
+Item 15 Value=1 - UNPROGRAMMED
+Item 16 Value=0 - PROGRAMMED
+Enabled=1
+
+[Post Erase Fuse Bytes]
+Item 0 Value=1 - UNPROGRAMMED
+Item 1 Value=0 - PROGRAMMED
+Item 2 Value=0 - PROGRAMMED
+Item 3 Value=0 - PROGRAMMED
+Item 4 Value=0 - PROGRAMMED
+Item 5 Value=1 - UNPROGRAMMED
+Item 6 Value=1 - UNPROGRAMMED
+Item 7 Value=1 - UNPROGRAMMED
+Item 8 Value=1 - UNPROGRAMMED
+Item 9 Value=0 - PROGRAMMED
+Item 10 Value=0 - PROGRAMMED
+Item 11 Value=1 - UNPROGRAMMED
+Item 12 Value=1 - UNPROGRAMMED
+Item 13 Value=0 - PROGRAMMED
+Item 14 Value=1 - UNPROGRAMMED
+Item 15 Value=1 - UNPROGRAMMED
+Item 16 Value=0 - PROGRAMMED
+Enabled=1
+
+[Pre Lock Fuse Bytes]
+Item 0 Value=1 - UNPROGRAMMED
+Item 1 Value=0 - PROGRAMMED
+Item 2 Value=0 - PROGRAMMED
+Item 3 Value=0 - PROGRAMMED
+Item 4 Value=0 - PROGRAMMED
+Item 5 Value=1 - UNPROGRAMMED
+Item 6 Value=1 - UNPROGRAMMED
+Item 7 Value=1 - UNPROGRAMMED
+Item 8 Value=1 - UNPROGRAMMED
+Item 9 Value=0 - PROGRAMMED
+Item 10 Value=0 - PROGRAMMED
+Item 11 Value=1 - UNPROGRAMMED
+Item 12 Value=1 - UNPROGRAMMED
+Item 13 Value=0 - PROGRAMMED
+Item 14 Value=1 - UNPROGRAMMED
+Item 15 Value=1 - UNPROGRAMMED
+Item 16 Value=0 - PROGRAMMED
+Enabled=1
+
+[Lock Bytes]
+Item 0 Value=1 - UNPROGRAMMED
+Item 1 Value=1 - UNPROGRAMMED
+Item 2 Value=1 - UNPROGRAMMED
+Item 3 Value=1 - UNPROGRAMMED
+Item 4 Value=1 - UNPROGRAMMED
+Item 5 Value=1 - UNPROGRAMMED
+Enabled=1
+
+[State]
+Pin 0 Enable=0
+Pin 0 Delay=50
+Pin 0 Reset=TRI
+Pin 0 OutputState1=TRI
+Pin 0 OutputState2=TRI
+Pin 0 OutputState3=TRI
+Pin 0 OutputState4=TRI
+Pin 0 OutputState5=TRI
+Pin 1 Enable=0
+Pin 1 Delay=50
+Pin 1 Reset=LAH
+Pin 1 OutputState1=ODL
+Pin 1 OutputState2=TRI
+Pin 1 OutputState3=ODL
+Pin 1 OutputState4=TRI
+Pin 1 OutputState5=TRI
+Pin 2 Enable=0
+Pin 2 Delay=50
+Pin 2 Reset=LAL
+Pin 2 OutputState1=ODL
+Pin 2 OutputState2=TRI
+Pin 2 OutputState3=ODL
+Pin 2 OutputState4=TRI
+Pin 2 OutputState5=TRI
+Pin 3 Enable=0
+Pin 3 Delay=0
+Pin 3 Reset=TRI
+Pin 3 OutputState1=TRI
+Pin 3 OutputState2=TRI
+Pin 3 OutputState3=TRI
+Pin 3 OutputState4=TRI
+Pin 3 OutputState5=TRI
+Pin 4 Enable=0
+Pin 4 Delay=0
+Pin 4 Reset=TRI
+Pin 4 OutputState1=TRI
+Pin 4 OutputState2=TRI
+Pin 4 OutputState3=TRI
+Pin 4 OutputState4=TRI
+Pin 4 OutputState5=TRI
+Pin 5 Enable=0
+Pin 5 Delay=0
+Pin 5 Reset=TRI
+Pin 5 OutputState1=TRI
+Pin 5 OutputState2=TRI
+Pin 5 OutputState3=TRI
+Pin 5 OutputState4=TRI
+Pin 5 OutputState5=TRI
+Pin 0 Desc=RESET
+Pin 1 Desc=MOSI
+Pin 2 Desc=MISO
+Pin 3 Desc=SCK
+Pin 4 Desc=SPARE/SCK2
+Pin 5 Desc=SPARE
+Description=1 - Active LOW RESET - RESET Driven HIGH (50ms) and LOW (50ms)
+Notes=- This statemachine should be used with any device with an Active LOW RESET such as an Atmel AVR Microcontroller.|- The programmer will drive the RESET pin HIGH for 50ms and then LOW for 50ms|- The MOSI and SCK pins are driven LOW for the duration of the RESET to ensure the device enters 'Serial Programming Mode'.|- Suitable for use with 'Active LOW' RESET circuits where the time constant of the RESET circuit is less than 50ms.|- This is typical of most commonly used Capacitor / Resistor RESET circuits.|- If a RESET control/monitoring device is used, ensure that an Open Collector type controller is employed and time constant is <50ms.
+
+[tsPreProg Notes]
+Count=9
+0=- This statemachine should be used with any device with an Active LOW RESET such as an Atmel AVR
+1=Microcontroller.
+2=- The programmer will drive the RESET pin HIGH for 50ms and then LOW for 50ms
+3=- The MOSI and SCK pins are driven LOW for the duration of the RESET to ensure the device enters 'Serial
+4=Programming Mode'.
+5=- Suitable for use with 'Active LOW' RESET circuits where the time constant of the RESET circuit is less than 50ms.
+6=- This is typical of most commonly used Capacitor / Resistor RESET circuits.
+7=- If a RESET control/monitoring device is used, ensure that an Open Collector type controller is employed and time
+8=constant is <50ms
+
+[Target]
+UniqueId=304
+Device Name=ATmega128-16xx
+Device Version=1.05R
+Device Library=ATmega.LIB
+Device Library Desc=ATmega(AVR) Library (SPI/JTAG)
+Device Library Version=1.02R
+
+[Signature1]
+Value=0x1E9702
+Enabled=1
+
+[Signature2]
+Value=
+
+[Signature3]
+Value=
+
+[Flash]
+MaxFlashWriteTime=10
+Polling=1
+Radio=1
+File=C:\cvavr\MyProject\LCD_Coder\He_LCD_Mast\L_CoderAsaf\Elegant.cof
+Relative Path=Elegant.cof
+
+[tsTarget Notes]
+Count=0
+
+[tsTargetOscillator Notes]
+Count=0
+
+[tsSPISettings Notes]
+Count=0
+
+[tsPPMPSU Notes]
+Count=0
+
+[tsPreErase Notes]
+Count=0
+
+[tsErase Notes]
+Count=0
+
+[tsPostErase Notes]
+Count=0
+
+[tsFlash Notes]
+Count=0
+
+[tsEeprom Notes]
+Count=0
+
+[tsPreLock Notes]
+Count=0
+
+[tsLockBytes Notes]
+Count=0

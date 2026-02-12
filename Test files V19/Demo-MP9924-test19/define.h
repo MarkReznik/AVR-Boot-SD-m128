@@ -1,0 +1,305 @@
+//************* Time Sending *********************
+#define  READY   5     
+//******************** defolt of names *************        
+#define START_DEF_NAME  14
+#define STOP_DEF_NAME   25
+
+                               
+//******************** Time of time Out ***************
+#define  MS_5    0xB3                             
+#define  MS_25   0xB3
+#define  S_1     0xB3          
+//******************** Time of conected ***************
+#define  TIME_CONECT_1 40 
+#define  TIME_CONECT_2 70 
+//******************** Sound to keybord ***************   
+#define sCHIME    1     
+#define sBEEP_H   2
+#define sBEEP_L   3
+#define sCONFERM  4
+#define sWARNING  5
+
+// ************** Button from Keybord ****************
+#define  ZERO      0x0A
+#define  DHSH      0x11  
+#define  STAR      0x18 
+#define  BELL      0x16
+#define  NEXT      0x15 
+#define  BACK      0x17 
+#define  FAST      0x19 
+#define  L_STAR    0x20  ///LONG STAR 
+
+
+
+
+//250 CHANG  
+#define  NAMEN     250   //if(NextCode>MaxNum)  add 2080 mast change sapertly        
+    
+
+
+     //******************* Max EEprom  *************  
+      
+#define  MaxOrderNames      NAMEN+1//129 //128+big name 
+#define  MaxName            NAMEN//128
+#define  MaxOutPut          NAMEN//128
+#define  MaxCode            NAMEN//128
+#define  MaxTimeCycle       18  
+#define  MaxMasterCode      1   
+#define  MaxTecUserCode     1
+#define  MaxExtKeys         1  
+#define  MaxProxyLrn        NAMEN//205
+#define  MaxProxyLrn2       NAMEN//205
+#define  MaxFloorValue      60   
+#define  MaxMasageOn        8   
+#define  MaxAnswerY_N       16     //MUST ADJUST UP/DOWN 
+#define  MaxRelayControl    2 
+#define  MaxEraseAll        4//FIX7  MUST ADJUST UP/DOWN 
+#define  MaxFASTstep        1 
+#define  MaxSpeechLevel     1 
+#define  MaxService         12 
+#define  MaxType            1 
+#define  MaxOfset           1 
+#define  MaxNewNo           NAMEN
+#define  MaxCommSpd         1
+#define  MaxTel1Num         NAMEN
+#define  MaxTel2Num         NAMEN
+#define  MaxTel3Num         NAMEN
+#define  MaxTel4Num         NAMEN
+#define  MaxTel5Num         NAMEN
+#define  MaxTel6Num         NAMEN
+#define  MaxRingingNum      1
+#define  MaxBusySogTone     9
+#define  MaxToneCodes       1     
+#define  MaxConfirmTone     1     
+#define  MaxSetReadTime     1   
+#define  MaxSetReadTimer    12  
+#define  MaxSaveTimerSta    1     
+#define  MaxExtKeys         1     
+#define  MaxFamilyNo        1 
+#define  MaxMDMCode         1   
+#define  MaxRmtMasterCode   1 
+#define  MaxKeepName         1 //FIX7 
+#define  MaxPrxyDirRly1      6//PrxyFast  
+#define  MaxPrxyDirRly2      6//PrxyFast  
+#define  MaxPrxyQtytRly1     6//PrxyFast  
+#define  MaxPrxyQtytRly2     6//PrxyFast 
+#define  MaxPRG_Was_Done     1//PRG SHOW
+#define  MaxORG_Was_Start     1//ORG start
+#define  MaxRelay1MeM         1//relay 1 status  
+#define  MaxRelay2MeM         1//relay 2 status      
+    
+ 
+
+
+
+
+   
+
+ 
+   //******************* Max. Character EEprom ************ 
+   
+#define  CMaxOrderNames      1   
+#define  CMaxName            16
+#define  CMaxOutPut          3
+#define  CMaxCode            10        
+#define  CMaxTimeCycle       2 
+#define  CMaxMasterCode      10   
+#define  CMaxTecUserCode     10
+#define  CMaxExtKeys         2  
+#define  CMaxProxyLrn        8 
+#define  CMaxProxyLrn2       8 
+#define  CMaxFloorValue      3    
+#define  CMaxMasageOn        1   
+#define  CMaxAnswerY_N       1 
+#define  CMaxRelayControl    3 
+#define  CMaxEraseAll        1 
+#define  CMaxFASTstep        1 
+#define  CMaxSpeechLevel     1 
+#define  CMaxService         6 
+#define  CMaxType            3 
+#define  CMaxOfset           4 
+#define  CMaxNewNo           3  
+#define  CMaxCommSpd         1
+#define  CMaxTel1Num         15
+#define  CMaxTel2Num         15
+#define  CMaxTel3Num         15
+#define  CMaxTel4Num         15
+#define  CMaxTel5Num         15
+#define  CMaxTel6Num         15
+#define  CMaxTel6Num         15
+#define  CMaxRingingNum      2  
+#define  CMaxBusySogTone     2
+#define  CMaxToneCodes       2     
+#define  CMaxConfirmTone     1  
+#define  CMaxSetReadTime     5   
+#define  CMaxSetReadTimer    7     
+#define  CMaxSaveTimerSta    1 
+#define  CMaxFamilyNo        1  
+#define  CMaxMDMCode         10 
+#define  CMaxRmtMasterCode   10 
+#define  CMaxKeepName         1 //FIX7 
+#define  CMaxPrxyDirRly1      NAMEN//PrxyFast  
+#define  CMaxPrxyDirRly2      NAMEN//PrxyFast  
+#define  CMaxPrxyQtytRly1     16//PrxyFast  
+#define  CMaxPrxyQtytRly2     16//PrxyFast  
+#define  CMaxPRG_Was_Done     1//PRG SHOW
+#define  CMaxORG_Was_Start     1//ORG Start
+#define  CMaxRelay1MeM         1//relay 1 status  
+#define  CMaxRelay2MeM         1//relay 2 status      
+   
+
+
+
+
+
+
+  
+
+    //*********** System EEprom *****************
+#define  Status_SAC      1
+             // 0 - ButtonChime
+             // 1 - Activate1
+             // 2 - Activate2
+             // 3 - Bypass1
+             // 4 - Bypass2
+             // 5 - MadCode
+             // 6 - ValueCycle                         
+#define  Type           (Status_SAC + 4)      
+ 
+     //*********** Tec. EEprom *****************         
+#define  MDMCode        (Type + 16)   
+#define  MasterCode     (MDMCode + (MaxMDMCode*CMaxMDMCode))  //real code out of modem mape scope       
+#define  TecUserCode    (MasterCode + (MaxMasterCode*CMaxMasterCode))   
+#define  Code           (TecUserCode + (MaxTecUserCode*CMaxTecUserCode))
+#define  Name           (Code + (MaxCode * CMaxCode))       //1 
+#define  OutPut         (Name + (MaxName *CMaxName*2))          // 7 /IMP
+#define  TimeCycle      (OutPut + (MaxOutPut *CMaxOutPut))          // 7 
+#define  ExtKeys        (TimeCycle + (MaxTimeCycle *CMaxTimeCycle))          // 7 
+#define  ProxyLrn       (ExtKeys + (MaxExtKeys *CMaxExtKeys))          // 7 
+#define  ProxyLrn2      (ProxyLrn + (MaxProxyLrn *CMaxProxyLrn*6))          // 7   //IMP
+#define  MasageOn       (ProxyLrn2 + (MaxProxyLrn2 *CMaxProxyLrn2*6))          // 7 //IMP
+#define  AnswerY_N      (MasageOn + (MaxMasageOn *CMaxMasageOn))          // 7 
+#define  FloorValue     (AnswerY_N + (MaxAnswerY_N *CMaxAnswerY_N)) 
+#define  RelayControl   (FloorValue + (MaxFloorValue *CMaxFloorValue)) 
+#define  EraseAll       (RelayControl + (MaxRelayControl *CMaxRelayControl)) 
+#define  FASTstep       (EraseAll + (MaxEraseAll *CMaxEraseAll)) 
+#define  SpeechLevel    (FASTstep + (MaxFASTstep *CMaxFASTstep)) 
+#define  Service        (SpeechLevel +(MaxSpeechLevel *CMaxSpeechLevel)) 
+#define  Ofset          (Service +(MaxService *CMaxService)) 
+#define  NewNo          (Ofset +(MaxOfset *CMaxOfset)) 
+#define  CommSpd        (NewNo +(MaxNewNo *CMaxNewNo)) 
+#define  Tel1Num        (CommSpd +(MaxCommSpd *CMaxCommSpd)) 
+#define  Tel2Num        (Tel1Num +(MaxTel1Num *CMaxTel1Num)) 
+#define  Tel3Num        (Tel2Num +(MaxTel2Num *CMaxTel2Num)) 
+#define  Tel4Num        (Tel3Num +(MaxTel3Num *CMaxTel3Num)) 
+#define  Tel5Num        (Tel4Num +(MaxTel4Num *CMaxTel4Num)) 
+#define  Tel6Num        (Tel5Num +(MaxTel5Num *CMaxTel5Num)) 
+#define  RingingNum     (Tel6Num +(MaxTel6Num *CMaxTel6Num)) 
+#define  BusySogTone    (RingingNum +(MaxRingingNum *CMaxRingingNum)) 
+#define  ToneCodes      (BusySogTone +(MaxBusySogTone *CMaxBusySogTone)) 
+#define  ConfirmTone    (ToneCodes +(MaxToneCodes *CMaxToneCodes)) 
+#define  SetReadTime    (ConfirmTone +(MaxConfirmTone *CMaxConfirmTone)) 
+#define  SetReadTimer   (SetReadTime +(MaxSetReadTime *CMaxSetReadTime))
+#define  SaveTimerSta   (SetReadTimer +(MaxSetReadTimer *CMaxSetReadTimer)) 
+#define  FamilyNo       (SaveTimerSta +(MaxSaveTimerSta *CMaxSaveTimerSta))
+#define  RmtMasterCode  (FamilyNo +(MaxFamilyNo *CMaxFamilyNo)) 
+#define  KeepName        (RmtMasterCode +(MaxRmtMasterCode *CMaxRmtMasterCode))//FIX7
+#define  PrxyDirRly1   (KeepName +(MaxKeepName *CMaxKeepName))
+#define  PrxyDirRly2   (PrxyDirRly1 +(MaxPrxyDirRly1 *CMaxPrxyDirRly1)) 
+#define  PrxyQtytRly1    (PrxyDirRly2 +(MaxPrxyDirRly2 *CMaxPrxyDirRly2)) 
+#define  PrxyQtytRly2    (PrxyQtytRly1 +(MaxPrxyQtytRly1 *CMaxPrxyQtytRly1))
+  
+#define  PRG_Was_Done    (PrxyQtytRly2 +(MaxPrxyQtytRly2 *CMaxPrxyQtytRly2))
+#define  ORG_Was_Start   (PRG_Was_Done +(MaxPRG_Was_Done *CMaxPRG_Was_Done))
+#define  Relay1MeM       (ORG_Was_Start +(MaxORG_Was_Start *CMaxORG_Was_Start))
+#define  Relay2MeM       (Relay1MeM +(MaxRelay1MeM *CMaxRelay1MeM))
+
+#define  MaxEEprom       (Relay2MeM +(MaxRelay2MeM *CMaxRelay2MeM))
+ 
+
+
+                
+
+//********************  Pointer to Line *********************
+#define    Max   35
+#define    pDisplay    0                               //  0
+#define    pNames          (pDisplay + 1)  
+#define    pCodes          (pDisplay + 2)         
+#define    pMasterCode     (pDisplay + 3)
+#define    pTecUserCode    (pDisplay + 4)
+#define    pTimeCycle      (pDisplay + 5)     
+#define    pOutput         (pDisplay + 6) 
+#define    pProxyLrn       (pDisplay + 7)
+#define    pProxyLrn2      (pDisplay + 8)  
+#define    pFloorValue     (pDisplay + 9) 
+#define    pRelayControl   (pDisplay + 10) 
+#define    pExtKeys        (pDisplay + 11)
+#define    pFASTstep       (pDisplay + 12)
+#define    pSpeechLevel    (pDisplay + 13)    
+#define    pEraseAll       (pDisplay + 14)   
+#define    pMasageOn       (pDisplay + 15)
+#define    pAnswerY_N      (pDisplay + 16)  
+#define    pOfset          (pDisplay + 17)  
+#define    pNewNo          (pDisplay + 18)  
+#define    pService        (pDisplay + 19)
+#define    pCommSpd        (pDisplay + 20) 
+#define    pTel1Num        (pDisplay + 21) 
+#define    pTel2Num        (pDisplay + 22) 
+#define    pTel3Num        (pDisplay + 23) 
+#define    pTel4Num        (pDisplay + 24) 
+#define    pTel5Num        (pDisplay + 25) 
+#define    pTel6Num        (pDisplay + 26) 
+#define    pRingingNum     (pDisplay + 27) 
+#define    pBusySogTone    (pDisplay + 28) 
+#define    pToneCodes      (pDisplay + 29) 
+#define    pConfirmTone    (pDisplay + 30)
+#define    pSetReadTime    (pDisplay + 31) 
+#define    pSetReadTimer   (pDisplay + 32) 
+#define    pFamilyNo       (pDisplay + 33)
+#define    pKeepName       (pDisplay + 34)  //FIX7   //Not use only referance 
+
+
+ 
+
+            
+
+ 
+#define    pCodesR        (pCodes * Max)            //  1 
+#define    pNamesR        (pNames * Max)            //  1
+#define    pOutputR       (pOutput * Max)            //  1 
+#define    pTimeCycleR    (pTimeCycle * Max)            //  1
+#define    pProxyLrnR     (pProxyLrn * Max)
+#define    pProxyLrn2R     (pProxyLrn2 * Max)
+#define    pMasterCodeR   (pMasterCode * Max)      
+#define    pTecUserCodeR  (pTecUserCode * Max) 
+#define    pFloorValueR   (pFloorValue * Max) 
+#define    pRelayControlR (pRelayControl * Max)   
+#define    pExtKeysR      (pExtKeys * Max)
+#define    pFASTstepR     (pFASTstep * Max)
+#define    pSpeechLevelR  (pSpeechLevel * Max)
+#define    pEraseAllR     (pEraseAll * Max)
+#define    pMasageOnR     (pMasageOn * Max)
+#define    pAnswerY_NR    (pAnswerY_N * Max)
+#define    pOfsetR        (pOfset * Max)
+#define    pNewNoR        (pNewNo * Max) 
+#define    pServiceR      (pService * Max)
+#define    pCommSpdR      (pCommSpd * Max)
+#define    pTel1NumR      (pTel1Num * Max)
+#define    pTel2NumR      (pTel2Num * Max) 
+#define    pTel3NumR      (pTel3Num * Max)
+#define    pTel4NumR      (pTel4Num * Max) 
+#define    pTel5NumR      (pTel5Num * Max)
+#define    pTel6NumR      (pTel6Num * Max)
+#define    pRingingNumR   (pRingingNum * Max) 
+#define    pBusySogToneR  (pBusySogTone * Max) 
+#define    pToneCodesR    (pToneCodes * Max) 
+#define    pConfirmToneR  (pConfirmTone * Max)
+#define    pSetReadTimeR  (pSetReadTime * Max) 
+#define    pSetReadTimerR (pSetReadTimer * Max)
+#define    pFamilyNoR     (pFamilyNo  * Max)
+#define    pKeepNameR     (pKeepName * Max) //FIX7 
+ 
+ 
+ 
+
+

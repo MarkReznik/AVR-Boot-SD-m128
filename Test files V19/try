@@ -1,0 +1,54 @@
+Build version 15:
+***After first update done and App is run - the 'backup' file renamed to 'tempdata' and 'update' file renamed to 'backup'.
+
+Add files to your project:
+sdboot_app.c
+sdboot.h
+mmc.c
+mmc.h
+pff_rn.c
+pff_rn.h
+integer.h
+diskio.h
+
+1. Check/Activate FUSE BOOTRST. 
+2. Check/Activate FUSE BOOTSZ0 and BOOTSZ1. Use 4Kword for bootloader.
+3. UnCheck/DeActivate FUSE BODLEVEL. Set 2.7V. Otherwise cannot jump to firmware after update.
+4. Erase and Program/Download file "BootSd_Boot_m128_Vxx.hex"
+5. Format SDcart FAT32.
+6. Copy files "update5", "backup", "data4k" to SDcard.
+7. Insert SDcard to device and power on.
+
+Use below functions in your code:
+
+Application functions:
+1. SdUpdateStatus();
+check if UPDATE exists(means Boot copy the UPDATE5 to Flash App) then change the name to BACKUP and the BACKUP name to TEMPDATA
+Return 0: Files ready to get new Firmware Update data after Buckup file is ready. 
+
+2. SdDataFileStatus();
+check the TEMPDATA file exists to get new Firmware Update data 
+Return 0: OK
+
+3. CopyFile("", "DEMODATA", "TEMPDATA");
+Simulate copy Demo Firmware Update data to TEMPDATA file
+
+4 SdRenameFile("NAME1", "NAME2");
+Rename function example. Filename must be capslock
+
+5.1 Example to fill data to TEPMDATA file then rename it to UPDATE ****
+    SdUpdateFileWrite(testbuf, 0, 5, &nbytes))
+Fill "TEMPDATA" file with update file data
+    
+5.2 SdUpdateFileComplete()
+Rename "TEMPDATA" to "UPDATE5"
+ 
+6.. SdDataErase(4096, ' '))
+Erase data in data4k file. Fill by spaces 0x20 ' '.
+
+7. SdDataFileWrite(testbuf, 0, 5, &nbytes))
+Write Data to data4k
+     
+8. SdDataFileRead(testbuf, 0, 5, &nbytes))
+Read Data to data4k
+   

@@ -1,0 +1,43 @@
+// hp
+#ifndef ELEGANT_INCLUDED
+#define ELEGANT_INCLUDED
+extern unsigned short ConfimTstT_CNT;
+extern unsigned char Status;
+extern unsigned char CounterWait,FlagWait,CounterOpenDoor,FlagOpenDoor;
+extern unsigned char FlagTestButton;
+extern char EnterSound,LastLocaName;
+extern char FlagTecUserCode;
+extern char fourline,AllRdyShow,secCNT,FlagPrySec,PrySecCnt,CuzPryCycl,PrxyCnt,MarkAsOne
+,PrxyResult,PrxyStartSine,NoOfPulse,WasHigh,ProxyValid,PxySum,CodeReg,PxyErr,MessageNoNeed,Auido_Sound,Audio_Cmnd,ii,Audio_Tx_Cnt,Pulse_Width
+,Audio_Val,VoiceIC_Mode,Call_Pulse,Snd_Relay,Reminder,Tx_Max_Char,EnglishMode,EraseAllDone,ProxyStore,WaitTime2,OpenDoorTime2,Rly12Ind,
+Rly1End,Rly2Start,FlagWait2,CounterWait2,CounterOpenDoor2,FlagOpenDoor2,FastStpValue,YesNoAnswer,DoorForget,PxyCodeTime,PxyCodeCnt,
+DETcnt,DETPin,WelcomeCounter,MAGcnt,MAGPin,MAGCounter,FloorMesCnt,AppCalled,NameMesCnt,AnnounceTime,ResetVoice,RelaseVoiceRly,MessageOnOff
+,FloorTime,BellSaveValue,AppCntCode,AcssesCodeTO,CountCode,DisplaySelected,DisplayNameList,WaitDisplay,DisplyList
+,DispSelect,ClearSelect,TypeRam,AddedType,YesNoAnswer2,RST_Rcnt,Index_R,Panel_Open,PanelNumber,BoardQty;//MMM
+extern unsigned HighStableDet2,SignalMaxCnt2,SignalResult2,BussyBounse,SignalHighDet2,SogBusyTone2,HighStableDet,SignalMaxCnt,SignalResult,SignalHighDet
+,SignalMinCnt2,SignalMinCnt,SogBusyTone,BussyBounse2,SignalTstCnt,ValumeValueBuf,FinshDialFlag,StartDialFlag,LineWasBussyFlag,Ringing,SignalHighTst
+,ShuntMicTime,DTMF_Dly_Break,AnsMD_timeOut,AnswerAsModem,RingNumber,ReceivedData,TimeTestSystem,ConectPC,MDM_Reply_Mode
+,rx_index_m1,CS_test,Wait_Tx1,MDM_oneSec,MDM_oneSecCnt,ToneDigCNT,DtmfExsist,DTMF_TestN,Tone_Dchr_cnt,ToneOKcnt,PauseButton,DelayBetweenTone
+,ConfirmTONE,NextDailMode,DialingTo,SavedPointer,ConfimTstT,BusyTstT,BusyTstTO_Timer,TelNotConfirm,TIM_ADJ,One_Min,Hours,Minutes,Days,
+Timer1D,Timer1SH,Timer1SM,Timer1PH,Timer1PM,Timer2D,Timer2SH,Timer2SM,Timer2PH,Timer2PM,Timer3D,Timer3SH,Timer3SM,Timer3PH,Timer3PM,QuitCallDet,
+Timer4D,Timer4SH,Timer4SM,Timer4PH,Timer4PM,TimerStatus,AMP_ON_OFF,Show_Clock,Secounds,No_Floor_Mess,NO_Close_Door_Mes,PC7WasHigh,PC7Cnt,TimeOut50Msec,FreqCallDet,
+CallSign,CallCnt,FreqBussyDet,BussySign,BusyVolume,BusyFrq,CallLowF,CallHighF,CallBreak,NoOfCall,Rec597Data,ReadWriteClk,Last597,Rec597Long,
+Busy_Det_Value,Tone_Dchr_cntB,Tone_Dchr_cntC,Tone_Dchr_cntD,rx_DataPoint,NoMore,MDM_Report,MDM_tx_time
+,SelectedSpeed,MDM_Data,BussyTIM,PassWordTstNeeded,BussyNum,FLAGS,Point,MDM_Reply_M,MDM_index,Force_Rest,EndAnsMD_timeOut;
+
+extern unsigned int SpeechTime;
+
+extern unsigned char MaxMenuN;               // max number of menu in level
+extern unsigned char MaxMenuD;               // max level in menu
+extern unsigned int  StutLine1;               // Number of first line
+extern unsigned int  StutLine2;               // Number of second line
+
+extern unsigned char Data[17];               // string of data from eeprom
+extern unsigned char pN; //FIX1    
+
+extern bit DOT;
+
+void Siren_Start(char Sug);
+void ReadData(char List);  //read data from eeprom
+
+#endif

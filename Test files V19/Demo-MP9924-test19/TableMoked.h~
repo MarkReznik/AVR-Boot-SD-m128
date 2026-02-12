@@ -1,0 +1,7 @@
+char TableOfEvents(char* str);
+char TableOfEvents_7(char* str);   
+char TableOfEvents_1(char* str);       
+char TableOfEvents_2(char* str);
+char Checsam_CS(char*str,char ind);
+char Checsam_RP(char*str,char ind);         
+char Checsam_RD(char*str,char ind);
