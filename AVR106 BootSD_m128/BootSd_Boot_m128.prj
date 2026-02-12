@@ -36,7 +36,7 @@ PageIndex2=3
 OF3=Self_programming_main.c
 Active3=1
 EditorPanel3=0
-TimeStamp3=1547352707
+TimeStamp3=1548527347
 PageIndex3=4
 OF4=flash.c
 Active4=0
@@ -202,8 +202,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1547370977
-Build=588
+COFFileTimeStamp=1548527348
+Build=589
 XminiBootLoader=0
 XminiBootEnd=0
 XminiAppEnd=0
@@ -313,7 +313,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=588
+Build=589
 IncludePath0=F:\MyProjects\cvavr_portable\cvavr_portable\cvavr332\inc
 IncludePath1=
 IncludePath2=
@@ -591,8 +591,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 588
-L18=18066 line(s) compiled
+L17=Build: 589
+L18=18070 line(s) compiled
 L19=No errors
 L20=28 warning(s)
 L21=
@@ -612,19 +612,19 @@ L34=Heap size: 0 byte(s)
 Lines=38
 L35=
 L36=EEPROM usage: 0 byte(s), 0.0% of EEPROM
-L37=Program size: 2827 words (5654 bytes), 69.0% of Boot FLASH
+L37=Program size: 2833 words (5666 bytes), 69.2% of Boot FLASH
 L38=483 words (966 bytes), 14.6% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\BootSd_Boot_m128.asm(5707): No EEPROM data, deleting F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\Exe\BootSd_Boot_m128.eep
+L4=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\List\BootSd_Boot_m128.asm(5716): No EEPROM data, deleting F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Debug\Exe\BootSd_Boot_m128.eep
 L5=
 L6=ATmega128 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x01e000 0x01f616   5256    398   5654  131072   4.3%
+L9=[.cseg] 0x01e000 0x01f622   5268    398   5666  131072   4.3%
 L10=[.dseg] 0x000100 0x000b60      0    608    608    4096  14.8%
 L11=[.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 L12=
@@ -686,7 +686,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1547370828
+TimeStamp=1548527830
 [Bookmarks2]
 TimeStamp=1534872591
 Row=71
@@ -790,11 +790,11 @@ BK7=-1
 BK8=-1
 BK9=-1
 [Bookmarks8]
-TimeStamp=1547352707
-Row=500
-Column=4
+TimeStamp=1548527347
+Row=0
+Column=0
 ScrollPosX=0
-ScrollPosY=474
+ScrollPosY=0
 BK0=-1
 BK1=-1
 BK2=-1
@@ -1283,26 +1283,6 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[FoldedCode2]
-Blocks=0
-[FoldedCode6]
-Blocks=0
-[FoldedCode8]
-Blocks=0
-[FoldedCode28]
-Blocks=0
-[FoldedCode16]
-Blocks=0
-[FoldedCode33]
-Blocks=0
-[FoldedCode34]
-Blocks=0
-[FoldedCode29]
-Blocks=0
-[FoldedCode10]
-Blocks=0
-[FoldedCode3]
-Blocks=0
 [HeadersList]
 Files=4
 F1=F:\MyProjects\My_AVR_Programmer\AVRbootSD\AVR106 AppBoot_m128_v02\AVR-Boot-SD-m128\AVR106 BootSD_m128\Self_programming.c
@@ -1341,3 +1321,23 @@ F2=C:\cvavr\inc\io.h
 F3=C:\cvavr\inc\mega128.h
 F4=C:\cvavr\inc\mega128_bits.h
 F5=C:\cvavr\inc\delay.h
+[FoldedCode2]
+Blocks=0
+[FoldedCode6]
+Blocks=0
+[FoldedCode8]
+Blocks=0
+[FoldedCode28]
+Blocks=0
+[FoldedCode16]
+Blocks=0
+[FoldedCode33]
+Blocks=0
+[FoldedCode34]
+Blocks=0
+[FoldedCode29]
+Blocks=0
+[FoldedCode10]
+Blocks=0
+[FoldedCode3]
+Blocks=0

@@ -36,6 +36,9 @@
 * Version: 0.0.0.14
 * New TRY counter to point if need UPDATE, BACKUP or FACTORY file to copy to FLASH 
 * Added SD FATAL ERROR the stop on TRY0 found
+* Version: 0.0.0.16
+* New TRY counter to point if need UPDATE, BACKUP or FACTORY file to copy to FLASH 
+* UPDATE after dectrement on try 8,7,6. BACKUP on try 5. FACTORY on try 4,3,2,1,0 
 *****************************************************************************/
 #include <io.h>
 #include <delay.h>
@@ -111,7 +114,7 @@ void main( void ){
     lcd_clear();
     PORTC.0=1;
     delay_ms(10);
-    lcd_putsf("BOOT SDREAD V15");
+    lcd_putsf("BOOT SDREAD V16");
     lcd_gotoxy(0,1);
     //lcd_putsf("0");
     delay_ms(LCD_DELAY_MSG_MS); 
@@ -754,18 +757,19 @@ unsigned char file_open_update(const char *filename, unsigned char u8_file_type)
         while(1)
             delay_ms(10);
       }
-      else if((sdBuf[j*32+TRY_OFFSET])<='5'){ 
+      else if(((sdBuf[j*32+TRY_OFFSET])>'0')&&((sdBuf[j*32+TRY_OFFSET])<='9'))
+      { 
         sdBuf[j*32+TRY_OFFSET]--;//decrement 1 retry.
       }
       else{
-        sdBuf[j*32+TRY_OFFSET]='5';
+        sdBuf[j*32+TRY_OFFSET]='8';
       }
       
       //rename the filename to value after change
       result[0]=SD_writeSingleBlock(adr, sdBuf, &token);//save new TRY(num) filename.
       
-      //1. check TRY is 2,3,4 after decrement and return 0; for signal to copy UPDATE to FLASH APP     
-      if(sdBuf[j*32+TRY_OFFSET]>'1')
+      //1. check TRY is 6,7,8 after decrement and return 0; for signal to copy UPDATE to FLASH APP     
+      if(sdBuf[j*32+TRY_OFFSET]>='6')
       {
           #ifdef DEBUG_LCD
           //lcd_putsf("7");
@@ -773,8 +777,8 @@ unsigned char file_open_update(const char *filename, unsigned char u8_file_type)
           #endif
           return 0;
       }
-      //2. on TRY == 1 => return 8, to signal use/copy BACKUP file for APP FLASH
-      else if(sdBuf[j*32+TRY_OFFSET]=='1') //try copy BACKUP to APP FLASH after return 8.
+      //2. on TRY == 5 => return 8, to signal use/copy BACKUP file for APP FLASH
+      else if(sdBuf[j*32+TRY_OFFSET]>='5') //try copy BACKUP to APP FLASH after return 8.
       {
           #ifdef DEBUG_LCD
           lcd_putsf(" 8");
@@ -782,8 +786,8 @@ unsigned char file_open_update(const char *filename, unsigned char u8_file_type)
           #endif
           return 8;
       }
-      //3. on TRY == 0 => return 9, to signal use/copy FACTORY file for APP FLASH
-      else if(sdBuf[j*32+TRY_OFFSET]=='0') //try copy FACTORY to APP FLASH after return 9.
+      //3. on TRY == 0,1,2,3,4 => return 9, to signal use/copy FACTORY file for APP FLASH
+      else if(sdBuf[j*32+TRY_OFFSET]>='0') //try copy FACTORY to APP FLASH after return 9.
       {
           #ifdef DEBUG_LCD
           lcd_putsf(" 9");
